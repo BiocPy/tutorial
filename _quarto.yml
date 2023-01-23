@@ -1,0 +1,27 @@
+project:
+  type: book
+  output-dir: docs
+
+execute:
+  freeze: auto
+
+book:
+  title: "tutorial"
+  author: "Jane Doe"
+  date: "1/13/2023"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+
