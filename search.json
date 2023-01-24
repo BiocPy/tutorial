@@ -2,29 +2,120 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "tutorial",
+    "title": "BiocPy: Porting Bioconductor representations to Python",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books."
+    "text": "Welcome\nBiocPy is an effort to bring core data structures and representations from Bioconductor to Python.\n\n\nPackages in BiocPy\nCurrently, the following core packages are available\n\nBiocFrame (GitHub, Docs): A lite version of dataframes. It is not equivalent to Pandas but provides many similar operations.\nGenomicRanges (GitHub, Docs, BioC): Container class to represent genomic locations and support genomic analysis. Similar to Bioconductor’s GenomicRanges.\nSummarizedExperiment (GitHub, Docs, BioC): Container class to represent genomic experiments, following Bioconductor’s SummarizedExperiment.\nSingleCellExperiment (GitHub, Docs, BioC): Container class to represent single-cell experiments; follows Bioconductor’s SingleCellExperiment.\nMultiAssayExperiment (GitHub, Docs, BioC): Container class to represent multiple experiments and assays performed over a set of samples. follows Bioconductor’s MAE R/Bioc Package.\n\nUtility packages\n\nrds2py (GitHub, Docs): Parse, extract and create Python representations for datasets stored in RDS files. Currently supports Bioconductor’s SummarizedExperiment and SingleCellExperiment objects.\nmopsy (GitHub, Docs): Convenience library to perform row/column operations over numpy and scipy matrices. Provides an interface similar to base R matrix methods/MatrixStats methods.\npyBiocFileCache (GitHub, Docs, BioC): File system based cache for resources & metadata.\n\nThis book will focus on end user tutorials for core Python packages we develop.\n\n\nNotes\nThis is a Quarto book and contains reusable snippets. To learn more about Quarto books visit https://quarto.org/docs/books."
   },
   {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "1  Introduction",
+    "objectID": "chapters/intro.html",
+    "href": "chapters/intro.html",
+    "title": "Installation",
     "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+    "text": "All packages in the BiocPy ecosystem are published to Python’s Package Index - PyPI.\nbiocpy is a wrapper package that install all core packages in the ecosystem.\npip install biocpy\nOR install packages as needed. e.g.\npip install summarizedexperiment # <package-name>\n\nUpdate packages\npip install -U biocpy # or <package-name>\n\n\n\n\n\n\nNote\n\n\n\nCheckout documentation to install individual packages - packages in BiocPy."
   },
   {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "2  Summary",
+    "objectID": "chapters/granges/index.html#installation",
+    "href": "chapters/granges/index.html#installation",
+    "title": "Genomic Ranges",
+    "section": "Installation",
+    "text": "Installation\nPackage is published to PyPI\npip install genomicranges"
+  },
+  {
+    "objectID": "chapters/granges/initialize.html",
+    "href": "chapters/granges/initialize.html",
+    "title": "Initialize GenomicRanges",
+    "section": "",
+    "text": "Construct a GenomicRanges object\nGenomicRanges holds genomic intervals and annotation about those intervals. Is it similar to a Pandas DataFrame and provide many similar basic operations.\nAccessors are available to access various properties of a GenomicRanges object.\nAccess widths of each interval in the object\nFollowing a pythonic syntax, you can also set or update the properties of the class.\nTo update the scores in the object,"
+  },
+  {
+    "objectID": "chapters/granges/initialize.html#import-ucsc-annotation-or-gtf-file",
+    "href": "chapters/granges/initialize.html#import-ucsc-annotation-or-gtf-file",
+    "title": "Initialize GenomicRanges",
+    "section": "Import UCSC annotation or GTF file",
+    "text": "Import UCSC annotation or GTF file\nA common way of accessing genome annotations for various organisms is from UCSC.\nimport genomicranges\ngr = genomicranges.readUCSC(genome=\"hg19\")\nprint(gr)\nSimilarly methods are available to read a gtf file from disk as GenomicRanges object\ngr = genomicranges.readGTF(<PATH TO GTF>)"
+  },
+  {
+    "objectID": "chapters/granges/initialize.html#from-pandas-dataframe",
+    "href": "chapters/granges/initialize.html#from-pandas-dataframe",
+    "title": "Initialize GenomicRanges",
+    "section": "from Pandas DataFrame",
+    "text": "from Pandas DataFrame\n\n\n\n\n\n\nNote\n\n\n\nThe DataFrame must contain columns seqnames, starts and ends to represent genomic coordinates.\n\n\nSimilarly one can construct a GenomicRanges object from an existing Pandas DataFrame.\n\nimport genomicranges\nimport pandas as pd\nfrom random import random\n\ndf = pd.DataFrame(\n    {\n        \"seqnames\": [\"chr1\", \"chr2\", \"chr1\", \"chr3\", \"chr2\"],\n        \"starts\": [101, 102, 103, 104, 109],\n        \"ends\": [112, 103, 128, 134, 111],\n        \"strand\": [\"*\", \"-\", \"*\", \"+\", \"-\"],\n        \"score\": range(0, 5),\n        \"GC\": [random() for _ in range(5)],\n    }\n)\n\ngr = genomicranges.fromPandas(df)\nprint(gr)\n\n        Class GenomicRanges with 5 intervals and 3 metadata columns\n          columnNames: ['seqnames', 'starts', 'ends', 'strand', 'score', 'GC']"
+  },
+  {
+    "objectID": "chapters/granges/initialize.html#from-a-dictionary",
+    "href": "chapters/granges/initialize.html#from-a-dictionary",
+    "title": "Initialize GenomicRanges",
+    "section": "from a dictionary",
+    "text": "from a dictionary\n\n\n\n\n\n\nNote\n\n\n\nThe object must contain keys seqnames, starts and ends to represent genomic coordinates.\n\n\n\nfrom genomicranges import GenomicRanges\nfrom random import random\n\nobj = {\n    \"seqnames\": [\n        \"chr1\",\n        \"chr2\",\n        \"chr2\",\n        \"chr2\",\n        \"chr1\",\n        \"chr1\",\n        \"chr3\",\n        \"chr3\",\n        \"chr3\",\n        \"chr3\",\n    ],\n    \"starts\": range(100, 110),\n    \"ends\": range(110, 120),\n    \"strand\": [\"-\", \"+\", \"+\", \"*\", \"*\", \"+\", \"+\", \"+\", \"-\", \"-\"],\n    \"score\": range(0, 10),\n    \"GC\": [random() for _ in range(10)],\n}\n\ngr = GenomicRanges(obj)\nprint(gr)\n\n        Class GenomicRanges with 10 intervals and 3 metadata columns\n          columnNames: ['seqnames', 'starts', 'ends', 'strand', 'score', 'GC']"
+  },
+  {
+    "objectID": "chapters/granges/initialize.html#set-sequence-information",
+    "href": "chapters/granges/initialize.html#set-sequence-information",
+    "title": "Initialize GenomicRanges",
+    "section": "Set sequence information",
+    "text": "Set sequence information\n\nfrom genomicranges import SeqInfo\n\nseq_obj = {\n    \"seqnames\": [\"chr1\", \"chr2\", \"chr3\",],\n    \"seqlengths\": range(125, 128),\n    \"isCircular\": [random() < 0.5 for _ in range(3)],\n    \"genome\": \"hg19\",\n}\n\nseq = SeqInfo(seq_obj)\n\ngr.seqInfo = seq\nprint(gr)\n\n        Class GenomicRanges with 10 intervals and 3 metadata columns\n          columnNames: ['seqnames', 'starts', 'ends', 'strand', 'score', 'GC']"
+  },
+  {
+    "objectID": "chapters/granges/initialize.html#add-new-metadata-columns",
+    "href": "chapters/granges/initialize.html#add-new-metadata-columns",
+    "title": "Initialize GenomicRanges",
+    "section": "Add new metadata columns",
+    "text": "Add new metadata columns\n\ngr[\"new_col\"] = [round(random(), 3) for _ in range(10)]\nprint(gr)\n\n        Class GenomicRanges with 10 intervals and 4 metadata columns\n          columnNames: ['seqnames', 'starts', 'ends', 'strand', 'score', 'GC', 'new_col']"
+  },
+  {
+    "objectID": "chapters/granges/initialize.html#column-method",
+    "href": "chapters/granges/initialize.html#column-method",
+    "title": "Initialize GenomicRanges",
+    "section": "Column method",
+    "text": "Column method\nUse the column() method to quickly access any column in the object. Useful for non-standard columns.\n\nprint(gr.column(\"new_col\"))\n\n[0.256, 0.169, 0.513, 0.209, 0.186, 0.687, 0.543, 0.839, 0.717, 0.721]"
+  },
+  {
+    "objectID": "chapters/granges/initialize.html#access-ranges",
+    "href": "chapters/granges/initialize.html#access-ranges",
+    "title": "Initialize GenomicRanges",
+    "section": "Access Ranges",
+    "text": "Access Ranges\nranges() is a generic method to access only the genomic intervals as dictionary, pandas DataFrame or something else.\n\n# default to dict\nprint(gr.ranges())\n\n{\n    'seqnames': ['chr1', 'chr2', 'chr2', 'chr2', 'chr1', 'chr1', 'chr3', 'chr3', 'chr3', 'chr3'],\n    'starts': range(100, 110),\n    'ends': range(110, 120),\n    'strand': ['-', '+', '+', '*', '*', '+', '+', '+', '-', '-']\n}\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nyou can pass in any class that takes a dictionary as an input for returnType.\n\n\n\n# as pandas DataFrame\ngr.ranges(returnType=pd.DataFrame)\n\n\n\n\n\n  \n    \n      \n      seqnames\n      starts\n      ends\n      strand\n    \n  \n  \n    \n      0\n      chr1\n      100\n      110\n      -\n    \n    \n      1\n      chr2\n      101\n      111\n      +\n    \n    \n      2\n      chr2\n      102\n      112\n      +\n    \n    \n      3\n      chr2\n      103\n      113\n      *\n    \n    \n      4\n      chr1\n      104\n      114\n      *\n    \n    \n      5\n      chr1\n      105\n      115\n      +\n    \n    \n      6\n      chr3\n      106\n      116\n      +\n    \n    \n      7\n      chr3\n      107\n      117\n      +\n    \n    \n      8\n      chr3\n      108\n      118\n      -\n    \n    \n      9\n      chr3\n      109\n      119\n      -\n    \n  \n\n\n\n\ngranges() method returns a new GenomicRanges object of just the genomic locations\n\nprint(gr.granges())\n\n        Class GenomicRanges with 10 intervals and 1 metadata columns\n          columnNames: ['seqnames', 'starts', 'ends', 'strand']"
+  },
+  {
+    "objectID": "chapters/granges/initialize.html#access-metadata-columns",
+    "href": "chapters/granges/initialize.html#access-metadata-columns",
+    "title": "Initialize GenomicRanges",
+    "section": "Access metadata columns",
+    "text": "Access metadata columns\nThis will access non-interval columns from the object.\n\nprint(gr.mcols())\n\nOrderedDict([('score', [0.94, 0.41, 0.73, 0.16, 0.89, 0.82, 0.08, 0.74, 0.29, 0.16]), ('GC', [0.040998183020671486,\n0.834980733550813, 0.07404934671216035, 0.27538817629930645, 0.05746067717602055, 0.06764655328738056, \n0.9485744650069657, 0.3816998644043762, 0.1454157695894378, 0.792083607773723]), ('new_col', [0.256, 0.169, 0.513, \n0.209, 0.186, 0.687, 0.543, 0.839, 0.717, 0.721])])"
+  },
+  {
+    "objectID": "chapters/granges/slice-ops.html",
+    "href": "chapters/granges/slice-ops.html",
+    "title": "Slice and Iterate Operations",
+    "section": "",
+    "text": "Slice methods\nTo iterate over the rows of the object,"
+  },
+  {
+    "objectID": "chapters/granges/slice-ops.html#slice-by-index",
+    "href": "chapters/granges/slice-ops.html#slice-by-index",
+    "title": "Slice and Iterate Operations",
+    "section": "slice by index",
+    "text": "slice by index\nYou can slice a GenomicRange object using the subset ([) operator.\n\n# slice the first 5 rows\nprint(gr[:5,])\n\n        Class GenomicRanges with 5 intervals and 3 metadata columns\n          columnNames: ['seqnames', 'starts', 'ends', 'strand', 'score', 'GC']"
+  },
+  {
+    "objectID": "chapters/granges/slice-ops.html#slice-by-index-names",
+    "href": "chapters/granges/slice-ops.html#slice-by-index-names",
+    "title": "Slice and Iterate Operations",
+    "section": "slice by index names",
+    "text": "slice by index names\nyou can also provide a list of index names to subset the object\n\nindex_to_subset = [\"idx_8\", \"idx_7\"]\n\nprint(gr[index_to_subset,])\n\n        Class GenomicRanges with 2 intervals and 3 metadata columns\n          columnNames: ['seqnames', 'starts', 'ends', 'strand', 'score', 'GC']"
+  },
+  {
+    "objectID": "chapters/granges/intra-inter-range.html",
+    "href": "chapters/granges/intra-inter-range.html",
+    "title": "Interval based operations",
+    "section": "",
+    "text": "Note\n\n\n\nFor detailed description, checkout Bioc GenomicRanges documentation\n\n\nfor nicer prints,\n\nfrom rich import print\n\nLets resue the same GenomicRanges object from the previous section.\n\nfrom genomicranges import GenomicRanges\nfrom random import random\n\nobj = {\n    \"seqnames\": [\n        \"chr1\",\n        \"chr2\",\n        \"chr2\",\n        \"chr2\",\n        \"chr1\",\n        \"chr1\",\n        \"chr3\",\n        \"chr3\",\n        \"chr3\",\n        \"chr3\",\n    ],\n    \"starts\": [i for i in range(100, 110)],\n    \"ends\": [i for i in range(110, 120)],\n    \"strand\": [\"-\", \"+\", \"+\", \"*\", \"*\", \"+\", \"+\", \"+\", \"-\", \"-\"],\n    \"score\": [i for i in range(0, 10)],\n    \"GC\": [random() for _ in range(10)],\n}\n\nindex = [f\"idx_{i}\" for i in range(10)]\n\ngr = GenomicRanges(obj, rowNames=index)\nprint(gr)\n\n        Class GenomicRanges with 10 intervals and 3 metadata columns\n          columnNames: ['seqnames', 'starts', 'ends', 'strand', 'score', 'GC']\n        \n\n\n\n\nIntra-range transformations\n\nflank(): flank the intervals based on start or end or both.\nshift(): shifts all the ranges specified by the shift argument.\nresize(): resizes the ranges to the specified width where either the start, end, or center is used as an anchor\nnarrow(): narrows the ranges\npromoters(): promoters generates promoter ranges for each range relative to the TSS.The promoter range is expanded around the TSS according to the upstream and downstream parameters.\nrestrict(): restricts the ranges to the interval(s) specified by the start and end arguments\ntrim(): trims out-of-bound ranges located on non-circular sequences whose length is not NA.\n\na few examples on how to use these methods,\n\n# flank\nflanked_gr = gr.flank(width=10, start=False, both=True)\nprint(flanked_gr)\n\n        Class GenomicRanges with 10 intervals and 3 metadata columns\n          columnNames: ['seqnames', 'starts', 'ends', 'strand', 'score', 'GC']\n        \n\n\n\n\n# resize\nresized_gr = gr.resize(width=10, fix=\"end\", ignoreStrand=True)\nprint(resized_gr)\n\n        Class GenomicRanges with 10 intervals and 3 metadata columns\n          columnNames: ['seqnames', 'starts', 'ends', 'strand', 'score', 'GC']\n        \n\n\n\n\n# narrow\nnarrow_gr = gr.narrow(end=4, width=3)\nprint(narrow_gr)\n\n        Class GenomicRanges with 10 intervals and 3 metadata columns\n          columnNames: ['seqnames', 'starts', 'ends', 'strand', 'score', 'GC']\n        \n\n\n\n\n# promoters\nprom_gr = gr.promoters()\nprint(prom_gr)\n\n        Class GenomicRanges with 10 intervals and 3 metadata columns\n          columnNames: ['seqnames', 'starts', 'ends', 'strand', 'score', 'GC']\n        \n\n\n\n\n\nInter-range methods\n\nrange(): returns a new GenomicRanges object containing range bounds for each distinct (seqname, strand) pairing.\nreduce(): returns a new GenomicRanges object containing reduced bounds for each distinct (seqname, strand) pairing.\ngaps(): Finds gaps in the GenomicRanges object for each distinct (seqname, strand) pairing\ndisjoin(): Finds disjoint intervals across all locations for each distinct (seqname, strand) pairing.\nisDisjoint(): Is the object contain disjoint intervals for each distinct (seqname, strand) pairing?\n\n\n# range\nrange_gr = gr.range()\nprint(range_gr)\n\n        Class GenomicRanges with 7 intervals and 1 metadata columns\n          columnNames: ['seqnames', 'strand', 'starts', 'ends']\n        \n\n\n\n\n# reduce\nreduced_gr = gr.reduce(minGapwidth=10, withRevMap=True)\nprint(reduced_gr)\n\n        Class GenomicRanges with 7 intervals and 2 metadata columns\n          columnNames: ['seqnames', 'strand', 'starts', 'ends', 'revmap']\n        \n\n\n\n\n# gaps\ngapped_gr = gr.gaps(start=103) # OR \n# gapped_gr = gr.gaps(end={\"chr1\": 120, \"chr2\": 120, \"chr3\": 120})\nprint(gapped_gr)\n\n        Class GenomicRanges with 4 intervals and 1 metadata columns\n          columnNames: ['seqnames', 'strand', 'starts', 'ends']\n        \n\n\n\n\n# disjoin\ndisjoin_gr = gr.disjoin()\nprint(disjoin_gr)\n\n        Class GenomicRanges with 13 intervals and 1 metadata columns\n          columnNames: ['seqnames', 'strand', 'starts', 'ends']"
+  },
+  {
+    "objectID": "chapters/summary.html",
+    "href": "chapters/summary.html",
+    "title": "1  Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever."
-  },
-  {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
-    "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
   }
 ]
