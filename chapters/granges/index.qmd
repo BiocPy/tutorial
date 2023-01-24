@@ -1,0 +1,13 @@
+# Genomic Ranges
+
+This package provides container class to represent genomic intervals in Python. Similar to Bioconductor's [GenomicRanges](https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html). ***Intervals are inclusive on both ends.***
+
+In this section, we will walkthrough use cases represeting and operating on genomic intervals.
+
+## Installation
+
+Package is published to [PyPI](https://pypi.org/project/genomicranges/)
+
+```bash
+pip install genomicranges
+```

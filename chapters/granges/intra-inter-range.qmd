@@ -1,0 +1,121 @@
+---
+format:
+  html:
+    code-fold: false
+execute: 
+  enabled: true
+  cache: true
+---
+
+# Interval based operations {.unnumbered}
+
+:::{.callout-note}
+For detailed description, checkout [Bioc GenomicRanges documentation](https://bioconductor.org/packages/release/bioc/manuals/GenomicRanges/man/GenomicRanges.pdf)
+:::
+
+for nicer prints,
+```{python}
+from rich import print
+```
+
+Lets resue the same `GenomicRanges` object from the previous section.
+
+```{python}
+from genomicranges import GenomicRanges
+from random import random
+
+obj = {
+    "seqnames": [
+        "chr1",
+        "chr2",
+        "chr2",
+        "chr2",
+        "chr1",
+        "chr1",
+        "chr3",
+        "chr3",
+        "chr3",
+        "chr3",
+    ],
+    "starts": [i for i in range(100, 110)],
+    "ends": [i for i in range(110, 120)],
+    "strand": ["-", "+", "+", "*", "*", "+", "+", "+", "-", "-"],
+    "score": [i for i in range(0, 10)],
+    "GC": [random() for _ in range(10)],
+}
+
+index = [f"idx_{i}" for i in range(10)]
+
+gr = GenomicRanges(obj, rowNames=index)
+print(gr)
+```
+
+# Intra-range transformations
+
+- `flank()`: flank the intervals based on start or end or both. 
+- `shift()`: shifts all the ranges specified by the shift argument.
+- `resize()`: resizes the ranges to the specified width where either the start, end, or center is used as an anchor
+- `narrow()`: narrows the ranges
+- `promoters()`: promoters generates promoter ranges for each range relative to the TSS.The promoter range is expanded around the TSS according to the upstream and downstream parameters.
+- `restrict()`: restricts the ranges to the interval(s) specified by the start and end arguments
+- `trim()`: trims out-of-bound ranges located on non-circular sequences whose length is not NA.
+
+a few examples on how to use these methods,
+
+```{python}
+# flank
+flanked_gr = gr.flank(width=10, start=False, both=True)
+print(flanked_gr)
+```
+
+```{python}
+# resize
+resized_gr = gr.resize(width=10, fix="end", ignoreStrand=True)
+print(resized_gr)
+```
+
+```{python}
+# narrow
+narrow_gr = gr.narrow(end=4, width=3)
+print(narrow_gr)
+```
+
+```{python}
+# promoters
+prom_gr = gr.promoters()
+print(prom_gr)
+```
+
+
+# Inter-range methods
+
+- `range()`: returns a new GenomicRanges object containing range bounds for each distinct (seqname, strand) pairing.
+- `reduce()`: returns a new GenomicRanges object containing reduced bounds for each distinct (seqname, strand) pairing.
+- `gaps()`: Finds gaps in the GenomicRanges object for each distinct (seqname, strand) pairing
+- `disjoin()`: Finds disjoint intervals across all locations for each distinct (seqname, strand) pairing.
+- `isDisjoint()`: Is the object contain disjoint intervals for each distinct (seqname, strand) pairing?
+
+```{python}
+# range
+range_gr = gr.range()
+print(range_gr)
+```
+
+```{python}
+# reduce
+reduced_gr = gr.reduce(minGapwidth=10, withRevMap=True)
+print(reduced_gr)
+```
+
+```{python}
+# gaps
+gapped_gr = gr.gaps(start=103) # OR 
+# gapped_gr = gr.gaps(end={"chr1": 120, "chr2": 120, "chr3": 120})
+print(gapped_gr)
+```
+
+```{python}
+# disjoin
+disjoin_gr = gr.disjoin()
+print(disjoin_gr)
+```

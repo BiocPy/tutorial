@@ -1,2 +1,4 @@
 biocpy
 rds2py
+jupyter-cache
+rich

@@ -1,2 +1,5 @@
 /.quarto/
 /_site/
+docs
+_freeze
+.jupyter_cache/

@@ -1,0 +1,77 @@
+---
+format:
+  html:
+    code-fold: false
+execute: 
+  enabled: true
+  cache: true
+---
+
+# Slice and Iterate Operations {.unnumbered}
+
+for nicer prints in this document
+```{python}
+from rich import print
+```
+
+
+Lets resue the same `GenomicRanges` object from the previous section.
+
+```{python}
+from genomicranges import GenomicRanges
+from random import random
+
+obj = {
+    "seqnames": [
+        "chr1",
+        "chr2",
+        "chr2",
+        "chr2",
+        "chr1",
+        "chr1",
+        "chr3",
+        "chr3",
+        "chr3",
+        "chr3",
+    ],
+    "starts": range(100, 110),
+    "ends": range(110, 120),
+    "strand": ["-", "+", "+", "*", "*", "+", "+", "+", "-", "-"],
+    "score": range(0, 10),
+    "GC": [random() for _ in range(10)],
+}
+
+index = [f"idx_{i}" for i in range(10)]
+
+gr = GenomicRanges(obj, rowNames=index)
+print(gr)
+```
+
+# Slice methods
+
+## slice by index
+
+You can slice a `GenomicRange` object using the subset (`[`) operator.
+
+```{python}
+# slice the first 5 rows
+print(gr[:5,])
+```
+
+## slice by index names
+you can also provide a list of index names to subset the object
+
+```{python}
+index_to_subset = ["idx_8", "idx_7"]
+
+print(gr[index_to_subset,])
+```
+
+# Iterate over rows
+
+To iterate over the rows of the object,
+
+```{python}
+for index, row in gr:
+    print(f"index: {index}, row: {row}")
+```

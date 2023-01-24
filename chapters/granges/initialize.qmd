@@ -1,0 +1,193 @@
+---
+format:
+  html:
+    code-fold: false
+execute: 
+  enabled: true
+  cache: true
+---
+
+
+# Initialize `GenomicRanges` {.unnumbered}
+
+for nicer prints in this document
+```{python}
+from rich import print
+```
+
+# Construct a `GenomicRanges` object 
+
+`GenomicRanges` holds genomic intervals and annotation about those intervals. Is it similar to a Pandas `DataFrame` and provide many similar basic operations.
+
+## Import UCSC annotation or GTF file
+
+A common way of accessing genome annotations for various organisms is from UCSC. 
+
+```python
+import genomicranges
+gr = genomicranges.readUCSC(genome="hg19")
+print(gr)
+```
+
+Similarly methods are available to read a gtf file from disk as `GenomicRanges` object
+
+```python
+gr = genomicranges.readGTF(<PATH TO GTF>)
+```
+
+## from Pandas `DataFrame`
+
+:::{.callout-note}
+The `DataFrame` ***must*** contain columns ***`seqnames`, `starts` and `ends`*** to represent genomic coordinates.
+:::
+
+Similarly one can construct a `GenomicRanges` object from an existing Pandas `DataFrame`.
+
+```{python}
+import genomicranges
+import pandas as pd
+from random import random
+
+df = pd.DataFrame(
+    {
+        "seqnames": ["chr1", "chr2", "chr1", "chr3", "chr2"],
+        "starts": [101, 102, 103, 104, 109],
+        "ends": [112, 103, 128, 134, 111],
+        "strand": ["*", "-", "*", "+", "-"],
+        "score": range(0, 5),
+        "GC": [random() for _ in range(5)],
+    }
+)
+
+gr = genomicranges.fromPandas(df)
+print(gr)
+```
+
+## from a dictionary
+
+:::{.callout-note}
+The object ***must*** contain keys ***`seqnames`, `starts` and `ends`*** to represent genomic coordinates.
+:::
+
+```{python}
+from genomicranges import GenomicRanges
+from random import random
+
+obj = {
+    "seqnames": [
+        "chr1",
+        "chr2",
+        "chr2",
+        "chr2",
+        "chr1",
+        "chr1",
+        "chr3",
+        "chr3",
+        "chr3",
+        "chr3",
+    ],
+    "starts": range(100, 110),
+    "ends": range(110, 120),
+    "strand": ["-", "+", "+", "*", "*", "+", "+", "+", "-", "-"],
+    "score": range(0, 10),
+    "GC": [random() for _ in range(10)],
+}
+
+gr = GenomicRanges(obj)
+print(gr)
+```
+
+## Set sequence information
+
+```{python}
+from genomicranges import SeqInfo
+
+seq_obj = {
+    "seqnames": ["chr1", "chr2", "chr3",],
+    "seqlengths": range(125, 128),
+    "isCircular": [random() < 0.5 for _ in range(3)],
+    "genome": "hg19",
+}
+
+seq = SeqInfo(seq_obj)
+
+gr.seqInfo = seq
+print(gr)
+```
+
+# Getters and Setters
+
+Accessors are available to access various properties of a `GenomicRanges` object.
+
+```{python}
+
+# To access seqnames in the object
+print(gr.seqnames)
+```
+
+Access ***widths*** of each interval in the object
+
+```{python}
+print(gr.width)
+```
+
+
+:::{.callout-note}
+refer to the documentation on [Class:GenomicRanges](https://biocpy.github.io/GenomicRanges/api/genomicranges.html#genomicranges.GenomicRanges.GenomicRanges) for a full list of accessors.
+:::
+
+Following a *pythonic syntax*, you can also set or update the properties of the class.
+
+To update the ***scores*** in the object, 
+
+```{python}
+gr.score = [round(random(), 2) for _ in range(10)]
+print(gr)
+print(f"scores: {gr.score}")
+```
+
+## Add new metadata columns
+
+```{python}
+gr["new_col"] = [round(random(), 3) for _ in range(10)]
+print(gr)
+```
+
+## **Column** method
+Use the `column()` method to quickly access any column in the object. Useful for non-standard columns.
+
+```{python}
+print(gr.column("new_col"))
+```
+
+## Access Ranges
+
+`ranges()` is a generic method to access only the genomic intervals as dictionary, pandas `DataFrame` or something else.
+
+```{python}
+# default to dict
+print(gr.ranges())
+```
+
+:::{.callout-tip}
+you can pass in any class that takes a dictionary as an input for `returnType`.
+:::
+
+```{python}
+# as pandas DataFrame
+gr.ranges(returnType=pd.DataFrame)
+```
+
+`granges()` method returns a new `GenomicRanges` object of just the genomic locations
+
+```{python}
+print(gr.granges())
+```
+
+## Access metadata columns
+
+This will access non-interval columns from the object. 
+
+```{python}
+print(gr.mcols())
+```

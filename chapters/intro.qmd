@@ -1,0 +1,28 @@
+# Installation {.unnumbered}
+
+All packages in the `BiocPy` ecosystem are published to Python's Package Index - [PyPI](https://pypi.org/).
+
+
+`biocpy` is a wrapper package that install all core packages in the ecosystem.
+
+```bash
+pip install biocpy
+```
+
+OR install packages as needed. e.g.
+
+```bash
+pip install summarizedexperiment # <package-name>
+```
+
+# Update packages
+
+```bash
+pip install -U biocpy # or <package-name>
+```
+
+
+:::{.callout-note}
+Checkout documentation to install individual packages - [packages in BiocPy](#sec-core-pkgs).
+:::
+

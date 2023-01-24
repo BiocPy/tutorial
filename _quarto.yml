@@ -4,23 +4,36 @@ project:
 
 execute:
   freeze: auto
+  cache: true
 
 book:
-  title: "tutorial"
-  author: "Jane Doe"
-  date: "1/13/2023"
+  title: "BiocPy: Porting Bioconductor representations to Python"
+  author: "[Jayaram Kancherla](mailto:jayaram.kancherla@gmail.com)"
+  date: "1/23/2023"
+  search: true
+  repo-url: https://github.com/BiocPy/tutorial
+  repo-actions: [issue]
+  sidebar:
+    style: docked
+    background: light
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
+    - chapters/intro.qmd
+    - part: chapters/granges/index.qmd
+      chapters:
+      - chapters/granges/initialize.qmd
+      - chapters/granges/slice-ops.qmd
+      - chapters/granges/intra-inter-range.qmd
+    - chapters/summary.qmd
+    - chapters/references.qmd
 
-bibliography: references.bib
+bibliography: chapters/references.bib
 
 format:
   html:
-    theme: cosmo
+    theme: journal
   pdf:
+    keep-tex: true
     documentclass: scrreprt
 
 
