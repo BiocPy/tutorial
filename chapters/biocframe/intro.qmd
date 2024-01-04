@@ -74,11 +74,11 @@ This accepts different subsetting arguments like a boolean vector, a `slice` obj
 :::
 
 ```{python}
-sliced = bframe[1:2, [True, False, False]]
-print("Subset using booleans: \n", sliced)
+sliced_with_bools = bframe[1:2, [True, False, False]]
+print("Subset using booleans: \n", sliced_with_bools)
 
-sliced = bframe[[0,2], ["symbol", "ensembl"]]
-print("\nSubset using column names: \n", sliced)
+sliced_with_names = bframe[[0,2], ["symbol", "ensembl"]]
+print("\nSubset using column names: \n", sliced_with_names)
 
 # Short-hand to get a single column:
 print("\nShort-hand to get a single column: \n", bframe["ensembl"])
