@@ -1,7 +1,10 @@
 on:
-  workflow_dispatch:
   push:
-    branches: main
+    branches:
+      - master
+    tags:
+      - "*"
+  pull_request:
 
 name: Quarto Publish
 
@@ -22,17 +25,19 @@ jobs:
       - name: Install Python and Dependencies
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.9'
           cache: 'pip'
       - run: pip install jupyter
       - run: pip install -r requirements.txt
 
       - name: Render
         uses: quarto-dev/quarto-actions/render@v2
+        with:
+          to: html
 
       - name: Publish to GH Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.3
+        if: github.ref == 'refs/heads/master'
+        uses: quarto-dev/quarto-actions/publish@v2
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: docs
-          clean: true # Automatically remove deleted files from the deploy branch
+          target: gh-pages # The branch the action should deploy to.
+          render: false
