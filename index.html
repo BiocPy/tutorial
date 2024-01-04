@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jayaram Kancherla">
-<meta name="dcterms.date" content="2023-01-23">
+<meta name="dcterms.date" content="2024-01-04">
 
-<title>BiocPy: Porting Bioconductor representations to Python</title>
+<title>BiocPy: Enabling Bioconductor workflows in Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,7 +19,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -58,7 +58,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -69,11 +70,16 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">BiocPy: Porting Bioconductor representations to Python</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -81,70 +87,67 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">BiocPy: Porting Bioconductor representations to Python</a> 
+      <a href="./">BiocPy: Enabling Bioconductor workflows in Python</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/BiocPy/tutorial" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/BiocPy/tutorial" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Welcome</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/intro.html" class="sidebar-item-text sidebar-link">Installation</a>
+  <a href="./chapters/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installation</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./chapters/granges/index.html" class="sidebar-item-text sidebar-link">Genomic Ranges</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a href="./chapters/biocframe/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BiocFrame - Bioconductor-like data frames</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/granges/initialize.html" class="sidebar-item-text sidebar-link">Initialize <code>GenomicRanges</code></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/granges/slice-ops.html" class="sidebar-item-text sidebar-link">Slice and Iterate Operations</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/granges/intra-inter-range.html" class="sidebar-item-text sidebar-link">Interval based operations</a>
+  <a href="./chapters/biocframe/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./chapters/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./chapters/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -161,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">BiocPy: Porting Bioconductor representations to Python</h1>
+<h1 class="title">BiocPy: Enabling Bioconductor workflows in Python</h1>
 </div>
 
 
@@ -178,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 23, 2023</p>
+      <p class="date">January 4, 2024</p>
     </div>
   </div>
   
@@ -190,17 +193,24 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="welcome" class="level1 unnumbered">
 <h1 class="unnumbered">Welcome</h1>
-<p><strong><em>BiocPy is an effort to bring core data structures and representations from <a href="https://www.bioconductor.org">Bioconductor</a> to Python.</em></strong></p>
+<p><strong><em><a href="https://github.com/BiocPy">BiocPy</a> is an effort to bring core data structures and representations from <a href="https://www.bioconductor.org">Bioconductor</a> to Python.</em></strong></p>
 </section>
 <section id="sec-core-pkgs" class="level1">
 <h1>Packages in <code>BiocPy</code></h1>
-<p>Currently, the following <strong>core</strong> packages are available</p>
+<p>Currently, the following <strong>core</strong> representations are implemented in Python</p>
 <ul>
-<li><code>BiocFrame</code> (<a href="https://github.com/BiocPy/BiocFrame">GitHub</a>, <a href="https://biocpy.github.io/BiocFrame/">Docs</a>): A lite version of dataframes. It is not equivalent to <code>Pandas</code> but provides many similar operations.</li>
+<li><code>BiocUtils</code> (<a href="https://github.com/BiocPy/BiocUtils">GitHub</a>, <a href="https://biocpy.github.io/BiocUtils/">Docs</a>): Common utilities for use across packages, mostly to mimic convenient aspects of base R.</li>
+<li><code>BiocFrame</code> (<a href="https://github.com/BiocPy/BiocFrame">GitHub</a>, <a href="https://biocpy.github.io/BiocFrame/">Docs</a>): Bioconductor-like dataframes in Python.</li>
+<li><code>IRanges</code> (<a href="https://github.com/BiocPy/IRanges">GitHub</a>, <a href="https://biocpy.github.io/IRanges/">Docs</a>): Python implementation of the IRanges package to support interval arithmetic.</li>
 <li><code>GenomicRanges</code> (<a href="https://github.com/BiocPy/GenomicRanges">GitHub</a>, <a href="https://biocpy.github.io/GenomicRanges/">Docs</a>, <a href="https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html">BioC</a>): Container class to represent genomic locations and support genomic analysis. Similar to Bioconductor’s <a href="https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html">GenomicRanges</a>.</li>
 <li><code>SummarizedExperiment</code> (<a href="https://github.com/BiocPy/SummarizedExperiment">GitHub</a>, <a href="https://biocpy.github.io/SummarizedExperiment/">Docs</a>, <a href="https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html">BioC</a>): Container class to represent genomic experiments, following Bioconductor’s <a href="https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html">SummarizedExperiment</a>.</li>
 <li><code>SingleCellExperiment</code> (<a href="https://github.com/BiocPy/SingleCellExperiment">GitHub</a>, <a href="https://biocpy.github.io/SingleCellExperiment/">Docs</a>, <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">BioC</a>): Container class to represent single-cell experiments; follows Bioconductor’s <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">SingleCellExperiment</a>.</li>
 <li><code>MultiAssayExperiment</code> (<a href="https://github.com/BiocPy/MultiAssayExperiment">GitHub</a>, <a href="https://biocpy.github.io/MultiAssayExperiment/">Docs</a>, <a href="https://bioconductor.org/packages/release/bioc/html/MultiAssayExperiment.html">BioC</a>): Container class to represent multiple experiments and assays performed over a set of samples. follows Bioconductor’s <a href="https://bioconductor.org/packages/release/bioc/html/MultiAssayExperiment.html">MAE R/Bioc Package</a>.</li>
+</ul>
+<p><strong>Analysis packages</strong></p>
+<ul>
+<li><code>scranpy</code>(<a href="https://github.com/BiocPy/scranpy">GitHub</a>, <a href="https://biocpy.github.io/scranpy/">Docs</a>): Python bindings to the single-cell analysis methods from libscran and related C++ libraries.</li>
+<li><code>singler</code>(<a href="https://github.com/BiocPy/singler">GitHub</a>, <a href="https://biocpy.github.io/singler/">Docs</a>): Python bindings to the singleR algorithm to annotate cell types from known references.</li>
 </ul>
 <p><strong>Utility packages</strong></p>
 <ul>
@@ -208,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
 <li><code>mopsy</code> (<a href="https://github.com/BiocPy/mopsy">GitHub</a>, <a href="https://biocpy.github.io/mopsy/">Docs</a>): Convenience library to perform row/column operations over numpy and scipy matrices. Provides an interface similar to base R matrix methods/MatrixStats methods.</li>
 <li><code>pyBiocFileCache</code> (<a href="https://github.com/BiocPy/pyBiocFileCache">GitHub</a>, <a href="https://pypi.org/project/pyBiocFileCache/">Docs</a>, <a href="https://github.com/Bioconductor/BiocFileCache">BioC</a>): File system based cache for resources &amp; metadata.</li>
 </ul>
-<p><strong>This book will focus on end user tutorials for core Python packages we develop.</strong></p>
+<p><strong>This book will focus on end user tutorials as develop more packages and integrations.</strong></p>
 <hr>
 <section id="notes" class="level4">
 <h4 class="anchored" data-anchor-id="notes">Notes</h4>
@@ -246,9 +256,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -313,6 +337,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
