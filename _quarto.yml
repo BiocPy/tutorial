@@ -7,9 +7,9 @@ execute:
   cache: true
 
 book:
-  title: "BiocPy: Porting Bioconductor representations to Python"
+  title: "BiocPy: Enabling Bioconductor workflows in Python"
   author: "[Jayaram Kancherla](mailto:jayaram.kancherla@gmail.com)"
-  date: "1/23/2023"
+  date: "1/4/2024"
   search: true
   repo-url: https://github.com/BiocPy/tutorial
   repo-actions: [issue]
@@ -19,11 +19,14 @@ book:
   chapters:
     - index.qmd
     - chapters/intro.qmd
-    - part: chapters/granges/index.qmd
+    - part: chapters/biocframe/index.qmd
       chapters:
-      - chapters/granges/initialize.qmd
-      - chapters/granges/slice-ops.qmd
-      - chapters/granges/intra-inter-range.qmd
+        - chapters/biocframe/intro.qmd
+    # - part: chapters/granges/index.qmd
+    #   chapters:
+    #   - chapters/granges/initialize.qmd
+    #   - chapters/granges/slice-ops.qmd
+    #   - chapters/granges/intra-inter-range.qmd
     - chapters/summary.qmd
     - chapters/references.qmd
 
