@@ -1,4 +1,6 @@
-# Installation {.unnumbered}
+# The basics
+
+This chapter introduces the core representations and classes available through BiocPy. 
 
 All packages in the `BiocPy` ecosystem are published to Python's Package Index - [PyPI](https://pypi.org/).
 
@@ -20,9 +22,3 @@ pip install summarizedexperiment # <package-name>
 ```bash
 pip install -U biocpy # or <package-name>
 ```
-
-
-:::{.callout-note}
-Checkout documentation to install individual packages - [packages in BiocPy](#sec-core-pkgs).
-:::
-

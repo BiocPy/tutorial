@@ -18,15 +18,9 @@ book:
     background: light
   chapters:
     - index.qmd
-    - chapters/intro.qmd
-    - part: chapters/biocframe/index.qmd
+    - part: chapters/representations/index.qmd
       chapters:
-        - chapters/biocframe/intro.qmd
-    # - part: chapters/granges/index.qmd
-    #   chapters:
-    #   - chapters/granges/initialize.qmd
-    #   - chapters/granges/slice-ops.qmd
-    #   - chapters/granges/intra-inter-range.qmd
+        - chapters/representations/biocframe.qmd
     - chapters/summary.qmd
     - chapters/references.qmd
 
