@@ -10,6 +10,10 @@ To get started, install the package from [PyPI](https://pypi.org/project/IRanges
 pip install iranges
 ```
 
+::: {.callout-note}
+The descriptions for some of these methods come from the [Bioconductor documentation](https://bioconductor.org/packages/release/bioc/html/IRanges.html).
+:::
+
 ## Construction
 
 An `IRanges` holds a **start** position and a **width**, and is most typically used to represent coordinates along some genomic sequence. The interpretation of the start position depends on the application; for sequences, the start is usually a 1-based position, but other use cases may allow zero or even negative values (e.g. circular genomes).
@@ -24,7 +28,7 @@ ir = IRanges(starts, widths)
 print(ir)
 ```
 
-## Extracting data
+## Accessing properties
 
 Properties can be accessed directly from the object:
 
@@ -36,9 +40,121 @@ print("width of each interval:", ir.get_width())
 print("end positions:", ir.get_end())
 ```
 
-## Interval Operations
+::: {.callout-tip}
+Similar to `BiocFrame`, both functional style and property based getters and setters are available in these classes.
+:::
 
-`IRanges` supports most interval based operations. For example to compute gaps
+```{python}
+print("start positions:", ir.start)
+print("width of each interval:", ir.width)
+print("end positions:", ir.end)
+```
+
+## Reduced ranges (Normality)
+
+`reduce` method reduces the intervals to an `IRanges` where the intervals are: 
+
+- not empty
+- not overlapping
+- ordered from left to right
+- not even adjacent (i.e. there must be a non empty gap between 2 consecutive ranges).
+
+```{python}
+reduced = ir.reduce()
+print(reduced)
+```
+
+## Overlap operations
+
+`IRanges` uses [nested containment lists](https://github.com/pyranges/ncls) under the hood to perform fast overlap and search based operations. 
+
+```{python}
+subject = IRanges([2, 2, 10], [1, 2, 3])
+query = IRanges([1, 4, 9], [5, 4, 2])
+
+overlap = subject.find_overlaps(query)
+print(overlap)
+```
+
+### Finding neighboring ranges
+
+The `nearest`, `precede` or `follow` methods finds nearest overlapping range along the specified direction.
+
+```{python}
+query = IRanges([1, 3, 9], [2, 5, 2])
+subject = IRanges([3, 5, 12], [1, 2, 1])
+
+nearest = subject.nearest(query, select="all")
+print(nearest)
+```
+
+::: {.callout-note}
+These methods typically return a list of indices from `subject` that map to each interval in `query`.
+:::
+
+### coverage
+
+`coverage` method counts the number of overlaps for each position.
+
+```{python}
+cov = subject.coverage()
+print(cov)
+```
+
+
+## Transforming ranges
+
+`shift` adjusts the start positions by their **shift**.
+
+```{python}
+shifted = ir.shift(shift=10)
+print(shifted)
+```
+
+Other range transformation methods include `narrow`, `resize`, `flank`, `reflect` and `restrict`. For example `narrow` supports the adjustment of `start`, `end` and `width` values, which should be relative to each range.
+
+```{python}
+narrowed = ir.narrow(start=4, width=2)
+print(narrowed)
+```
+
+### Disjoin intervals
+
+Well as the name says, computes disjoint intervals.
+
+```{python}
+disjoint = ir.disjoin()
+print(disjoint)
+```
+
+### `reflect` and `flank`
+
+`reflect` reverses each range within a set of common reference bounds.
+
+```{python}
+starts = [2, 5, 1]
+widths = [2, 3, 3]
+x = IRanges(starts, widths)
+bounds = IRanges([0, 5, 3], [11, 2, 7])
+
+res = x.reflect(bounds=bounds)
+print(res)
+```
+
+`flank` returns ranges of a specified width that flank, to the left (default) or right, each iinput range. One use case of this is forming promoter regions for a set of genes.
+
+```{python}
+starts = [2, 5, 1]
+widths = [2, 3, 3]
+x = IRanges(starts, widths)
+
+res = x.flank(2, start=False)
+print(res)
+```
+
+## Set operations
+
+`IRanges` supports most interval set operations. For example to compute gaps
 
 ```{python}
 gaps = ir.gaps()
@@ -54,31 +170,6 @@ y = IRanges([14, 0, -5, 6, 18], [7, 3, 8, 3, 3])
 intersection = x.intersect(y)
 print(intersection)
 ```
-
-
-### Overlap operations
-
-IRanges uses [nested containment lists](https://github.com/pyranges/ncls) under the hood to perform fast overlap and search based operations. These methods typically return a list of indices that map to each interval in query.
-
-```{python}
-subject = IRanges([2, 2, 10], [1, 2, 3])
-query = IRanges([1, 4, 9], [5, 4, 2])
-
-overlap = subject.find_overlaps(query)
-print(overlap)
-```
-
-
-Similarly one can perform search operations like follow, precede or nearest.
-
-```{python}
-query = IRanges([1, 3, 9], [2, 5, 2])
-subject = IRanges([3, 5, 12], [1, 2, 1])
-
-nearest = subject.nearest(query, select="all")
-print(nearest)
-```
-
 
 ## Further reading
 
