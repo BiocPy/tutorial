@@ -1,9 +1,9 @@
-# `GenomicRanges`
+# `GenomicRanges`: Genomic analysis
 
-GenomicRanges provides container classes designed to represent genomic locations and support genomic analysis. It is similar to Bioconductor's [GenomicRanges](https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html). **_Intervals are inclusive on both ends and starts at 1._**
+`GenomicRanges` is a Python package designed to handle genomic locations and facilitate genomic analysis. It is similar to Bioconductor's [GenomicRanges](https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html). **_Remember, intervals are inclusive on both ends and starts at 1._**
 
 ::: {.callout-note}
-The implementation details for the classes follow the Bioconductor's equivalent [R/GenomicRanges package](https://bioconductor.org/packages/release/bioc/manuals/GenomicRanges/man/GenomicRanges.pdf).
+The class implementation aligns closely with Bioconductor's [R/GenomicRanges package](https://bioconductor.org/packages/release/bioc/manuals/GenomicRanges/man/GenomicRanges.pdf).
 :::
 
 ## Construct a `GenomicRanges` object
@@ -39,7 +39,7 @@ print(gr)
 
 ### From UCSC or GTF file
 
-Optionally methods are available to import genomes from UCSC or load a genome annotation from GTF file.
+You can also import genomes from UCSC or load a genome annotation from a GTF file:
 
 ```{python}
 import genomicranges
@@ -54,10 +54,10 @@ import genomicranges
 
 ### Pandas DataFrame
 
-A common representation in Python is a pandas DataFrame for all tabular datasets. One can convert this DataFrame into `GenomicRanges` if it contains the necessary columns.
+If your genomic coordinates are represented as a pandas `DataFrame`, convert this into `GenomicRanges` if it contains the necessary columns.
 
 ::: {.callout-note}
-The DataFrame must contain columns `seqnames`, `starts` and `ends` to represent genomic coordinates.
+The `DataFrame` must contain columns `seqnames`, `starts` and `ends` to represent genomic coordinates. The rest of the columns are considered metadata and will be available in the `mcols` slot of the `GenomicRanges` object.
 :::
 
 ```{python}
@@ -81,7 +81,7 @@ print(gr)
 
 ### Set sequence information
 
-The package also provides a `SeqInfo` class to update or modify sequence information stored in the object. Read more about this class in [GenomeInfoDb package](https://bioconductor.org/packages/release/bioc/html/GenomeInfoDb.html).
+The package provides a `SeqInfo` class to update or modify sequence information stored in the object. earn more about this in the [GenomeInfoDb package](https://bioconductor.org/packages/release/bioc/html/GenomeInfoDb.html).
 
 ```{python}
 from genomicranges import SeqInfo
@@ -122,7 +122,7 @@ print(gr.mcols)
 ### Setters
 
 ::: {.callout-important}
-All property based setters are `in_place` operations. Methods are available to get and set properties on GenomicRanges.
+All property-based setters are `in_place` operations. Methods are available to get and set properties on GenomicRanges.
 :::
 
 ```{python}
@@ -136,7 +136,7 @@ print(gr.mcols)
 
 ### Access ranges
 
-`ranges()` is a generic method to access only the genomic locations as dictionary, pandas `DataFrame` or something else. You can use any container representation based on a dictionary.
+`ranges()` is a generic method to access only the genomic coordinates:
 
 ```{python}
 # or gr.get_ranges()
@@ -146,7 +146,7 @@ print(gr.ranges)
 
 ## Subset operations
 
-You can subset a `GenomicRange` object using the subset (`[]`) operator. This operation accepts different slice input types, you can either specify a boolean vector, a `slice`` object, a list of indices, or row/column names to subset.
+You can subset a `GenomicRange` object using the subset (`[]`) operator. This operation accepts different slice input types, such as a boolean vector, a `slice`` object, a list of indices, or row/column names to subset.
 
 ```{python}
 # slice the first 3 rows
@@ -158,7 +158,7 @@ print(gr[[1,3,2]])
 
 ## Iterate over intervals
 
-You can iterate over the intervals of a `GenomicRanges` object. `rowname` is `None` if the object does not have any row names.
+You can iterate over the intervals of a `GenomicRanges` object. `rowname` is `None` if the object does not contain any row names.
 
 ```{python}
 for rowname, row in gr[:2]:
@@ -169,13 +169,13 @@ for rowname, row in gr[:2]:
 
 For detailed description of these methods, refer to Bioconductor's [GenomicRanges documentation](https://bioconductor.org/packages/release/bioc/manuals/GenomicRanges/man/GenomicRanges.pdf)
 
-- **flank**: flank the intervals based on start or end or both.
-- **shift**: shifts all the ranges specified by the shift argument.
-- **resize**: resizes the ranges to the specified width where either the start, end, or center is used as an anchor
-- **narrow**: narrows the ranges
-- **promoters**: promoters generates promoter ranges for each range relative to the TSS.The promoter range is expanded around the TSS according to the upstream and downstream parameters.
-- **restrict**: restricts the ranges to the interval(s) specified by the start and end arguments
-- **trim**: trims out-of-bound ranges located on non-circular sequences whose length is not NA.
+- **flank**: Flank the intervals based on **start** or **end** or **both**.
+- **shift**: Shifts all the ranges specified by the **shift** argument.
+- **resize**: Resizes the ranges to the specified width where either the **start**, **end**, or **center** is used as an anchor.
+- **narrow**: Narrows the ranges.
+- **promoters**: Promoters generates promoter ranges for each range relative to the TSS.The promoter range is expanded around the TSS according to the upstream and downstream parameters.
+- **restrict**: Restricts the ranges to the interval(s) specified by the start and end arguments.
+- **trim**: Trims out-of-bound ranges located on non-circular sequences whose length is not NA.
 
 ```{python}
 gr = GenomicRanges(
@@ -220,10 +220,10 @@ trimmed_gr = gr.trim()
 
 ## Inter-range methods
 
-- **range**: returns a new GenomicRanges object containing range bounds for each distinct (seqname, strand) pairing.
-- **reduce**: returns a new GenomicRanges object containing reduced bounds for each distinct (seqname, strand) pairing.
-- **gaps**: Finds gaps in the GenomicRanges object for each distinct (seqname, strand) pairing
-- **disjoin**: Finds disjoint intervals across all locations for each distinct (seqname, strand) pairing.
+- **range**: Returns a new `GenomicRanges` object containing range bounds for each distinct (seqname, strand) pair.
+- **reduce**: returns a new `GenomicRanges` object containing reduced bounds for each distinct (seqname, strand) pair.
+- **gaps**: Finds gaps in the `GenomicRanges` object for each distinct (seqname, strand) pair.
+- **disjoin**: Finds disjoint intervals across all locations for each distinct (seqname, strand) pair.
 
 ```{python}
 gr = GenomicRanges(
@@ -262,9 +262,9 @@ print(disjoin_gr)
 
 ## Set operations on genomic ranges
 
-- **union**: compute union of intervals across object
-- **intersect**: compute intersection or finds overlapping intervals
-- **setdiff**: compute set difference
+- **union**: Compute the `union` of intervals across object.
+- **intersect**: Compute the `intersection` or finds overlapping intervals.
+- **setdiff**: Compute `set` `difference`.
 
 ```{python}
 g_src = GenomicRanges(
@@ -297,15 +297,14 @@ print(union_gr)
 
 ### Summary stats for column
 
-one can use Pandas for this
-
+Use Pandas for computing summary statistics for a column:
 ```{python}
 pd.Series(gr.mcols.get_column("score")).describe()
 ```
 
 ### `binned_average`
 
-Compute binned average for different positions
+Compute binned average for different positions:
 
 ```{python}
 bins = pd.DataFrame({"seqnames": ["chr1"], "starts": [101], "ends": [109],})
@@ -321,18 +320,19 @@ subject = GenomicRanges(
     })
 )
 
-
 # Compute binned average
 binned_avg_gr = subject.binned_average(bins=bins_gr, scorename="score", outname="binned_score")
 print(binned_avg_gr)
 ```
 
-now you might wonder how can I generate these ***bins***?
+::: {.callout-tip}
+Now you might wonder how can I generate these ***bins***?
+:::
 
 ### Generate tiles or bins from `GenomicRanges`
 
-- **tile**: Splits each genomic region by n (number of regions) or by width (maximum width of each tile)
-- **sliding_windows**: Generates sliding windows within each range, by width and step.
+- **tile**: Splits each genomic region by **n** (number of regions) or by **width** (maximum width of each tile).
+- **sliding_windows**: Generates sliding windows within each range, by **width** and **step**.
 
 ```{python}
 gr = GenomicRanges(
@@ -385,9 +385,9 @@ rich.print(res_vector)
 
 ## Overlap based methods
 
-- **find_overlaps**: find overlaps between two `GenomicRanges` object
-- **count_overlaps**: count overlaps between two `GenomicRanges` object
-- **subset_by_overlaps**: subset a `GenomicRanges` object if it overlaps with the ranges in the query
+- **find_overlaps**: Find overlaps between two `GenomicRanges` objects.
+- **count_overlaps**: Count overlaps between two `GenomicRanges` objects.
+- **subset_by_overlaps**: Subset a `GenomicRanges` object if it overlaps with the ranges in the query.
 
 ```{python}
 subject = GenomicRanges(
@@ -419,9 +419,9 @@ print(res)
 
 ## Search operations
 
-- **nearest**: Performs nearest neighbor search along any direction (both upstream and downstream)
-- **follow**: Performs nearest neighbor search only along downstream
-- **precede**: Performs nearest neighbor search only along upstream
+- **nearest**: Performs nearest neighbor search along any direction (both upstream and downstream).
+- **follow**: Performs nearest neighbor search only along downstream.
+- **precede**: Performs nearest neighbor search only along upstream.
 
 ```{python}
 find_regions = GenomicRanges(
@@ -438,32 +438,38 @@ query_hits = gr.follow(find_regions)
 print(query_hits)
 ```
 
+::: {.callout-note}
+Similar to `IRanges` operations, these methods typically return a list of indices from `subject` for each interval in `query`.
+:::
+
 ## Comparison, rank and order operations
 
-- **match**: Element wise comparison to find exact match intervals.
+- **match**: Element-wise comparison to find exact match intervals.
 - **order**: Get the order of indices for sorting.
-- **sort**: Sort the GenomicRanges object.
-- **rank**: for each interval identifies its position is a sorted order
+- **sort**: Sort the `GenomicRanges` object.
+- **rank**: For each interval identifies its position is a sorted order.
 
 ```{python}
 # match
 query_hits = gr.match(gr[2:5])
+print("matches: ", query_hits)
 
 # order
 order = gr.order()
+print("order:", order)
 
 # sort
 sorted_gr = gr.sort()
+print("sorted:", sorted_gr)
 
 # rank
 rank = gr.rank()
-
-print(rank)
+print("rank:", rank)
 ```
 
 ## Combine `GenomicRanges` objects by rows
 
-Use the `combine` generic from [biocutils](https://github.com/BiocPy/generics) to concatenate multiple GenomicRanges objects.
+Use the `combine` generic from [biocutils](https://github.com/BiocPy/generics) to concatenate multiple `GenomicRanges` objects.
 
 ```{python}
 from biocutils.combine import combine
@@ -540,10 +546,9 @@ grl.width
 
 ## Combine `GenomicRangeslist` object
 
-Similar to the combine function from GenomicRanges,
+Similar to the combine function from `GenomicRanges`,
 
 ```{python}
-
 grla = GenomicRangesList(ranges=[a], names=["a"])
 grlb = GenomicRangesList(ranges=[b, a], names=["b", "c"])
 

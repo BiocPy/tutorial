@@ -41,7 +41,7 @@ print("end positions:", ir.get_end())
 ```
 
 ::: {.callout-tip}
-Similar to `BiocFrame`, both functional style and property based getters and setters are available in these classes.
+Just like BiocFrame, these classes offer both functional-style and property-based getters and setters.
 :::
 
 ```{python}
@@ -66,7 +66,7 @@ print(reduced)
 
 ## Overlap operations
 
-`IRanges` uses [nested containment lists](https://github.com/pyranges/ncls) under the hood to perform fast overlap and search based operations. 
+`IRanges` uses [nested containment lists](https://github.com/pyranges/ncls) under the hood to perform fast overlap and search-based operations. 
 
 ```{python}
 subject = IRanges([2, 2, 10], [1, 2, 3])
@@ -78,7 +78,7 @@ print(overlap)
 
 ### Finding neighboring ranges
 
-The `nearest`, `precede` or `follow` methods finds nearest overlapping range along the specified direction.
+The `nearest`, `precede` or `follow` methods finds the nearest overlapping range along the specified direction.
 
 ```{python}
 query = IRanges([1, 3, 9], [2, 5, 2])
@@ -89,12 +89,12 @@ print(nearest)
 ```
 
 ::: {.callout-note}
-These methods typically return a list of indices from `subject` that map to each interval in `query`.
+These methods typically return a list of indices from `subject` for each interval in `query`.
 :::
 
 ### coverage
 
-`coverage` method counts the number of overlaps for each position.
+The `coverage` method counts the number of overlaps for each position.
 
 ```{python}
 cov = subject.coverage()
@@ -141,7 +141,7 @@ res = x.reflect(bounds=bounds)
 print(res)
 ```
 
-`flank` returns ranges of a specified width that flank, to the left (default) or right, each iinput range. One use case of this is forming promoter regions for a set of genes.
+`flank` returns ranges of a specified width that flank, to the left (default) or right, each input range. One use case of this is forming promoter regions for a set of genes.
 
 ```{python}
 starts = [2, 5, 1]
@@ -154,14 +154,14 @@ print(res)
 
 ## Set operations
 
-`IRanges` supports most interval set operations. For example to compute gaps
+`IRanges` supports most interval set operations. For example, to compute `gaps`:
 
 ```{python}
 gaps = ir.gaps()
 print(gaps)
 ```
 
-Or Perform interval set operations, e..g union, intersection, disjoin
+Or Perform interval set operations, e..g `union`, `intersection`, `disjoin`:
 
 ```{python}
 x = IRanges([1, 5, -2, 0, 14], [10, 5, 6, 12, 4])
