@@ -21,6 +21,7 @@ book:
     - part: chapters/representations/index.qmd
       chapters:
         - chapters/representations/biocframe.qmd
+        - chapters/representations/iranges.qmd
     - chapters/summary.qmd
     - chapters/references.qmd
 

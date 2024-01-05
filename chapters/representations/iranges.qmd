@@ -1,0 +1,86 @@
+# `IRanges`: Interval arithmetic
+
+Python implementation of the [**IRanges**](https://bioconductor.org/packages/IRanges) Bioconductor package.
+
+
+## Installation
+To get started, install the package from [PyPI](https://pypi.org/project/IRanges/)
+
+```bash
+pip install iranges
+```
+
+## Construction
+
+An `IRanges` holds a **start** position and a **width**, and is most typically used to represent coordinates along some genomic sequence. The interpretation of the start position depends on the application; for sequences, the start is usually a 1-based position, but other use cases may allow zero or even negative values (e.g. circular genomes).
+
+```{python}
+from iranges import IRanges
+
+starts = [-2, 6, 9, -4, 1, 0, -6, 10]
+widths = [5, 0, 6, 1, 4, 3, 2, 3]
+ir = IRanges(starts, widths)
+
+print(ir)
+```
+
+## Extracting data
+
+Properties can be accessed directly from the object:
+
+```{python}
+print("Number of intervals:", len(ir))
+
+print("start positions:", ir.get_start())
+print("width of each interval:", ir.get_width())
+print("end positions:", ir.get_end())
+```
+
+## Interval Operations
+
+`IRanges` supports most interval based operations. For example to compute gaps
+
+```{python}
+gaps = ir.gaps()
+print(gaps)
+```
+
+Or Perform interval set operations, e..g union, intersection, disjoin
+
+```{python}
+x = IRanges([1, 5, -2, 0, 14], [10, 5, 6, 12, 4])
+y = IRanges([14, 0, -5, 6, 18], [7, 3, 8, 3, 3])
+
+intersection = x.intersect(y)
+print(intersection)
+```
+
+
+### Overlap operations
+
+IRanges uses [nested containment lists](https://github.com/pyranges/ncls) under the hood to perform fast overlap and search based operations. These methods typically return a list of indices that map to each interval in query.
+
+```{python}
+subject = IRanges([2, 2, 10], [1, 2, 3])
+query = IRanges([1, 4, 9], [5, 4, 2])
+
+overlap = subject.find_overlaps(query)
+print(overlap)
+```
+
+
+Similarly one can perform search operations like follow, precede or nearest.
+
+```{python}
+query = IRanges([1, 3, 9], [2, 5, 2])
+subject = IRanges([3, 5, 12], [1, 2, 1])
+
+nearest = subject.nearest(query, select="all")
+print(nearest)
+```
+
+
+## Further reading
+
+- [IRanges reference](https://biocpy.github.io/IRanges/api/iranges.html#iranges-package)
+- [Bioc/IRanges](https://bioconductor.org/packages/release/bioc/html/IRanges.html)
