@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/summary.html" rel="next">
+<link href="../../chapters/representations/iranges.html" rel="next">
 <link href="../../chapters/representations/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -157,12 +157,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/representations/iranges.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -216,16 +228,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>This package implements the BiocFrame class, a Bioconductor-friendly alternative to Pandas DataFrame. The main advantage is that the BiocFrame makes no assumption on the types of the columns - as long as an object has a length (<code>__len__</code>) and slicing methods (<code>__getitem__</code>), it can be used inside a <code>BiocFrame</code>.</p>
-<p>This allows us to accept arbitrarily complex objects as columns, which is often the case in Bioconductor objects.</p>
+<p><code>BiocFrame</code> class is a Bioconductor-friendly alternative to Pandas <code>DataFrame</code>. Its key advantage lies in not making assumptions on the types of the columns - as long as an object has a length (<code>__len__</code>) and supports slicing methods (<code>__getitem__</code>), it can be used inside a <code>BiocFrame</code>.</p>
+<p>This flexibility allows us to accept arbitrarily complex objects as columns, which is often the case in Bioconductor objects.</p>
 <section id="installation" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.1</span> Installation</h2>
-<p>Package is published to <a href="https://pypi.org/project/biocframe/">PyPI</a></p>
+<p>To get started, install the package from <a href="https://pypi.org/project/biocframe/">PyPI</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install biocframe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="construction" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="construction"><span class="header-section-number">1.2</span> Construction</h2>
-<p>To construct a <code>BiocFrame</code> object, simply provide the data as a dictionary.</p>
+<p>To create a <code>BiocFrame</code> object, simply provide the data as a dictionary.</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocframe <span class="im">import</span> BiocFrame</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -254,7 +266,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You can specify complex objects as columns, as long as they have some “length” equal to the number of rows. For example, we can nest a <code>BiocFrame</code> inside another <code>BiocFrame</code>:</p>
+<p>You can specify complex objects as columns, as long as they have some “length” equal to the number of rows. For example, we can embed a <code>BiocFrame</code> within another <code>BiocFrame</code>:</p>
 </div>
 </div>
 <div class="cell" data-execution_count="2">
@@ -282,13 +294,11 @@ row3 ENS00002   ESR1 chr3:5000:5500</code></pre>
 </section>
 <section id="extracting-data" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="extracting-data"><span class="header-section-number">1.3</span> Extracting data</h2>
-<p>Properties can be accessed directly from the object:</p>
+<p>Properties can be directly accessed from the object:</p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape:"</span>, bframe.shape)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"column names (functional style):"</span>, bframe.get_column_names())</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"column names (as property):"</span>, bframe.column_names) <span class="co"># same as above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"column names (functional style):"</span>, bframe.get_column_names())</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"column names (as property):"</span>, bframe.column_names) <span class="co"># same as above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>shape: (3, 2)
 column names (functional style): ['ensembl', 'symbol']
@@ -298,8 +308,7 @@ column names (as property): ['ensembl', 'symbol']</code></pre>
 <p>We can fetch individual columns:</p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"functional style:"</span>, bframe.get_column(<span class="st">"ensembl"</span>))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"w/ accessor"</span>, bframe[<span class="st">"ensembl"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"w/ accessor"</span>, bframe[<span class="st">"ensembl"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>functional style: ['ENS00001', 'ENS00002', 'ENS00003']
 w/ accessor ['ENS00001', 'ENS00002', 'ENS00003']</code></pre>
@@ -312,17 +321,14 @@ w/ accessor ['ENS00001', 'ENS00002', 'ENS00003']</code></pre>
 <pre><code>{'ensembl': 'ENS00003', 'symbol': 'ESR1'}</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Important
+<div class="callout-body-container">
+<p>To retrieve a subset of the data in the <code>BiocFrame</code>, we use the subset (<code>[]</code>) operator. This operator accepts different subsetting arguments, such as a boolean vector, a <code>slice</code> object, a sequence of indices, or row/column names.</p>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>To extract a subset of the data in the <code>BiocFrame</code>, we use the subset (<code>[]</code>) operator. This accepts different subsetting arguments like a boolean vector, a <code>slice</code> object, a sequence of indices, or row/column names.</p>
 </div>
 </div>
 <div class="cell" data-execution_count="6">
@@ -357,7 +363,7 @@ Short-hand to get a single column:
 <h2 data-number="1.4" class="anchored" data-anchor-id="setting-data"><span class="header-section-number">1.4</span> Setting data</h2>
 <section id="preferred-approach" class="level3" data-number="1.4.1">
 <h3 data-number="1.4.1" class="anchored" data-anchor-id="preferred-approach"><span class="header-section-number">1.4.1</span> Preferred approach</h3>
-<p>To set <code>BiocFrame</code> properties, we encourage a <strong>functional style</strong> of programming that avoids mutating the object. This avoids inadvertent modification of <code>BiocFrame</code>s that are part of larger data structures.</p>
+<p>To set <code>BiocFrame</code> properties, we encourage a <strong>functional style</strong> of programming that avoids mutating the object. This avoids inadvertent modification of <code>BiocFrame</code> instances within larger data structures.</p>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>modified <span class="op">=</span> bframe.set_column_names([<span class="st">"column1"</span>, <span class="st">"column2"</span>])</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -401,19 +407,6 @@ BiocFrame with 3 rows and 3 columns
 </div>
 </div>
 <p>Change the row or column names:</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The functional style allows you to chain multiple operations as in the example below.</p>
-</div>
-</div>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>modified <span class="op">=</span> bframe.<span class="op">\</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    set_column_names([<span class="st">"FOO"</span>, <span class="st">"BAR"</span>]).<span class="op">\</span></span>
@@ -426,6 +419,19 @@ Note
   alpha ENS00001  MAP1A
   bravo ENS00002   BIN1
 charlie ENS00003   ESR1</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The functional style allows you to chain multiple operations.</p>
 </div>
 </div>
 <p>We also support Bioconductor’s metadata concepts, either along the columns or for the entire object:</p>
@@ -467,13 +473,13 @@ metadata(1): author</code></pre>
   warn(</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Caution
+Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -495,7 +501,7 @@ Caution
 </section>
 <section id="combining-objects" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="combining-objects"><span class="header-section-number">1.5</span> Combining objects</h2>
-<p><strong>BiocFrame</strong> implements methods for the various <code>combine</code> generics from <a href="https://github.com/BiocPy/biocutils"><strong>BiocUtils</strong></a>. So, for example, to combine by row:</p>
+<p><code>BiocFrame</code> implements methods for the various <code>combine</code> generics from <a href="https://github.com/BiocPy/biocutils"><strong>BiocUtils</strong></a>. For example, to combine by row:</p>
 <div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocutils</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -584,7 +590,7 @@ Note
 [9]     99     88      E</code></pre>
 </div>
 </div>
-<p>Similarly, if the rows are different, we can use <strong>BiocFrame</strong>’s <code>merge</code> function:</p>
+<p>Similarly, if the rows are different, we can use <code>BiocFrame</code>’s <code>merge</code> function:</p>
 <div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocframe <span class="im">import</span> merge</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -648,7 +654,7 @@ G   None   None      E   True</code></pre>
 </section>
 <section id="empty-frames" class="level2" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="empty-frames"><span class="header-section-number">1.7</span> Empty Frames</h2>
-<p>We can create empty <code>BiocFrame</code> objects that hold no information except the number of rows. This is useful when <code>BiocFrame</code> objects are part of larger datastructures but hold no data.</p>
+<p>We can create empty <code>BiocFrame</code> objects that only specify the number of rows. This proves beneficial in situations where <code>BiocFrame</code> objects are integrated into more extensive data structures but do not possess any data themselves.</p>
 <div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>empty <span class="op">=</span> BiocFrame(number_of_rows<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -657,7 +663,7 @@ G   None   None      E   True</code></pre>
 </code></pre>
 </div>
 </div>
-<p>Most operations described in the document can also be performed on an empty <code>BiocFrame</code> object.</p>
+<p>Most operations described in this document can be performed on an empty <code>BiocFrame</code> object.</p>
 <div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Column names:"</span>, empty.column_names)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -934,8 +940,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/summary.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/representations/iranges.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
