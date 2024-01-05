@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BiocPy: Enabling Bioconductor workflows in Python - BiocFrame - Bioconductor-like data frames</title>
+<title>BiocPy: Enabling Bioconductor workflows in Python - The basics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/biocframe/intro.html" rel="next">
-<link href="../../chapters/intro.html" rel="prev">
+<link href="../../chapters/representations/biocframe.html" rel="next">
+<link href="../../index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/biocframe/index.html">BiocFrame - Bioconductor-like data frames</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/representations/index.html">The basics</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -142,16 +142,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Installation</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../chapters/biocframe/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">BiocFrame - Bioconductor-like data frames</span></a>
+            <a href="../../chapters/representations/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">The basics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -159,8 +153,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/biocframe/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+  <a href="../../chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></span></a>
   </div>
 </li>
       </ul>
@@ -187,8 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  <li><a href="#update-packages" id="toc-update-packages" class="nav-link active" data-scroll-target="#update-packages">Update packages</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -197,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">BiocFrame - Bioconductor-like data frames</h1>
+<h1 class="title">The basics</h1>
 </div>
 
 
@@ -212,16 +205,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>This package implements the BiocFrame class, a Bioconductor-friendly alternative to Pandas DataFrame. The main advantage is that the BiocFrame makes no assumption on the types of the columns - as long as an object has a length (<code>__len__</code>) and slicing methods (<code>__getitem__</code>), it can be used inside a <code>BiocFrame</code>. This allows us to accept arbitrarily complex objects as columns, which is often the case in Bioconductor objects.</p>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p>Package is published to <a href="https://pypi.org/project/biocframe/">PyPI</a></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install biocframe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="further-reading" class="level2">
-<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
-<p>Check out the <a href="https://biocpy.github.io/BiocFrame/">reference documentation</a> for more details.</p>
-<p>Also see check out Bioconductor’s <a href="https://bioconductor.org/packages/S4Vectors">S4Vectors</a> package, which implements the <code>DFrame</code> class on which <code>BiocFrame</code> was based.</p>
+<p>This chapter introduces the core representations and classes available through BiocPy.</p>
+<p>All packages in the <code>BiocPy</code> ecosystem are published to Python’s Package Index - <a href="https://pypi.org/">PyPI</a>.</p>
+<p><code>biocpy</code> is a wrapper package that install all core packages in the ecosystem.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install biocpy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>OR install packages as needed. e.g.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install summarizedexperiment <span class="co"># &lt;package-name&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="update-packages" class="level1">
+<h1>Update packages</h1>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-U</span> biocpy <span class="co"># or &lt;package-name&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -462,13 +454,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/intro.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Installation</span>
+      <a href="../../index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Welcome</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/biocframe/intro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/representations/biocframe.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
