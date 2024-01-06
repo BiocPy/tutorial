@@ -32,7 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./chapters/representations/index.html" rel="next">
+<link href="./chapters/development_guide.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -109,6 +109,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/development_guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">development_guide.html</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./chapters/representations/index.html" class="sidebar-item-text sidebar-link">
@@ -121,19 +127,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/representations/iranges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -141,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -160,8 +166,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
-  <li><a href="#sec-core-pkgs" id="toc-sec-core-pkgs" class="nav-link" data-scroll-target="#sec-core-pkgs">Packages in <code>BiocPy</code></a></li>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
+  <ul class="collapse">
+  <li><a href="#selected-packages" id="toc-selected-packages" class="nav-link" data-scroll-target="#selected-packages">Selected packages</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -199,11 +207,15 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="welcome" class="level1 unnumbered">
 <h1 class="unnumbered">Welcome</h1>
-<p><strong><em><a href="https://github.com/BiocPy">BiocPy</a> is an effort to bring core data structures and representations from <a href="https://www.bioconductor.org">Bioconductor</a> to Python.</em></strong></p>
-</section>
-<section id="sec-core-pkgs" class="level1">
-<h1>Packages in <code>BiocPy</code></h1>
-<p>Currently, the following <strong>core</strong> representations are implemented in Python</p>
+<p><a href="https://www.bioconductor.org">Bioconductor</a> is an open-source software project that provides tools for the analysis and comprehension of genomic data. One of the main advantages of Bioconductor is the availability of standard data representations and large number of analysis tools for genomic experiments. These tools allow researchers to efficiently store, manipulate, and analyze their data, leading to a deeper understanding of the underlying biological processes.</p>
+<p>Inspired by Bioconductor, <a href="https://github.com/BiocPy">BiocPy</a> is an effort to enable bioconductor workflows in Python. To achieve this goal, we developed several core data structures that align closely to the bioconductor implementations, e.g., to manage genomic intervals and genome annotations (<a href="https://github.com/BiocPy/GenomicRanges">GenomicRanges</a> and/or <a href="https://github.com/BiocPy/IRanges">IRanges</a>), along with container classes for single (<a href="https://github.com/BiocPy/SummarizedExperiment">SummarizedExperiment</a>, <a href="https://github.com/BiocPy/SingleCellExperiment">SingleCellExperiment</a>) or multi-omic experiments (<a href="https://github.com/BiocPy/MultiAssayExperiment">MultiAssayExperiment</a>). Additionally, BiocPy provides infrastructure packages to support delayed operations (<a href="https://github.com/BiocPy/DelayedArray">DelayedArray</a>), Bioconductor-like dataframes (<a href="https://github.com/BiocPy/BiocFrame">BiocFrame</a>), and incorporate many generics and utilities in <a href="https://github.com/BiocPy/BiocUtils">BiocUtils</a>.</p>
+<p>BiocPy also provides bindings to <a href="https://github.com/LTLA/libscran">libscran</a> and various other analysis methods within the <a href="https://github.com/BiocPy/scranpy">scranpy</a> package, as well as to the <a href="https://github.com/BiocPy/singlr">singlr</a> algorithm for the analysis and annotation of multi-modal single-cell datasets.</p>
+<p>The <a href="https://github.com/BiocPy/rds2py">rds2py</a> package enables users to directly read experimental data stored in RDS files in Python. This functionality facilitates seamless transition between Python and R for analysis. All packages within the BiocPy ecosystem are published to Python’s Package Index (PyPI).</p>
+<section id="selected-packages" class="level2">
+<h2 class="anchored" data-anchor-id="selected-packages">Selected packages</h2>
+<p>For all packages, visit the <a href="https://github.com/BiocPy">GitHub:BiocPy</a> repository.</p>
+<section id="core-representations" class="level4">
+<h4 class="anchored" data-anchor-id="core-representations">core representations:</h4>
 <ul>
 <li><code>BiocUtils</code> (<a href="https://github.com/BiocPy/BiocUtils">GitHub</a>, <a href="https://biocpy.github.io/BiocUtils/">Docs</a>): Common utilities for use across packages, mostly to mimic convenient aspects of base R.</li>
 <li><code>BiocFrame</code> (<a href="https://github.com/BiocPy/BiocFrame">GitHub</a>, <a href="https://biocpy.github.io/BiocFrame/">Docs</a>): Bioconductor-like dataframes in Python.</li>
@@ -213,24 +225,34 @@ ul.task-list li input[type="checkbox"] {
 <li><code>SingleCellExperiment</code> (<a href="https://github.com/BiocPy/SingleCellExperiment">GitHub</a>, <a href="https://biocpy.github.io/SingleCellExperiment/">Docs</a>, <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">BioC</a>): Container class to represent single-cell experiments; follows Bioconductor’s <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">SingleCellExperiment</a>.</li>
 <li><code>MultiAssayExperiment</code> (<a href="https://github.com/BiocPy/MultiAssayExperiment">GitHub</a>, <a href="https://biocpy.github.io/MultiAssayExperiment/">Docs</a>, <a href="https://bioconductor.org/packages/release/bioc/html/MultiAssayExperiment.html">BioC</a>): Container class to represent multiple experiments and assays performed over a set of samples. follows Bioconductor’s <a href="https://bioconductor.org/packages/release/bioc/html/MultiAssayExperiment.html">MAE R/Bioc Package</a>.</li>
 </ul>
-<p><strong>Analysis packages</strong></p>
+</section>
+<section id="analysis-packages" class="level4">
+<h4 class="anchored" data-anchor-id="analysis-packages">Analysis packages</h4>
 <ul>
 <li><code>scranpy</code>(<a href="https://github.com/BiocPy/scranpy">GitHub</a>, <a href="https://biocpy.github.io/scranpy/">Docs</a>): Python bindings to the single-cell analysis methods from libscran and related C++ libraries.</li>
 <li><code>singler</code>(<a href="https://github.com/BiocPy/singler">GitHub</a>, <a href="https://biocpy.github.io/singler/">Docs</a>): Python bindings to the singleR algorithm to annotate cell types from known references.</li>
 </ul>
-<p><strong>Utility packages</strong></p>
+</section>
+<section id="interoperability" class="level4">
+<h4 class="anchored" data-anchor-id="interoperability">Interoperability</h4>
 <ul>
-<li><code>rds2py</code> (<a href="https://github.com/BiocPy/rds2py">GitHub</a>, <a href="https://biocpy.github.io/rds2py/">Docs</a>): Parse, extract and create Python representations for datasets stored in RDS files. Currently supports Bioconductor’s <code>SummarizedExperiment</code> and <code>SingleCellExperiment</code> objects.</li>
-<li><code>mopsy</code> (<a href="https://github.com/BiocPy/mopsy">GitHub</a>, <a href="https://biocpy.github.io/mopsy/">Docs</a>): Convenience library to perform row/column operations over numpy and scipy matrices. Provides an interface similar to base R matrix methods/MatrixStats methods.</li>
+<li><code>rds2py</code> (<a href="https://github.com/BiocPy/rds2py">GitHub</a>, <a href="https://biocpy.github.io/rds2py/">Docs</a>): Read RDS files directly in Python. Supports Bioconductor’s <code>SummarizedExperiment</code> and <code>SingleCellExperiment</code> in addition matrices, dataframes and vectors.</li>
+</ul>
+</section>
+<section id="utility-packages" class="level4">
+<h4 class="anchored" data-anchor-id="utility-packages">Utility packages</h4>
+<ul>
+<li><code>mopsy</code> (<a href="https://github.com/BiocPy/mopsy">GitHub</a>, <a href="https://biocpy.github.io/mopsy/">Docs</a>): Helper functions to perform row/column operations over numpy and scipy matrices. Provides an interface similar to base R matrix methods/MatrixStats methods.</li>
 <li><code>pyBiocFileCache</code> (<a href="https://github.com/BiocPy/pyBiocFileCache">GitHub</a>, <a href="https://pypi.org/project/pyBiocFileCache/">Docs</a>, <a href="https://github.com/Bioconductor/BiocFileCache">BioC</a>): File system based cache for resources &amp; metadata.</li>
 </ul>
-<p><strong>This book will focus on end user tutorials as develop more packages and integrations.</strong></p>
 <hr>
+</section>
 <section id="notes" class="level4">
 <h4 class="anchored" data-anchor-id="notes">Notes</h4>
 <p>This is a Quarto book and contains <strong><em>reusable snippets</em></strong>. To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
 
 
+</section>
 </section>
 </section>
 
@@ -472,8 +494,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/representations/index.html" class="pagination-link">
-        <span class="nav-page-text">The basics</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapters/development_guide.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">development_guide.html</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
