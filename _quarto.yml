@@ -18,6 +18,7 @@ book:
     background: light
   chapters:
     - index.qmd
+    - chapters/development_guide.qmd
     - part: chapters/representations/index.qmd
       chapters:
         - chapters/representations/biocframe.qmd
@@ -34,6 +35,3 @@ format:
   pdf:
     keep-tex: true
     documentclass: scrreprt
-
-
-
