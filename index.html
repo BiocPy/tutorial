@@ -208,12 +208,13 @@ ul.task-list li input[type="checkbox"] {
 <section id="welcome" class="level1 unnumbered">
 <h1 class="unnumbered">Welcome</h1>
 <p><a href="https://www.bioconductor.org">Bioconductor</a> is an open-source software project that provides tools for the analysis and comprehension of genomic data. One of the main advantages of Bioconductor is the availability of standard data representations and large number of analysis tools for genomic experiments. These tools allow researchers to efficiently store, manipulate, and analyze their data, leading to a deeper understanding of the underlying biological processes.</p>
-<p>Inspired by Bioconductor, <a href="https://github.com/BiocPy">BiocPy</a> is an effort to enable bioconductor workflows in Python. To achieve this goal, we developed several core data structures that align closely to the bioconductor implementations, e.g., to manage genomic intervals and genome annotations (<a href="https://github.com/BiocPy/GenomicRanges">GenomicRanges</a> and/or <a href="https://github.com/BiocPy/IRanges">IRanges</a>), along with container classes for single (<a href="https://github.com/BiocPy/SummarizedExperiment">SummarizedExperiment</a>, <a href="https://github.com/BiocPy/SingleCellExperiment">SingleCellExperiment</a>) or multi-omic experiments (<a href="https://github.com/BiocPy/MultiAssayExperiment">MultiAssayExperiment</a>). Additionally, BiocPy provides infrastructure packages to support delayed operations (<a href="https://github.com/BiocPy/DelayedArray">DelayedArray</a>), Bioconductor-like dataframes (<a href="https://github.com/BiocPy/BiocFrame">BiocFrame</a>), and incorporate many generics and utilities in <a href="https://github.com/BiocPy/BiocUtils">BiocUtils</a>.</p>
-<p>BiocPy also provides bindings to <a href="https://github.com/LTLA/libscran">libscran</a> and various other analysis methods within the <a href="https://github.com/BiocPy/scranpy">scranpy</a> package, as well as to the <a href="https://github.com/BiocPy/singlr">singlr</a> algorithm for the analysis and annotation of multi-modal single-cell datasets.</p>
-<p>The <a href="https://github.com/BiocPy/rds2py">rds2py</a> package enables users to directly read experimental data stored in RDS files in Python. This functionality facilitates seamless transition between Python and R for analysis. All packages within the BiocPy ecosystem are published to Python’s Package Index (PyPI).</p>
+<p>Inspired by Bioconductor, <a href="https://github.com/BiocPy">BiocPy</a> aims to facilitate bioconductor workflows in Python. To achieve this goal, we developed several core data structures that align closely to the bioconductor implementations. These structures efficiently manage genomic intervals and genome annotations through <a href="https://github.com/BiocPy/GenomicRanges">GenomicRanges</a> and/or <a href="https://github.com/BiocPy/IRanges">IRanges</a>, provide container classes to represent single (<a href="https://github.com/BiocPy/SummarizedExperiment">SummarizedExperiment</a>, <a href="https://github.com/BiocPy/SingleCellExperiment">SingleCellExperiment</a>) or multi-omic experimental data and metadata (<a href="https://github.com/BiocPy/MultiAssayExperiment">MultiAssayExperiment</a>). In addition, BiocPy provides infrastructure packages to support delayed operations (<a href="https://github.com/BiocPy/DelayedArray">DelayedArray</a>), Bioconductor-like dataframes (<a href="https://github.com/BiocPy/BiocFrame">BiocFrame</a>), and incorporate numerous generics and utilities in <a href="https://github.com/BiocPy/BiocUtils">BiocUtils</a>. While there are prior initiatives aiming to port bioconductor representations into Python, BiocPy distinguishes itself as the first to develop seamless, well-integrated data structures and representations.</p>
+<p>BiocPy additionally provides bindings to <a href="https://github.com/LTLA/libscran">libscran</a> and various other single-cell analysis methods incorporated into the <a href="https://github.com/BiocPy/scranpy">scranpy</a> package to support analysis of multi-modal single-cell datasets. It also features integration with the <a href="https://github.com/BiocPy/singler">singler</a> algorithm to annotate cell types by matching cells to known references based on their expression profiles.</p>
+<p>For convenient access to experimental data stored in RDS files, the <a href="https://github.com/BiocPy/rds2py">rds2py</a> package provides bindings to the rds2cpp library. This allows direct reading of RDS files in Python, eliminating the need for additional data conversion tools or intermediate formats. This package functionality streamlines the transition between Python and R for seamless analysis.</p>
+<p>All packages within the BiocPy ecosystem are published to Python’s Package Index (PyPI).</p>
 <section id="selected-packages" class="level2">
 <h2 class="anchored" data-anchor-id="selected-packages">Selected packages</h2>
-<p>For all packages, visit the <a href="https://github.com/BiocPy">GitHub:BiocPy</a> repository.</p>
+<p>For complete list of all packages, visit the <a href="https://github.com/BiocPy">GitHub:BiocPy</a> repository.</p>
 <section id="core-representations" class="level4">
 <h4 class="anchored" data-anchor-id="core-representations">core representations:</h4>
 <ul>
@@ -233,23 +234,23 @@ ul.task-list li input[type="checkbox"] {
 <li><code>singler</code>(<a href="https://github.com/BiocPy/singler">GitHub</a>, <a href="https://biocpy.github.io/singler/">Docs</a>): Python bindings to the singleR algorithm to annotate cell types from known references.</li>
 </ul>
 </section>
-<section id="interoperability" class="level4">
-<h4 class="anchored" data-anchor-id="interoperability">Interoperability</h4>
+<section id="interoperability-with-r" class="level4">
+<h4 class="anchored" data-anchor-id="interoperability-with-r">Interoperability with R</h4>
 <ul>
-<li><code>rds2py</code> (<a href="https://github.com/BiocPy/rds2py">GitHub</a>, <a href="https://biocpy.github.io/rds2py/">Docs</a>): Read RDS files directly in Python. Supports Bioconductor’s <code>SummarizedExperiment</code> and <code>SingleCellExperiment</code> in addition matrices, dataframes and vectors.</li>
+<li><code>rds2py</code> (<a href="https://github.com/BiocPy/rds2py">GitHub</a>, <a href="https://biocpy.github.io/rds2py/">Docs</a>): Read RDS files directly in Python. Supports Bioconductor’s <code>SummarizedExperiment</code> and <code>SingleCellExperiment</code> in addition to matrices, dataframes and vectors.</li>
 </ul>
 </section>
 <section id="utility-packages" class="level4">
 <h4 class="anchored" data-anchor-id="utility-packages">Utility packages</h4>
 <ul>
-<li><code>mopsy</code> (<a href="https://github.com/BiocPy/mopsy">GitHub</a>, <a href="https://biocpy.github.io/mopsy/">Docs</a>): Helper functions to perform row/column operations over numpy and scipy matrices. Provides an interface similar to base R matrix methods/MatrixStats methods.</li>
+<li><code>mopsy</code> (<a href="https://github.com/BiocPy/mopsy">GitHub</a>, <a href="https://biocpy.github.io/mopsy/">Docs</a>): Helper functions to perform row or column operations over numpy and scipy matrices. Provides an interface similar to base R matrix methods/MatrixStats methods.</li>
 <li><code>pyBiocFileCache</code> (<a href="https://github.com/BiocPy/pyBiocFileCache">GitHub</a>, <a href="https://pypi.org/project/pyBiocFileCache/">Docs</a>, <a href="https://github.com/Bioconductor/BiocFileCache">BioC</a>): File system based cache for resources &amp; metadata.</li>
 </ul>
 <hr>
 </section>
 <section id="notes" class="level4">
 <h4 class="anchored" data-anchor-id="notes">Notes</h4>
-<p>This is a Quarto book and contains <strong><em>reusable snippets</em></strong>. To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
+<p>This is a reproducible Quarto book with <strong><em>reusable snippets</em></strong>. To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
 
 
 </section>
