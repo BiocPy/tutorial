@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BiocPy: Enabling Bioconductor workflows in Python – development_guide</title>
+<title>BiocPy: Enabling Bioconductor workflows in Python - Programming philosophy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -65,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked fullcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -74,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/development_guide.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">development_guide.html</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/philosophy.html">Programming philosophy</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -110,8 +144,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/development_guide.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">development_guide.html</span></span></a>
+  <a href="../chapters/philosophy.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Programming philosophy</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -126,19 +160,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/representations/iranges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -146,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -160,14 +194,85 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#class-design" id="toc-class-design" class="nav-link active" data-scroll-target="#class-design">Class design</a></li>
+  <li><a href="#naming" id="toc-naming" class="nav-link" data-scroll-target="#naming">Naming</a>
+  <ul class="collapse">
+  <li><a href="#functional-discipline" id="toc-functional-discipline" class="nav-link" data-scroll-target="#functional-discipline">Functional discipline</a></li>
+  </ul></li>
+  <li><a href="#type-hints" id="toc-type-hints" class="nav-link" data-scroll-target="#type-hints">Type hints</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Programming philosophy</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>As we developed BiocPy packages, we established standards and contribution guidelines to ensure code quality and consistency across all our packages.</p>
+<section id="class-design" class="level2">
+<h2 class="anchored" data-anchor-id="class-design">Class design</h2>
+<p>Our objective is to provide a consistent user experience in Python for each Bioconductor class. In most cases, this is achieved by directly re-implementing the class and its associated methods in Python. Occasionally, the Bioconductor implementation contains historical baggage (e.g., the storage of <code>rowData</code> in a <code>RangedSummarizedExperiment</code>, <code>MultiAssayExperiment</code> harmonization); developers should use their own discretion to decide whether that really needs to be replicated in Python.</p>
+</section>
+<section id="naming" class="level2">
+<h2 class="anchored" data-anchor-id="naming">Naming</h2>
+<p>We highly recommend adhering to <a href="https://google.github.io/styleguide/pyguide.html">Google’s Python style guide</a> for consistency. In summary, classes should use <code>PascalCase</code> and follow Bioconductor’s class names. Methods should use <code>snake_case</code> and take the form of <code>&lt;verb&gt;[_&lt;details&gt;]</code>, such as <code>get_start()</code>, <code>set_names()</code> and so on. Method arguments should also use <code>snake_case</code> format.</p>
+<p>Usability has been another crucial objective, to facilitate an easy transition for users between R and Python classes. For instance, when computing flanking regions in R:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flank</span>(gr, <span class="at">width=</span><span class="dv">2</span>, <span class="at">start=</span><span class="cn">FALSE</span>, <span class="at">both=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the <a href="https://github.com/BiocPy/GenomicRanges">GenomicRanges</a> Python packages, we maintain consistency by expecting the same method name. The only difference lies in the shift from a functional to an object-oriented programming paradigm:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gr.flank(width<span class="op">=</span><span class="dv">2</span>, start<span class="op">=</span><span class="va">False</span>, both<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="functional-discipline" class="level3">
+<h3 class="anchored" data-anchor-id="functional-discipline">Functional discipline</h3>
+<p>The existence of mutable types in Python introduces the potential danger of modifying complex objects. If a mutable object has a user-visible reference and is also a member of a larger Bioconductor object, a user-specified modification to that object may violate the constraints of the parent object.</p>
+<p>To address these issues, we enforce a functional programming discipline in all class methods. By default, all methods should avoid side effects that mutate the object. This simplifies reasoning around the effects of methods and/or mutations in large complex objects.</p>
+<p>The most notable application of this philosophy is in <strong><em>setter</em></strong> methods. Instead of mutating the object directly, they should return a new copy of the object with the desired modification. The <em>“depth”</em> of the copy depends on the nature of the field being set; the aim should be to avoid any modification of the contents in <code>self</code>. Implementations may offer an <code>in_place=</code> option to apply the modification to the original object, but this default to <code>False</code>.</p>
+<p>To avoid performance issues, <strong><em>getter</em></strong> methods may return mutable objects without copying, assuming that their return values are read-only and will not be directly mutated (Setter methods that operate via a copy are allowed). In some cases, the return value of a getter method may be directly mutated, e.g., because a copy was already created in the getter; this should be clearly stated in the documentation but should not be treated as the default.</p>
+<section id="property-based-getters-and-setters" class="level4">
+<h4 class="anchored" data-anchor-id="property-based-getters-and-setters">Property based getters and setters</h4>
+<p>Direct access to class members (via properties or <code>@property</code> decorator) should generally be avoided, as it is too easy to perform modifications via one-liners with the <code>class.property</code> notation on the left-hand-side of an assignment.</p>
+<p>The default assumption is that property-based setters will mutate the object in-place.</p>
+</section>
+</section>
+</section>
+<section id="type-hints" class="level2">
+<h2 class="anchored" data-anchor-id="type-hints">Type hints</h2>
+<p>As the term suggests, type hints are “hints” used to enhance the developer experience; they should not dictate how we write our code.</p>
+<p>For this reason, we prefer simple types in these hints, usually corresponding to base Python types with minimal nesting. For example, if a function is expected to operate on any arbitrary list, the basic list type hint should suffice.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_element(arr: <span class="bu">list</span>, query: <span class="bu">int</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the function expects a list of strings,</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> List</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_element(arr: List[<span class="bu">str</span>], query: <span class="bu">str</span>):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the function accepts multiple types as inputs,</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Union</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_element(arr: List[<span class="bu">str</span>], query: Union[<span class="bu">int</span>, <span class="bu">str</span>, <span class="bu">slice</span>]):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Additionally, we provide recommendations on setting up the package, different testing environments, documentation, and publishing workflows. These details can be found in the <a href="https://github.com/BiocPy/developer_guide">developer guide</a>.</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -419,4 +524,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></div></div></footer></body></html>
+</body></html>
