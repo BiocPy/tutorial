@@ -18,7 +18,7 @@ book:
     background: light
   chapters:
     - index.qmd
-    - chapters/development_guide.qmd
+    - chapters/philosophy.qmd
     - part: chapters/representations/index.qmd
       chapters:
         - chapters/representations/biocframe.qmd
