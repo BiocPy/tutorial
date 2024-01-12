@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/representations/iranges.html" rel="next">
+<link href="../../chapters/representations/genomicranges.html" rel="next">
 <link href="../../chapters/representations/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -165,14 +165,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/representations/iranges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></span></a>
+  <a href="../../chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>GenomicRanges</code>: Genomic analysis</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/extras/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Additional packages</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></span></a>
+  <a href="../../chapters/extras/iranges.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>IRanges</code>: Interval arithmetic</span></a>
   </div>
 </li>
       </ul>
@@ -180,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -220,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#relaxed-combine-operation" id="toc-relaxed-combine-operation" class="nav-link" data-scroll-target="#relaxed-combine-operation">Relaxed combine operation</a></li>
   </ul></li>
   <li><a href="#empty-frames" id="toc-empty-frames" class="nav-link" data-scroll-target="#empty-frames">Empty Frames</a></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -498,7 +509,7 @@ row3 ENS00002   ESR1 chr3:5000:5500</code></pre>
 </section>
 <section id="extracting-data" class="level2">
 <h2 class="anchored" data-anchor-id="extracting-data">Extracting data</h2>
-<p>BiocPy classes follow a functional paradigm for accessing or setting properties, with further details available in <a href="../philosophy.html#sec-functional"><span>Section&nbsp;2.1</span></a>.</p>
+<p>BiocPy classes follow a functional paradigm for accessing or setting properties, with further details discussed in <a href="@sec-functional">functional paragidm</a> section.</p>
 <p>Properties can be directly accessed from the object:</p>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape:"</span>, bframe.shape)</span>
@@ -848,8 +859,8 @@ Subsetting an empty BiocFrame:
 </div>
 <hr>
 </section>
-<section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
 <p>Check out <a href="https://biocpy.github.io/BiocFrame/">the reference documentation</a> for more details.</p>
 <p>Also check out Bioconductor’s <a href="https://bioconductor.org/packages/S4Vectors"><strong>S4Vectors</strong></a> package, which implements the <code>DFrame</code> class on which <code>BiocFrame</code> was based.</p>
 
@@ -1097,8 +1108,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/representations/iranges.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/representations/genomicranges.html" class="pagination-link">
+        <span class="nav-page-text"><code>GenomicRanges</code>: Genomic analysis</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
