@@ -40,7 +40,7 @@ programming paradigm:
 gr.flank(width=2, start=False, both=True)
 ```
 
-### Functional discipline
+### Functional discipline {#sec-functional}
 
 The existence of mutable types in Python introduces the potential danger of 
 modifying complex objects. 
@@ -110,6 +110,8 @@ def find_element(arr: List[str], query: Union[int, str, slice]):
     pass
 ```
 
+-----
+## Notes
 Additionally, we provide recommendations on setting up the package, different 
 testing environments, documentation, and publishing workflows. 
 These details can be found in the [developer guide](https://github.com/BiocPy/developer_guide).

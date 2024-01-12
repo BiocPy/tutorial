@@ -53,7 +53,7 @@ Index (PyPI).
 For complete list of all packages, visit the 
 [GitHub:BiocPy](https://github.com/BiocPy) repository.
 
-#### core representations:
+#### Core representations:
 
 - `BiocUtils` ([GitHub](https://github.com/BiocPy/BiocUtils), [Docs](https://biocpy.github.io/BiocUtils/)): Common utilities for use across packages, mostly to mimic convenient aspects of base R.
 - `BiocFrame` ([GitHub](https://github.com/BiocPy/BiocFrame), [Docs](https://biocpy.github.io/BiocFrame/)): Bioconductor-like dataframes in Python.
@@ -77,6 +77,6 @@ For complete list of all packages, visit the
 - `pyBiocFileCache` ([GitHub](https://github.com/BiocPy/pyBiocFileCache), [Docs](https://pypi.org/project/pyBiocFileCache/), [BioC](https://github.com/Bioconductor/BiocFileCache)): File system based cache for resources & metadata. 
 
 -----
-#### Notes
+## Notes
 
 This is a reproducible Quarto book with ***reusable snippets***. To learn more about Quarto books visit <https://quarto.org/docs/books>.

@@ -1,23 +1,23 @@
 # The basics
 
-This chapter introduces the core representations and classes available through BiocPy. 
-
-All packages in the `BiocPy` ecosystem are published to Python's Package Index - [PyPI](https://pypi.org/).
+All packages in the `BiocPy` ecosystem are released on Python's package registry - [PyPI](https://pypi.org/).
 
 
-`biocpy` is a wrapper package that install all core packages in the ecosystem.
+The [biocpy](https://github.com/BiocPy/BiocPy) package serves as a convenient wrapper that installs all the core packages within the ecosystem.
 
 ```bash
 pip install biocpy
 ```
 
-OR install packages as needed. e.g.
+Alternatively, you can install specific packages as required. For example:
 
 ```bash
 pip install summarizedexperiment # <package-name>
 ```
 
 # Update packages
+
+To update packages, use the following command:
 
 ```bash
 pip install -U biocpy # or <package-name>

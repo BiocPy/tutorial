@@ -1,8 +1,8 @@
-# `BiocFrame` - Bioconductor-like data frames
+# `BiocFrame` - Bioconductor-like data frames {.unnumbered}
 
-`BiocFrame` class is a Bioconductor-friendly alternative to Pandas `DataFrame`. Its key advantage lies in not making assumptions on the types of the columns - as long as an object has a length (`__len__`) and supports slicing methods (`__getitem__`), it can be used inside a `BiocFrame`. 
+`BiocFrame` class is a Bioconductor-friendly alternative to Pandas `DataFrame`. Its primary advantage lies in not making assumptions about the types of the columns - as long as an object has a length (`__len__`) and supports slicing methods (`__getitem__`), it can be used inside a `BiocFrame`. 
 
-This flexibility allows us to accept arbitrarily complex objects as columns, which is often the case in Bioconductor objects.
+This flexibility allows us to accept arbitrarily complex objects as columns, which is often the case in Bioconductor objects. Also check out Bioconductor's [**S4Vectors**](https://bioconductor.org/packages/S4Vectors) package, which implements the `DFrame` class on which `BiocFrame` was based.
 
 ## Installation
 
@@ -12,9 +12,97 @@ To get started, install the package from [PyPI](https://pypi.org/project/biocfra
 pip install biocframe
 ```
 
+## Advantage of using `BiocFrame`
+
+One of the core principles guiding the implementation of the `BiocFrame` class is "what you put is what you get." Unlike Pandas `DataFrame`, `BiocFrame` makes no assumptions about the types of the columns provided as input. Some key differences to highlight the advantages of using `BiocFrame` are especially in terms of modifications to column types and handling nested dataframes.
+
+### Inadvertent modification of types
+
+As an example, Pandas `DataFrame` modifies the types of the input data:
+
+```{python}
+import pandas as pd
+import numpy as np
+from array import array
+
+df = pd.DataFrame({
+    "numpy_vec": np.zeros(10),
+    "list_vec": [1]* 10,
+    "native_array_vec": array('d', [3.14] * 10)
+})
+
+print("type of numpy_vector column:", type(df["numpy_vec"]), df["numpy_vec"].dtype)
+print("type of list_vector column:", type(df["list_vec"]), df["list_vec"].dtype)
+print("type of native_array_vector column:", type(df["native_array_vec"]), df["native_array_vec"].dtype)
+
+print(df)
+```
+
+With `BiocFrame`, no assumptions are made,and the input data is not cast into expected types:
+
+```{python}
+from biocframe import BiocFrame
+import numpy as np
+from array import array
+
+bframe_types = BiocFrame({
+    "numpy_vec": np.zeros(10),
+    "list_vec": [1]* 10,
+    "native_array_vec": array('d', [3.14] * 10)
+})
+
+print("type of numpy_vector column:", type(bframe_types["numpy_vec"]))
+print("type of list_vector column:", type(bframe_types["list_vec"]))
+print("type of native_array_vector column:", type(bframe_types["native_array_vec"]))
+
+print(bframe_types)
+```
+
+:::{.callout-note}
+This behavior remains consistent when extracting, slicing, combining, or performing any other supported operations on `BiocFrame` objects.
+:::
+
+### Handling complex nested frames
+
+Pandas `DataFrame` does not support nested structures; therefore, running the snippet below will result in an error:
+
+```{python}
+#| eval: false
+df = pd.DataFrame({
+    "ensembl": ["ENS00001", "ENS00002", "ENS00002"],
+    "symbol": ["MAP1A", "BIN1", "ESR1"],
+    "ranges": pd.DataFrame({
+        "chr": ["chr1", "chr2", "chr3"],
+        "start": [1000, 1100, 5000],
+        "end": [1100, 4000, 5500]
+    }),
+})
+print(df)
+```
+
+However, it is handled seamlessly with `BiocFrame`:
+
+```{python}
+bframe_nested = BiocFrame({
+    "ensembl": ["ENS00001", "ENS00002", "ENS00002"],
+    "symbol": ["MAP1A", "BIN1", "ESR1"],
+    "ranges": BiocFrame({
+        "chr": ["chr1", "chr2", "chr3"],
+        "start": [1000, 1100, 5000],
+        "end": [1100, 4000, 5500]
+    }),
+})
+
+print(bframe_nested)
+```
+
+:::{.callout-note}
+This behavior remains consistent when extracting, slicing, combining, or performing any other supported operations on `BiocFrame` objects.
+:::
+
 ## Construction
 
-To create a `BiocFrame` object, simply provide the data as a dictionary.
+Creating a `BiocFrame` object is straightforward; just provide the `data` as a dictionary.
 
 ```{python}
 from biocframe import BiocFrame
@@ -29,7 +117,7 @@ print(bframe)
 
 ::: {.callout-tip}
 You can specify complex objects as columns, as long as they have some "length" equal to the number of rows.
-For example, we can embed a `BiocFrame` within another `BiocFrame`:
+For example, we can embed a `BiocFrame` within another `BiocFrame`.
 :::
 
 
@@ -48,7 +136,41 @@ bframe2 = BiocFrame(obj, row_names=["row1", "row2", "row3"])
 print(bframe2)
 ```
 
+The `row_names` parameter is analogous to index in the pandas world and should not contain missing strings. Additionally, you may provide:
+
+- `column_data`: A `BiocFrame`object containing metadata about the columns. This must have the same number of rows as the numbers of columns.
+- `metadata`: Additional metadata about the object, usually a dictionary. 
+- `column_names`: If different from the keys in the `data`. If not provided, this is automatically extracted from the keys in the `data`.
+
+### Interop with pandas
+
+`BiocFrame` is intended for accurate representation of Bioconductor objects for interoperability with R, many users may prefer working with **pandas** `DataFrame` objects for their actual analyses. This conversion is easily achieved:
+
+```{python}
+from biocframe import BiocFrame
+bframe3 = BiocFrame(
+    {
+        "foo": ["A", "B", "C", "D", "E"],
+        "bar": [True, False, True, False, True]
+    }
+)
+
+df = bframe3.to_pandas()
+print(type(df))
+print(df)
+```
+
+Converting back to a `BiocFrame` is similarly straightforward:
+
+```{python}
+out = BiocFrame.from_pandas(df)
+print(out)
+```
+
+
 ## Extracting data
+
+BiocPy classes follow a functional paradigm for accessing or setting properties, with further details available in [@sec-functional].
 
 Properties can be directly accessed from the object:
 
@@ -91,21 +213,21 @@ print("\nShort-hand to get a single column: \n", bframe["ensembl"])
 
 ### Preferred approach
 
-To set `BiocFrame` properties, we encourage a **functional style** of programming that avoids mutating the object. This avoids inadvertent modification of `BiocFrame` instances within larger data structures.
+For setting properties, we encourage a **functional style** of programming to avoid mutating the object directly. This helps prevent inadvertent modifications of `BiocFrame` instances within larger data structures.
 
 ```{python}
 modified = bframe.set_column_names(["column1", "column2"])
 print(modified)
 ```
 
-Now lets check the column names of the original object,
+Now let's check the column names of the original object,
 
 ```{python}
 # Original is unchanged:
 print(bframe.get_column_names())
 ```
 
-To add new columns, or replace existing columns:
+To add new columns, or replace existing ones:
 
 ```{python}
 modified = bframe.set_column("symbol", ["A", "B", "C"])
@@ -138,7 +260,7 @@ modified = bframe.\
 print(modified)
 ```
 
-### The other way
+### The not-preferred-way
 
 Properties can also be set by direct assignment for in-place modification. We prefer not to do it this way as it can silently mutate ``BiocFrame`` instances inside other data structures.
 Nonetheless:
@@ -149,7 +271,7 @@ testframe.column_names = ["column1", "column2" ]
 print(testframe)
 ```
 
-::: {.callout-important}
+::: {.callout-caution}
 Warnings are raised when properties are directly mutated. These assignments are the same as calling the corresponding `set_*()` methods with `in_place = True`.
 It is best to do this only if the `BiocFrame` object is not being used anywhere else;
 otherwise, it is safer to just create a (shallow) copy via the default `in_place = False`.
@@ -199,6 +321,7 @@ print(combined)
 By default, both methods above assume that the number and identity of columns (for `combine_rows()`) or rows (for `combine_columns()`) are the same across objects.
 :::
 
+### Relaxed combine operation
 If this is not the case, e.g., with different columns across objects, we can use `relaxed_combine_rows()` instead:
 
 ```{python}
@@ -222,33 +345,10 @@ combined = merge([modified1, modified3], by=None, join="outer")
 print(combined)
 ```
 
-## Interop with pandas
-
-`BiocFrame` is intended for accurate representation of Bioconductor objects for interoperability with R. Most users will probably prefer to work with **pandas** `DataFrame` objects for their actual analyses. This conversion is easily achieved:
-
-```{python}
-from biocframe import BiocFrame
-bframe = BiocFrame(
-    {
-        "foo": ["A", "B", "C", "D", "E"],
-        "bar": [True, False, True, False, True]
-    }
-)
-
-pd = bframe.to_pandas()
-print(pd)
-```
-
-Conversion back to a ``BiocFrame`` is similarly easy:
-
-```{python}
-out = BiocFrame.from_pandas(pd)
-print(out)
-```
 
 ## Empty Frames
 
-We can create empty `BiocFrame` objects that only specify the number of rows. This proves beneficial in situations where `BiocFrame` objects are integrated into more extensive data structures but do not possess any data themselves.
+We can create empty `BiocFrame` objects that only specify the number of rows. This is beneficial in situations where `BiocFrame` objects are integrated into more extensive data structures but do not contain any data themselves.
 
 ```{python}
 empty = BiocFrame(number_of_rows=100)
@@ -264,12 +364,10 @@ subset_empty = empty[1:10,:]
 print("\nSubsetting an empty BiocFrame: \n", subset_empty)
 ```
 
-::: {.callout-tip}
-Similarly one can create an empty `BiocFrame` with only row names.
-:::
+----
 
-## Further reading
+## Notes
 
 Check out [the reference documentation](https://biocpy.github.io/BiocFrame/) for more details.
 
-Also see check out Bioconductor's [**S4Vectors**](https://bioconductor.org/packages/S4Vectors) package, which implements the `DFrame` class on which `BiocFrame` was based.
+Also check out Bioconductor's [**S4Vectors**](https://bioconductor.org/packages/S4Vectors) package, which implements the `DFrame` class on which `BiocFrame` was based.
