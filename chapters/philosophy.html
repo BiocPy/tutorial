@@ -160,19 +160,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></span></a>
+ <span class="menu-text"><code>BiocFrame</code> - Bioconductor-like data frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/representations/iranges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -180,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -202,9 +202,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#class-design" id="toc-class-design" class="nav-link active" data-scroll-target="#class-design">Class design</a></li>
   <li><a href="#naming" id="toc-naming" class="nav-link" data-scroll-target="#naming">Naming</a>
   <ul class="collapse">
-  <li><a href="#functional-discipline" id="toc-functional-discipline" class="nav-link" data-scroll-target="#functional-discipline">Functional discipline</a></li>
+  <li><a href="#sec-functional" id="toc-sec-functional" class="nav-link" data-scroll-target="#sec-functional">Functional discipline</a></li>
   </ul></li>
   <li><a href="#type-hints" id="toc-type-hints" class="nav-link" data-scroll-target="#type-hints">Type hints</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -240,8 +241,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flank</span>(gr, <span class="at">width=</span><span class="dv">2</span>, <span class="at">start=</span><span class="cn">FALSE</span>, <span class="at">both=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In the <a href="https://github.com/BiocPy/GenomicRanges">GenomicRanges</a> Python packages, we maintain consistency by expecting the same method name. The only difference lies in the shift from a functional to an object-oriented programming paradigm:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gr.flank(width<span class="op">=</span><span class="dv">2</span>, start<span class="op">=</span><span class="va">False</span>, both<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="functional-discipline" class="level3">
-<h3 class="anchored" data-anchor-id="functional-discipline">Functional discipline</h3>
+<section id="sec-functional" class="level3">
+<h3 class="anchored" data-anchor-id="sec-functional">Functional discipline</h3>
 <p>The existence of mutable types in Python introduces the potential danger of modifying complex objects. If a mutable object has a user-visible reference and is also a member of a larger Bioconductor object, a user-specified modification to that object may violate the constraints of the parent object.</p>
 <p>To address these issues, we enforce a functional programming discipline in all class methods. By default, all methods should avoid side effects that mutate the object. This simplifies reasoning around the effects of methods and/or mutations in large complex objects.</p>
 <p>The most notable application of this philosophy is in <strong><em>setter</em></strong> methods. Instead of mutating the object directly, they should return a new copy of the object with the desired modification. The <em>“depth”</em> of the copy depends on the nature of the field being set; the aim should be to avoid any modification of the contents in <code>self</code>. Implementations may offer an <code>in_place=</code> option to apply the modification to the original object, but this default to <code>False</code>.</p>
@@ -269,6 +270,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_element(arr: List[<span class="bu">str</span>], query: Union[<span class="bu">int</span>, <span class="bu">str</span>, <span class="bu">slice</span>]):</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <p>Additionally, we provide recommendations on setting up the package, different testing environments, documentation, and publishing workflows. These details can be found in the <a href="https://github.com/BiocPy/developer_guide">developer guide</a>.</p>
 
 
