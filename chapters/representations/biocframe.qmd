@@ -170,7 +170,7 @@ print(out)
 
 ## Extracting data
 
-BiocPy classes follow a functional paradigm for accessing or setting properties, with further details available in [@sec-functional].
+BiocPy classes follow a functional paradigm for accessing or setting properties, with further details discussed in [functional paragidm](@sec-functional) section.
 
 Properties can be directly accessed from the object:
 
@@ -366,7 +366,7 @@ print("\nSubsetting an empty BiocFrame: \n", subset_empty)
 
 ----
 
-## Notes
+## Further reading
 
 Check out [the reference documentation](https://biocpy.github.io/BiocFrame/) for more details.
 

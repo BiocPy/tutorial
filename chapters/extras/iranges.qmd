@@ -1,9 +1,12 @@
-# `IRanges`: Interval arithmetic
+# `IRanges`: Interval arithmetic {.unnumbered}
 
 Python implementation of the [**IRanges**](https://bioconductor.org/packages/IRanges) Bioconductor package.
 
+An `IRanges` holds a **start** position and a **width**, and is typically used to represent coordinates along a genomic sequence. The interpretation of the **start** position depends on the application; for sequences, the **start** is usually a 1-based position, but other use cases may allow zero or even negative values, e.g., circular genomes. 
 
-## Installation
+`IRanges` uses [nested containment lists](https://github.com/pyranges/ncls) under the hood to perform fast overlap and search based operations. 
+
+## Installation {#sec-iranges}
 To get started, install the package from [PyPI](https://pypi.org/project/IRanges/)
 
 ```bash
@@ -170,6 +173,8 @@ y = IRanges([14, 0, -5, 6, 18], [7, 3, 8, 3, 3])
 intersection = x.intersect(y)
 print(intersection)
 ```
+
+----
 
 ## Further reading
 

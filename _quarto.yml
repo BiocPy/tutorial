@@ -22,8 +22,10 @@ book:
     - part: chapters/representations/index.qmd
       chapters:
         - chapters/representations/biocframe.qmd
-        - chapters/representations/iranges.qmd
         - chapters/representations/genomicranges.qmd
+    - part: chapters/extras/index.qmd
+      chapters:
+        - chapters/extras/iranges.qmd
     - chapters/summary.qmd
     - chapters/references.qmd
 
