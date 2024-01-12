@@ -334,11 +334,11 @@ Note
 <pre><code>GenomicRanges with 5 ranges and 5 metadata columns
     seqnames    ranges          strand     score                  GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;              &lt;list&gt;
-[0]     chr1 101 - 112               * |       0  0.8883469376299348
-[1]     chr2 102 - 123               - |       1  0.1374991735189982
-[2]     chr3 103 - 128               * |       2 0.48325506424288067
-[3]     chr2 104 - 134               + |       3  0.9071750081655261
-[4]     chr3 105 - 110               - |       4  0.9081205729851353
+[0]     chr1 101 - 112               * |       0 0.46492919999054083
+[1]     chr2 102 - 123               - |       1  0.7753871522478564
+[2]     chr3 103 - 128               * |       2   0.616178121084322
+[3]     chr2 104 - 134               + |       3  0.4672975892103184
+[4]     chr3 105 - 110               - |       4 0.49292159619830367
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -419,13 +419,13 @@ Note
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gr_from_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>GenomicRanges with 5 ranges and 5 metadata columns
-  seqnames    ranges          strand    score                 GC
-     &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;             &lt;list&gt;
-0     chr1 101 - 112               * |      0 0.4030082307219055
-1     chr2 102 - 103               - |      1 0.4435601755368922
-2     chr1 103 - 128               * |      2 0.4292670509785236
-3     chr3 104 - 134               + |      3 0.3066329937420168
-4     chr2 109 - 111               - |      4 0.5622861576505267
+  seqnames    ranges          strand    score                  GC
+     &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;              &lt;list&gt;
+0     chr1 101 - 112               * |      0  0.6884803427992011
+1     chr2 102 - 103               - |      1 0.43838813309438485
+2     chr1 103 - 128               * |      2 0.45761092277823523
+3     chr3 104 - 134               + |      3  0.3091268529335417
+4     chr2 109 - 111               - |      4 0.19719843572039164
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -450,11 +450,11 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <pre><code>GenomicRanges with 5 ranges and 5 metadata columns
     seqnames    ranges          strand     score                  GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;              &lt;list&gt;
-[0]     chr1 101 - 112               * |       0  0.8883469376299348
-[1]     chr2 102 - 123               - |       1  0.1374991735189982
-[2]     chr3 103 - 128               * |       2 0.48325506424288067
-[3]     chr2 104 - 134               + |       3  0.9071750081655261
-[4]     chr3 105 - 110               - |       4  0.9081205729851353
+[0]     chr1 101 - 112               * |       0 0.46492919999054083
+[1]     chr2 102 - 123               - |       1  0.7753871522478564
+[2]     chr3 103 - 128               * |       2   0.616178121084322
+[3]     chr2 104 - 134               + |       3  0.4672975892103184
+[4]     chr3 105 - 110               - |       4 0.49292159619830367
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -488,11 +488,11 @@ width of each region:  [11 21 25 30  5]
 BiocFrame with 5 rows and 2 columns
       score                  GC
     &lt;range&gt;              &lt;list&gt;
-[0]       0  0.8883469376299348
-[1]       1  0.1374991735189982
-[2]       2 0.48325506424288067
-[3]       3  0.9071750081655261
-[4]       4  0.9081205729851353</code></pre>
+[0]       0 0.46492919999054083
+[1]       1  0.7753871522478564
+[2]       2   0.616178121084322
+[3]       3  0.4672975892103184
+[4]       4 0.49292159619830367</code></pre>
 </div>
 </div>
 <section id="setters" class="level3">
@@ -518,11 +518,11 @@ Important
 <pre><code>GenomicRanges with 5 ranges and 5 metadata columns
     seqnames    ranges          strand     score                  GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;              &lt;list&gt;
-[0]     chr1 101 - 112               * |       1  0.8883469376299348
-[1]     chr2 102 - 123               - |       2  0.1374991735189982
-[2]     chr3 103 - 128               * |       3 0.48325506424288067
-[3]     chr2 104 - 134               + |       4  0.9071750081655261
-[4]     chr3 105 - 110               - |       5  0.9081205729851353
+[0]     chr1 101 - 112               * |       1 0.46492919999054083
+[1]     chr2 102 - 123               - |       2  0.7753871522478564
+[2]     chr3 103 - 128               * |       3   0.616178121084322
+[3]     chr2 104 - 134               + |       4  0.4672975892103184
+[4]     chr3 105 - 110               - |       5 0.49292159619830367
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -535,11 +535,11 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <pre><code>BiocFrame with 5 rows and 2 columns
       score                  GC
     &lt;range&gt;              &lt;list&gt;
-[0]       1  0.8883469376299348
-[1]       2  0.1374991735189982
-[2]       3 0.48325506424288067
-[3]       4  0.9071750081655261
-[4]       5  0.9081205729851353</code></pre>
+[0]       1 0.46492919999054083
+[1]       2  0.7753871522478564
+[2]       3   0.616178121084322
+[3]       4  0.4672975892103184
+[4]       5 0.49292159619830367</code></pre>
 </div>
 </div>
 </section>
@@ -575,11 +575,11 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gr[[<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>GenomicRanges with 3 ranges and 3 metadata columns
-    seqnames    ranges          strand    score                  GC
-       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;              &lt;list&gt;
-[0]     chr2 102 - 123               - |      2  0.1374991735189982
-[1]     chr2 104 - 134               + |      4  0.9071750081655261
-[2]     chr3 103 - 128               * |      3 0.48325506424288067
+    seqnames    ranges          strand    score                 GC
+       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;             &lt;list&gt;
+[0]     chr2 102 - 123               - |      2 0.7753871522478564
+[1]     chr2 104 - 134               + |      4 0.4672975892103184
+[2]     chr3 103 - 128               * |      3  0.616178121084322
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -593,15 +593,15 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name, row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>None GenomicRanges with 1 range and 1 metadata column
-    seqnames    ranges          strand    score                 GC
-       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;             &lt;list&gt;
-[0]     chr1 101 - 112               * |      1 0.8883469376299348
+    seqnames    ranges          strand    score                  GC
+       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;              &lt;list&gt;
+[0]     chr1 101 - 112               * |      1 0.46492919999054083
 ------
 seqinfo(3 sequences): chr1 chr2 chr3
 None GenomicRanges with 1 range and 1 metadata column
     seqnames    ranges          strand    score                 GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;             &lt;list&gt;
-[0]     chr2 102 - 123               - |      2 0.1374991735189982
+[0]     chr2 102 - 123               - |      2 0.7753871522478564
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -666,11 +666,11 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 GenomicRanges with 5 ranges and 5 metadata columns
     seqnames    ranges          strand     score                  GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;              &lt;list&gt;
-[0]     chr1 101 - 112               * |       0 0.19854660393392232
-[1]     chr2 102 - 123               - |       1  0.9395917080737086
-[2]     chr3 103 - 128               * |       2 0.28694350810286284
-[3]     chr2 104 - 134               + |       3  0.9393371510897606
-[4]     chr3 105 - 110               - |       4  0.5759851176079208
+[0]     chr1 101 - 112               * |       0  0.9079853768392275
+[1]     chr2 102 - 123               - |       1  0.9084700715189917
+[2]     chr3 103 - 128               * |       2  0.5165536824859849
+[3]     chr2 104 - 134               + |       3 0.08245796645240278
+[4]     chr3 105 - 110               - |       4  0.8409319175295188
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -1094,11 +1094,11 @@ order: [0 1 3 4 2]
 sorted: GenomicRanges with 5 ranges and 5 metadata columns
     seqnames    ranges          strand    score                  GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;              &lt;list&gt;
-[0]     chr1 101 - 112               * |      0 0.21609300575973034
-[1]     chr2 102 - 123               - |      1  0.7450456439380929
-[2]     chr2 104 - 134               + |      3 0.42269947387122087
-[3]     chr3 105 - 110               - |      4  0.6060575700654279
-[4]     chr3 103 - 128               * |      2 0.46549059032875617
+[0]     chr1 101 - 112               * |      0 0.21257180520073948
+[1]     chr2 102 - 123               - |      1  0.7273404656296221
+[2]     chr2 104 - 134               + |      3 0.48984740481463096
+[3]     chr3 105 - 110               - |      4 0.39551548610297205
+[4]     chr3 103 - 128               * |      2  0.7130959165978206
 ------
 seqinfo(3 sequences): chr1 chr2 chr3
 rank: [0, 1, 4, 2, 3]</code></pre>
