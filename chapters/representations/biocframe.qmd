@@ -18,7 +18,7 @@ One of the core principles guiding the implementation of the `BiocFrame` class i
 
 ### Inadvertent modification of types
 
-As an example, Pandas `DataFrame` modifies the types of the input data:
+As an example, Pandas `DataFrame` modifies the types of the input data. These assumptions can cause issues when interoperating between R and Python.
 
 ```{python}
 import pandas as pd
@@ -28,7 +28,7 @@ from array import array
 df = pd.DataFrame({
     "numpy_vec": np.zeros(10),
     "list_vec": [1]* 10,
-    "native_array_vec": array('d', [3.14] * 10)
+    "native_array_vec": array('d', [3.14] * 10) # less used but native python arrays
 })
 
 print("type of numpy_vector column:", type(df["numpy_vec"]), df["numpy_vec"].dtype)
@@ -38,7 +38,7 @@ print("type of native_array_vector column:", type(df["native_array_vec"]), df["n
 print(df)
 ```
 
-With `BiocFrame`, no assumptions are made,and the input data is not cast into expected types:
+With `BiocFrame`, no assumptions are made, and the input data is not cast into expected types:
 
 ```{python}
 from biocframe import BiocFrame
