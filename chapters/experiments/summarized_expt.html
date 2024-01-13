@@ -433,13 +433,13 @@ assay names (functional style):  ['counts']
 BiocFrame with 200 rows and 6 columns
       seqnames  starts    ends strand   score                  GC
         &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;              &lt;list&gt;
-  [0]     chr1     100     110      -       0  0.8452828974481587
-  [1]     chr2     101     111      +       1  0.8777751432132243
-  [2]     chr2     102     112      +       2  0.3111644208025153
+  [0]     chr1     100     110      -       0  0.6073943893158023
+  [1]     chr2     101     111      +       1  0.8074979698969289
+  [2]     chr2     102     112      +       2 0.03436614353307921
            ...     ...     ...    ...     ...                 ...
-[197]     chr3     297     307      +     197  0.7634750719548518
-[198]     chr3     298     308      -     198 0.02171014346187561
-[199]     chr3     299     309      -     199 0.22639936023396556</code></pre>
+[197]     chr3     297     307      +     197 0.05669296333168006
+[198]     chr3     298     308      -     198  0.7366324779812194
+[199]     chr3     299     309      -     199  0.5612619517929843</code></pre>
 </div>
 </div>
 <section id="access-an-assay" class="level4">
@@ -448,19 +448,19 @@ BiocFrame with 200 rows and 6 columns
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>se.assay(<span class="dv">0</span>) <span class="co"># same as se.assay("counts")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>array([[0.62935331, 0.89680926, 0.68870498, 0.54184043, 0.87629899,
-        0.88564658],
-       [0.44047512, 0.77380025, 0.04639668, 0.48263919, 0.1156295 ,
-        0.32365572],
-       [0.01785452, 0.36974354, 0.49974454, 0.37677852, 0.39497164,
-        0.28568217],
+<pre><code>array([[0.19015602, 0.28472674, 0.91036473, 0.2212358 , 0.50703318,
+        0.16176274],
+       [0.66910947, 0.90676962, 0.77839423, 0.92555008, 0.61077294,
+        0.96973842],
+       [0.33509852, 0.44562564, 0.22550064, 0.68391755, 0.08145182,
+        0.36020109],
        ...,
-       [0.48021576, 0.53287799, 0.77407529, 0.5460097 , 0.68918739,
-        0.28426257],
-       [0.05973999, 0.94929925, 0.38409954, 0.62542318, 0.38854647,
-        0.77050416],
-       [0.4864644 , 0.83105829, 0.95058659, 0.77585155, 0.58446605,
-        0.92742597]])</code></pre>
+       [0.11630704, 0.30724551, 0.67742582, 0.97215273, 0.73680125,
+        0.04283001],
+       [0.31725005, 0.22563007, 0.60764619, 0.09263019, 0.12160775,
+        0.53013432],
+       [0.52254547, 0.70404397, 0.43642252, 0.31905909, 0.74209449,
+        0.28859342]])</code></pre>
 </div>
 </div>
 </section>
@@ -787,7 +787,7 @@ metadata(1): seq_platform
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (3, 6)
-assays(3): ['counts', 'beta', 'lognorm']
+assays(3): ['counts', 'lognorm', 'beta']
 row_data columns(3): ['seqnames', 'start', 'end']
 row_names(3): ['MYC', 'BRCA2', 'TPFK']
 column_data columns(3): ['sample', 'disease', 'doublet_score']
@@ -828,8 +828,10 @@ row_data columns(0): []
 row_names(0):  
 column_data columns(0): []
 column_names(0):  
-metadata(0): 
-</code></pre>
+metadata(0): </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code></code></pre>
 </div>
 </div>
 <hr>
@@ -837,8 +839,8 @@ metadata(0):
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
 <ul>
-<li>Check out reference <a href="https://biocpy.github.io/SummarizedExperiment/index.html">documentation</a></li>
-<li>R/Bioconductor <a href="https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html">SummarizedExperiment</a> package</li>
+<li>Check out reference <a href="https://biocpy.github.io/SummarizedExperiment/index.html">documentation</a> for more details.</li>
+<li>R/Bioconductor’s <a href="https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html">SummarizedExperiment</a> package.</li>
 </ul>
 
 

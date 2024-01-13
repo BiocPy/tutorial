@@ -356,13 +356,13 @@ Note
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>GenomicRanges with 5 ranges and 5 metadata columns
-    seqnames    ranges          strand     score                   GC
-       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;               &lt;list&gt;
-[0]     chr1 101 - 112               * |       0 0.025567094999243367
-[1]     chr2 102 - 123               - |       1  0.07160758109762244
-[2]     chr3 103 - 128               * |       2   0.5199045831833752
-[3]     chr2 104 - 134               + |       3   0.3838242122498734
-[4]     chr3 105 - 110               - |       4    0.442045716482387
+    seqnames    ranges          strand     score                  GC
+       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;              &lt;list&gt;
+[0]     chr1 101 - 112               * |       0 0.31869924593035714
+[1]     chr2 102 - 123               - |       1  0.6237538499067282
+[2]     chr3 103 - 128               * |       2 0.09020608789085727
+[3]     chr2 104 - 134               + |       3  0.4802405702091177
+[4]     chr3 105 - 110               - |       4  0.7119404212905317
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -443,13 +443,13 @@ Note
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gr_from_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>GenomicRanges with 5 ranges and 5 metadata columns
-  seqnames    ranges          strand    score                  GC
-     &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;              &lt;list&gt;
-0     chr1 101 - 112               * |      0  0.8453144711940087
-1     chr2 102 - 103               - |      1 0.29294044373336225
-2     chr1 103 - 128               * |      2  0.4258122994502066
-3     chr3 104 - 134               + |      3 0.19625279826727982
-4     chr2 109 - 111               - |      4 0.46925736460807943
+  seqnames    ranges          strand    score                 GC
+     &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;             &lt;list&gt;
+0     chr1 101 - 112               * |      0 0.3180755285666701
+1     chr2 102 - 103               - |      1 0.9633663607152363
+2     chr1 103 - 128               * |      2 0.5517907520412315
+3     chr3 104 - 134               + |      3 0.9220298163268829
+4     chr2 109 - 111               - |      4 0.8745212553239471
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -472,13 +472,13 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gr_with_seq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>GenomicRanges with 5 ranges and 5 metadata columns
-    seqnames    ranges          strand     score                   GC
-       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;               &lt;list&gt;
-[0]     chr1 101 - 112               * |       0 0.025567094999243367
-[1]     chr2 102 - 123               - |       1  0.07160758109762244
-[2]     chr3 103 - 128               * |       2   0.5199045831833752
-[3]     chr2 104 - 134               + |       3   0.3838242122498734
-[4]     chr3 105 - 110               - |       4    0.442045716482387
+    seqnames    ranges          strand     score                  GC
+       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;              &lt;list&gt;
+[0]     chr1 101 - 112               * |       0 0.31869924593035714
+[1]     chr2 102 - 123               - |       1  0.6237538499067282
+[2]     chr3 103 - 128               * |       2 0.09020608789085727
+[3]     chr2 104 - 134               + |       3  0.4802405702091177
+[4]     chr3 105 - 110               - |       4  0.7119404212905317
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -510,13 +510,13 @@ seqnames (functional style):  ['chr1', 'chr2', 'chr3', 'chr2', 'chr3']
 start positions:  [101 102 103 104 105]
 width of each region:  [11 21 25 30  5]
 BiocFrame with 5 rows and 2 columns
-      score                   GC
-    &lt;range&gt;               &lt;list&gt;
-[0]       0 0.025567094999243367
-[1]       1  0.07160758109762244
-[2]       2   0.5199045831833752
-[3]       3   0.3838242122498734
-[4]       4    0.442045716482387</code></pre>
+      score                  GC
+    &lt;range&gt;              &lt;list&gt;
+[0]       0 0.31869924593035714
+[1]       1  0.6237538499067282
+[2]       2 0.09020608789085727
+[3]       3  0.4802405702091177
+[4]       4  0.7119404212905317</code></pre>
 </div>
 </div>
 <section id="setters" class="level3">
@@ -540,13 +540,13 @@ Important
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified_gr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>GenomicRanges with 5 ranges and 5 metadata columns
-    seqnames    ranges          strand     score                   GC
-       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;               &lt;list&gt;
-[0]     chr1 101 - 112               * |       1 0.025567094999243367
-[1]     chr2 102 - 123               - |       2  0.07160758109762244
-[2]     chr3 103 - 128               * |       3   0.5199045831833752
-[3]     chr2 104 - 134               + |       4   0.3838242122498734
-[4]     chr3 105 - 110               - |       5    0.442045716482387
+    seqnames    ranges          strand     score                  GC
+       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;              &lt;list&gt;
+[0]     chr1 101 - 112               * |       1 0.31869924593035714
+[1]     chr2 102 - 123               - |       2  0.6237538499067282
+[2]     chr3 103 - 128               * |       3 0.09020608789085727
+[3]     chr2 104 - 134               + |       4  0.4802405702091177
+[4]     chr3 105 - 110               - |       5  0.7119404212905317
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -557,13 +557,13 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gr.mcols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 5 rows and 2 columns
-      score                   GC
-    &lt;range&gt;               &lt;list&gt;
-[0]       1 0.025567094999243367
-[1]       2  0.07160758109762244
-[2]       3   0.5199045831833752
-[3]       4   0.3838242122498734
-[4]       5    0.442045716482387</code></pre>
+      score                  GC
+    &lt;range&gt;              &lt;list&gt;
+[0]       1 0.31869924593035714
+[1]       2  0.6237538499067282
+[2]       3 0.09020608789085727
+[3]       4  0.4802405702091177
+[4]       5  0.7119404212905317</code></pre>
 </div>
 </div>
 </section>
@@ -601,9 +601,9 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <pre><code>GenomicRanges with 3 ranges and 3 metadata columns
     seqnames    ranges          strand    score                  GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;              &lt;list&gt;
-[0]     chr2 102 - 123               - |      2 0.07160758109762244
-[1]     chr2 104 - 134               + |      4  0.3838242122498734
-[2]     chr3 103 - 128               * |      3  0.5199045831833752
+[0]     chr2 102 - 123               - |      2  0.6237538499067282
+[1]     chr2 104 - 134               + |      4  0.4802405702091177
+[2]     chr3 103 - 128               * |      3 0.09020608789085727
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -617,15 +617,15 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name, row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>None GenomicRanges with 1 range and 1 metadata column
-    seqnames    ranges          strand    score                   GC
-       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;               &lt;list&gt;
-[0]     chr1 101 - 112               * |      1 0.025567094999243367
+    seqnames    ranges          strand    score                  GC
+       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;              &lt;list&gt;
+[0]     chr1 101 - 112               * |      1 0.31869924593035714
 ------
 seqinfo(3 sequences): chr1 chr2 chr3
 None GenomicRanges with 1 range and 1 metadata column
-    seqnames    ranges          strand    score                  GC
-       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;              &lt;list&gt;
-[0]     chr2 102 - 123               - |      2 0.07160758109762244
+    seqnames    ranges          strand    score                 GC
+       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;             &lt;list&gt;
+[0]     chr2 102 - 123               - |      2 0.6237538499067282
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -690,11 +690,11 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 GenomicRanges with 5 ranges and 5 metadata columns
     seqnames    ranges          strand     score                  GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;              &lt;list&gt;
-[0]     chr1 101 - 112               * |       0   0.761574549148783
-[1]     chr2 102 - 123               - |       1 0.17470006611501332
-[2]     chr3 103 - 128               * |       2  0.5067067550109472
-[3]     chr2 104 - 134               + |       3 0.08556036915422915
-[4]     chr3 105 - 110               - |       4  0.6618588989711155
+[0]     chr1 101 - 112               * |       0   0.879312982958277
+[1]     chr2 102 - 123               - |       1  0.8175689644393735
+[2]     chr3 103 - 128               * |       2 0.15450774216953078
+[3]     chr2 104 - 134               + |       3  0.6158199826209881
+[4]     chr3 105 - 110               - |       4  0.5017707873762682
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -769,6 +769,8 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <li><strong>setdiff</strong>: Compute <code>set difference</code>.</li>
 </ul>
 <div class="cell" data-execution_count="13">
+<details>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>g_src <span class="op">=</span> GenomicRanges(</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    seqnames <span class="op">=</span> [<span class="st">"chr1"</span>, <span class="st">"chr2"</span>, <span class="st">"chr1"</span>, <span class="st">"chr3"</span>, <span class="st">"chr2"</span>],</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    ranges <span class="op">=</span> IRanges(start <span class="op">=</span>[<span class="dv">101</span>, <span class="dv">102</span>, <span class="dv">103</span>, <span class="dv">104</span>, <span class="dv">109</span>], width<span class="op">=</span>[<span class="dv">112</span>, <span class="dv">103</span>, <span class="dv">128</span>, <span class="dv">134</span>, <span class="dv">111</span>]),</span>
@@ -780,6 +782,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    ranges <span class="op">=</span> IRanges(start <span class="op">=</span><span class="bu">range</span>(<span class="dv">101</span>, <span class="dv">111</span>), width<span class="op">=</span><span class="bu">range</span>(<span class="dv">121</span>, <span class="dv">131</span>)),</span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    strand <span class="op">=</span> [<span class="st">"*"</span>, <span class="st">"-"</span>, <span class="st">"-"</span>, <span class="st">"*"</span>, <span class="st">"*"</span>, <span class="st">"+"</span>, <span class="st">"+"</span>, <span class="st">"+"</span>, <span class="st">"-"</span>, <span class="st">"-"</span>]</span>
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intersection</span></span>
@@ -846,27 +849,26 @@ dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="binned-average">Binned average</h3>
 <p>Compute binned average for a set of query <strong>bins</strong>:</p>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> pd.DataFrame({<span class="st">"seqnames"</span>: [<span class="st">"chr1"</span>], <span class="st">"starts"</span>: [<span class="dv">101</span>], <span class="st">"ends"</span>: [<span class="dv">109</span>],})</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>bins_gr <span class="op">=</span> GenomicRanges.from_pandas(bins)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>subject <span class="op">=</span> GenomicRanges(</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    seqnames<span class="op">=</span> [<span class="st">"chr1"</span>,<span class="st">"chr2"</span>,<span class="st">"chr2"</span>,<span class="st">"chr2"</span>,<span class="st">"chr1"</span>,<span class="st">"chr1"</span>,<span class="st">"chr3"</span>,<span class="st">"chr3"</span>,<span class="st">"chr3"</span>,<span class="st">"chr3"</span>],</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    ranges<span class="op">=</span>IRanges(<span class="bu">range</span>(<span class="dv">101</span>, <span class="dv">111</span>), <span class="bu">range</span>(<span class="dv">121</span>, <span class="dv">131</span>)),</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    strand<span class="op">=</span> [<span class="st">"*"</span>, <span class="st">"-"</span>, <span class="st">"-"</span>, <span class="st">"*"</span>, <span class="st">"*"</span>, <span class="st">"+"</span>, <span class="st">"+"</span>, <span class="st">"+"</span>, <span class="st">"-"</span>, <span class="st">"-"</span>],</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    mcols<span class="op">=</span>BiocFrame({</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"score"</span>: <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">10</span>),</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute binned average</span></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>binned_avg_gr <span class="op">=</span> subject.binned_average(bins<span class="op">=</span>bins_gr, scorename<span class="op">=</span><span class="st">"score"</span>, outname<span class="op">=</span><span class="st">"binned_score"</span>)</span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(binned_avg_gr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> iranges <span class="im">import</span> IRanges</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>bins_gr <span class="op">=</span> GenomicRanges(seqnames<span class="op">=</span>[<span class="st">"chr1"</span>], ranges<span class="op">=</span>IRanges([<span class="dv">101</span>], [<span class="dv">109</span>]))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>subject <span class="op">=</span> GenomicRanges(</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    seqnames<span class="op">=</span> [<span class="st">"chr1"</span>,<span class="st">"chr2"</span>,<span class="st">"chr2"</span>,<span class="st">"chr2"</span>,<span class="st">"chr1"</span>,<span class="st">"chr1"</span>,<span class="st">"chr3"</span>,<span class="st">"chr3"</span>,<span class="st">"chr3"</span>,<span class="st">"chr3"</span>],</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    ranges<span class="op">=</span>IRanges(<span class="bu">range</span>(<span class="dv">101</span>, <span class="dv">111</span>), <span class="bu">range</span>(<span class="dv">121</span>, <span class="dv">131</span>)),</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    strand<span class="op">=</span> [<span class="st">"*"</span>, <span class="st">"-"</span>, <span class="st">"-"</span>, <span class="st">"*"</span>, <span class="st">"*"</span>, <span class="st">"+"</span>, <span class="st">"+"</span>, <span class="st">"+"</span>, <span class="st">"-"</span>, <span class="st">"-"</span>],</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    mcols<span class="op">=</span>BiocFrame({</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"score"</span>: <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">10</span>),</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute binned average</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>binned_avg_gr <span class="op">=</span> subject.binned_average(bins<span class="op">=</span>bins_gr, scorename<span class="op">=</span><span class="st">"score"</span>, outname<span class="op">=</span><span class="st">"binned_score"</span>)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(binned_avg_gr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>GenomicRanges with 1 range and 1 metadata column
-  seqnames    ranges          strand   binned_score
-     &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;         &lt;list&gt;
-0     chr1 101 - 109               * |            2
+    seqnames    ranges          strand   binned_score
+       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;         &lt;list&gt;
+[0]     chr1 101 - 210               * |            2
 ------
 seqinfo(1 sequences): chr1</code></pre>
 </div>
@@ -1116,13 +1118,13 @@ Note
 <pre><code>matches:  [[2], [3], [4]]
 order: [0 1 3 4 2]
 sorted: GenomicRanges with 5 ranges and 5 metadata columns
-    seqnames    ranges          strand    score                  GC
-       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;              &lt;list&gt;
-[0]     chr1 101 - 112               * |      0  0.6733980468080818
-[1]     chr2 102 - 123               - |      1 0.05487947392769699
-[2]     chr2 104 - 134               + |      3  0.2052775584240084
-[3]     chr3 105 - 110               - |      4 0.06985210413835163
-[4]     chr3 103 - 128               * |      2  0.8012083798752854
+    seqnames    ranges          strand    score                 GC
+       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;             &lt;list&gt;
+[0]     chr1 101 - 112               * |      0 0.2013615648778958
+[1]     chr2 102 - 123               - |      1 0.8801012975477731
+[2]     chr2 104 - 134               + |      3 0.9888100760090336
+[3]     chr3 105 - 110               - |      4 0.7826246128949864
+[4]     chr3 103 - 128               * |      2 0.1530903303322303
 ------
 seqinfo(3 sequences): chr1 chr2 chr3
 rank: [0, 1, 4, 2, 3]</code></pre>
