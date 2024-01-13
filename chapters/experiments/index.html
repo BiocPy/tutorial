@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Jayaram Kancherla">
-<meta name="dcterms.date" content="2024-01-04">
 
-<title>BiocPy: Enabling Bioconductor workflows in Python</title>
+<title>BiocPy: Enabling Bioconductor workflows in Python - Represent experimental data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,23 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/philosophy.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/experiments/summarized_expt.html" rel="next">
+<link href="../../chapters/representations/genomicranges.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -75,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/experiments/index.html">Represent experimental data</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -90,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">BiocPy: Enabling Bioconductor workflows in Python</a> 
+      <a href="../../">BiocPy: Enabling Bioconductor workflows in Python</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/BiocPy/tutorial" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
@@ -105,18 +104,18 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/philosophy.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Programming philosophy</span></a>
+  <a href="../../chapters/philosophy.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Programming philosophy</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./chapters/representations/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../chapters/representations/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">The basics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -125,20 +124,20 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>BiocFrame</code> - Bioconductor-like data frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
+  <a href="../../chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./chapters/experiments/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../chapters/experiments/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Represent experimental data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -147,20 +146,20 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/experiments/summarized_expt.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/experiments/summarized_expt.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>SummarizedExperiment</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/experiments/singlecell_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">singlecell_expt.html</span></a>
+  <a href="../../chapters/experiments/singlecell_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">singlecell_expt.html</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./chapters/extras/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../chapters/extras/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Additional packages</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -169,25 +168,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/extras/iranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></a>
+  <a href="../../chapters/extras/iranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summary</span></a>
+  <a href="../../chapters/summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/sessioninfo.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/sessioninfo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reproduce me!</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/references.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -197,43 +196,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
-  <ul class="collapse">
-  <li><a href="#selected-packages" id="toc-selected-packages" class="nav-link" data-scroll-target="#selected-packages">Selected packages</a></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">BiocPy: Enabling Bioconductor workflows in Python</h1>
+<h1 class="title">Represent experimental data</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="mailto:jayaram.kancherla@gmail.com">Jayaram Kancherla</a> </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">January 4, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -241,57 +218,14 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome</h1>
-<p><a href="https://www.bioconductor.org">Bioconductor</a> is an open-source software project that provides tools for the analysis and comprehension of genomic data. One of the main advantages of Bioconductor is the availability of standard data representations and large number of analysis tools for genomic experiments. These tools allow researchers to efficiently store, manipulate, and analyze their data, leading to a deeper understanding of the underlying biological processes.</p>
-<p>Inspired by Bioconductor, <a href="https://github.com/BiocPy">BiocPy</a> aims to facilitate bioconductor workflows in Python. To achieve this goal, we developed several core data structures that align closely to the bioconductor implementations. These structures efficiently manage genomic intervals and genome annotations through <a href="https://github.com/BiocPy/GenomicRanges">GenomicRanges</a> and/or <a href="https://github.com/BiocPy/IRanges">IRanges</a>, provide container classes to represent single (<a href="https://github.com/BiocPy/SummarizedExperiment">SummarizedExperiment</a>, <a href="https://github.com/BiocPy/SingleCellExperiment">SingleCellExperiment</a>) or multi-omic experimental data and metadata (<a href="https://github.com/BiocPy/MultiAssayExperiment">MultiAssayExperiment</a>). In addition, BiocPy provides infrastructure packages to support delayed operations (<a href="https://github.com/BiocPy/DelayedArray">DelayedArray</a>), Bioconductor-like dataframes (<a href="https://github.com/BiocPy/BiocFrame">BiocFrame</a>), and incorporate numerous generics and utilities in <a href="https://github.com/BiocPy/BiocUtils">BiocUtils</a>. While there are prior initiatives aiming to port bioconductor representations into Python, BiocPy distinguishes itself as the first to develop seamless, well-integrated data structures and representations.</p>
-<p>BiocPy additionally provides bindings to <a href="https://github.com/LTLA/libscran">libscran</a> and various other single-cell analysis methods incorporated into the <a href="https://github.com/BiocPy/scranpy">scranpy</a> package to support analysis of multi-modal single-cell datasets. It also features integration with the <a href="https://github.com/BiocPy/singler">singler</a> algorithm to annotate cell types by matching cells to known references based on their expression profiles.</p>
-<p>For convenient access to experimental data stored in RDS files, the <a href="https://github.com/BiocPy/rds2py">rds2py</a> package provides bindings to the rds2cpp library. This allows direct reading of RDS files in Python, eliminating the need for additional data conversion tools or intermediate formats. This package functionality streamlines the transition between Python and R for seamless analysis.</p>
-<p>All packages within the BiocPy ecosystem are published to Python’s Package Index (PyPI).</p>
-<section id="selected-packages" class="level2">
-<h2 class="anchored" data-anchor-id="selected-packages">Selected packages</h2>
-<p>For complete list of all packages, visit the <a href="https://github.com/BiocPy">GitHub:BiocPy</a> repository.</p>
-<section id="core-representations" class="level4">
-<h4 class="anchored" data-anchor-id="core-representations">Core representations:</h4>
+<p>BiocPy provides (currently) three classes to represented experimental data. This includes</p>
 <ul>
-<li><code>BiocUtils</code> (<a href="https://github.com/BiocPy/BiocUtils">GitHub</a>, <a href="https://biocpy.github.io/BiocUtils/">Docs</a>): Common utilities for use across packages, mostly to mimic convenient aspects of base R.</li>
-<li><code>BiocFrame</code> (<a href="https://github.com/BiocPy/BiocFrame">GitHub</a>, <a href="https://biocpy.github.io/BiocFrame/">Docs</a>): Bioconductor-like dataframes in Python.</li>
-<li><code>IRanges</code> (<a href="https://github.com/BiocPy/IRanges">GitHub</a>, <a href="https://biocpy.github.io/IRanges/">Docs</a>): Python implementation of the IRanges package to support interval arithmetic.</li>
-<li><code>GenomicRanges</code> (<a href="https://github.com/BiocPy/GenomicRanges">GitHub</a>, <a href="https://biocpy.github.io/GenomicRanges/">Docs</a>, <a href="https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html">BioC</a>): Container class to represent genomic locations and support genomic analysis. Similar to Bioconductor’s <a href="https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html">GenomicRanges</a>.</li>
 <li><code>SummarizedExperiment</code> (<a href="https://github.com/BiocPy/SummarizedExperiment">GitHub</a>, <a href="https://biocpy.github.io/SummarizedExperiment/">Docs</a>, <a href="https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html">BioC</a>): Container class to represent genomic experiments, following Bioconductor’s <a href="https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html">SummarizedExperiment</a>.</li>
 <li><code>SingleCellExperiment</code> (<a href="https://github.com/BiocPy/SingleCellExperiment">GitHub</a>, <a href="https://biocpy.github.io/SingleCellExperiment/">Docs</a>, <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">BioC</a>): Container class to represent single-cell experiments; follows Bioconductor’s <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">SingleCellExperiment</a>.</li>
 <li><code>MultiAssayExperiment</code> (<a href="https://github.com/BiocPy/MultiAssayExperiment">GitHub</a>, <a href="https://biocpy.github.io/MultiAssayExperiment/">Docs</a>, <a href="https://bioconductor.org/packages/release/bioc/html/MultiAssayExperiment.html">BioC</a>): Container class to represent multiple experiments and assays performed over a set of samples. follows Bioconductor’s <a href="https://bioconductor.org/packages/release/bioc/html/MultiAssayExperiment.html">MAE R/Bioc Package</a>.</li>
 </ul>
-</section>
-<section id="analysis-packages" class="level4">
-<h4 class="anchored" data-anchor-id="analysis-packages">Analysis packages</h4>
-<ul>
-<li><code>scranpy</code>(<a href="https://github.com/BiocPy/scranpy">GitHub</a>, <a href="https://biocpy.github.io/scranpy/">Docs</a>): Python bindings to the single-cell analysis methods from libscran and related C++ libraries.</li>
-<li><code>singler</code>(<a href="https://github.com/BiocPy/singler">GitHub</a>, <a href="https://biocpy.github.io/singler/">Docs</a>): Python bindings to the singleR algorithm to annotate cell types from known references.</li>
-</ul>
-</section>
-<section id="interoperability-with-r" class="level4">
-<h4 class="anchored" data-anchor-id="interoperability-with-r">Interoperability with R</h4>
-<ul>
-<li><code>rds2py</code> (<a href="https://github.com/BiocPy/rds2py">GitHub</a>, <a href="https://biocpy.github.io/rds2py/">Docs</a>): Read RDS files directly in Python. Supports Bioconductor’s <code>SummarizedExperiment</code> and <code>SingleCellExperiment</code> in addition to matrices, dataframes and vectors.</li>
-</ul>
-</section>
-<section id="utility-packages" class="level4">
-<h4 class="anchored" data-anchor-id="utility-packages">Utility packages</h4>
-<ul>
-<li><code>mopsy</code> (<a href="https://github.com/BiocPy/mopsy">GitHub</a>, <a href="https://biocpy.github.io/mopsy/">Docs</a>): Helper functions to perform row or column operations over numpy and scipy matrices. Provides an interface similar to base R matrix methods/MatrixStats methods.</li>
-<li><code>pyBiocFileCache</code> (<a href="https://github.com/BiocPy/pyBiocFileCache">GitHub</a>, <a href="https://pypi.org/project/pyBiocFileCache/">Docs</a>, <a href="https://github.com/Bioconductor/BiocFileCache">BioC</a>): File system based cache for resources &amp; metadata.</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<p>This is a reproducible Quarto book with <strong><em>reusable snippets</em></strong>. To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>. Checkout <a href="@sec-sessioninfo">Reproduce me</a> for more information.</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -529,10 +463,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../chapters/representations/genomicranges.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/philosophy.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">Programming philosophy</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/experiments/summarized_expt.html" class="pagination-link">
+        <span class="nav-page-text"><code>SummarizedExperiment</code></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -540,4 +477,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></div></div></footer></body></html>
