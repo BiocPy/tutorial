@@ -547,17 +547,14 @@ Note
 [0]               -3               -2                1
 [1]                5                9                4</code></pre>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code></code></pre>
-</div>
 </div>
 <p>Or Perform interval set operations, e..g <code>union</code>, <code>intersection</code>, <code>disjoin</code>:</p>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> IRanges([<span class="dv">1</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">14</span>], [<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">4</span>])</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> IRanges([<span class="dv">14</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">18</span>], [<span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">3</span>])</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>intersection <span class="op">=</span> x.intersect(y)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(intersection)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> IRanges([<span class="dv">1</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">14</span>], [<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">4</span>])</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> IRanges([<span class="dv">14</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">18</span>], [<span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">3</span>])</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>intersection <span class="op">=</span> x.intersect(y)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(intersection)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>IRanges object with 3 ranges and 0 metadata columns
                start              end            width
