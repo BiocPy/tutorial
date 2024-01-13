@@ -1,4 +1,4 @@
-# `IRanges`: Interval arithmetic {.unnumbered}
+# `IRanges`: Interval arithmetic {#sec-iranges}
 
 Python implementation of the [**IRanges**](https://bioconductor.org/packages/IRanges) Bioconductor package.
 

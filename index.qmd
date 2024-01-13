@@ -79,4 +79,4 @@ For complete list of all packages, visit the
 -----
 ## Notes
 
-This is a reproducible Quarto book with ***reusable snippets***. To learn more about Quarto books visit <https://quarto.org/docs/books>.
+This is a reproducible Quarto book with ***reusable snippets***. To learn more about Quarto books visit <https://quarto.org/docs/books>. Checkout [Reproduce me](@sec-sessioninfo) for more information.

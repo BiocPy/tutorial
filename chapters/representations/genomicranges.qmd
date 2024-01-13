@@ -1,6 +1,6 @@
-# `GenomicRanges`: Genomic analysis {.unnumbered}
+# `GenomicRanges`: Genomic analysis {#sec-genomicranges}
 
-`GenomicRanges` is a Python package designed to handle genomic locations and facilitate genomic analysis. It is similar to Bioconductor's [GenomicRanges](https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html) and uses the [IRanges](https://github.com/BiocPy/IRanges) packages (tutorial [here](@sec-iranges)) under the hood to manage and provide interval-based arithmetic operations.
+`GenomicRanges` is a Python package designed to handle genomic locations and facilitate genomic analysis. It is similar to Bioconductor's [GenomicRanges](https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html) and uses the [IRanges](https://github.com/BiocPy/IRanges) packages (tutorial [here](../extras/iranges.qmd)) under the hood to manage and provide interval-based arithmetic operations.
 
 An `IRanges` holds a **start** position and a **width**, and is typically used to represent coordinates along a genomic sequence. The interpretation of the **start** position depends on the application; for sequences, the **start** is usually a 1-based position, but other use cases may allow zero or even negative values, e.g., circular genomes. `IRanges` uses [nested containment lists](https://github.com/pyranges/ncls) under the hood to perform fast overlap and search based operations. 
 
@@ -11,10 +11,10 @@ Moreover, the package also provides a `SeqInfo` class to update or modify sequen
 The `GenomicRanges` class is designed to seamlessly operate with upstream packages like `RangeSummarizedExperiment` or `SingleCellExperiment` representations, providing consistent and stable functionality.
 
 :::{.callout-note}
-These classes follow a functional paradigm for accessing or setting properties, with further details discussed in [functional paragidm](@sec-functional) section.
+These classes follow a functional paradigm for accessing or setting properties, with further details discussed in [functional paradigm](../philosophy.qmd#functional-discipline) section.
 :::
 
-## Installation
+## Installation 
 
 To get started, install the package from [PyPI](https://pypi.org/project/genomicranges/)
 
@@ -151,7 +151,7 @@ print(gr.mcols)
 ### Setters
 
 ::: {.callout-important}
-All property-based setters are `in_place` operations, with further details discussed in [functional paragidm](@sec-functional) section.
+All property-based setters are `in_place` operations, with further details discussed in [functional paradigm](../philosophy.qmd#functional-discipline) section.
 :::
 
 ```{python}

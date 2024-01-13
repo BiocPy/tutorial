@@ -170,7 +170,7 @@ print(out)
 
 ## Extracting data
 
-BiocPy classes follow a functional paradigm for accessing or setting properties, with further details discussed in [functional paragidm](@sec-functional) section.
+BiocPy classes follow a functional paradigm for accessing or setting properties, with further details discussed in [functional paradigm](../philosophy.qmd#functional-discipline) section.
 
 Properties can be directly accessed from the object:
 

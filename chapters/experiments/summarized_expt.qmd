@@ -1,0 +1,366 @@
+# `SummarizedExperiment` {.unnumbered}
+
+This package provides containers to represent genomic experimental data as 2-dimensional matrices. In these matrices, the rows typically denote features or genomic regions of interest, while columns represent samples or cells.
+
+The package currently includes representations for both `SummarizedExperiment` and `RangedSummarizedExperiment`. A distinction lies in the fact that the rows of a `RangedSummarizedExperiment` object are expected to be `GenomicRanges` (tutorial [here](../representations/genomicranges.qmd)), representing genomic regions of interest.
+
+:::{.callout-important}
+The design of `SummarizedExperiment` class and its derivates adheres to the R/Bioconductor specification, where rows correspond to features, and columns represent samples or cells.
+:::
+
+## Installation
+
+To get started, install the package from [PyPI](https://pypi.org/project/summarizedexperiment/)
+
+```bash
+pip install summarizedexperiment
+```
+
+## Construction
+
+A `SummarizedExperiment` contains three key attributes,
+
+- `assays`: A dictionary of matrices with assay names as keys, e.g. counts, logcounts etc.
+- `row_data`: Feature information e.g. genes, transcripts, exons, etc.
+- `column_data`: Sample information about the columns of the matrices.
+
+In addition, these classes can optionally accept `row_names` and `column_names`. Since `row_data` and `column_data` may also contain names, the following rules are used in the implementation:
+
+- On **construction**, if `row_names` or `column_names` are not provided, these are automatically inferred from `row_data` and `column_data` objects.
+- On **extraction** of these objects, the `row_names` in `row_data` and `column_data` are replaced by the equivalents from the SE level.
+- On **setters** for these attributes, especially with the functional style (`set_row_data` and `set_column_data` methods), additional options are available to replace the names in the SE object.
+
+:::{.callout-note}
+This avoids unexpected mdifications in names, when either `row_data` or `column_data` objects are modified.
+:::
+
+To construct a `SummarizedExperiment`, we'll first generate a matrix of read counts, representing the read counts from a series of RNA-seq experiments. Following that, we'll create a `BiocFrame` object to denote feature information and a table for column annotations. This table may include the names for the columns and any other values we wish to represent.
+
+
+```{python}
+from random import random
+import pandas as pd
+import numpy as np
+from biocframe import BiocFrame
+
+nrows = 200
+ncols = 6
+counts = np.random.rand(nrows, ncols)
+row_data = BiocFrame(
+    {
+        "seqnames": [
+            "chr1",
+            "chr2",
+            "chr2",
+            "chr2",
+            "chr1",
+            "chr1",
+            "chr3",
+            "chr3",
+            "chr3",
+            "chr3",
+        ]
+        * 20,
+        "starts": range(100, 300),
+        "ends": range(110, 310),
+        "strand": ["-", "+", "+", "*", "*", "+", "+", "+", "-", "-"] * 20,
+        "score": range(0, 200),
+        "GC": [random() for _ in range(10)] * 20,
+    }
+)
+
+col_data = pd.DataFrame(
+    {
+        "treatment": ["ChIP", "Input"] * 3,
+    }
+)
+```
+
+:::{.callout-note}
+`row_data` and `column_data` are expected to be `BiocFrame` objects and will be coerced to a `BiocFrame` if a pandas `DataFrame` is provided.  
+:::
+
+Now, we can construct a `SummarizedExperiment` from this information.
+
+
+```{python}
+from summarizedexperiment import SummarizedExperiment
+
+se = SummarizedExperiment(
+    assays={"counts": counts}, row_data=row_data, column_data=col_data
+)
+
+print(se)
+```
+
+Similarly, we can use the same information to construct a `RangeSummarizedExperiment`. We convert feature information into a `GenomicRanges` object and provide this as `row_ranges`:
+
+```{python}
+from genomicranges import GenomicRanges
+from summarizedexperiment import RangedSummarizedExperiment
+
+gr = GenomicRanges.from_pandas(row_data.to_pandas())
+
+rse = RangedSummarizedExperiment(
+    assays={"counts": counts}, row_data=row_data, row_ranges=gr, column_data=col_data
+)
+print(rse)
+```
+
+## Getters/Setters
+
+Getters are available to access various attributes using either the property notation or functional style.
+
+```{python}
+# access assay names
+print("assay names (as property): ", se.assay_names)
+print("assay names (functional style): ", se.get_assay_names())
+
+# access row data
+print(se.row_data)
+```
+
+#### Access an assay
+
+One can access an assay by index or name:
+
+```{python}
+se.assay(0) # same as se.assay("counts")
+```
+
+### Setters
+
+::: {.callout-important}
+All property-based setters are `in_place` operations, with further details discussed in [functional paradigm](../philosophy.qmd#functional-discipline) section.
+:::
+
+```{python}
+modified_column_data = se.column_data.set_column("score", range(10,16))
+modified_se = se.set_column_data(modified_column_data)
+print(modified_se)
+```
+
+Now, lets check the `column_data` on the original object.
+
+```{python}
+print(se.column_data)
+```
+
+## Subset experiments
+
+You can subset experimental data by using the subset (`[]`) operator. This operation accepts different slice input types, such as a boolean vector, a `slice` object, a list of indices, or names (if available) to subset.
+
+In our previous example, we didn't include row or column names. Let's create another `SummarizedExperiment` object that includes names.
+
+```{python}
+#| code-fold: true
+#| code-summary: "Show the code"
+
+row_data = BiocFrame({
+    "seqnames": ["chr_5", "chr_3", "chr_2"],
+    "start": [100, 200, 300],
+    "end": [110, 210, 310],
+})
+
+col_data = BiocFrame({
+    "sample": ["SAM_1", "SAM_3", "SAM_3"],
+    "disease": ["True", "True", "True"],
+    },
+    row_names=["cell_1", "cell_2", "cell_3"],
+)
+
+se_with_names = SummarizedExperiment(
+    assays={
+        "counts": np.random.poisson(lam=5, size=(3, 3)),
+        "lognorm": np.random.lognormal(size=(3, 3)),
+    },
+    row_data=row_data,
+    column_data=col_data,
+    row_names=["HER2", "BRCA1", "TPFK"],
+    column_names=["cell_1", "cell_2", "cell_3"],
+)
+
+print(se_with_names)
+```
+
+### Subset by index position
+
+A straightforward slice operation:
+
+```{python}
+subset_se = se_with_names[0:10, 0:3]
+print(subset_se)
+```
+
+### Subset by row names or column names
+
+Either one or both of the slices can contain names. These names are mapped to `row_names` and `column_names` of the `SummarizedExperiment` object.
+
+```{python}
+subset_se = se_with_names[:2, ["cell_1", "cell_3"]]
+print(subset_se)
+```
+
+An `Exception` is raised if a names does not exist. 
+
+### Subset by boolean vector
+
+Similarly, you can also slice by a boolean array. Note that the boolean vectors should contain the same number of features for the row slice and the same number of samples for the column slice.
+
+```{python}
+subset_se_with_bools = se_with_names[[True, True, False], [True, False, True]]
+```
+
+## Range-based operations
+
+Additionally, since `RangeSummarizedExperiment` contain `row_ranges`, this allows us to perform a number of range based operations that are possible on a `GenomicRanges` object.
+
+For example, to compute overlaps with a query range:
+
+```{python}
+from iranges import IRanges
+query = GenomicRanges(seqnames=["chr2"], ranges=IRanges([4], [6]), strand=["+"])
+
+result = rse.subset_by_overlaps(query)
+print(result)
+```
+
+Additionally, RSE supports many other interval based operations. Checkout the [documentation](https://biocpy.github.io/SummarizedExperiment/api/modules.html) for more details.
+
+## Combining experiments
+
+`SummarizedExperiment` implements methods for the various `combine` generics from [**BiocUtils**](https://github.com/BiocPy/biocutils).
+
+These methods enable the merging or combining of multiple `SummarizedExperiment` objects, allowing users to aggregate data from different experiments or conditions. To demonstrate, let's create multiple `SummarizedExperiment` objects.
+
+```{python}
+#| code-fold: true
+#| code-summary: "Show the code"
+rowData1 = pd.DataFrame(
+    {
+        "seqnames": ["chr_5", "chr_3", "chr_2"],
+        "start": [10293804, 12098948, 20984392],
+        "end": [28937947, 3872839, 329837492]
+    },
+    index=["HER2", "BRCA1", "TPFK"],
+)
+colData1 = pd.DataFrame(
+    {
+        "sample": ["SAM_1", "SAM_3", "SAM_3"],
+        "disease": ["True", "True", "True"],
+    },
+    index=["cell_1", "cell_2", "cell_3"],
+)
+se1 = SummarizedExperiment(
+    assays={
+        "counts": np.random.poisson(lam=5, size=(3, 3)),
+        "lognorm": np.random.lognormal(size=(3, 3))
+    },
+    row_data=rowData1,
+    column_data=colData1,
+    metadata={"seq_type": "paired"},
+)
+
+rowData2 = pd.DataFrame(
+    {
+        "seqnames": ["chr_5", "chr_3", "chr_2"],
+        "start": [10293804, 12098948, 20984392],
+        "end": [28937947, 3872839, 329837492]
+    },
+    index=["HER2", "BRCA1", "TPFK"],
+)
+colData2 = pd.DataFrame(
+    {
+        "sample": ["SAM_4", "SAM_5", "SAM_6"],
+        "disease": ["True", "False", "True"],
+    },
+    index=["cell_4", "cell_5", "cell_6"],
+)
+se2 = SummarizedExperiment(
+    assays={
+        "counts": np.random.poisson(lam=5, size=(3, 3)),
+        "lognorm": np.random.lognormal(size=(3, 3))
+    },
+    row_data=rowData2,
+    column_data=colData2,
+    metadata={"seq_platform": "Illumina NovaSeq 6000"},
+)
+
+rowData3 = pd.DataFrame(
+    {
+        "seqnames": ["chr_7", "chr_1", "chr_Y"],
+        "start": [1084390, 1874937, 243879798],
+        "end": [243895239, 358908298, 390820395]
+    },
+    index=["MYC", "BRCA2", "TPFK"],
+)
+colData3 = pd.DataFrame(
+    {
+        "sample": ["SAM_7", "SAM_8", "SAM_9"],
+        "disease": ["True", "False", "False"],
+        "doublet_score": [.15, .62, .18]
+    },
+    index=["cell_7", "cell_8", "cell_9"],
+)
+se3 = SummarizedExperiment(
+    assays={
+        "counts": np.random.poisson(lam=5, size=(3, 3)),
+        "lognorm": np.random.lognormal(size=(3, 3)),
+        "beta": np.random.beta(a=1, b=1, size=(3, 3))
+    },
+    row_data=rowData3,
+    column_data=colData3,
+    metadata={"seq_platform": "Illumina NovaSeq 6000"},
+)
+
+print(se1)
+print(se2)
+print(se3)
+```
+
+The `combine_rows` or `combine_columns` operations, expect all experiments to contain the same assay names. To combine experiments by row:
+
+```{python}
+from biocutils import relaxed_combine_columns, combine_columns, combine_rows, relaxed_combine_rows
+se_combined = combine_rows(se2, se1)
+print(se_combined)
+```
+
+Similarly to combine by column:
+
+```{python}
+se_combined = combine_columns(se2, se1)
+print(se_combined)
+```
+
+You can use `relaxed_combine_columns` or `relaxed_combined_rows` when there's mismatch in the number of features or samples. Missing rows or columns in any object are filled in with appropriate placeholder values before combining, e.g. missing assay's are replaced with a masked numpy array.
+
+```{python}
+# se3 contains an additional assay not present in se1
+se_relaxed_combine = relaxed_combine_columns(se3, se1)
+print(se_relaxed_combine)
+```
+
+## Empty experiments
+
+Both these classes can also contain no experimental data, and they tend to be useful when integrated into more extensive data structures but do not contain any data themselves.
+
+To create an empty `SummarizedExperiment`:
+```{python}
+empty_se = SummarizedExperiment()
+print(empty_se)
+```
+
+Similarly an empty `RangeSummarizedExperiment`:
+
+```{python}
+empty_rse = RangedSummarizedExperiment()
+print(empty_rse)
+```
+
+----
+
+## Further reading
+
+- Check out reference [documentation](https://biocpy.github.io/SummarizedExperiment/index.html)
+- R/Bioconductor [SummarizedExperiment](https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html) package

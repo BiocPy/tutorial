@@ -1,0 +1,42 @@
+# Reproduce me! {.unnumbered}
+
+The code base for this repository is available at [https://github.com/BiocPy/tutorial](https://github.com/BiocPy/tutorial).
+
+This book is automatically build to identify issues caused by changes in the dependencies. We use [quarto](https://quarto.org/docs/books) for reproducing the scripts provided in this book.
+
+## Pre-requisites {#sec-sessioninfo}
+
+```{python}
+import sys
+import subprocess
+
+from rich import print
+```
+
+
+## Python
+
+Lets make sure we have all packages we need for this section
+
+```{python}
+sys.version_info
+```
+
+## Packages 
+
+
+```{python}
+import math
+
+import biocframe
+import biocutils
+import genomicranges
+import summarizedexperiment
+import singlecellexperiment
+import multiassayexperiment
+import rds2py
+import session_info
+
+
+session_info.show()
+```

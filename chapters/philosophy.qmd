@@ -1,4 +1,4 @@
-# Programming philosophy {.unnumbered}
+# Programming philosophy
 
 As we developed BiocPy packages, we established standards and contribution
 guidelines to ensure code quality and consistency across all our packages.
