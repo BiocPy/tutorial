@@ -305,6 +305,9 @@ print(disjoin_gr)
 - **setdiff**: Compute `set difference`.
 
 ```{python}
+#| code-fold: true
+#| code-summary: "Show the code"
+
 g_src = GenomicRanges(
     seqnames = ["chr1", "chr2", "chr1", "chr3", "chr2"],
     ranges = IRanges(start =[101, 102, 103, 104, 109], width=[112, 103, 128, 134, 111]),
@@ -360,9 +363,8 @@ Not the prettiest plot but it works.
 Compute binned average for a set of query **bins**:
 
 ```{python}
-bins = pd.DataFrame({"seqnames": ["chr1"], "starts": [101], "ends": [109],})
-
-bins_gr = GenomicRanges.from_pandas(bins)
+from iranges import IRanges
+bins_gr = GenomicRanges(seqnames=["chr1"], ranges=IRanges([101], [109]))
 
 subject = GenomicRanges(
     seqnames= ["chr1","chr2","chr2","chr2","chr1","chr1","chr3","chr3","chr3","chr3"],
@@ -538,6 +540,7 @@ print("rank:", rank)
 Use the `combine` generic from [biocutils](https://github.com/BiocPy/generics) to concatenate multiple `GenomicRanges` objects.
 
 ```{python}
+
 from biocutils.combine import combine
 a = GenomicRanges(
     seqnames=["chr1", "chr2", "chr1", "chr3"],
@@ -583,6 +586,7 @@ Currently, this class is limited in functionality, purely a read-only class with
 ***Note: This is a work in progress and the functionality is limited.***
 
 ```{python}
+
 from genomicranges import GenomicRangesList
 a = GenomicRanges(
     seqnames=["chr1", "chr2", "chr1", "chr3"],

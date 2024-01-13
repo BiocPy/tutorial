@@ -236,6 +236,7 @@ These methods enable the merging or combining of multiple `SummarizedExperiment`
 ```{python}
 #| code-fold: true
 #| code-summary: "Show the code"
+
 rowData1 = pd.DataFrame(
     {
         "seqnames": ["chr_5", "chr_3", "chr_2"],
@@ -362,5 +363,5 @@ print(empty_rse)
 
 ## Further reading
 
-- Check out reference [documentation](https://biocpy.github.io/SummarizedExperiment/index.html)
-- R/Bioconductor [SummarizedExperiment](https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html) package
+- Check out reference [documentation](https://biocpy.github.io/SummarizedExperiment/index.html) for more details.
+- R/Bioconductor's [SummarizedExperiment](https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html) package.
