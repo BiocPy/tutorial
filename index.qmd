@@ -76,7 +76,17 @@ For complete list of all packages, visit the
 - `mopsy` ([GitHub](https://github.com/BiocPy/mopsy), [Docs](https://biocpy.github.io/mopsy/)): Helper functions to perform row or column operations over numpy and scipy matrices. Provides an interface similar to base R matrix methods/MatrixStats methods.
 - `pyBiocFileCache` ([GitHub](https://github.com/BiocPy/pyBiocFileCache), [Docs](https://pypi.org/project/pyBiocFileCache/), [BioC](https://github.com/Bioconductor/BiocFileCache)): File system based cache for resources & metadata. 
 
------
-## Notes
+----
 
-This is a reproducible Quarto book with ***reusable snippets***. To learn more about Quarto books visit <https://quarto.org/docs/books>. Checkout [Reproduce me](@sec-sessioninfo) for more information.
+## Further reading
+
+Many online resources provide detailed info on these data structures, namely
+
+- [https://compgenomr.github.io/book/](https://compgenomr.github.io/book/)
+- [https://www.nature.com/articles/nmeth.3252](https://www.nature.com/articles/nmeth.3252)
+- [https://www.nature.com/articles/s41592-019-0654-x](https://www.nature.com/articles/s41592-019-0654-x)
+- [https://github.com/waldronlab/EPIC-BiocIntro](https://github.com/waldronlab/EPIC-BiocIntro)
+
+#### Notes
+
+This is a reproducible Quarto book with ***reusable snippets***. To learn more about Quarto books visit <https://quarto.org/docs/books>. Checkout [Reproduce me](./chapters/sessioninfo.qmd) for more information.
