@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BiocPy: Enabling Bioconductor workflows in Python – singlecell_expt</title>
+<title>BiocPy: Enabling Bioconductor workflows in Python - Single-cell experiment</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/extras/index.html" rel="next">
+<link href="../../chapters/experiments/extending_se.html" rel="next">
 <link href="../../chapters/experiments/summarized_expt.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -65,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked fullcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -74,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/experiments/index.html">Represent experimental data</a></li><li class="breadcrumb-item"><a href="../../chapters/experiments/singlecell_expt.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">singlecell_expt.html</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/experiments/index.html">Represent experimental data</a></li><li class="breadcrumb-item"><a href="../../chapters/experiments/singlecell_expt.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Single-cell experiment</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -124,8 +158,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><code>BiocFrame</code> - Bioconductor-like data frames</span></a>
+  <a href="../../chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -146,13 +179,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/experiments/summarized_expt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><code>SummarizedExperiment</code></span></a>
+  <a href="../../chapters/experiments/summarized_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summarized experiment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/experiments/singlecell_expt.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">singlecell_expt.html</span></a>
+  <a href="../../chapters/experiments/singlecell_expt.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Single-cell experiment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/experiments/extending_se.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Extending summarized experiments</span></a>
   </div>
 </li>
       </ul>
@@ -195,14 +232,334 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#construction" id="toc-construction" class="nav-link" data-scroll-target="#construction">Construction</a>
+  <ul class="collapse">
+  <li><a href="#interop-with-anndata" id="toc-interop-with-anndata" class="nav-link" data-scroll-target="#interop-with-anndata">Interop with <code>AnnData</code></a></li>
+  <li><a href="#from-tenx-formats" id="toc-from-tenx-formats" class="nav-link" data-scroll-target="#from-tenx-formats">from tenx formats</a></li>
+  </ul></li>
+  <li><a href="#getterssetters" id="toc-getterssetters" class="nav-link" data-scroll-target="#getterssetters">Getters/Setters</a></li>
+  <li><a href="#subset-experiments" id="toc-subset-experiments" class="nav-link" data-scroll-target="#subset-experiments">Subset experiments</a></li>
+  <li><a href="#export-as-mudata" id="toc-export-as-mudata" class="nav-link" data-scroll-target="#export-as-mudata">Export as <code>MuData</code></a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Single-cell experiment</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This package provides container class to represent single-cell experimental data as 2-dimensional matrices. In these matrices, the rows typically denote features or genomic regions of interest, while columns represent cells. In addition, a <code>SingleCellExperiment</code> object may contain low-dimensionality embeddings, alternative experiments performed on same sample or set of cells.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The design of <code>SingleCellExperiment</code> class and its derivates adheres to the R/Bioconductor specification, where rows correspond to features, and columns represent cells.</p>
+</div>
+</div>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>To get started, install the package from <a href="https://pypi.org/project/singlecellexperiment/">PyPI</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install singlecellexperiment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="construction" class="level2">
+<h2 class="anchored" data-anchor-id="construction">Construction</h2>
+<p>The <code>SingleCellExperiment</code> extends <code>RangeSummarizedExperiment</code> and contains few additional attributes:</p>
+<ul>
+<li><code>reduced_dims</code>: Slot for low-dimensionality embeddings for each cell.</li>
+<li><code>alternative_experiments</code>: Manages multi-modal experiments performed on the same sample or set of cells.</li>
+<li><code>row_pairs</code> or <code>column_pairs</code>: Stores relationships between features or cells.</li>
+</ul>
+<p>In contrast to R, matrices in Python are unnamed and do not contain row or column names. Hence, these matrices cannot be directly used as values in assays or alternative experiments. We strictly enforce type checks in these cases. To relax these restrictions for alternative experiments, set <code>type_check_alternative_experiments</code> to <code>False</code>.</p>
+<p>If you are using the <code>alternative_experiments</code> slot, the number of cells must match the parent experiment. Otherwise, the expectation is that the cells do not share the same sample or annotations and cannot be set in alternative experiments!</p>
+<p>Note: Validation checks do not apply to <code>row_pairs</code> or <code>col_pairs</code>.</p>
+<p>Before we construct a <code>SingleCellExperiment</code> object, lets generate information about rows, columns and a mock experimental data from single-cell rna-seq experiments:</p>
+<div class="cell" data-execution_count="1">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> sparse <span class="im">as</span> sp</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocframe <span class="im">import</span> BiocFrame</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genomicranges <span class="im">import</span> GenomicRanges</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> random </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>nrows <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ncols <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> sp.rand(nrows, ncols, density<span class="op">=</span><span class="fl">0.2</span>, <span class="bu">format</span><span class="op">=</span><span class="st">"csr"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>row_data <span class="op">=</span> BiocFrame(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"seqnames"</span>: [</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"chr1"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"chr2"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">"chr2"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">"chr2"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"chr1"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"chr1"</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">"chr3"</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">"chr3"</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            <span class="st">"chr3"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            <span class="st">"chr3"</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span> <span class="dv">20</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"starts"</span>: <span class="bu">range</span>(<span class="dv">100</span>, <span class="dv">300</span>),</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"ends"</span>: <span class="bu">range</span>(<span class="dv">110</span>, <span class="dv">310</span>),</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"strand"</span>: [<span class="st">"-"</span>, <span class="st">"+"</span>, <span class="st">"+"</span>, <span class="st">"*"</span>, <span class="st">"*"</span>, <span class="st">"+"</span>, <span class="st">"+"</span>, <span class="st">"+"</span>, <span class="st">"-"</span>, <span class="st">"-"</span>] <span class="op">*</span> <span class="dv">20</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"score"</span>: <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">200</span>),</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"GC"</span>: [random() <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)] <span class="op">*</span> <span class="dv">20</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>col_data <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"celltype"</span>: [<span class="st">"cluster1"</span>, <span class="st">"cluster2"</span>] <span class="op">*</span> <span class="dv">3</span>,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>&lt;200x6 sparse matrix of type '&lt;class 'numpy.float64'&gt;'
+    with 240 stored elements in Compressed Sparse Row format&gt;</code></pre>
+</div>
+</div>
+<p>Now lets create the <code>SingleCellExperiment</code> instance:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> SingleCellExperiment</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sce <span class="op">=</span> SingleCellExperiment(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    assays<span class="op">=</span>{<span class="st">"counts"</span>: counts}, row_data<span class="op">=</span>row_data, column_data<span class="op">=</span>col_data,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    reduced_dims <span class="op">=</span> {<span class="st">"random_embeds"</span>: np.random.rand(ncols, <span class="dv">4</span>)}</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class: SingleCellExperiment
+dimensions: (200, 6)
+assays(1): ['counts']
+row_data columns(6): ['seqnames', 'starts', 'ends', 'strand', 'score', 'GC']
+row_names(0):  
+column_data columns(1): ['celltype']
+column_names(6): ['0', '1', '2', '3', '4', '5']
+main_experiment_name:  
+reduced_dims(1): ['random_embeds']
+alternative_experiments(0): []
+row_pairs(0): []
+column_pairs(0): []
+metadata(0): 
+</code></pre>
+</div>
+</div>
+<section id="interop-with-anndata" class="level3">
+<h3 class="anchored" data-anchor-id="interop-with-anndata">Interop with <code>AnnData</code></h3>
+<p>We provide convenient methods for loading an <code>AnnData</code> or <code>h5ad</code> file into <code>SingleCellExperiment</code> objects.</p>
+<p>For example, lets create an <code>AnnData</code> object,</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anndata <span class="im">as</span> ad</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> sparse <span class="im">as</span> sp</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> sp.csr_matrix(np.random.poisson(<span class="dv">1</span>, size<span class="op">=</span>(<span class="dv">100</span>, <span class="dv">2000</span>)), dtype<span class="op">=</span>np.float32)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> ad.AnnData(counts)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>adata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>AnnData object with n_obs × n_vars = 100 × 2000</code></pre>
+</div>
+</div>
+<p>Converting <code>AnnData</code> as <code>SingleCellExperiment</code> is straightforward:</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sce_adata <span class="op">=</span> SingleCellExperiment.from_anndata(adata) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and vice-verse. All assays from SCE are represented in the <code>layers</code> slot of the <code>AnnData</code> object:</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>adata2 <span class="op">=</span> sce_adata.to_anndata()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adata2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(AnnData object with n_obs × n_vars = 100 × 2000
+    obs: 0, 1
+    var: 0, 1
+    layers: 'X', None)</code></pre>
+</div>
+</div>
+<p>Similarly, one can load a h5ad file:</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> read_h5ad</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sce_h5 <span class="op">=</span> read_h5ad(<span class="st">"../../assets/data/adata.h5ad"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce_h5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class: SingleCellExperiment
+dimensions: (20, 30)
+assays(3): ['array', 'sparse', 'X']
+row_data columns(5): ['var_cat', 'cat_ordered', 'int64', 'float64', 'uint8']
+row_names(20): ['gene0', 'gene1', 'gene2', ..., 'gene17', 'gene18', 'gene19']
+column_data columns(5): ['obs_cat', 'cat_ordered', 'int64', 'float64', 'uint8']
+column_names(30): ['cell0', 'cell1', 'cell2', ..., 'cell27', 'cell28', 'cell29']
+main_experiment_name:  
+reduced_dims(0): []
+alternative_experiments(0): []
+row_pairs(0): []
+column_pairs(0): []
+metadata(2): O_recarray nested
+</code></pre>
+</div>
+</div>
+</section>
+<section id="from-tenx-formats" class="level3">
+<h3 class="anchored" data-anchor-id="from-tenx-formats">from tenx formats</h3>
+<p>In addition, we also provide convenient methods to load a 10X H5 file. We currently only support version 3 of the 10X H5 format.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> read_tenx_h5</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sce_h5 <span class="op">=</span> read_tenx_h5(<span class="st">"../../assets/data/tenx.sub.h5"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce_h5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class: SingleCellExperiment
+dimensions: (1000, 3005)
+assays(1): ['counts']
+row_data columns(2): ['id', 'name']
+row_names(0):  
+column_data columns(0): []
+column_names(0):  
+main_experiment_name:  
+reduced_dims(0): []
+alternative_experiments(0): []
+row_pairs(0): []
+column_pairs(0): []
+metadata(0): 
+</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Methods are also available to read a 10x matrix market directory using the <code>read_tenx_mtx</code> function.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="getterssetters" class="level2">
+<h2 class="anchored" data-anchor-id="getterssetters">Getters/Setters</h2>
+<p>Getters are available to access various attributes using either the property notation or functional style.</p>
+<p>Since <code>SingleCellExperiment</code> extends <code>RangedSummarizedExperiment</code>, all getters and setters from the base class are accessible here; more details <a href="../../chapters/experiments/summarized_expt.html">here</a>.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access assay names</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"reduced dim names (as property): "</span>, sce.reduced_dim_names)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"reduced dim names (functional style): "</span>, sce.get_reduced_dim_names())</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># access row data</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce.row_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>reduced dim names (as property):  ['random_embeds']
+reduced dim names (functional style):  ['random_embeds']
+BiocFrame with 200 rows and 6 columns
+      seqnames  starts    ends strand   score                  GC
+        &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;              &lt;list&gt;
+  [0]     chr1     100     110      -       0  0.5688367361145426
+  [1]     chr2     101     111      +       1 0.24034679351683919
+  [2]     chr2     102     112      +       2  0.6560937072158429
+           ...     ...     ...    ...     ...                 ...
+[197]     chr3     297     307      +     197   0.345925865616447
+[198]     chr3     298     308      -     198  0.9532274923283341
+[199]     chr3     299     309      -     199 0.38869549363482403</code></pre>
+</div>
+</div>
+<section id="access-a-reduced-dimension" class="level4">
+<h4 class="anchored" data-anchor-id="access-a-reduced-dimension">Access a reduced dimension</h4>
+<p>One can access an reduced dimension by index or name:</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sce.reduced_dim(<span class="dv">0</span>) <span class="co"># same as se.reduced_dim("random_embeds")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>array([[0.55442493, 0.85543705, 0.02226411, 0.13283459],
+       [0.32413877, 0.42153711, 0.9386491 , 0.45546816],
+       [0.53113034, 0.43157994, 0.96660078, 0.20560573],
+       [0.55480125, 0.82671268, 0.09151008, 0.61314779],
+       [0.26781203, 0.79849289, 0.32721095, 0.23218671],
+       [0.5842001 , 0.29130862, 0.36260951, 0.53075018]])</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="subset-experiments" class="level2">
+<h2 class="anchored" data-anchor-id="subset-experiments">Subset experiments</h2>
+<p>You can subset experimental data by using the subset (<code>[]</code>) operator. This operation accepts different slice input types, such as a boolean vector, a <code>slice</code> object, a list of indices, or names (if available) to subset.</p>
+<p>In our previous example, we didn’t include row or column names. Let’s create another <code>SingleCellExperiment</code> object that includes names.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>subset_sce <span class="op">=</span> sce[<span class="dv">0</span>:<span class="dv">10</span>, <span class="dv">0</span>:<span class="dv">3</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_sce)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class: SingleCellExperiment
+dimensions: (10, 3)
+assays(1): ['counts']
+row_data columns(6): ['seqnames', 'starts', 'ends', 'strand', 'score', 'GC']
+row_names(0):  
+column_data columns(1): ['celltype']
+column_names(3): ['0', '1', '2']
+main_experiment_name:  
+reduced_dims(1): ['random_embeds']
+alternative_experiments(0): []
+row_pairs(0): []
+column_pairs(0): []
+metadata(0): 
+</code></pre>
+</div>
+</div>
+</section>
+<section id="export-as-mudata" class="level2">
+<h2 class="anchored" data-anchor-id="export-as-mudata">Export as <code>MuData</code></h2>
+<p>The package also provides methods to convert a <code>SingleCellExperiment</code> object into a <code>MuData</code> representation:</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mdata <span class="op">=</span> sce.to_mudata()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>mdata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>AttributeError: 'int' object has no attribute 'startswith'</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<pre><code>AttributeError: 'int' object has no attribute 'startswith'</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
+<ul>
+<li>Check out reference <a href="https://biocpy.github.io/SingleCellExperiment/index.html">documentation</a> for more details.</li>
+<li>R/Bioconductor’s <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">SingleCellExperiment</a> package.</li>
+</ul>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -441,12 +798,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../chapters/experiments/summarized_expt.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><code>SummarizedExperiment</code></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Summarized experiment</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/extras/index.html" class="pagination-link">
-        <span class="nav-page-text">Additional packages</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/experiments/extending_se.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Extending summarized experiments</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -454,4 +811,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></div></div></footer></body></html>
+</body></html>
