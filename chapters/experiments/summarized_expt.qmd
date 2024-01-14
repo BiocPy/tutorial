@@ -1,4 +1,4 @@
-# `SummarizedExperiment` {.unnumbered}
+# Summarized experiment
 
 This package provides containers to represent genomic experimental data as 2-dimensional matrices. In these matrices, the rows typically denote features or genomic regions of interest, while columns represent samples or cells.
 
@@ -38,6 +38,9 @@ To construct a `SummarizedExperiment`, we'll first generate a matrix of read cou
 
 
 ```{python}
+#| code-fold: true
+#| code-summary: "Show the code"
+
 from random import random
 import pandas as pd
 import numpy as np
@@ -106,6 +109,17 @@ rse = RangedSummarizedExperiment(
 )
 print(rse)
 ```
+
+## Interop with `AnnData`
+
+Converting a `SummarizedExperiment` to an `AnnData` representation is straightforward: 
+
+```{python}
+adata = se.to_anndata()
+print(adata)
+```
+
+To convert an `AnnData` object to a BiocPy representation, utilize the `from_anndata` method in the [SingleCellExperiment](./singlecell_expt.qmd) class. This minimizes the loss of information when converting between these two representations.
 
 ## Getters/Setters
 

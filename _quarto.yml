@@ -27,6 +27,7 @@ book:
       chapters:
         - chapters/experiments/summarized_expt.qmd
         - chapters/experiments/singlecell_expt.qmd
+        - chapters/experiments/extending_se.qmd
     - part: chapters/extras/index.qmd
       chapters:
         - chapters/extras/iranges.qmd

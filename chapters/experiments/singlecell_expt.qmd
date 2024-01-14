@@ -1,0 +1,192 @@
+# Single-cell experiment
+
+This package provides container class to represent single-cell experimental data as 2-dimensional matrices. In these matrices, the rows typically denote features or genomic regions of interest, while columns represent cells. In addition, a `SingleCellExperiment` object may contain low-dimensionality embeddings, alternative experiments performed on same sample or set of cells. 
+
+:::{.callout-important}
+The design of `SingleCellExperiment` class and its derivates adheres to the R/Bioconductor specification, where rows correspond to features, and columns represent cells.
+:::
+
+## Installation
+
+To get started, install the package from [PyPI](https://pypi.org/project/singlecellexperiment/)
+
+```bash
+pip install singlecellexperiment
+```
+
+## Construction
+
+The `SingleCellExperiment` extends `RangeSummarizedExperiment` and contains few additional attributes:
+
+- `reduced_dims`: Slot for low-dimensionality embeddings for each cell.
+- `alternative_experiments`: Manages multi-modal experiments performed on the same sample or set of cells.
+- `row_pairs` or `column_pairs`: Stores relationships between features or cells.
+
+In contrast to R, matrices in Python are unnamed and do not contain row or column names. Hence, these matrices cannot be directly used as values in assays or alternative experiments. We strictly enforce type checks in these cases. To relax these restrictions for alternative experiments, set `type_check_alternative_experiments` to `False`.
+
+If you are using the `alternative_experiments` slot, the number of cells must match the parent experiment.  Otherwise, the expectation is that the cells do not share the same sample or annotations and cannot be set in alternative experiments!
+
+Note: Validation checks do not apply to ``row_pairs`` or ``col_pairs``.
+
+Before we construct a `SingleCellExperiment` object, lets generate information about rows, columns and a mock experimental data from single-cell rna-seq experiments:
+
+```{python}
+#| code-fold: true
+#| code-summary: "Show the code"
+
+import pandas as pd
+import numpy as np
+from scipy import sparse as sp
+from biocframe import BiocFrame
+from genomicranges import GenomicRanges
+from random import random 
+
+nrows = 200
+ncols = 6
+counts = sp.rand(nrows, ncols, density=0.2, format="csr")
+row_data = BiocFrame(
+    {
+        "seqnames": [
+            "chr1",
+            "chr2",
+            "chr2",
+            "chr2",
+            "chr1",
+            "chr1",
+            "chr3",
+            "chr3",
+            "chr3",
+            "chr3",
+        ]
+        * 20,
+        "starts": range(100, 300),
+        "ends": range(110, 310),
+        "strand": ["-", "+", "+", "*", "*", "+", "+", "+", "-", "-"] * 20,
+        "score": range(0, 200),
+        "GC": [random() for _ in range(10)] * 20,
+    }
+)
+
+col_data = pd.DataFrame(
+    {
+        "celltype": ["cluster1", "cluster2"] * 3,
+    }
+)
+
+counts
+```
+
+Now lets create the `SingleCellExperiment` instance:
+
+```{python}
+from singlecellexperiment import SingleCellExperiment
+
+sce = SingleCellExperiment(
+    assays={"counts": counts}, row_data=row_data, column_data=col_data,
+    reduced_dims = {"random_embeds": np.random.rand(ncols, 4)}
+)
+
+print(sce)
+```
+
+### Interop with `AnnData`
+
+We provide convenient methods for loading an `AnnData` or `h5ad` file into `SingleCellExperiment` objects.
+
+For example, lets create an `AnnData` object,
+
+```{python}
+import anndata as ad
+from scipy import sparse as sp
+
+counts = sp.csr_matrix(np.random.poisson(1, size=(100, 2000)), dtype=np.float32)
+adata = ad.AnnData(counts)
+adata
+```
+
+Converting `AnnData` as `SingleCellExperiment` is straightforward:
+
+```{python}
+sce_adata = SingleCellExperiment.from_anndata(adata) 
+```
+
+
+and vice-verse.  All assays from SCE are represented in the `layers` slot of the `AnnData` object:
+
+```{python}
+adata2 = sce_adata.to_anndata()
+print(adata2)
+```
+
+Similarly, one can load a h5ad file:
+
+
+```{python}
+from singlecellexperiment import read_h5ad
+sce_h5 = read_h5ad("../../assets/data/adata.h5ad")
+print(sce_h5)
+```
+
+### from tenx formats
+
+In addition, we also provide convenient methods to load a 10X H5 file. We currently only support version 3 of the 10X H5 format.
+
+```{python}
+from singlecellexperiment import read_tenx_h5
+sce_h5 = read_tenx_h5("../../assets/data/tenx.sub.h5")
+print(sce_h5)
+```
+
+:::{.callout-note}
+Methods are also available to read a 10x matrix market directory using the `read_tenx_mtx` function.
+:::
+
+## Getters/Setters
+
+Getters are available to access various attributes using either the property notation or functional style. 
+
+Since `SingleCellExperiment` extends `RangedSummarizedExperiment`, all getters and setters from the base class are accessible here; more details [here](./summarized_expt.qmd).
+
+```{python}
+# access assay names
+print("reduced dim names (as property): ", sce.reduced_dim_names)
+print("reduced dim names (functional style): ", sce.get_reduced_dim_names())
+
+# access row data
+print(sce.row_data)
+```
+
+#### Access a reduced dimension
+
+One can access an reduced dimension by index or name:
+
+```{python}
+sce.reduced_dim(0) # same as se.reduced_dim("random_embeds")
+```
+
+## Subset experiments
+
+You can subset experimental data by using the subset (`[]`) operator. This operation accepts different slice input types, such as a boolean vector, a `slice` object, a list of indices, or names (if available) to subset.
+
+In our previous example, we didn't include row or column names. Let's create another `SingleCellExperiment` object that includes names.
+
+```{python}
+subset_sce = sce[0:10, 0:3]
+print(subset_sce)
+```
+
+## Export as `MuData`
+
+The package also provides methods to convert a `SingleCellExperiment` object into a `MuData` representation:
+
+```{python}
+mdata = sce.to_mudata()
+mdata
+```
+
+----
+
+## Further reading
+
+- Check out reference [documentation](https://biocpy.github.io/SingleCellExperiment/index.html) for more details.
+- R/Bioconductor's [SingleCellExperiment](https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html) package.

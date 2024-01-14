@@ -15,3 +15,5 @@ jupyterlab
 seaborn
 session-info
 natsort
+anndata
+mudata

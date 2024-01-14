@@ -1,4 +1,4 @@
-# `BiocFrame` - Bioconductor-like data frames {.unnumbered}
+# `BiocFrame` - Bioconductor-like data frames
 
 `BiocFrame` class is a Bioconductor-friendly alternative to Pandas `DataFrame`. Its primary advantage lies in not making assumptions about the types of the columns - as long as an object has a length (`__len__`) and supports slicing methods (`__getitem__`), it can be used inside a `BiocFrame`. 
 
@@ -12,7 +12,7 @@ To get started, install the package from [PyPI](https://pypi.org/project/biocfra
 pip install biocframe
 ```
 
-## Advantage of using `BiocFrame`
+## Advantages of `BiocFrame`
 
 One of the core principles guiding the implementation of the `BiocFrame` class is "what you put is what you get." Unlike Pandas `DataFrame`, `BiocFrame` makes no assumptions about the types of the columns provided as input. Some key differences to highlight the advantages of using `BiocFrame` are especially in terms of modifications to column types and handling nested dataframes.
 
