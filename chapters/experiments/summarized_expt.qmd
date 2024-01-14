@@ -110,7 +110,7 @@ rse = RangedSummarizedExperiment(
 print(rse)
 ```
 
-## Interop with `AnnData`
+## Interop with `anndata`
 
 Converting a `SummarizedExperiment` to an `AnnData` representation is straightforward: 
 

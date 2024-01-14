@@ -1,6 +1,6 @@
 # Single-cell experiment
 
-This package provides container class to represent single-cell experimental data as 2-dimensional matrices. In these matrices, the rows typically denote features or genomic regions of interest, while columns represent cells. In addition, a `SingleCellExperiment` object may contain low-dimensionality embeddings, alternative experiments performed on same sample or set of cells. 
+This package provides container class to represent single-cell experimental data as 2-dimensional matrices. In these matrices, the rows typically denote features or genomic regions of interest, while columns represent cells. In addition, a `SingleCellExperiment` (SCE) object may contain low-dimensionality embeddings, alternative experiments performed on same sample or set of cells. 
 
 :::{.callout-important}
 The design of `SingleCellExperiment` class and its derivates adheres to the R/Bioconductor specification, where rows correspond to features, and columns represent cells.
@@ -89,7 +89,7 @@ sce = SingleCellExperiment(
 print(sce)
 ```
 
-### Interop with `AnnData`
+### Interop with `anndata`
 
 We provide convenient methods for loading an `AnnData` or `h5ad` file into `SingleCellExperiment` objects.
 
