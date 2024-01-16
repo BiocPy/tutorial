@@ -190,6 +190,19 @@ print("experiment names (functional style): ", mae.get_experiment_names())
 print(mae.column_data)
 ```
 
+Check out the c[lass documentation](https://biocpy.github.io/MultiAssayExperiment/api/multiassayexperiment.html#multiassayexperiment.MultiAssayExperiment.MultiAssayExperiment) for the full list of accessors and setters.
+
+
+#### Row or column name accessors
+
+A helper method is available to easily access row or column names across all experiments. This method returns a dictionary with experiment names as keys and the corresponding values, which can be either the row or column names depending on the function:
+
+```{python}
+from rich import print as pprint
+pprint("row names:", mae.get_row_names())
+pprint("column names:", mae.get_column_names())
+```
+
 #### Access an experiment
 
 One can access an experiment by name:
@@ -198,6 +211,16 @@ One can access an experiment by name:
 print(mae.experiment("se"))
 ```
 
+Additionally you may access an experiment with the sample information included in the column data of the experiment. Note, this makes a copy of the experiment:
+
+```{python}
+expt_with_sample_info = mae.experiment("se", with_sample_data=True)
+print(expt_with_sample_info)
+```
+
+:::{.callout-note}
+For consistency with the R MAE's interface, we also provide `get_with_col_data` method, that performs the same operation.
+:::
 
 ### Setters
 
@@ -218,7 +241,7 @@ print(mae.column_data)
 ```
 
 
-## Integrated subsetting
+## Subsetting
 
 You can subset `MultiAssayExperiment` by using the subset (`[]`) operator. This operation accepts different slice input types, such as a boolean vector, a `slice` object, a list of indices, or names (if available) to subset.
 
@@ -233,10 +256,57 @@ print(subset_mae)
 
 ### Subset by experiments dimension
 
+The following creates a subset based on the experiments dimension:
+
 ```{python}
-subset_mae = mae[1:5, 0:4, ["se"]]
+subset_mae = mae[1:5, 0:1, ["se"]]
 print(subset_mae)
 ```
+
+:::{.callout-note}
+If you're wondering about why the experiment "se" has 0 columns, it's important to note that our MAE implementation does not remove columns from an experiment solely because none of the columns map to the samples of interest. This approach aims to prevent unexpected outcomes in complex subset operations.
+:::
+
+## Helper functions
+
+The `MultiAssayExperiment` class also provides a few methods for sample management.
+
+### Complete cases
+
+The `complete_cases` function is designed to identify samples that contain data across all experiments. It produces a boolean vector with the same length as the number of samples in `column_data`. Each element in the vector is `True` if the sample is present in all experiments, or `False` otherwise.
+
+```{python}
+print(mae.complete_cases())
+```
+
+You can use this boolean vector to select samples with complete data across all assays or experiments.
+
+```{python}
+subset_mae = mae[:, mae.complete_cases(),]
+print(subset_mae)
+```
+
+
+### Replicates
+
+This method identifies 'samples' with replicates within each experiment. The result is a dictionary where experiment names serve as keys, and the corresponding values indicate whether the sample is replicated within each experiment.
+
+
+```{python}
+from rich import print as pprint # mainly for pretty printing
+pprint(mae.replicated())
+```
+
+
+### Intersect rows
+
+The `intersect_rows` finds common `row_names` across all experiments and returns a `MultiAssayExperiment` with those rows.
+
+```{python}
+common_rows_mae = mae.intersect_rows()
+print(common_rows_mae)
+```
+
 
 ----
 

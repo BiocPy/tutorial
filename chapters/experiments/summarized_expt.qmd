@@ -225,6 +225,16 @@ Similarly, you can also slice by a boolean array. Note that the boolean vectors 
 subset_se_with_bools = se_with_names[[True, True, False], [True, False, True]]
 ```
 
+### Subset by empty list
+
+This is a feature not a bug :)
+
+```{python}
+subset = se_with_names[:2, []]
+print(subset)
+```
+
+
 ## Range-based operations
 
 Additionally, since `RangeSummarizedExperiment` contain `row_ranges`, this allows us to perform a number of range based operations that are possible on a `GenomicRanges` object.

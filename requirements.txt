@@ -1,7 +1,7 @@
 biocframe>=0.5.0
 summarizedexperiment>=0.4.0
 singlecellexperiment>=0.4.2
-multiassayexperiment>=0.4.0
+multiassayexperiment>=0.4.2
 genomicranges
 biocutils
 rds2py
