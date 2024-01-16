@@ -192,6 +192,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="../../chapters/experiments/extending_se.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Extending summarized experiments</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/experiments/multiassay_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multiple experiments</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -240,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
   <li><a href="#construction" id="toc-construction" class="nav-link" data-scroll-target="#construction">Construction</a>
   <ul class="collapse">
-  <li><a href="#interop-with-anndata" id="toc-interop-with-anndata" class="nav-link" data-scroll-target="#interop-with-anndata">Interop with <code>AnnData</code></a></li>
+  <li><a href="#interop-with-anndata" id="toc-interop-with-anndata" class="nav-link" data-scroll-target="#interop-with-anndata">Interop with <code>anndata</code></a></li>
   <li><a href="#from-tenx-formats" id="toc-from-tenx-formats" class="nav-link" data-scroll-target="#from-tenx-formats">from tenx formats</a></li>
   </ul></li>
   <li><a href="#getterssetters" id="toc-getterssetters" class="nav-link" data-scroll-target="#getterssetters">Getters/Setters</a></li>
@@ -270,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>This package provides container class to represent single-cell experimental data as 2-dimensional matrices. In these matrices, the rows typically denote features or genomic regions of interest, while columns represent cells. In addition, a <code>SingleCellExperiment</code> object may contain low-dimensionality embeddings, alternative experiments performed on same sample or set of cells.</p>
+<p>This package provides container class to represent single-cell experimental data as 2-dimensional matrices. In these matrices, the rows typically denote features or genomic regions of interest, while columns represent cells. In addition, a <code>SingleCellExperiment</code> (SCE) object may contain low-dimensionality embeddings, alternative experiments performed on same sample or set of cells.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -378,7 +383,7 @@ metadata(0):
 </div>
 </div>
 <section id="interop-with-anndata" class="level3">
-<h3 class="anchored" data-anchor-id="interop-with-anndata">Interop with <code>AnnData</code></h3>
+<h3 class="anchored" data-anchor-id="interop-with-anndata">Interop with <code>anndata</code></h3>
 <p>We provide convenient methods for loading an <code>AnnData</code> or <code>h5ad</code> file into <code>SingleCellExperiment</code> objects.</p>
 <p>For example, lets create an <code>AnnData</code> object,</p>
 <div class="cell" data-execution_count="3">
@@ -484,15 +489,15 @@ Note
 <pre><code>reduced dim names (as property):  ['random_embeds']
 reduced dim names (functional style):  ['random_embeds']
 BiocFrame with 200 rows and 6 columns
-      seqnames  starts    ends strand   score                  GC
-        &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;              &lt;list&gt;
-  [0]     chr1     100     110      -       0  0.5688367361145426
-  [1]     chr2     101     111      +       1 0.24034679351683919
-  [2]     chr2     102     112      +       2  0.6560937072158429
-           ...     ...     ...    ...     ...                 ...
-[197]     chr3     297     307      +     197   0.345925865616447
-[198]     chr3     298     308      -     198  0.9532274923283341
-[199]     chr3     299     309      -     199 0.38869549363482403</code></pre>
+      seqnames  starts    ends strand   score                   GC
+        &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;               &lt;list&gt;
+  [0]     chr1     100     110      -       0   0.4803557596231137
+  [1]     chr2     101     111      +       1 0.053072468479367974
+  [2]     chr2     102     112      +       2   0.5974262093336514
+           ...     ...     ...    ...     ...                  ...
+[197]     chr3     297     307      +     197   0.1714865999403169
+[198]     chr3     298     308      -     198   0.7085067304129551
+[199]     chr3     299     309      -     199   0.9506610052947431</code></pre>
 </div>
 </div>
 <section id="access-a-reduced-dimension" class="level4">
@@ -501,12 +506,12 @@ BiocFrame with 200 rows and 6 columns
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sce.reduced_dim(<span class="dv">0</span>) <span class="co"># same as se.reduced_dim("random_embeds")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>array([[0.55442493, 0.85543705, 0.02226411, 0.13283459],
-       [0.32413877, 0.42153711, 0.9386491 , 0.45546816],
-       [0.53113034, 0.43157994, 0.96660078, 0.20560573],
-       [0.55480125, 0.82671268, 0.09151008, 0.61314779],
-       [0.26781203, 0.79849289, 0.32721095, 0.23218671],
-       [0.5842001 , 0.29130862, 0.36260951, 0.53075018]])</code></pre>
+<pre><code>array([[0.82249382, 0.1581809 , 0.64207603, 0.51303756],
+       [0.61183549, 0.96439367, 0.37372966, 0.00801112],
+       [0.06836007, 0.92586574, 0.9994667 , 0.80714631],
+       [0.48667472, 0.63318741, 0.76069894, 0.20654633],
+       [0.46830125, 0.48082703, 0.7951699 , 0.24119777],
+       [0.33414236, 0.78956086, 0.69771023, 0.8129552 ]])</code></pre>
 </div>
 </div>
 </section>
