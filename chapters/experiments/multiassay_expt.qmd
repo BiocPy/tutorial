@@ -211,7 +211,7 @@ One can access an experiment by name:
 print(mae.experiment("se"))
 ```
 
-Additionally you may access an experiment with the sample information included in the column data of the experiment. Note, this makes a copy of the experiment:
+Additionally you may access an experiment with the sample information included in the column data of the experiment. Note, this creates a copy of the experiment:
 
 ```{python}
 expt_with_sample_info = mae.experiment("se", with_sample_data=True)
@@ -307,6 +307,21 @@ common_rows_mae = mae.intersect_rows()
 print(common_rows_mae)
 ```
 
+If you are only interested in finding common `row_names` across all experiments:
+
+```{python}
+common_rows = mae.find_common_row_names()
+print(common_rows)
+```
+
+### Empty MAE
+
+While the necessity of an empty `MultiAssayExperiment` might not be apparent, for the sake of consistency with the rest of the tutorials:
+
+```{python}
+mae = MultiAssayExperiment(experiments={})
+print(mae)
+```
 
 ----
 

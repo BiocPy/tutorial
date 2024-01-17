@@ -2,9 +2,9 @@
 
 `GenomicRanges` is a Python package designed to handle genomic locations and facilitate genomic analysis. It is similar to Bioconductor's [GenomicRanges](https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html) and uses the [IRanges](https://github.com/BiocPy/IRanges) packages (tutorial [here](../extras/iranges.qmd)) under the hood to manage and provide interval-based arithmetic operations.
 
-An `IRanges` holds a **start** position and a **width**, and is typically used to represent coordinates along a genomic sequence. The interpretation of the **start** position depends on the application; for sequences, the **start** is usually a 1-based position, but other use cases may allow zero or even negative values, e.g., circular genomes. `IRanges` uses [nested containment lists](https://github.com/pyranges/ncls) under the hood to perform fast overlap and search based operations. 
+An `IRanges` holds a **start** position and a **width**, and is typically used to represent coordinates along a genomic sequence. The interpretation of the **start** position depends on the application; for sequences, the **start** is usually a 1-based position, but other use cases may allow zero or even negative values, e.g., circular genomes. `IRanges` uses [nested containment lists](https://github.com/pyranges/ncls) under the hood to perform fast overlap and search-based operations. 
 
-The package also provides a `GenomicRanges` class to specify multiple genomic elements, usually where the genes start and end. Genes are themselves made of many sub regions, e.g. exons, and a `GenomicRangesList` allows us to represent this nested structure.
+The package provides a `GenomicRanges` class to specify multiple genomic elements, typically where genes start and end. Genes are themselves made of many subregions, such as exons, and a `GenomicRangesList` enables the representation of this nested structure.
 
 Moreover, the package also provides a `SeqInfo` class to update or modify sequence information stored in the object. Learn more about this in the [GenomeInfoDb package](https://bioconductor.org/packages/release/bioc/html/GenomeInfoDb.html).
 
@@ -28,7 +28,7 @@ We support multiple ways to initialize a `GenomicRanges` object.
 
 ### Preferred way
 
-To construct a `GenomicRanges` object from interval ranges and sequence names:
+To construct a `GenomicRanges` object, we need to provide sequence information and genomic coordinates. This is achieved through the combination of the `seqnames` and `ranges` parameters. Additionally, you have the option to specify the `strand`, represented as a list of "+" (or 1) for the forward strand, "-" (or -1) for the reverse strand, or "*" (or 0) if the strand is unknown. You can also provide a NumPy vector that utilizes either the string or numeric representation to specify the `strand`. Optionally, you can use the `mcols` parameter to provide additional metadata about each genomic region.
 
 ```{python}
 from genomicranges import GenomicRanges
@@ -59,15 +59,15 @@ print(gr)
 
 
 :::{.callout-note}
-`mcols` is expected to a `BiocFrame` object and will be coerced to a `BiocFrame` if a pandas `DataFrame` is provided. 
+The input for `mcols` is expected to be a `BiocFrame` object and will be converted to a `BiocFrame` in case a pandas `DataFrame` is supplied.
 :::
 
 ### From UCSC or GTF file
 
-You can also import genomes from UCSC or load a genome annotation from a GTF file. This requires installation of additional packages pandas and joblib to parse and extract various attributes from the gtf file. 
+You can also import genomes from UCSC or load a genome annotation from a GTF file. This requires installation of additional packages **pandas** and **joblib** to parse and extract various attributes from the gtf file. 
 
 :::{.callout-note}
-A future version of this package might implement or take advantage of existing genomic parser packages in python to support various file formats.
+A future version of this package might implement or take advantage of existing genomic parser packages in Python to support various file formats.
 :::
 
 ```{python}
@@ -77,15 +77,15 @@ import genomicranges
 
 # OR
 
-# gr = genomicranges.read_ucsc(genome="hg19")
-# print(gr)
+human_gr = genomicranges.read_ucsc(genome="hg19")
+print(human_gr)
 ```
 
 ### Pandas `DataFrame`
 
 If your genomic coordinates are represented as a pandas `DataFrame`, convert this into `GenomicRanges` if it contains the necessary columns.
 
-::: {.callout-note}
+::: {.callout-important}
 The `DataFrame` must contain columns `seqnames`, `starts` and `ends` to represent genomic coordinates. The rest of the columns are considered metadata and will be available in the `mcols` slot of the `GenomicRanges` object.
 :::
 
@@ -173,7 +173,6 @@ print(gr.mcols)
 
 ```{python}
 # or gr.get_ranges()
-
 print(gr.ranges)
 ```
 
@@ -298,7 +297,7 @@ print("GenomicRanges with the disjoint ranges:")
 print(disjoin_gr)
 ```
 
-## Set operations on genomic ranges
+## Set operations
 
 - **union**: Compute the `union` of intervals across objects.
 - **intersect**: Compute the `intersection` or finds overlapping intervals.
@@ -449,7 +448,7 @@ sns.lineplot(data=pd.DataFrame({
 }), x ="position", y="coverage")
 ```
 
-I guess that looks ok. :) but someone can make this visualization better.
+I guess that looks ok. :) but someone can help make this visualization better. (something that ports `plotRanges` from R)
 
 ## Overlap based methods
 
@@ -577,13 +576,12 @@ samp_gr = gr.sample(k=4)
 
 Just as it sounds, a `GenomicRangesList` is a named-list like object.
 
-If you are wondering why you need this class, a `GenomicRanges` object lets us specify multiple
-genomic elements, usually where the genes start and end. Genes are themselves made of many sub
-regions, e.g. exons. `GenomicRangesList` allows us to represent this nested structure.
+If you are wondering why you need this class, a `GenomicRanges` object enables the 
+specification of multiple genomic elements, usually where genes start and end. 
+Genes, in turn, consist of various subregions, such as exons. 
+The `GenomicRangesList` allows us to represent this nested structure.
 
-Currently, this class is limited in functionality, purely a read-only class with basic accessors.
-
-***Note: This is a work in progress and the functionality is limited.***
+As of now, this class has limited functionality, serving as a read-only class with basic accessors.
 
 ```{python}
 
@@ -631,7 +629,7 @@ The functionality in `GenomicRangesLlist` is limited to read-only and a few meth
 
 ## Empty ranges
 
-Both of these classes can also contain no range information, and they tend to be useful when integrated into more extensive data structures but do not contain any data themselves.
+Both of these classes can also contain no range information, and they tend to be useful when incorporates into larger data structures but do not contain any data themselves.
 
 To create an empty `GenomicRanges` object:
 
@@ -654,4 +652,4 @@ print(empty_grl)
 ## Futher reading
 
 - Check out [the reference documentation](https://biocpy.github.io/GenomicRanges/) for more details.
-- Bioconductor's [**GenomicRanges**](https://bioconductor.org/packages/GenomicRanges) package.
+- Visit Bioconductor's [**GenomicRanges**](https://bioconductor.org/packages/GenomicRanges) package.

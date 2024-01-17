@@ -80,7 +80,7 @@ col_data = pd.DataFrame(
 ```
 
 :::{.callout-note}
-`row_data` and `column_data` are expected to be `BiocFrame` objects and will be coerced to a `BiocFrame` if a pandas `DataFrame` is provided.  
+The inputs `row_data` and `column_data` are expected to be `BiocFrame` objects and will be coerced to a `BiocFrame` if a pandas `DataFrame` is supplied.  
 :::
 
 Now, we can construct a `SummarizedExperiment` from this information.
@@ -119,7 +119,9 @@ adata = se.to_anndata()
 print(adata)
 ```
 
+:::{.callout-tip}
 To convert an `AnnData` object to a BiocPy representation, utilize the `from_anndata` method in the [SingleCellExperiment](./singlecell_expt.qmd) class. This minimizes the loss of information when converting between these two representations.
+:::
 
 ## Getters/Setters
 
@@ -223,11 +225,12 @@ Similarly, you can also slice by a boolean array. Note that the boolean vectors 
 
 ```{python}
 subset_se_with_bools = se_with_names[[True, True, False], [True, False, True]]
+print(subset_se_with_bools)
 ```
 
 ### Subset by empty list
 
-This is a feature not a bug :)
+This is a feature not a bug :), you can specify an empty list to completely remove all rows or samples.
 
 ```{python}
 subset = se_with_names[:2, []]
@@ -239,7 +242,7 @@ print(subset)
 
 Additionally, since `RangeSummarizedExperiment` contain `row_ranges`, this allows us to perform a number of range based operations that are possible on a `GenomicRanges` object.
 
-For example, to compute overlaps with a query range:
+For example, to subset `RangeSummarizedExperiment` with a query set of regions:
 
 ```{python}
 from iranges import IRanges

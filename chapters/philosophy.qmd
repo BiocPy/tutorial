@@ -8,21 +8,21 @@ guidelines to ensure code quality and consistency across all our packages.
 Our objective is to provide a consistent user experience in Python for each Bioconductor class.
 In most cases, this is achieved by directly re-implementing the class and its 
 associated methods in Python. 
-Occasionally, the Bioconductor implementation contains historical baggage 
-(e.g., the storage of `rowData` in a `RangedSummarizedExperiment`, 
+Occasionally, there are cases where the Bioconductor implementation includes legacy backward 
+compatibility issues (e.g., the storage of `rowData` in a `RangedSummarizedExperiment`, 
 `MultiAssayExperiment` harmonization); developers should use their own discretion 
-to decide whether that really needs to be replicated in Python.
+to decide whether replicating these issues in Python is necessary.
 
 ## Naming
 
 We highly recommend adhering to 
 [Google's Python style guide](https://google.github.io/styleguide/pyguide.html) 
-for consistency. 
+for consistency in naming conventions. 
 In summary, classes should use `PascalCase` and follow Bioconductor's 
 class names.
 Methods should use `snake_case` and take the form of `<verb>[_<details>]`, such as 
-`get_start()`, `set_names()` and so on. 
-Method arguments should also use `snake_case` format.
+`get_start()`, `set_names()` and so forth. 
+Method arguments should also follow the `snake_case` format.
 
 Usability has been another crucial objective, to facilitate an easy 
 transition for users between R and Python classes. 
@@ -32,7 +32,8 @@ For instance, when computing flanking regions in R:
 flank(gr, width=2, start=FALSE, both=TRUE)
 ```
 
-In the [GenomicRanges](https://github.com/BiocPy/GenomicRanges) Python packages, we maintain consistency by expecting the same method name. 
+In the [GenomicRanges](https://github.com/BiocPy/GenomicRanges) Python packages, 
+we maintain consistency by expecting the same method name. 
 The only difference lies in the shift from a functional to an object-oriented 
 programming paradigm:
 
@@ -42,48 +43,51 @@ gr.flank(width=2, start=False, both=True)
 
 ### Functional discipline {#sec-functional}
 
-The existence of mutable types in Python introduces the potential danger of 
+The existence of mutable types in Python introduces the potential risk of 
 modifying complex objects. 
-If a mutable object has a user-visible reference and is also a member of a 
-larger Bioconductor object, a user-specified modification to that object may 
+If a mutable object has a user-visible reference and is also a component of a 
+larger Bioconductor object, user-specified modifications to that object may 
 violate the constraints of the parent object.
 
 To address these issues, we enforce a functional programming discipline in all 
 class methods. 
 By default, all methods should avoid side effects that mutate the object. 
-This simplifies reasoning around the effects of methods and/or mutations in large 
+This simplifies the reasoning around the effects of methods and/or mutations in large, 
 complex objects.
 
+#### Setter methods
 The most notable application of this philosophy is in ***setter*** methods. 
-Instead of mutating the object directly, they should return a new copy of the object
+Instead of directly mutating the object, they should return a new copy of the object
 with the desired modification. 
-The *"depth"* of the copy depends on the nature of the field being set; the aim 
-should be to avoid any modification of the contents in `self`. 
+The *"depth"* of the copy depends on the nature of the field being set; with the 
+goal of avoiding any modification of the contents in `self`. 
 Implementations may offer an `in_place=` option to apply the modification to the 
-original object, but this default to `False`.
+original object, but this defaults to `False`.
 
+#### Getter methods
 To avoid performance issues, ***getter*** methods may return mutable objects 
 without copying, assuming that their return values are read-only and will not be 
 directly mutated (Setter methods that operate via a copy are allowed). 
 In some cases, the return value of a getter method may be directly mutated, 
-e.g., because a copy was already created in the getter; this should be clearly 
-stated in the documentation but should not be treated as the default.
+for example, because a copy was already created in the getter; this should be explicitly 
+stated in the documentation but should not be considered the default behavior.
 
-#### Property based getters and setters
+#### Property-based getters and setters
 
 Direct access to class members (via properties or `@property` decorator) should 
 generally be avoided, as it is too easy to perform modifications via one-liners 
 with the `class.property` notation on the left-hand-side of an assignment.
 
-The default assumption is that property-based setters will mutate the object in-place.
+The default assumption is that property-based setters will perform *in-place* 
+mutations on the object.
 
 ## Type hints
 
-As the term suggests, type hints are "hints" used to enhance the developer 
-experience; they should not dictate how we write our code. 
+As the term suggests, type hints serve as "hints" to enhance the developer 
+experience, and they should not dictate how we write our code. 
 
-For this reason, we prefer simple types in these hints, usually corresponding to 
-base Python types with minimal nesting. 
+For this reason, we prefer for using simple types in these hints, typically 
+corresponding to base Python types with minimal nesting. 
 For example, if a function is expected to operate on any arbitrary list, the 
 basic list type hint should suffice.
 
@@ -101,7 +105,7 @@ def find_element(arr: List[str], query: str):
     pass
 ```
 
-If the function accepts multiple types as inputs,
+In cases where the function accepts multiple types as inputs,
 
 ```python
 from typing import Union
@@ -112,6 +116,6 @@ def find_element(arr: List[str], query: Union[int, str, slice]):
 
 -----
 ## Notes
-Additionally, we provide recommendations on setting up the package, different 
+Additionally, we provide recommendations on setting up the package using [PyScaffold](https://pyscaffold.org), different 
 testing environments, documentation, and publishing workflows. 
 These details can be found in the [developer guide](https://github.com/BiocPy/developer_guide).

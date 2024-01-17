@@ -284,6 +284,16 @@ testframe["column2"] = ["A", "B", "C"]
 testframe[1:3, ["column1","column2"]] = BiocFrame({"x":[4, 5], "y":["E", "F"]})
 ```
 
+## Iterate over rows
+
+You can iterate over the rows of a `BiocFrame` object. `name` is `None` if the object does not contain any `row_names`. To iterate over the first two rows:
+
+```{python}
+for name, row in bframe[:2,]:
+    print(name, row)
+```
+
+
 ## Combining objects
 
 `BiocFrame` implements methods for the various `combine` generics from [**BiocUtils**](https://github.com/BiocPy/biocutils). For example, to combine by row:
@@ -317,12 +327,9 @@ combined = biocutils.combine_columns(bframe1, bframe3)
 print(combined)
 ```
 
-::: {.callout-note}
-By default, both methods above assume that the number and identity of columns (for `combine_rows()`) or rows (for `combine_columns()`) are the same across objects.
-:::
-
 ### Relaxed combine operation
-If this is not the case, e.g., with different columns across objects, we can use `relaxed_combine_rows()` instead:
+
+By default, the combine methods assume that the number and identity of columns (for `combine_rows()`) or rows (for `combine_columns()`) are the same across objects. In situations where this is not the case, such as having different columns across objects, we can use `relaxed_combine_rows()` instead:
 
 ```{python}
 from biocframe import relaxed_combine_rows
@@ -333,7 +340,9 @@ combined = biocutils.relaxed_combine_rows(bframe1, modified2)
 print(combined)
 ```
 
-Similarly, if the rows are different, we can use `BiocFrame`'s `merge` function:
+### Sql-like join operation
+
+Similarly, if the rows are different, we can use `BiocFrame`'s `merge` function. This function uses the *row_names* as the index to perform this operation; you can specify an alternative set of keys through the `by` parameter.
 
 ```{python}
 from biocframe import merge
@@ -348,14 +357,14 @@ print(combined)
 
 ## Empty Frames
 
-We can create empty `BiocFrame` objects that only specify the number of rows. This is beneficial in situations where `BiocFrame` objects are integrated into more extensive data structures but do not contain any data themselves.
+We can create empty `BiocFrame` objects that only specify the number of rows. This is beneficial in scenarios where `BiocFrame` objects are incorporated into larger data structures but do not contain any data themselves.
 
 ```{python}
 empty = BiocFrame(number_of_rows=100)
 print(empty)
 ```
 
-Most operations described in this document can be performed on an empty `BiocFrame` object.
+Most operations detailed in this document can be performed on an empty `BiocFrame` object.
 
 ```{python}
 print("Column names:", empty.column_names)
@@ -368,6 +377,5 @@ print("\nSubsetting an empty BiocFrame: \n", subset_empty)
 
 ## Further reading
 
-Check out [the reference documentation](https://biocpy.github.io/BiocFrame/) for more details.
-
-Also check out Bioconductor's [**S4Vectors**](https://bioconductor.org/packages/S4Vectors) package, which implements the `DFrame` class on which `BiocFrame` was based.
+- Explore more details [the reference documentation](https://biocpy.github.io/BiocFrame/).
+- Additionally, take a look at Bioconductor's [**S4Vectors**](https://bioconductor.org/packages/S4Vectors) package, which implements the `DFrame` class upon which `BiocFrame` was built.

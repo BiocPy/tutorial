@@ -9,10 +9,21 @@ execute:
 book:
   title: "BiocPy: Enabling Bioconductor workflows in Python"
   author: "[Jayaram Kancherla](mailto:jayaram.kancherla@gmail.com)"
-  date: "1/4/2024"
+  contributor: "[Aaron Lun](mailto:infinite.monkeys.with.keys@gmail.com)"
+  favicon: https://raw.githubusercontent.com/BiocPy/.github/main/logo/short.png
+  site-url: https://biocpy.github.io/tutorial
+  date: "1/16/2024"
   search: true
   repo-url: https://github.com/BiocPy/tutorial
   repo-actions: [issue]
+  downloads: [pdf, epub]
+  sharing: [twitter]
+  twitter-card: true
+  cover-image: https://raw.githubusercontent.com/BiocPy/.github/main/logo/full.png
+  page-footer:
+    center: 
+      - text: "(c) BiocPy core contributors"
+        href: chapters/summary.qmd
   sidebar:
     style: docked
     background: light
@@ -43,7 +54,7 @@ bibliography: chapters/references.bib
 
 format:
   html:
-    theme: journal
+    theme: cosmo
     number-sections: false
     code-link: true
   pdf:

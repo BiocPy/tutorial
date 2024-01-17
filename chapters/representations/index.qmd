@@ -1,7 +1,8 @@
 # The basics
 
-All packages in the `BiocPy` ecosystem are released on Python's package registry - [PyPI](https://pypi.org/).
+BiocPy implements essential foundational data structures that serve as the building blocks for extensive and complex representations. This includes the [BiocFrame package](./biocframe.qmd) providing a Bioconductor-like data frame class, and the [GenomicRanges package](./genomicranges.qmd) to aid in representing genomic regions and facilitating analysis. The BiocUtils package defines generics and efficiently manages most common operations across these packages.
 
+## Install packages
 
 The [biocpy](https://github.com/BiocPy/BiocPy) package serves as a convenient wrapper that installs all the core packages within the ecosystem.
 
@@ -15,7 +16,7 @@ Alternatively, you can install specific packages as required. For example:
 pip install summarizedexperiment # <package-name>
 ```
 
-# Update packages
+## Update packages
 
 To update packages, use the following command:
 
