@@ -66,6 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <link href="../../chapters/experiments/extending_se.html" rel="next">
 <link href="../../chapters/experiments/summarized_expt.html" rel="prev">
+<link href="../../https://raw.githubusercontent.com/BiocPy/.github/main/logo/short.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -97,6 +98,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 5&nbsp; Single-cell experiment">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar docked">
@@ -124,8 +128,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">BiocPy: Enabling Bioconductor workflows in Python</a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/BiocPy/tutorial" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../BiocPy--Enabling-Bioconductor-workflows-in-Python.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../BiocPy--Enabling-Bioconductor-workflows-in-Python.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+    <a href="https://twitter.com/intent/tweet?url=|url|" rel="" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
 </div>
     </div>
       </div>
@@ -495,13 +517,13 @@ reduced dim names (functional style):  ['random_embeds']
 BiocFrame with 200 rows and 6 columns
       seqnames  starts    ends strand   score                  GC
         &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;              &lt;list&gt;
-  [0]     chr1     100     110      -       0  0.8024601084236441
-  [1]     chr2     101     111      +       1 0.12795751739240246
-  [2]     chr2     102     112      +       2  0.6867424869846244
+  [0]     chr1     100     110      -       0  0.6115321298212998
+  [1]     chr2     101     111      +       1  0.2576866546971638
+  [2]     chr2     102     112      +       2  0.8043438819707014
            ...     ...     ...    ...     ...                 ...
-[197]     chr3     297     307      +     197  0.5776561311278432
-[198]     chr3     298     308      -     198 0.16309926935278996
-[199]     chr3     299     309      -     199  0.5728530021905026</code></pre>
+[197]     chr3     297     307      +     197  0.4665554367685695
+[198]     chr3     298     308      -     198 0.07381090920275701
+[199]     chr3     299     309      -     199  0.7237332638831303</code></pre>
 </div>
 </div>
 <section id="access-a-reduced-dimension" class="level4">
@@ -510,12 +532,12 @@ BiocFrame with 200 rows and 6 columns
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sce.reduced_dim(<span class="dv">0</span>) <span class="co"># same as se.reduced_dim("random_embeds")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>array([[6.65705383e-01, 9.30594715e-01, 4.33122959e-01, 2.52944266e-01],
-       [3.02010078e-01, 6.76764845e-01, 8.54112966e-01, 7.25202995e-01],
-       [9.96092795e-01, 9.24806131e-01, 7.13738606e-01, 8.03393012e-01],
-       [5.59310587e-04, 4.49898320e-01, 7.90126418e-01, 9.80749640e-01],
-       [8.33905569e-01, 9.49814692e-01, 5.72363437e-01, 2.54489765e-01],
-       [1.77751858e-01, 8.20416756e-01, 8.78990843e-01, 4.57873064e-01]])</code></pre>
+<pre><code>array([[0.3064894 , 0.22257595, 0.61892988, 0.70698337],
+       [0.45879939, 0.5175214 , 0.54954714, 0.37718077],
+       [0.98310622, 0.46848052, 0.01136929, 0.96966099],
+       [0.48941047, 0.43527521, 0.35584061, 0.36853252],
+       [0.96946323, 0.39764378, 0.14156175, 0.65842953],
+       [0.43940359, 0.03971607, 0.13383123, 0.82418634]])</code></pre>
 </div>
 </div>
 </section>
@@ -817,6 +839,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link active" href="../../chapters/summary.html" aria-current="page">(c) BiocPy core contributors</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

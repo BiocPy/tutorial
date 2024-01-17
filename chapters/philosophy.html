@@ -66,6 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <link href="../chapters/representations/index.html" rel="next">
 <link href="../index.html" rel="prev">
+<link href="../https://raw.githubusercontent.com/BiocPy/.github/main/logo/short.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -97,6 +98,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 1&nbsp; Programming philosophy">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar docked">
@@ -124,8 +128,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">BiocPy: Enabling Bioconductor workflows in Python</a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/BiocPy/tutorial" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../BiocPy--Enabling-Bioconductor-workflows-in-Python.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../BiocPy--Enabling-Bioconductor-workflows-in-Python.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+    <a href="https://twitter.com/intent/tweet?url=|url|" rel="" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
 </div>
     </div>
       </div>
@@ -279,32 +301,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>As we developed BiocPy packages, we established standards and contribution guidelines to ensure code quality and consistency across all our packages.</p>
 <section id="class-design" class="level2">
 <h2 class="anchored" data-anchor-id="class-design">Class design</h2>
-<p>Our objective is to provide a consistent user experience in Python for each Bioconductor class. In most cases, this is achieved by directly re-implementing the class and its associated methods in Python. Occasionally, the Bioconductor implementation contains historical baggage (e.g., the storage of <code>rowData</code> in a <code>RangedSummarizedExperiment</code>, <code>MultiAssayExperiment</code> harmonization); developers should use their own discretion to decide whether that really needs to be replicated in Python.</p>
+<p>Our objective is to provide a consistent user experience in Python for each Bioconductor class. In most cases, this is achieved by directly re-implementing the class and its associated methods in Python. Occasionally, there are cases where the Bioconductor implementation includes legacy backward compatibility issues (e.g., the storage of <code>rowData</code> in a <code>RangedSummarizedExperiment</code>, <code>MultiAssayExperiment</code> harmonization); developers should use their own discretion to decide whether replicating these issues in Python is necessary.</p>
 </section>
 <section id="naming" class="level2">
 <h2 class="anchored" data-anchor-id="naming">Naming</h2>
-<p>We highly recommend adhering to <a href="https://google.github.io/styleguide/pyguide.html">Google’s Python style guide</a> for consistency. In summary, classes should use <code>PascalCase</code> and follow Bioconductor’s class names. Methods should use <code>snake_case</code> and take the form of <code>&lt;verb&gt;[_&lt;details&gt;]</code>, such as <code>get_start()</code>, <code>set_names()</code> and so on. Method arguments should also use <code>snake_case</code> format.</p>
+<p>We highly recommend adhering to <a href="https://google.github.io/styleguide/pyguide.html">Google’s Python style guide</a> for consistency in naming conventions. In summary, classes should use <code>PascalCase</code> and follow Bioconductor’s class names. Methods should use <code>snake_case</code> and take the form of <code>&lt;verb&gt;[_&lt;details&gt;]</code>, such as <code>get_start()</code>, <code>set_names()</code> and so forth. Method arguments should also follow the <code>snake_case</code> format.</p>
 <p>Usability has been another crucial objective, to facilitate an easy transition for users between R and Python classes. For instance, when computing flanking regions in R:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flank</span>(gr, <span class="at">width=</span><span class="dv">2</span>, <span class="at">start=</span><span class="cn">FALSE</span>, <span class="at">both=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In the <a href="https://github.com/BiocPy/GenomicRanges">GenomicRanges</a> Python packages, we maintain consistency by expecting the same method name. The only difference lies in the shift from a functional to an object-oriented programming paradigm:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gr.flank(width<span class="op">=</span><span class="dv">2</span>, start<span class="op">=</span><span class="va">False</span>, both<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="sec-functional" class="level3">
 <h3 class="anchored" data-anchor-id="sec-functional">Functional discipline</h3>
-<p>The existence of mutable types in Python introduces the potential danger of modifying complex objects. If a mutable object has a user-visible reference and is also a member of a larger Bioconductor object, a user-specified modification to that object may violate the constraints of the parent object.</p>
-<p>To address these issues, we enforce a functional programming discipline in all class methods. By default, all methods should avoid side effects that mutate the object. This simplifies reasoning around the effects of methods and/or mutations in large complex objects.</p>
-<p>The most notable application of this philosophy is in <strong><em>setter</em></strong> methods. Instead of mutating the object directly, they should return a new copy of the object with the desired modification. The <em>“depth”</em> of the copy depends on the nature of the field being set; the aim should be to avoid any modification of the contents in <code>self</code>. Implementations may offer an <code>in_place=</code> option to apply the modification to the original object, but this default to <code>False</code>.</p>
-<p>To avoid performance issues, <strong><em>getter</em></strong> methods may return mutable objects without copying, assuming that their return values are read-only and will not be directly mutated (Setter methods that operate via a copy are allowed). In some cases, the return value of a getter method may be directly mutated, e.g., because a copy was already created in the getter; this should be clearly stated in the documentation but should not be treated as the default.</p>
+<p>The existence of mutable types in Python introduces the potential risk of modifying complex objects. If a mutable object has a user-visible reference and is also a component of a larger Bioconductor object, user-specified modifications to that object may violate the constraints of the parent object.</p>
+<p>To address these issues, we enforce a functional programming discipline in all class methods. By default, all methods should avoid side effects that mutate the object. This simplifies the reasoning around the effects of methods and/or mutations in large, complex objects.</p>
+<section id="setter-methods" class="level4">
+<h4 class="anchored" data-anchor-id="setter-methods">Setter methods</h4>
+<p>The most notable application of this philosophy is in <strong><em>setter</em></strong> methods. Instead of directly mutating the object, they should return a new copy of the object with the desired modification. The <em>“depth”</em> of the copy depends on the nature of the field being set; with the goal of avoiding any modification of the contents in <code>self</code>. Implementations may offer an <code>in_place=</code> option to apply the modification to the original object, but this defaults to <code>False</code>.</p>
+</section>
+<section id="getter-methods" class="level4">
+<h4 class="anchored" data-anchor-id="getter-methods">Getter methods</h4>
+<p>To avoid performance issues, <strong><em>getter</em></strong> methods may return mutable objects without copying, assuming that their return values are read-only and will not be directly mutated (Setter methods that operate via a copy are allowed). In some cases, the return value of a getter method may be directly mutated, for example, because a copy was already created in the getter; this should be explicitly stated in the documentation but should not be considered the default behavior.</p>
+</section>
 <section id="property-based-getters-and-setters" class="level4">
-<h4 class="anchored" data-anchor-id="property-based-getters-and-setters">Property based getters and setters</h4>
+<h4 class="anchored" data-anchor-id="property-based-getters-and-setters">Property-based getters and setters</h4>
 <p>Direct access to class members (via properties or <code>@property</code> decorator) should generally be avoided, as it is too easy to perform modifications via one-liners with the <code>class.property</code> notation on the left-hand-side of an assignment.</p>
-<p>The default assumption is that property-based setters will mutate the object in-place.</p>
+<p>The default assumption is that property-based setters will perform <em>in-place</em> mutations on the object.</p>
 </section>
 </section>
 </section>
 <section id="type-hints" class="level2">
 <h2 class="anchored" data-anchor-id="type-hints">Type hints</h2>
-<p>As the term suggests, type hints are “hints” used to enhance the developer experience; they should not dictate how we write our code.</p>
-<p>For this reason, we prefer simple types in these hints, usually corresponding to base Python types with minimal nesting. For example, if a function is expected to operate on any arbitrary list, the basic list type hint should suffice.</p>
+<p>As the term suggests, type hints serve as “hints” to enhance the developer experience, and they should not dictate how we write our code.</p>
+<p>For this reason, we prefer for using simple types in these hints, typically corresponding to base Python types with minimal nesting. For example, if a function is expected to operate on any arbitrary list, the basic list type hint should suffice.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_element(arr: <span class="bu">list</span>, query: <span class="bu">int</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If the function expects a list of strings,</p>
@@ -312,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_element(arr: List[<span class="bu">str</span>], query: <span class="bu">str</span>):</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If the function accepts multiple types as inputs,</p>
+<p>In cases where the function accepts multiple types as inputs,</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Union</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_element(arr: List[<span class="bu">str</span>], query: Union[<span class="bu">int</span>, <span class="bu">str</span>, <span class="bu">slice</span>]):</span>
@@ -321,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<p>Additionally, we provide recommendations on setting up the package, different testing environments, documentation, and publishing workflows. These details can be found in the <a href="https://github.com/BiocPy/developer_guide">developer guide</a>.</p>
+<p>Additionally, we provide recommendations on setting up the package using <a href="https://pyscaffold.org">PyScaffold</a>, different testing environments, documentation, and publishing workflows. These details can be found in the <a href="https://github.com/BiocPy/developer_guide">developer guide</a>.</p>
 
 
 </section>
@@ -573,6 +601,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link active" href="../chapters/summary.html" aria-current="page">(c) BiocPy core contributors</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

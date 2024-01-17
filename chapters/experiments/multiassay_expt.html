@@ -66,6 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <link href="../../chapters/interop.html" rel="next">
 <link href="../../chapters/experiments/extending_se.html" rel="prev">
+<link href="../../https://raw.githubusercontent.com/BiocPy/.github/main/logo/short.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -100,6 +101,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
+<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 7&nbsp; Multiple experiments">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar docked">
@@ -127,8 +131,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">BiocPy: Enabling Bioconductor workflows in Python</a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/BiocPy/tutorial" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../BiocPy--Enabling-Bioconductor-workflows-in-Python.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../BiocPy--Enabling-Bioconductor-workflows-in-Python.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+    <a href="https://twitter.com/intent/tweet?url=|url|" rel="" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
 </div>
     </div>
       </div>
@@ -269,6 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#complete-cases" id="toc-complete-cases" class="nav-link" data-scroll-target="#complete-cases">Complete cases</a></li>
   <li><a href="#replicates" id="toc-replicates" class="nav-link" data-scroll-target="#replicates">Replicates</a></li>
   <li><a href="#intersect-rows" id="toc-intersect-rows" class="nav-link" data-scroll-target="#intersect-rows">Intersect rows</a></li>
+  <li><a href="#empty-mae" id="toc-empty-mae" class="nav-link" data-scroll-target="#empty-mae">Empty MAE</a></li>
   </ul></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul>
@@ -583,7 +606,7 @@ metadata(0):
 </code></pre>
 </div>
 </div>
-<p>Additionally you may access an experiment with the sample information included in the column data of the experiment. Note, this makes a copy of the experiment:</p>
+<p>Additionally you may access an experiment with the sample information included in the column data of the experiment. Note, this creates a copy of the experiment:</p>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>expt_with_sample_info <span class="op">=</span> mae.experiment(<span class="st">"se"</span>, with_sample_data<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(expt_with_sample_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -772,6 +795,29 @@ metadata(1): could be
 column_data columns(1): ['samples']
 sample_map columns(3): ['assay', 'primary', 'colname']
 metadata(1): could be
+</code></pre>
+</div>
+</div>
+<p>If you are only interested in finding common <code>row_names</code> across all experiments:</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>common_rows <span class="op">=</span> mae.find_common_row_names()</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(common_rows)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'16', '182', '81', '100', '107', '108', '155', '131', '42', '61', '67', '89', '116', '46', '51', '75', '110', '129', '141', '56', '166', '20', '33', '102', '143', '191', '154', '79', '156', '34', '2', '112', '5', '54', '98', '120', '123', '58', '27', '66', '45', '149', '184', '196', '25', '76', '36', '11', '146', '139', '14', '86', '28', '19', '113', '41', '35', '24', '49', '126', '73', '122', '130', '21', '29', '140', '171', '170', '101', '133', '174', '188', '30', '40', '8', '106', '160', '145', '48', '180', '125', '159', '150', '31', '117', '157', '181', '83', '95', '92', '93', '176', '74', '13', '53', '55', '78', '199', '82', '168', '132', '118', '163', '105', '127', '96', '85', '189', '192', '87', '167', '44', '80', '177', '65', '94', '0', '128', '104', '10', '115', '198', '153', '1', '109', '38', '164', '99', '148', '70', '193', '136', '88', '7', '43', '3', '119', '62', '151', '147', '186', '135', '137', '183', '50', '17', '12', '195', '178', '179', '32', '172', '4', '91', '97', '161', '138', '68', '6', '121', '22', '39', '84', '111', '114', '77', '71', '197', '165', '173', '144', '59', '63', '175', '37', '18', '47', '90', '9', '185', '72', '52', '162', '69', '26', '57', '60', '190', '103', '152', '187', '158', '15', '169', '64', '23', '134', '142', '124', '194'}</code></pre>
+</div>
+</div>
+</section>
+<section id="empty-mae" class="level3">
+<h3 class="anchored" data-anchor-id="empty-mae">Empty MAE</h3>
+<p>While the necessity of an empty <code>MultiAssayExperiment</code> might not be apparent, for the sake of consistency with the rest of the tutorials:</p>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> MultiAssayExperiment(experiments<span class="op">=</span>{})</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class: MultiAssayExperiment containing 0 experiments
+column_data columns(1): ['samples']
+sample_map columns(3): ['assay', 'primary', 'colname']
+metadata(0): 
 </code></pre>
 </div>
 </div>
@@ -1035,6 +1081,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link active" href="../../chapters/summary.html" aria-current="page">(c) BiocPy core contributors</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 
