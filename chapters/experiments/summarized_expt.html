@@ -199,6 +199,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/interop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Interop with R</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../chapters/extras/index.html" class="sidebar-item-text sidebar-link">
@@ -208,6 +213,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/extras/delayedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">DelayedArrays, in Python</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/extras/iranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></a>
@@ -224,12 +234,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sessioninfo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reproduce me!</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
@@ -465,13 +469,13 @@ assay names (functional style):  ['counts']
 BiocFrame with 200 rows and 6 columns
       seqnames  starts    ends strand   score                  GC
         &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;              &lt;list&gt;
-  [0]     chr1     100     110      -       0   0.805045919022751
-  [1]     chr2     101     111      +       1   0.906667041291116
-  [2]     chr2     102     112      +       2  0.7340622989734025
+  [0]     chr1     100     110      -       0 0.24170929586774037
+  [1]     chr2     101     111      +       1 0.16183958425640632
+  [2]     chr2     102     112      +       2 0.15248036499884643
            ...     ...     ...    ...     ...                 ...
-[197]     chr3     297     307      +     197 0.39923472795479875
-[198]     chr3     298     308      -     198  0.7746093476017841
-[199]     chr3     299     309      -     199  0.1794915528660992</code></pre>
+[197]     chr3     297     307      +     197  0.5960521212490281
+[198]     chr3     298     308      -     198 0.44598667755437027
+[199]     chr3     299     309      -     199  0.8243135707329097</code></pre>
 </div>
 </div>
 <section id="access-an-assay" class="level4">
@@ -480,19 +484,19 @@ BiocFrame with 200 rows and 6 columns
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>se.assay(<span class="dv">0</span>) <span class="co"># same as se.assay("counts")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>array([[0.26305447, 0.92399488, 0.64960236, 0.6489291 , 0.17325433,
-        0.90589701],
-       [0.50050008, 0.07763849, 0.59658758, 0.51918172, 0.06114396,
-        0.8924757 ],
-       [0.83694455, 0.42221886, 0.83436103, 0.91240514, 0.09806843,
-        0.0782599 ],
+<pre><code>array([[0.72681101, 0.54065043, 0.08072266, 0.17672219, 0.88005361,
+        0.65268629],
+       [0.9170304 , 0.90339325, 0.72171953, 0.83900737, 0.84332452,
+        0.80313674],
+       [0.72921917, 0.94129348, 0.88553041, 0.31955154, 0.12075895,
+        0.60817446],
        ...,
-       [0.74591971, 0.41652343, 0.4965012 , 0.31053038, 0.98434314,
-        0.82697205],
-       [0.73040088, 0.34269522, 0.71704094, 0.46740027, 0.684284  ,
-        0.12514363],
-       [0.3995428 , 0.1185062 , 0.98190858, 0.03216854, 0.85255268,
-        0.23504266]])</code></pre>
+       [0.7194222 , 0.81651388, 0.10715433, 0.30936367, 0.28112306,
+        0.32277956],
+       [0.28222537, 0.99991523, 0.1436178 , 0.44191637, 0.13944276,
+        0.3454776 ],
+       [0.46579321, 0.9469513 , 0.55519918, 0.36822244, 0.27538501,
+        0.92783163]])</code></pre>
 </div>
 </div>
 </section>
@@ -805,7 +809,7 @@ metadata(1): seq_platform
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (6, 3)
-assays(2): ['lognorm', 'counts']
+assays(2): ['counts', 'lognorm']
 row_data columns(3): ['seqnames', 'start', 'end']
 row_names(6): ['HER2', 'BRCA1', 'TPFK', 'HER2', 'BRCA1', 'TPFK']
 column_data columns(2): ['sample', 'disease']
@@ -821,7 +825,7 @@ metadata(1): seq_platform
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (3, 6)
-assays(2): ['lognorm', 'counts']
+assays(2): ['counts', 'lognorm']
 row_data columns(3): ['seqnames', 'start', 'end']
 row_names(3): ['HER2', 'BRCA1', 'TPFK']
 column_data columns(2): ['sample', 'disease']
@@ -838,7 +842,7 @@ metadata(1): seq_platform
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (3, 6)
-assays(3): ['lognorm', 'counts', 'beta']
+assays(3): ['beta', 'counts', 'lognorm']
 row_data columns(3): ['seqnames', 'start', 'end']
 row_names(3): ['MYC', 'BRCA2', 'TPFK']
 column_data columns(3): ['sample', 'disease', 'doublet_score']

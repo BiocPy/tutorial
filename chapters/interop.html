@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BiocPy: Enabling Bioconductor workflows in Python - References</title>
+<title>BiocPy: Enabling Bioconductor workflows in Python - Interop with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +64,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/sessioninfo.html" rel="prev">
+<link href="../chapters/extras/index.html" rel="next">
+<link href="../chapters/experiments/multiassay_expt.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -79,6 +95,9 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -92,7 +111,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/references.html">References</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/interop.html"><span class="chapter-title">Interop with R</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -183,6 +202,11 @@ div.csl-indent {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/interop.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Interop with R</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../chapters/extras/index.html" class="sidebar-item-text sidebar-link">
@@ -192,6 +216,11 @@ div.csl-indent {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/extras/delayedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">DelayedArrays, in Python</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/extras/iranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></a>
@@ -210,26 +239,30 @@ div.csl-indent {
  <span class="menu-text">Reproduce me!</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/references.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#reading-rds-objects" id="toc-reading-rds-objects" class="nav-link" data-scroll-target="#reading-rds-objects">Reading RDS objects</a></li>
+  <li><a href="#step-0-save-an-rds-file" id="toc-step-0-save-an-rds-file" class="nav-link" data-scroll-target="#step-0-save-an-rds-file">Step 0: Save an RDS file</a></li>
+  <li><a href="#step-1-parse-the-rds-file" id="toc-step-1-parse-the-rds-file" class="nav-link" data-scroll-target="#step-1-parse-the-rds-file">Step 1: Parse the RDS file</a></li>
+  <li><a href="#step-2-conversion-to-python-representations" id="toc-step-2-conversion-to-python-representations" class="nav-link" data-scroll-target="#step-2-conversion-to-python-representations">Step 2: Conversion to Python representations</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-title">Interop with R</span></h1>
 </div>
 
 
@@ -244,11 +277,95 @@ div.csl-indent {
 
 </header>
 
-<div id="refs" role="list" style="display: none">
-
+<p>The <a href="https://github.com/BiocPy/rds2py">rds2py</a> package serves as a Python interface to the <a href="https://github.com/LTLA/rds2cpp">rds2cpp</a> library, enabling direct reading of RDS files within Python. This eliminates the need for additional data conversion tools or intermediate formats, streamlining the transition between Python and R for seamless analysis.</p>
+<p>One notable feature is the use of memory views (excluding strings) to access the same memory from C++ in Python, facilitated through Cython. This approach is particularly advantageous for handling large datasets, as it avoids unnecessary duplication of data.</p>
+<p>What sets <code>rds2py</code> apart from other similar parsers is its capability to read <strong>S4</strong> classes. This unique feature allows the parsing of Bioconductor data types directly from R into Python.</p>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>To get started, install the package from <a href="https://pypi.org/project/multiassayexperiment/">PyPI</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install multiassayexperiment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="reading-rds-objects" class="level2">
+<h2 class="anchored" data-anchor-id="reading-rds-objects">Reading RDS objects</h2>
+<p>Reading an RDS file in Python involves a two-step process. First, we parse the serialized <strong>RDS</strong> into a readable Python object, typically a dictionary. This object contains both the <strong><em>data</em></strong> and relevant <strong><em>metadata</em></strong> about the structure and internal representation of the R object. Subsequently, we use one of the available functions to convert this object into a Python representation.</p>
+</section>
+<section id="step-0-save-an-rds-file" class="level2">
+<h2 class="anchored" data-anchor-id="step-0-save-an-rds-file">Step 0: Save an RDS file</h2>
+<p>Before we begin, let’s create a test dataset from R. In this example, we’ll download the “zeisel brain” dataset from the <a href="https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html">scRNAseq package</a>. For tutorial purposes, we’ll filter the dataset to the first 1000 rows and save it as an RDS file.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scRNAseq)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">ZeiselBrainData</span>()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> sce[<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(sub, <span class="st">"../assets/data/zeisel-brain-subset.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-1-parse-the-rds-file" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-parse-the-rds-file">Step 1: Parse the RDS file</h2>
+<p>Now, we can read the RDS file in Python using the <code>read_rds</code> function, which parses the file contents and returns a dictionary of the R object.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rds2py <span class="im">import</span> read_rds</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>r_object <span class="op">=</span> read_rds(<span class="st">"../assets/data/zeisel-brain-subset.rds"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich <span class="im">import</span> <span class="bu">print</span> <span class="im">as</span> pprint</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>pprint(r_object) <span class="co"># hiding the response</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The output of the above code block is hidden to maintain the cleanliness and visual appeal of this document :)</p>
+</div>
+</div>
+<p>Once we have a realized structure, we can convert this object into useful Python representations. It contains <strong>two</strong> keys: - <strong>data</strong>: If atomic entities, contains the NumPy view of the memory space. - <strong>attributes</strong>: Additional properties available for the object.</p>
+</section>
+<section id="step-2-conversion-to-python-representations" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-conversion-to-python-representations">Step 2: Conversion to Python representations</h2>
+<p>The package provides functions to convert these R objects into useful Python representations.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rds2py <span class="im">import</span> as_summarized_experiment</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># to convert an robject to SCE</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>sce <span class="op">=</span> as_summarized_experiment(r_object)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class: SingleCellExperiment
+dimensions: (1000, 3005)
+assays(1): ['counts']
+row_data columns(1): ['featureType']
+row_names(1000): ['0', '1', '2', ..., '997', '998', '999']
+column_data columns(10): ['tissue', 'group #', 'total mRNA mol', 'well', 'sex', 'age', 'diameter', 'cell_id', 'level1class', 'level2class']
+column_names(3005): ['1772071015_C02', '1772071017_G12', '1772071017_A05', ..., '1772063068_D01', '1772066098_A12', '1772058148_F03']
+main_experiment_name:  
+reduced_dims(0): []
+alternative_experiments(2): ['ERCC', 'repeat']
+row_pairs(0): []
+column_pairs(0): []
+metadata(0): 
+</code></pre>
+</div>
+</div>
+<p>And that’s it! It’s as straightforward as that. The <code>as_summarized_experiment</code> function serves as an example of how to convert complex R structures into Python representations. Similarly, the package offers parsers for atomic vectors, lists, read matrices, data frames, and most R data structures.</p>
+<p>You can continue to convert this data into <code>AnnData</code> representation and perform analysis. For more details on <code>SingleCellExperiment</code>, refer to the documentation <a href="../chapters/experiments/singlecell_expt.html">here</a>.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sce.to_anndata()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>(AnnData object with n_obs × n_vars = 3005 × 1000
+     obs: 0, 1
+     var: 0, 1
+     layers: 'counts',
+ None)</code></pre>
+</div>
+</div>
+<p>Well, that’s all. Dive in, explore, and create more base representations to encapsulate complex R structures. If you wish to add more representations, we are more than happy to accept contributions.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -486,15 +603,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/sessioninfo.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Reproduce me!</span>
+      <a href="../chapters/experiments/multiassay_expt.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Multiple experiments</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../chapters/extras/index.html" class="pagination-link">
+        <span class="nav-page-text">Additional packages</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></div></div></footer></body></html>
+</body></html>
