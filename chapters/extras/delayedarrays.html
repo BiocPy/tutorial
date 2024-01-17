@@ -310,19 +310,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> numpy.random.rand(<span class="dv">100</span>, <span class="dv">20</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>array([[0.61422388, 0.73563254, 0.71602466, ..., 0.89159316, 0.22346858,
-        0.121588  ],
-       [0.17071009, 0.96323634, 0.02997323, ..., 0.82087382, 0.51073787,
-        0.32296506],
-       [0.68498502, 0.1719039 , 0.47868755, ..., 0.6155385 , 0.73959973,
-        0.84553845],
+<pre><code>array([[0.9551997 , 0.92284064, 0.55648327, ..., 0.06236503, 0.48729565,
+        0.39724055],
+       [0.91674243, 0.9466433 , 0.18240636, ..., 0.42411148, 0.11389716,
+        0.157167  ],
+       [0.10371779, 0.61302856, 0.71148723, ..., 0.04918185, 0.07505254,
+        0.36703511],
        ...,
-       [0.5974415 , 0.62852246, 0.686106  , ..., 0.36096397, 0.47323607,
-        0.21034743],
-       [0.18695526, 0.20664125, 0.2997661 , ..., 0.428795  , 0.19913116,
-        0.28142319],
-       [0.46177008, 0.58226597, 0.3534934 , ..., 0.55838278, 0.7024374 ,
-        0.10556785]])</code></pre>
+       [0.05566776, 0.85861794, 0.32549846, ..., 0.3992221 , 0.63700789,
+        0.9450016 ],
+       [0.09131135, 0.92384095, 0.05652964, ..., 0.13912822, 0.27451144,
+        0.40310922],
+       [0.41447275, 0.77479202, 0.72374602, ..., 0.35589475, 0.69161156,
+        0.94033372]])</code></pre>
 </div>
 </div>
 <p>We can wrap this in a <code>DelayedArray</code> class:</p>
@@ -332,19 +332,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>&lt;100 x 20&gt; DelayedArray object of type 'float64'
-[[0.61422388, 0.73563254, 0.71602466, ..., 0.89159316, 0.22346858,
-  0.121588  ],
- [0.17071009, 0.96323634, 0.02997323, ..., 0.82087382, 0.51073787,
-  0.32296506],
- [0.68498502, 0.1719039 , 0.47868755, ..., 0.6155385 , 0.73959973,
-  0.84553845],
+[[0.9551997 , 0.92284064, 0.55648327, ..., 0.06236503, 0.48729565,
+  0.39724055],
+ [0.91674243, 0.9466433 , 0.18240636, ..., 0.42411148, 0.11389716,
+  0.157167  ],
+ [0.10371779, 0.61302856, 0.71148723, ..., 0.04918185, 0.07505254,
+  0.36703511],
  ...,
- [0.5974415 , 0.62852246, 0.686106  , ..., 0.36096397, 0.47323607,
-  0.21034743],
- [0.18695526, 0.20664125, 0.2997661 , ..., 0.428795  , 0.19913116,
-  0.28142319],
- [0.46177008, 0.58226597, 0.3534934 , ..., 0.55838278, 0.7024374 ,
-  0.10556785]]</code></pre>
+ [0.05566776, 0.85861794, 0.32549846, ..., 0.3992221 , 0.63700789,
+  0.9450016 ],
+ [0.09131135, 0.92384095, 0.05652964, ..., 0.13912822, 0.27451144,
+  0.40310922],
+ [0.41447275, 0.77479202, 0.72374602, ..., 0.35589475, 0.69161156,
+  0.94033372]]</code></pre>
 </div>
 </div>
 <p>And then we can use it in a variety of operations. For example, in genomics, a typical quality control task is to slice the matrix to remove uninteresting features (rows) or samples (columns):</p>
@@ -370,14 +370,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>transformed[<span class="dv">1</span>:<span class="dv">5</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>&lt;4 x 7&gt; DelayedArray object of type 'float64'
-[[0.02702716, 0.00378821, 0.00077967, ..., 0.03701802, 0.01798457,
-  0.02100847],
- [0.00835741, 0.02431817, 0.02820256, ..., 0.02412533, 0.00805407,
-  0.01815873],
- [0.03309859, 0.00992859, 0.03276064, ..., 0.02345064, 0.03092472,
-  0.00480518],
- [0.00153946, 0.00080916, 0.03177678, ..., 0.03400191, 0.01793312,
-  0.02933107]]</code></pre>
+[[0.03452587, 0.0222498 , 0.01041277, ..., 0.00179918, 0.02492983,
+  0.02446868],
+ [0.01243475, 0.02792065, 0.02001322, ..., 0.01347474, 0.00019308,
+  0.04022498],
+ [0.01950188, 0.00684994, 0.02947185, ..., 0.03124378, 0.005151  ,
+  0.0009389 ],
+ [0.02759915, 0.02540211, 0.00657966, ..., 0.03108475, 0.01384939,
+  0.01937936]]</code></pre>
 </div>
 </div>
 <p>Each operation just returns a <code>DelayedArray</code> with an increasing stack of delayed operations, without evaluating anything or making any copies. Check out the <a href="https://biocpy.github.io/DelayedArray/">documentation</a> for more information.</p>
@@ -453,19 +453,19 @@ metadata(0):
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>d.seed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>array([[0.61422388, 0.73563254, 0.71602466, ..., 0.89159316, 0.22346858,
-        0.121588  ],
-       [0.17071009, 0.96323634, 0.02997323, ..., 0.82087382, 0.51073787,
-        0.32296506],
-       [0.68498502, 0.1719039 , 0.47868755, ..., 0.6155385 , 0.73959973,
-        0.84553845],
+<pre><code>array([[0.9551997 , 0.92284064, 0.55648327, ..., 0.06236503, 0.48729565,
+        0.39724055],
+       [0.91674243, 0.9466433 , 0.18240636, ..., 0.42411148, 0.11389716,
+        0.157167  ],
+       [0.10371779, 0.61302856, 0.71148723, ..., 0.04918185, 0.07505254,
+        0.36703511],
        ...,
-       [0.5974415 , 0.62852246, 0.686106  , ..., 0.36096397, 0.47323607,
-        0.21034743],
-       [0.18695526, 0.20664125, 0.2997661 , ..., 0.428795  , 0.19913116,
-        0.28142319],
-       [0.46177008, 0.58226597, 0.3534934 , ..., 0.55838278, 0.7024374 ,
-        0.10556785]])</code></pre>
+       [0.05566776, 0.85861794, 0.32549846, ..., 0.3992221 , 0.63700789,
+        0.9450016 ],
+       [0.09131135, 0.92384095, 0.05652964, ..., 0.13912822, 0.27451144,
+        0.40310922],
+       [0.41447275, 0.77479202, 0.72374602, ..., 0.35589475, 0.69161156,
+        0.94033372]])</code></pre>
 </div>
 </div>
 <p>Each layer has its own specific attributes that define the operation, e.g.,</p>

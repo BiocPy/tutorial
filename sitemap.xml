@@ -2,62 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://biocpy.github.io/tutorial/index.html</loc>
-    <lastmod>2024-01-17T03:28:45.776Z</lastmod>
+    <lastmod>2024-01-17T15:19:57.843Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/philosophy.html</loc>
-    <lastmod>2024-01-17T03:28:45.784Z</lastmod>
+    <lastmod>2024-01-17T15:19:57.851Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/representations/index.html</loc>
-    <lastmod>2024-01-17T03:28:45.792Z</lastmod>
+    <lastmod>2024-01-17T15:19:57.855Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/representations/biocframe.html</loc>
-    <lastmod>2024-01-17T03:28:45.824Z</lastmod>
+    <lastmod>2024-01-17T15:19:57.883Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/representations/genomicranges.html</loc>
-    <lastmod>2024-01-17T03:28:45.896Z</lastmod>
+    <lastmod>2024-01-17T15:19:57.927Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/experiments/index.html</loc>
-    <lastmod>2024-01-17T03:28:45.904Z</lastmod>
+    <lastmod>2024-01-17T15:19:57.931Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/experiments/summarized_expt.html</loc>
-    <lastmod>2024-01-17T03:28:45.932Z</lastmod>
+    <lastmod>2024-01-17T15:19:57.955Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/experiments/singlecell_expt.html</loc>
-    <lastmod>2024-01-17T03:28:45.948Z</lastmod>
+    <lastmod>2024-01-17T15:19:57.967Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/experiments/extending_se.html</loc>
-    <lastmod>2024-01-17T03:28:45.976Z</lastmod>
+    <lastmod>2024-01-17T15:19:57.991Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/experiments/multiassay_expt.html</loc>
-    <lastmod>2024-01-17T03:28:46.020Z</lastmod>
+    <lastmod>2024-01-17T15:19:58.023Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/interop.html</loc>
-    <lastmod>2024-01-17T03:28:46.028Z</lastmod>
+    <lastmod>2024-01-17T15:19:58.027Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/extras/delayedarrays.html</loc>
-    <lastmod>2024-01-17T03:28:46.048Z</lastmod>
+    <lastmod>2024-01-17T15:19:58.039Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/extras/iranges.html</loc>
-    <lastmod>2024-01-17T03:28:46.064Z</lastmod>
+    <lastmod>2024-01-17T15:19:58.055Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/summary.html</loc>
-    <lastmod>2024-01-17T03:28:46.072Z</lastmod>
+    <lastmod>2024-01-17T15:19:58.055Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/sessioninfo.html</loc>
-    <lastmod>2024-01-17T03:28:46.076Z</lastmod>
+    <lastmod>2024-01-17T15:19:58.063Z</lastmod>
   </url>
 </urlset>
