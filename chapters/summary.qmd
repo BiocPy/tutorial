@@ -2,7 +2,7 @@
 
 This book offers reproducible code snippets to assist users in working with BiocPy representations. 
 
-Beyond the representations detailed here, BiocPy also facilitates delayed operations and the analysis of multi-modal single-cell datasets in Python. BiocPy provides bindings to [libscran](https://github.com/LTLA/libscran) and various other single-cell analysis methods incorporated into the [scranpy](https://github.com/BiocPy/scranpy) package to support analysis of multi-modal single-cell datasets. It also features integration with the [singler](https://github.com/BiocPy/singler) algorithm to annotate cell types by matching cells to known references based on their expression profiles.
+Beyond the representations detailed here, BiocPy also facilitates delayed operations and the analysis of multi-modal single-cell datasets in Python. BiocPy provides bindings to [libscran](https://github.com/LTLA/libscran) and various other single-cell analysis methods incorporated into the [scranpy](https://github.com/BiocPy/scranpy) package to support analysis of multi-modal single-cell datasets. It also features integration with the [singleR](https://github.com/BiocPy/singler) algorithm to annotate cell types by matching cells to known references based on their expression profiles.
 
 Check out the [BiocPy GitHub organization](https://github.com/BiocPy) for the most up-to-date information.
 

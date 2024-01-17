@@ -65,9 +65,9 @@ print(sce)
 ```
 
 
-And that's it! It's as straightforward as that. The `as_summarized_experiment` function serves as an example of how to convert complex R structures into Python representations. Similarly, the package offers parsers for atomic vectors, lists, read matrices, data frames, and most R data structures.
+And that's it! It's as straightforward as that. The `as_summarized_experiment` function serves as an example of how to convert complex R structures into Python representations. Similarly, the package offers parsers for atomic vectors, lists, sparse/dense matrices, data frames, and most R data structures.
 
-You can continue to convert this data into `AnnData` representation and perform analysis. For more details on `SingleCellExperiment`, refer to the documentation [here](./experiments/singlecell_expt.qmd).
+You can continue to convert this object into `AnnData` representation and perform analysis. For more details on `SingleCellExperiment`, refer to the documentation [here](./experiments/singlecell_expt.qmd).
 
 ```{python}
 sce.to_anndata()

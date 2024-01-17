@@ -2,7 +2,7 @@
 
 The code base for this repository is available at [https://github.com/BiocPy/tutorial](https://github.com/BiocPy/tutorial).
 
-This book is automatically build to identify issues caused by changes in the dependencies. We use [quarto](https://quarto.org/docs/books) for reproducing the scripts provided in this book.
+This book is automatically built to identify issues caused by changes in the dependencies. We use [quarto](https://quarto.org/docs/books) for reproducing the scripts provided in this book.
 
 ## Pre-requisites {#sec-sessioninfo}
 
