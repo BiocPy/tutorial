@@ -29,12 +29,14 @@ book:
         - chapters/experiments/singlecell_expt.qmd
         - chapters/experiments/extending_se.qmd
         - chapters/experiments/multiassay_expt.qmd
+    - chapters/interop.qmd
     - part: chapters/extras/index.qmd
       chapters:
+        - chapters/extras/delayedarrays.qmd
         - chapters/extras/iranges.qmd
     - chapters/summary.qmd
     - chapters/sessioninfo.qmd
-    - chapters/references.qmd
+    # - chapters/references.qmd
 
 
 bibliography: chapters/references.bib
@@ -43,6 +45,7 @@ format:
   html:
     theme: journal
     number-sections: false
+    code-link: true
   pdf:
     keep-tex: true
     documentclass: scrreprt

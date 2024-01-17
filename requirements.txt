@@ -4,7 +4,7 @@ singlecellexperiment>=0.4.2
 multiassayexperiment>=0.4.2
 genomicranges
 biocutils
-rds2py
+rds2py>=0.4.0
 scranpy
 singler
 numpy
@@ -18,3 +18,4 @@ session-info
 natsort
 anndata
 mudata
+delayedarray[dask]

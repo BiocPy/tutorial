@@ -1,3 +1,18 @@
 # Summary
 
-In summary, this book has no content whatsoever.
+This book offers reproducible code snippets to assist users in working with BiocPy representations. Beyond the representations detailed here, BiocPy also facilitates delayed operations and the analysis of multi-modal single-cell datasets in Python.
+
+Check out the [BiocPy GitHub organization](https://github.com/BiocPy) for the most up-to-date information.
+
+### Core contributors
+
+- [Jayaram Kancherla](https://github.com/jkanche)
+- [Aaron Lun](https://github.com/LTLA)
+
+## Logo
+
+This is truly a work of art from **Aaron Lun**:
+
+![](https://raw.githubusercontent.com/BiocPy/.github/main/logo/full.png)
+
+

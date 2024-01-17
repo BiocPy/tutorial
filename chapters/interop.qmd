@@ -1,0 +1,76 @@
+# Interop with R
+
+The [rds2py](https://github.com/BiocPy/rds2py) package serves as a Python interface to the [rds2cpp](https://github.com/LTLA/rds2cpp) library, enabling direct reading of RDS files within Python. This eliminates the need for additional data conversion tools or intermediate formats, streamlining the transition between Python and R for seamless analysis.
+
+One notable feature is the use of memory views (excluding strings) to access the same memory from C++ in Python, facilitated through Cython. This approach is particularly advantageous for handling large datasets, as it avoids unnecessary duplication of data.
+
+What sets `rds2py` apart from other similar parsers is its capability to read **S4** classes. This unique feature allows the parsing of Bioconductor data types directly from R into Python.
+
+## Installation
+
+To get started, install the package from [PyPI](https://pypi.org/project/multiassayexperiment/)
+
+```bash
+pip install multiassayexperiment
+```
+
+## Reading RDS objects
+
+Reading an RDS file in Python involves a two-step process. First, we parse the serialized **RDS** into a readable Python object, typically a dictionary. This object contains both the ***data*** and relevant ***metadata*** about the structure and internal representation of the R object. Subsequently, we use one of the available functions to convert this object into a Python representation.
+
+## Step 0: Save an RDS file
+
+Before we begin, let's create a test dataset from R. In this example, we'll download the "zeisel brain" dataset from the [scRNAseq package](https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html). For tutorial purposes, we'll filter the dataset to the first 1000 rows and save it as an RDS file.
+
+```r
+library(scRNAseq)
+sce <- ZeiselBrainData()
+sub <- sce[1:1000,]
+saveRDS(sub, "../assets/data/zeisel-brain-subset.rds")
+```
+
+## Step 1: Parse the RDS file
+
+Now, we can read the RDS file in Python using the `read_rds` function, which parses the file contents and returns a dictionary of the R object.
+
+```{python}
+#| output: false
+from rds2py import read_rds
+
+r_object = read_rds("../assets/data/zeisel-brain-subset.rds")
+
+from rich import print as pprint
+pprint(r_object) # hiding the response
+```
+
+:::{.callout-note}
+The output of the above code block is hidden to maintain the cleanliness and visual appeal of this document :) 
+:::
+
+Once we have a realized structure, we can convert this object into useful Python representations. It contains **two** keys:
+- **data**: If atomic entities, contains the NumPy view of the memory space.
+- **attributes**: Additional properties available for the object.
+
+## Step 2: Conversion to Python representations
+
+The package provides functions to convert these R objects into useful Python representations.
+
+```{python}
+from rds2py import as_summarized_experiment
+
+# to convert an robject to SCE
+sce = as_summarized_experiment(r_object)
+
+print(sce)
+```
+
+
+And that's it! It's as straightforward as that. The `as_summarized_experiment` function serves as an example of how to convert complex R structures into Python representations. Similarly, the package offers parsers for atomic vectors, lists, read matrices, data frames, and most R data structures.
+
+You can continue to convert this data into `AnnData` representation and perform analysis. For more details on `SingleCellExperiment`, refer to the documentation [here](./experiments/singlecell_expt.qmd).
+
+```{python}
+sce.to_anndata()
+```
+
+Well, that's all. Dive in, explore, and create more base representations to encapsulate complex R structures. If you wish to add more representations, we are more than happy to accept contributions.
