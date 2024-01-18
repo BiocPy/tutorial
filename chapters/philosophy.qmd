@@ -8,10 +8,10 @@ guidelines to ensure code quality and consistency across all our packages.
 Our objective is to provide a consistent user experience in Python for each Bioconductor class.
 In most cases, this is achieved by directly re-implementing the class and its 
 associated methods in Python. 
-Occasionally, there are cases where the Bioconductor implementation includes legacy backward 
-compatibility issues (e.g., the storage of `rowData` in a `RangedSummarizedExperiment`, 
-`MultiAssayExperiment` harmonization); developers should use their own discretion 
-to decide whether replicating these issues in Python is necessary.
+Occasionally, there are cases where the Bioconductor implementation has historical idiosyncrasies
+that lead to unintuitive user experience e.g., the storage of `rowData` in a `RangedSummarizedExperiment`, 
+`MultiAssayExperiment` harmonization; developers should use their own discretion 
+to decide whether replicating this behavior in Python is necessary.
 
 ## Naming
 
@@ -41,45 +41,47 @@ programming paradigm:
 gr.flank(width=2, start=False, both=True)
 ```
 
-### Functional discipline {#sec-functional}
+## Functional discipline {#sec-functional}
 
-The existence of mutable types in Python introduces the potential risk of 
-modifying complex objects. 
-If a mutable object has a user-visible reference and is also a component of a 
-larger Bioconductor object, user-specified modifications to that object may 
-violate the constraints of the parent object.
+The existence of mutable types in Python introduces the potential for 
+inadvertently modifying complex objects. 
+Generally, users lack knowledge about whether an object (or their reference to it) 
+serves as a component of another object, such as a `BiocFrame` set as `column_data` 
+in a `SummarizedExperiment`. 
+Any user modifications to an instance of a mutable type may unexpectedly impact 
+all objects containing that instance.
 
-To address these issues, we enforce a functional programming discipline in all 
+To address these issues, we recommend adopting a functional programming paradigm in all 
 class methods. 
-By default, all methods should avoid side effects that mutate the object. 
-This simplifies the reasoning around the effects of methods and/or mutations in large, 
+By default, methods should refrain from causing side effects that mutate the object. 
+This simplifies reasoning about the effects of methods and mutations in large, 
 complex objects.
 
 #### Setter methods
 The most notable application of this philosophy is in ***setter*** methods. 
-Instead of directly mutating the object, they should return a new copy of the object
-with the desired modification. 
-The *"depth"* of the copy depends on the nature of the field being set; with the 
-goal of avoiding any modification of the contents in `self`. 
-Implementations may offer an `in_place=` option to apply the modification to the 
-original object, but this defaults to `False`.
+Instead of directly mutating the object, these methods should return a new copy of 
+the object with the desired modification. 
+The *"depth"* of the copy is left to the discretion of the developer. 
+For example, some methods may choose to use a shallow copy for efficiency. 
+The only requirement is to avoid any modification to the contents in `self`. 
+While implementations may offer an `in_place=` option to modify the 
+original object, this should default to `False`.
 
 #### Getter methods
-To avoid performance issues, ***getter*** methods may return mutable objects 
-without copying, assuming that their return values are read-only and will not be 
-directly mutated (Setter methods that operate via a copy are allowed). 
-In some cases, the return value of a getter method may be directly mutated, 
-for example, because a copy was already created in the getter; this should be explicitly 
-stated in the documentation but should not be considered the default behavior.
+The return value of a ***getter*** method should remain unaltered to avoid potential mutations in `self`. 
+For getters that return mutable types, developers should document that the return value is read-only.
+This aims to discourage users from unintentionally modifying `self` by mutating the return value.
+(Note that functional style setters can still be applied - they are compatible with a read-only 
+philosophy since they do not actually modify the object.)
+Developers may also choose to return a copy that can be more freely modified, depending on the 
+depth of the copy, users should refer to the relevant method's documentation.
 
 #### Property-based getters and setters
 
 Direct access to class members (via properties or `@property` decorator) should 
-generally be avoided, as it is too easy to perform modifications via one-liners 
-with the `class.property` notation on the left-hand-side of an assignment.
-
-The default assumption is that property-based setters will perform *in-place* 
-mutations on the object.
+generally be avoided, as it mutates the object *in-place*. 
+This could lead to unexpected side effects as previously discussed. 
+Nevertheless, developers may provide these methods for compatibility purposes.
 
 ## Type hints
 
@@ -96,7 +98,7 @@ def find_element(arr: list, query: int)
     pass
 ```
 
-If the function expects a list of strings,
+If the function expects a list of strings:
 
 ```python
 from typing import List
@@ -105,7 +107,7 @@ def find_element(arr: List[str], query: str):
     pass
 ```
 
-In cases where the function accepts multiple types as inputs,
+In cases where the function accepts multiple types as inputs:
 
 ```python
 from typing import Union

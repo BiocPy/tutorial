@@ -6,13 +6,12 @@ One of the main advantages of Bioconductor is the availability of
 standard data representations and large number of analysis tools for genomic 
 experiments. 
 These tools allow researchers to efficiently store, manipulate, and analyze
-their data, leading to a deeper understanding of the underlying biological
-processes.
+their data across multiple tools and workflows.
 
 Inspired by Bioconductor, [BiocPy](https://github.com/BiocPy) aims to facilitate 
-bioconductor workflows in Python. 
+bioinformatics workflows in Python. 
 To achieve this goal, we developed several core data structures that align 
-closely to the bioconductor implementations. 
+closely to the Bioconductor implementations. 
 These structures include [BiocFrame](https://github.com/BiocPy/BiocFrame), 
 providing a Bioconductor-like data frame class, and the 
 [GenomicRanges](https://github.com/BiocPy/GenomicRanges) which aids in representing 
@@ -28,8 +27,9 @@ Additionally, BiocPy introduces infrastructure packages supporting delayed opera
 ([DelayedArray](https://github.com/BiocPy/DelayedArray)) and incorporates various 
 generics and utilities in [BiocUtils](https://github.com/BiocPy/BiocUtils). 
 While there have been previous efforts to port bioconductor representations into 
-Python, BiocPy stands out as the first to develop seamless, well-integrated data 
-structures and representations.
+Python e.g. AnnData, plyranges, these efforts are fragmented and have limited interoperability.
+To our knowledge, BiocPy is the first Python framework to provide seamless, well-integrated data 
+structures and representations for genomic data analysis.
 
 For convenient access to experimental data stored in RDS files, the
 [rds2py](https://github.com/BiocPy/rds2py) package provides bindings to the 

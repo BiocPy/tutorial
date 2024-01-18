@@ -29,7 +29,6 @@ book:
     background: light
   chapters:
     - index.qmd
-    - chapters/philosophy.qmd
     - part: chapters/representations/index.qmd
       chapters:
         - chapters/representations/biocframe.qmd
@@ -45,6 +44,7 @@ book:
       chapters:
         - chapters/extras/delayedarrays.qmd
         - chapters/extras/iranges.qmd
+    - chapters/philosophy.qmd
     - chapters/summary.qmd
     - chapters/sessioninfo.qmd
     # - chapters/references.qmd
