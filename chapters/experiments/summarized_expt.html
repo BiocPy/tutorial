@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 4&nbsp; Summarized experiment">
+<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 3&nbsp; Summarized experiment">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -112,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/experiments/index.html">Represent experimental data</a></li><li class="breadcrumb-item"><a href="../../chapters/experiments/summarized_expt.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summarized experiment</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/experiments/index.html">Represent experimental data</a></li><li class="breadcrumb-item"><a href="../../chapters/experiments/summarized_expt.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summarized experiment</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -162,11 +162,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/philosophy.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Programming philosophy</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -247,6 +242,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/philosophy.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Programming philosophy</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summary</span></a>
@@ -503,13 +503,13 @@ assay names (functional style):  ['counts']
 BiocFrame with 200 rows and 6 columns
       seqnames  starts    ends strand   score                  GC
         &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;              &lt;list&gt;
-  [0]     chr1     100     110      -       0 0.44287729961290345
-  [1]     chr2     101     111      +       1  0.4399650525087444
-  [2]     chr2     102     112      +       2 0.48308124576542033
+  [0]     chr1     100     110      -       0  0.6206238648384684
+  [1]     chr2     101     111      +       1   0.706052754775233
+  [2]     chr2     102     112      +       2  0.8947281831600173
            ...     ...     ...    ...     ...                 ...
-[197]     chr3     297     307      +     197  0.3707990094476854
-[198]     chr3     298     308      -     198 0.24901207355788968
-[199]     chr3     299     309      -     199 0.23897407992854192</code></pre>
+[197]     chr3     297     307      +     197  0.9746242043259665
+[198]     chr3     298     308      -     198 0.30396867138212635
+[199]     chr3     299     309      -     199  0.6190459251171145</code></pre>
 </div>
 </div>
 <section id="access-an-assay" class="level4">
@@ -518,19 +518,19 @@ BiocFrame with 200 rows and 6 columns
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>se.assay(<span class="dv">0</span>) <span class="co"># same as se.assay("counts")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>array([[0.3933854 , 0.72873272, 0.00628248, 0.55837897, 0.1528187 ,
-        0.39869402],
-       [0.43198235, 0.95347678, 0.08756841, 0.95216578, 0.28263035,
-        0.25479708],
-       [0.0202977 , 0.15212317, 0.64220751, 0.54766264, 0.41459023,
-        0.15254854],
+<pre><code>array([[0.06696942, 0.06518439, 0.01505741, 0.86931516, 0.15725091,
+        0.75223745],
+       [0.89664641, 0.18888351, 0.78243744, 0.87104183, 0.11108078,
+        0.91145169],
+       [0.50723734, 0.4809359 , 0.2499807 , 0.20132497, 0.12898072,
+        0.19666936],
        ...,
-       [0.80531539, 0.78660475, 0.48454933, 0.00198338, 0.03168064,
-        0.3476438 ],
-       [0.26475313, 0.73623168, 0.63995592, 0.49012745, 0.01212118,
-        0.12607948],
-       [0.6209487 , 0.37658801, 0.85175638, 0.21924598, 0.52292614,
-        0.71995928]])</code></pre>
+       [0.3916182 , 0.96087428, 0.13363825, 0.83144404, 0.60374357,
+        0.91965496],
+       [0.43200661, 0.85758919, 0.3924968 , 0.57138388, 0.71856927,
+        0.38637231],
+       [0.46423608, 0.89911459, 0.75000861, 0.33745282, 0.18095383,
+        0.71658201]])</code></pre>
 </div>
 </div>
 </section>
@@ -888,7 +888,7 @@ metadata(1): seq_platform
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (3, 6)
-assays(3): ['beta', 'lognorm', 'counts']
+assays(3): ['lognorm', 'beta', 'counts']
 row_data columns(3): ['seqnames', 'start', 'end']
 row_names(3): ['MYC', 'BRCA2', 'TPFK']
 column_data columns(3): ['sample', 'disease', 'doublet_score']

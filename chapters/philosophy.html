@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/representations/index.html" rel="next">
-<link href="../index.html" rel="prev">
+<link href="../chapters/summary.html" rel="next">
+<link href="../chapters/extras/iranges.html" rel="prev">
 <link href="../https://raw.githubusercontent.com/BiocPy/.github/main/logo/short.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 1&nbsp; Programming philosophy">
+<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 10&nbsp; Programming philosophy">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -162,11 +162,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/philosophy.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Programming philosophy</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -249,6 +244,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/philosophy.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Programming philosophy</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summary</span></a>
   </div>
 </li>
@@ -269,10 +269,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#class-design" id="toc-class-design" class="nav-link active" data-scroll-target="#class-design">Class design</a></li>
-  <li><a href="#naming" id="toc-naming" class="nav-link" data-scroll-target="#naming">Naming</a>
-  <ul class="collapse">
+  <li><a href="#naming" id="toc-naming" class="nav-link" data-scroll-target="#naming">Naming</a></li>
   <li><a href="#sec-functional" id="toc-sec-functional" class="nav-link" data-scroll-target="#sec-functional">Functional discipline</a></li>
-  </ul></li>
   <li><a href="#type-hints" id="toc-type-hints" class="nav-link" data-scroll-target="#type-hints">Type hints</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
   </ul>
@@ -301,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>As we developed BiocPy packages, we established standards and contribution guidelines to ensure code quality and consistency across all our packages.</p>
 <section id="class-design" class="level2">
 <h2 class="anchored" data-anchor-id="class-design">Class design</h2>
-<p>Our objective is to provide a consistent user experience in Python for each Bioconductor class. In most cases, this is achieved by directly re-implementing the class and its associated methods in Python. Occasionally, there are cases where the Bioconductor implementation includes legacy backward compatibility issues (e.g., the storage of <code>rowData</code> in a <code>RangedSummarizedExperiment</code>, <code>MultiAssayExperiment</code> harmonization); developers should use their own discretion to decide whether replicating these issues in Python is necessary.</p>
+<p>Our objective is to provide a consistent user experience in Python for each Bioconductor class. In most cases, this is achieved by directly re-implementing the class and its associated methods in Python. Occasionally, there are cases where the Bioconductor implementation has historical idiosyncrasies that lead to unintuitive user experience e.g., the storage of <code>rowData</code> in a <code>RangedSummarizedExperiment</code>, <code>MultiAssayExperiment</code> harmonization; developers should use their own discretion to decide whether replicating this behavior in Python is necessary.</p>
 </section>
 <section id="naming" class="level2">
 <h2 class="anchored" data-anchor-id="naming">Naming</h2>
@@ -310,23 +308,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flank</span>(gr, <span class="at">width=</span><span class="dv">2</span>, <span class="at">start=</span><span class="cn">FALSE</span>, <span class="at">both=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In the <a href="https://github.com/BiocPy/GenomicRanges">GenomicRanges</a> Python packages, we maintain consistency by expecting the same method name. The only difference lies in the shift from a functional to an object-oriented programming paradigm:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gr.flank(width<span class="op">=</span><span class="dv">2</span>, start<span class="op">=</span><span class="va">False</span>, both<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="sec-functional" class="level3">
-<h3 class="anchored" data-anchor-id="sec-functional">Functional discipline</h3>
-<p>The existence of mutable types in Python introduces the potential risk of modifying complex objects. If a mutable object has a user-visible reference and is also a component of a larger Bioconductor object, user-specified modifications to that object may violate the constraints of the parent object.</p>
-<p>To address these issues, we enforce a functional programming discipline in all class methods. By default, all methods should avoid side effects that mutate the object. This simplifies the reasoning around the effects of methods and/or mutations in large, complex objects.</p>
+</section>
+<section id="sec-functional" class="level2">
+<h2 class="anchored" data-anchor-id="sec-functional">Functional discipline</h2>
+<p>The existence of mutable types in Python introduces the potential for inadvertently modifying complex objects. Generally, users lack knowledge about whether an object (or their reference to it) serves as a component of another object, such as a <code>BiocFrame</code> set as <code>column_data</code> in a <code>SummarizedExperiment</code>. Any user modifications to an instance of a mutable type may unexpectedly impact all objects containing that instance.</p>
+<p>To address these issues, we recommend adopting a functional programming paradigm in all class methods. By default, methods should refrain from causing side effects that mutate the object. This simplifies reasoning about the effects of methods and mutations in large, complex objects.</p>
 <section id="setter-methods" class="level4">
 <h4 class="anchored" data-anchor-id="setter-methods">Setter methods</h4>
-<p>The most notable application of this philosophy is in <strong><em>setter</em></strong> methods. Instead of directly mutating the object, they should return a new copy of the object with the desired modification. The <em>“depth”</em> of the copy depends on the nature of the field being set; with the goal of avoiding any modification of the contents in <code>self</code>. Implementations may offer an <code>in_place=</code> option to apply the modification to the original object, but this defaults to <code>False</code>.</p>
+<p>The most notable application of this philosophy is in <strong><em>setter</em></strong> methods. Instead of directly mutating the object, these methods should return a new copy of the object with the desired modification. The <em>“depth”</em> of the copy is left to the discretion of the developer. For example, some methods may choose to use a shallow copy for efficiency. The only requirement is to avoid any modification to the contents in <code>self</code>. While implementations may offer an <code>in_place=</code> option to modify the original object, this should default to <code>False</code>.</p>
 </section>
 <section id="getter-methods" class="level4">
 <h4 class="anchored" data-anchor-id="getter-methods">Getter methods</h4>
-<p>To avoid performance issues, <strong><em>getter</em></strong> methods may return mutable objects without copying, assuming that their return values are read-only and will not be directly mutated (Setter methods that operate via a copy are allowed). In some cases, the return value of a getter method may be directly mutated, for example, because a copy was already created in the getter; this should be explicitly stated in the documentation but should not be considered the default behavior.</p>
+<p>The return value of a <strong><em>getter</em></strong> method should remain unaltered to avoid potential mutations in <code>self</code>. For getters that return mutable types, developers should document that the return value is read-only. This aims to discourage users from unintentionally modifying <code>self</code> by mutating the return value. (Note that functional style setters can still be applied - they are compatible with a read-only philosophy since they do not actually modify the object.) Developers may also choose to return a copy that can be more freely modified, depending on the depth of the copy, users should refer to the relevant method’s documentation.</p>
 </section>
 <section id="property-based-getters-and-setters" class="level4">
 <h4 class="anchored" data-anchor-id="property-based-getters-and-setters">Property-based getters and setters</h4>
-<p>Direct access to class members (via properties or <code>@property</code> decorator) should generally be avoided, as it is too easy to perform modifications via one-liners with the <code>class.property</code> notation on the left-hand-side of an assignment.</p>
-<p>The default assumption is that property-based setters will perform <em>in-place</em> mutations on the object.</p>
-</section>
+<p>Direct access to class members (via properties or <code>@property</code> decorator) should generally be avoided, as it mutates the object <em>in-place</em>. This could lead to unexpected side effects as previously discussed. Nevertheless, developers may provide these methods for compatibility purposes.</p>
 </section>
 </section>
 <section id="type-hints" class="level2">
@@ -335,12 +332,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For this reason, we prefer for using simple types in these hints, typically corresponding to base Python types with minimal nesting. For example, if a function is expected to operate on any arbitrary list, the basic list type hint should suffice.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_element(arr: <span class="bu">list</span>, query: <span class="bu">int</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If the function expects a list of strings,</p>
+<p>If the function expects a list of strings:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> List</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_element(arr: List[<span class="bu">str</span>], query: <span class="bu">str</span>):</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In cases where the function accepts multiple types as inputs,</p>
+<p>In cases where the function accepts multiple types as inputs:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Union</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_element(arr: List[<span class="bu">str</span>], query: Union[<span class="bu">int</span>, <span class="bu">str</span>, <span class="bu">slice</span>]):</span>
@@ -590,13 +587,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Welcome</span>
+      <a href="../chapters/extras/iranges.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/representations/index.html" class="pagination-link">
-        <span class="nav-page-text">The basics</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/summary.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

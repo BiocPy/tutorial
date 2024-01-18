@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 9&nbsp; DelayedArrays, in Python">
+<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 8&nbsp; DelayedArrays, in Python">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -112,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/extras/index.html">Additional packages</a></li><li class="breadcrumb-item"><a href="../../chapters/extras/delayedarrays.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">DelayedArrays, in Python</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/extras/index.html">Additional packages</a></li><li class="breadcrumb-item"><a href="../../chapters/extras/delayedarrays.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">DelayedArrays, in Python</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -162,11 +162,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/philosophy.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Programming philosophy</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -249,6 +244,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../chapters/philosophy.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Programming philosophy</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../chapters/summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summary</span></a>
   </div>
 </li>
@@ -310,19 +310,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> numpy.random.rand(<span class="dv">100</span>, <span class="dv">20</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>array([[0.9551997 , 0.92284064, 0.55648327, ..., 0.06236503, 0.48729565,
-        0.39724055],
-       [0.91674243, 0.9466433 , 0.18240636, ..., 0.42411148, 0.11389716,
-        0.157167  ],
-       [0.10371779, 0.61302856, 0.71148723, ..., 0.04918185, 0.07505254,
-        0.36703511],
+<pre><code>array([[0.68979015, 0.20248322, 0.01749666, ..., 0.03549872, 0.22937732,
+        0.54040654],
+       [0.87621931, 0.67145471, 0.25943006, ..., 0.68197162, 0.71375692,
+        0.91075305],
+       [0.62215974, 0.14743395, 0.51327641, ..., 0.89469923, 0.78999849,
+        0.11074316],
        ...,
-       [0.05566776, 0.85861794, 0.32549846, ..., 0.3992221 , 0.63700789,
-        0.9450016 ],
-       [0.09131135, 0.92384095, 0.05652964, ..., 0.13912822, 0.27451144,
-        0.40310922],
-       [0.41447275, 0.77479202, 0.72374602, ..., 0.35589475, 0.69161156,
-        0.94033372]])</code></pre>
+       [0.45554749, 0.89359346, 0.919647  , ..., 0.34600461, 0.16655526,
+        0.66614957],
+       [0.67307148, 0.38802098, 0.29485673, ..., 0.57726099, 0.07828719,
+        0.86869147],
+       [0.57024268, 0.76646119, 0.02388173, ..., 0.10498704, 0.97908422,
+        0.62380837]])</code></pre>
 </div>
 </div>
 <p>We can wrap this in a <code>DelayedArray</code> class:</p>
@@ -332,19 +332,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>&lt;100 x 20&gt; DelayedArray object of type 'float64'
-[[0.9551997 , 0.92284064, 0.55648327, ..., 0.06236503, 0.48729565,
-  0.39724055],
- [0.91674243, 0.9466433 , 0.18240636, ..., 0.42411148, 0.11389716,
-  0.157167  ],
- [0.10371779, 0.61302856, 0.71148723, ..., 0.04918185, 0.07505254,
-  0.36703511],
+[[0.68979015, 0.20248322, 0.01749666, ..., 0.03549872, 0.22937732,
+  0.54040654],
+ [0.87621931, 0.67145471, 0.25943006, ..., 0.68197162, 0.71375692,
+  0.91075305],
+ [0.62215974, 0.14743395, 0.51327641, ..., 0.89469923, 0.78999849,
+  0.11074316],
  ...,
- [0.05566776, 0.85861794, 0.32549846, ..., 0.3992221 , 0.63700789,
-  0.9450016 ],
- [0.09131135, 0.92384095, 0.05652964, ..., 0.13912822, 0.27451144,
-  0.40310922],
- [0.41447275, 0.77479202, 0.72374602, ..., 0.35589475, 0.69161156,
-  0.94033372]]</code></pre>
+ [0.45554749, 0.89359346, 0.919647  , ..., 0.34600461, 0.16655526,
+  0.66614957],
+ [0.67307148, 0.38802098, 0.29485673, ..., 0.57726099, 0.07828719,
+  0.86869147],
+ [0.57024268, 0.76646119, 0.02388173, ..., 0.10498704, 0.97908422,
+  0.62380837]]</code></pre>
 </div>
 </div>
 <p>And then we can use it in a variety of operations. For example, in genomics, a typical quality control task is to slice the matrix to remove uninteresting features (rows) or samples (columns):</p>
@@ -370,14 +370,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>transformed[<span class="dv">1</span>:<span class="dv">5</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>&lt;4 x 7&gt; DelayedArray object of type 'float64'
-[[0.03452587, 0.0222498 , 0.01041277, ..., 0.00179918, 0.02492983,
-  0.02446868],
- [0.01243475, 0.02792065, 0.02001322, ..., 0.01347474, 0.00019308,
-  0.04022498],
- [0.01950188, 0.00684994, 0.02947185, ..., 0.03124378, 0.005151  ,
-  0.0009389 ],
- [0.02759915, 0.02540211, 0.00657966, ..., 0.03108475, 0.01384939,
-  0.01937936]]</code></pre>
+[[0.03245719, 0.0172179 , 0.01355181, ..., 0.02323966, 0.01334551,
+  0.00998164],
+ [0.02174287, 0.0361274 , 0.03961761, ..., 0.03000277, 0.00403579,
+  0.00472687],
+ [0.02650649, 0.01919338, 0.02456315, ..., 0.01862729, 0.00358018,
+  0.00198679],
+ [0.01665111, 0.02102558, 0.02956681, ..., 0.01900289, 0.0264652 ,
+  0.01155552]]</code></pre>
 </div>
 </div>
 <p>Each operation just returns a <code>DelayedArray</code> with an increasing stack of delayed operations, without evaluating anything or making any copies. Check out the <a href="https://biocpy.github.io/DelayedArray/">documentation</a> for more information.</p>
@@ -453,19 +453,19 @@ metadata(0):
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>d.seed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>array([[0.9551997 , 0.92284064, 0.55648327, ..., 0.06236503, 0.48729565,
-        0.39724055],
-       [0.91674243, 0.9466433 , 0.18240636, ..., 0.42411148, 0.11389716,
-        0.157167  ],
-       [0.10371779, 0.61302856, 0.71148723, ..., 0.04918185, 0.07505254,
-        0.36703511],
+<pre><code>array([[0.68979015, 0.20248322, 0.01749666, ..., 0.03549872, 0.22937732,
+        0.54040654],
+       [0.87621931, 0.67145471, 0.25943006, ..., 0.68197162, 0.71375692,
+        0.91075305],
+       [0.62215974, 0.14743395, 0.51327641, ..., 0.89469923, 0.78999849,
+        0.11074316],
        ...,
-       [0.05566776, 0.85861794, 0.32549846, ..., 0.3992221 , 0.63700789,
-        0.9450016 ],
-       [0.09131135, 0.92384095, 0.05652964, ..., 0.13912822, 0.27451144,
-        0.40310922],
-       [0.41447275, 0.77479202, 0.72374602, ..., 0.35589475, 0.69161156,
-        0.94033372]])</code></pre>
+       [0.45554749, 0.89359346, 0.919647  , ..., 0.34600461, 0.16655526,
+        0.66614957],
+       [0.67307148, 0.38802098, 0.29485673, ..., 0.57726099, 0.07828719,
+        0.86869147],
+       [0.57024268, 0.76646119, 0.02388173, ..., 0.10498704, 0.97908422,
+        0.62380837]])</code></pre>
 </div>
 </div>
 <p>Each layer has its own specific attributes that define the operation, e.g.,</p>

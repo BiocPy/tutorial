@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 5&nbsp; Single-cell experiment">
+<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 4&nbsp; Single-cell experiment">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -112,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/experiments/index.html">Represent experimental data</a></li><li class="breadcrumb-item"><a href="../../chapters/experiments/singlecell_expt.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Single-cell experiment</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/experiments/index.html">Represent experimental data</a></li><li class="breadcrumb-item"><a href="../../chapters/experiments/singlecell_expt.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Single-cell experiment</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -162,11 +162,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/philosophy.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Programming philosophy</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -247,6 +242,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/philosophy.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Programming philosophy</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summary</span></a>
@@ -515,15 +515,15 @@ Note
 <pre><code>reduced dim names (as property):  ['random_embeds']
 reduced dim names (functional style):  ['random_embeds']
 BiocFrame with 200 rows and 6 columns
-      seqnames  starts    ends strand   score                 GC
-        &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;             &lt;list&gt;
-  [0]     chr1     100     110      -       0 0.7640358528285979
-  [1]     chr2     101     111      +       1 0.9822240215036208
-  [2]     chr2     102     112      +       2 0.7043580260436964
-           ...     ...     ...    ...     ...                ...
-[197]     chr3     297     307      +     197 0.8704632003597899
-[198]     chr3     298     308      -     198 0.9653675724723517
-[199]     chr3     299     309      -     199  0.169923083291752</code></pre>
+      seqnames  starts    ends strand   score                  GC
+        &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;              &lt;list&gt;
+  [0]     chr1     100     110      -       0  0.8456819670659126
+  [1]     chr2     101     111      +       1  0.7595177148883219
+  [2]     chr2     102     112      +       2  0.8547513592607633
+           ...     ...     ...    ...     ...                 ...
+[197]     chr3     297     307      +     197  0.5886986613950895
+[198]     chr3     298     308      -     198 0.24353180395103402
+[199]     chr3     299     309      -     199  0.3170048994691379</code></pre>
 </div>
 </div>
 <section id="access-a-reduced-dimension" class="level4">
@@ -532,12 +532,12 @@ BiocFrame with 200 rows and 6 columns
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sce.reduced_dim(<span class="dv">0</span>) <span class="co"># same as se.reduced_dim("random_embeds")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>array([[0.81871102, 0.9631889 , 0.23121495, 0.42167386],
-       [0.32017823, 0.78953891, 0.66200578, 0.66724583],
-       [0.47898181, 0.67945116, 0.19231237, 0.09149339],
-       [0.92179118, 0.54669157, 0.17733683, 0.72164017],
-       [0.24964581, 0.47848102, 0.98075815, 0.56084876],
-       [0.61174932, 0.6498709 , 0.11834604, 0.59049066]])</code></pre>
+<pre><code>array([[0.18486897, 0.53650413, 0.35621251, 0.63138217],
+       [0.71658885, 0.87782836, 0.15361475, 0.24776961],
+       [0.84859304, 0.51553462, 0.54198987, 0.38163058],
+       [0.83418194, 0.10063564, 0.98818254, 0.50308483],
+       [0.03009158, 0.93294213, 0.19331532, 0.45692433],
+       [0.84016204, 0.51897714, 0.83666241, 0.2292612 ]])</code></pre>
 </div>
 </div>
 </section>
