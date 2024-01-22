@@ -254,7 +254,7 @@ print(result)
 
 Additionally, RSE supports many other interval based operations. Checkout the [documentation](https://biocpy.github.io/SummarizedExperiment/api/modules.html) for more details.
 
-## Combining experiments
+## Combining experiments {#sec-se-combine}
 
 `SummarizedExperiment` implements methods for the various `combine` generics from [**BiocUtils**](https://github.com/BiocPy/biocutils).
 

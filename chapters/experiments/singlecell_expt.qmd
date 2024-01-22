@@ -175,6 +175,129 @@ subset_sce = sce[0:10, 0:3]
 print(subset_sce)
 ```
 
+
+## Combining experiments {#sec-sce-combine}
+
+`SingleCellExperiment` implements methods for the various `combine` generics from [**BiocUtils**](https://github.com/BiocPy/biocutils).
+
+These methods enable the merging or combining of multiple `SingleCellExperiment` objects, allowing users to aggregate data from different experiments or conditions. Note: `row_pairs` and `column_pairs` are not ignored as part of this operation.
+
+
+To demonstrate, let's create multiple `SingleCellExperiment` objects (read more about this in [combine section from `SummarizedExperiment`](./summarized_expt.qmd#combining-experiments)).
+
+```{python}
+#| code-fold: true
+#| code-summary: "Show the code"
+
+ncols = 10
+nrows = 100
+sce1 = SingleCellExperiment(
+    assays={"counts": np.random.poisson(lam=10, size=(nrows, ncols))},
+    row_data=BiocFrame({"A": [1] * nrows}),
+    column_data=BiocFrame({"A": [1] * ncols}),
+)
+
+sce2 = SingleCellExperiment(
+    assays={
+        "counts": np.random.poisson(lam=10, size=(nrows, ncols)),
+        # "normalized": np.random.normal(size=(nrows, ncols)),
+    },
+    row_data=BiocFrame({"A": [3] * nrows}),
+    column_data=BiocFrame({"A": [3] * ncols}),
+)
+
+rowdata1 = pd.DataFrame(
+    {
+        "seqnames": ["chr_5", "chr_3", "chr_2"],
+        "start": [500, 300, 200],
+        "end": [510, 310, 210],
+    },
+    index=["HER2", "BRCA1", "TPFK"],
+)
+coldata1 = pd.DataFrame(
+    {
+        "sample": ["SAM_1", "SAM_2", "SAM_3"],
+        "disease": ["True", "True", "True"],
+        "doublet_score": [0.15, 0.62, 0.18],
+    },
+    index=["cell_1", "cell_2", "cell_3"],
+)
+sce_alts1 = SingleCellExperiment(
+    assays={
+        "counts": np.random.poisson(lam=5, size=(3, 3)),
+        "lognorm": np.random.lognormal(size=(3, 3)),
+    },
+    row_data=rowdata1,
+    column_data=coldata1,
+    row_names=["HER2", "BRCA1", "TPFK"],
+    column_names=["cell_1", "cell_2", "cell_3"],
+    metadata={"seq_type": "paired"},
+    reduced_dims={"PCA": np.random.poisson(lam=10, size=(3, 5))},
+    alternative_experiments={
+        "modality1": SingleCellExperiment(
+            assays={"counts2": np.random.poisson(lam=10, size=(3, 3))},
+        )
+    },
+)
+
+rowdata2 = pd.DataFrame(
+    {
+        "seqnames": ["chr_5", "chr_3", "chr_2"],
+        "start": [500, 300, 200],
+        "end": [510, 310, 210],
+    },
+    index=["HER2", "BRCA1", "TPFK"],
+)
+coldata2 = pd.DataFrame(
+    {
+        "sample": ["SAM_4", "SAM_5", "SAM_6"],
+        "disease": ["True", "False", "True"],
+        "doublet_score": [0.05, 0.23, 0.54],
+    },
+    index=["cell_4", "cell_5", "cell_6"],
+)
+sce_alts2 = SingleCellExperiment(
+    assays={
+        "counts": np.random.poisson(lam=5, size=(3, 3)),
+        # "lognorm": np.random.lognormal(size=(3, 3)),
+    },
+    row_data=rowdata2,
+    column_data=coldata2,
+    metadata={"seq_platform": "Illumina NovaSeq 6000"},
+    reduced_dims={"PCA": np.random.poisson(lam=5, size=(3, 5))},
+    alternative_experiments={
+        "modality1": SingleCellExperiment(
+            assays={"counts2": np.random.poisson(lam=5, size=(3, 3))},
+        )
+    },
+)
+
+```
+
+The `combine_rows` or `combine_columns` operations, expect all experiments to contain the same assay names. To combine experiments by row:
+
+```{python}
+from biocutils import relaxed_combine_columns, combine_columns, combine_rows, relaxed_combine_rows
+sce_combined = combine_rows(sce2, sce1)
+print(sce_combined)
+```
+
+Similarly to combine by column:
+
+```{python}
+sce_combined = combine_columns(sce2, sce1)
+print(sce_combined)
+```
+
+You can use `relaxed_combine_columns` or `relaxed_combined_rows` when there's mismatch in the number of features or samples. Missing rows or columns in any object are filled in with appropriate placeholder values before combining, e.g. missing assay's are replaced with a masked numpy array.
+
+```{python}
+# sce_alts1 contains an additional assay not present in sce_alts2
+sce_relaxed_combine = relaxed_combine_columns(sce_alts1, sce_alts2)
+print(sce_relaxed_combine)
+```
+
+
 ## Export as `MuData`
 
 The package also provides methods to convert a `SingleCellExperiment` object into a `MuData` representation:
