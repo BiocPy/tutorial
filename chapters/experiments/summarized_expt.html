@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <link href="../../chapters/experiments/singlecell_expt.html" rel="next">
 <link href="../../chapters/experiments/index.html" rel="prev">
-<link href="../../https://raw.githubusercontent.com/BiocPy/.github/main/logo/short.png" rel="icon" type="image/png">
+<link href="../.././assets/short.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -128,25 +128,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">BiocPy: Enabling Bioconductor workflows in Python</a> 
-        <div class="sidebar-tools-main tools-wide">
+        <div class="sidebar-tools-main">
     <a href="https://github.com/BiocPy/tutorial" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../../BiocPy--Enabling-Bioconductor-workflows-in-Python.pdf">
-              <i class="bi bi-bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../../BiocPy--Enabling-Bioconductor-workflows-in-Python.epub">
-              <i class="bi bi-bi-journal pe-1"></i>
-            Download ePub
-            </a>
-          </li>
-      </ul>
-    </div>
     <a href="https://twitter.com/intent/tweet?url=|url|" rel="" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
 </div>
     </div>
@@ -283,7 +266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#subset-by-empty-list" id="toc-subset-by-empty-list" class="nav-link" data-scroll-target="#subset-by-empty-list">Subset by empty list</a></li>
   </ul></li>
   <li><a href="#range-based-operations" id="toc-range-based-operations" class="nav-link" data-scroll-target="#range-based-operations">Range-based operations</a></li>
-  <li><a href="#combining-experiments" id="toc-combining-experiments" class="nav-link" data-scroll-target="#combining-experiments">Combining experiments</a></li>
+  <li><a href="#sec-se-combine" id="toc-sec-se-combine" class="nav-link" data-scroll-target="#sec-se-combine">Combining experiments</a></li>
   <li><a href="#empty-experiments" id="toc-empty-experiments" class="nav-link" data-scroll-target="#empty-experiments">Empty experiments</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul>
@@ -454,14 +437,18 @@ column_names(6): ['0', '1', '2', '3', '4', '5']
 metadata(0): 
 </code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/genomicranges/SeqInfo.py:348: UserWarning: 'seqnames' is deprecated, use 'get_seqnames' instead
+  warn("'seqnames' is deprecated, use 'get_seqnames' instead", UserWarning)</code></pre>
+</div>
 </div>
 </section>
 <section id="interop-with-anndata" class="level2">
 <h2 class="anchored" data-anchor-id="interop-with-anndata">Interop with <code>anndata</code></h2>
 <p>Converting a <code>SummarizedExperiment</code> to an <code>AnnData</code> representation is straightforward:</p>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> se.to_anndata()</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> se.to_anndata()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>AnnData object with n_obs × n_vars = 6 × 200
     obs: 'treatment'
@@ -491,46 +478,46 @@ Tip
 <h2 class="anchored" data-anchor-id="getterssetters">Getters/Setters</h2>
 <p>Getters are available to access various attributes using either the property notation or functional style.</p>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access assay names</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"assay names (as property): "</span>, se.assay_names)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"assay names (functional style): "</span>, se.get_assay_names())</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># access row data</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se.row_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access assay names</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"assay names (as property): "</span>, se.assay_names)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"assay names (functional style): "</span>, se.get_assay_names())</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># access row data</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se.row_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>assay names (as property):  ['counts']
 assay names (functional style):  ['counts']
 BiocFrame with 200 rows and 6 columns
       seqnames  starts    ends strand   score                  GC
         &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;              &lt;list&gt;
-  [0]     chr1     100     110      -       0  0.6206238648384684
-  [1]     chr2     101     111      +       1   0.706052754775233
-  [2]     chr2     102     112      +       2  0.8947281831600173
+  [0]     chr1     100     110      -       0 0.15096056807902802
+  [1]     chr2     101     111      +       1 0.09030754343112235
+  [2]     chr2     102     112      +       2  0.8011504917926386
            ...     ...     ...    ...     ...                 ...
-[197]     chr3     297     307      +     197  0.9746242043259665
-[198]     chr3     298     308      -     198 0.30396867138212635
-[199]     chr3     299     309      -     199  0.6190459251171145</code></pre>
+[197]     chr3     297     307      +     197 0.07136484349604233
+[198]     chr3     298     308      -     198   0.710371934084544
+[199]     chr3     299     309      -     199 0.11116648262303042</code></pre>
 </div>
 </div>
 <section id="access-an-assay" class="level4">
 <h4 class="anchored" data-anchor-id="access-an-assay">Access an assay</h4>
 <p>One can access an assay by index or name:</p>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>se.assay(<span class="dv">0</span>) <span class="co"># same as se.assay("counts")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>se.assay(<span class="dv">0</span>) <span class="co"># same as se.assay("counts")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>array([[0.06696942, 0.06518439, 0.01505741, 0.86931516, 0.15725091,
-        0.75223745],
-       [0.89664641, 0.18888351, 0.78243744, 0.87104183, 0.11108078,
-        0.91145169],
-       [0.50723734, 0.4809359 , 0.2499807 , 0.20132497, 0.12898072,
-        0.19666936],
+<pre><code>array([[0.838897  , 0.63577981, 0.26819593, 0.33187852, 0.81447763,
+        0.60577912],
+       [0.82934827, 0.83931056, 0.07572623, 0.67614089, 0.70412428,
+        0.47803437],
+       [0.99799309, 0.90455205, 0.1309006 , 0.65776222, 0.2293158 ,
+        0.33355162],
        ...,
-       [0.3916182 , 0.96087428, 0.13363825, 0.83144404, 0.60374357,
-        0.91965496],
-       [0.43200661, 0.85758919, 0.3924968 , 0.57138388, 0.71856927,
-        0.38637231],
-       [0.46423608, 0.89911459, 0.75000861, 0.33745282, 0.18095383,
-        0.71658201]])</code></pre>
+       [0.93789658, 0.90860261, 0.93768083, 0.60069633, 0.43817479,
+        0.16061092],
+       [0.93239619, 0.30730906, 0.64752842, 0.3038291 , 0.18368502,
+        0.8999486 ],
+       [0.12968062, 0.67951405, 0.48983332, 0.90058234, 0.36137308,
+        0.88371459]])</code></pre>
 </div>
 </div>
 </section>
@@ -550,9 +537,9 @@ Important
 </div>
 </div>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>modified_column_data <span class="op">=</span> se.column_data.set_column(<span class="st">"score"</span>, <span class="bu">range</span>(<span class="dv">10</span>,<span class="dv">16</span>))</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>modified_se <span class="op">=</span> se.set_column_data(modified_column_data)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified_se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>modified_column_data <span class="op">=</span> se.column_data.set_column(<span class="st">"score"</span>, <span class="bu">range</span>(<span class="dv">10</span>,<span class="dv">16</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>modified_se <span class="op">=</span> se.set_column_data(modified_column_data)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified_se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (200, 6)
@@ -567,7 +554,7 @@ metadata(0):
 </div>
 <p>Now, lets check the <code>column_data</code> on the original object.</p>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se.column_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se.column_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 6 rows and 1 column
   treatment
@@ -589,31 +576,31 @@ metadata(0):
 <div class="cell" data-execution_count="9">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>row_data <span class="op">=</span> BiocFrame({</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"seqnames"</span>: [<span class="st">"chr_5"</span>, <span class="st">"chr_3"</span>, <span class="st">"chr_2"</span>],</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"start"</span>: [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>],</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"end"</span>: [<span class="dv">110</span>, <span class="dv">210</span>, <span class="dv">310</span>],</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>col_data <span class="op">=</span> BiocFrame({</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sample"</span>: [<span class="st">"SAM_1"</span>, <span class="st">"SAM_3"</span>, <span class="st">"SAM_3"</span>],</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"disease"</span>: [<span class="st">"True"</span>, <span class="st">"True"</span>, <span class="st">"True"</span>],</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    row_names<span class="op">=</span>[<span class="st">"cell_1"</span>, <span class="st">"cell_2"</span>, <span class="st">"cell_3"</span>],</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>se_with_names <span class="op">=</span> SummarizedExperiment(</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    assays<span class="op">=</span>{</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"counts"</span>: np.random.poisson(lam<span class="op">=</span><span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>)),</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"lognorm"</span>: np.random.lognormal(size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>)),</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    row_data<span class="op">=</span>row_data,</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    column_data<span class="op">=</span>col_data,</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    row_names<span class="op">=</span>[<span class="st">"HER2"</span>, <span class="st">"BRCA1"</span>, <span class="st">"TPFK"</span>],</span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    column_names<span class="op">=</span>[<span class="st">"cell_1"</span>, <span class="st">"cell_2"</span>, <span class="st">"cell_3"</span>],</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se_with_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>row_data <span class="op">=</span> BiocFrame({</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"seqnames"</span>: [<span class="st">"chr_5"</span>, <span class="st">"chr_3"</span>, <span class="st">"chr_2"</span>],</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"start"</span>: [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>],</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"end"</span>: [<span class="dv">110</span>, <span class="dv">210</span>, <span class="dv">310</span>],</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>col_data <span class="op">=</span> BiocFrame({</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sample"</span>: [<span class="st">"SAM_1"</span>, <span class="st">"SAM_3"</span>, <span class="st">"SAM_3"</span>],</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"disease"</span>: [<span class="st">"True"</span>, <span class="st">"True"</span>, <span class="st">"True"</span>],</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    row_names<span class="op">=</span>[<span class="st">"cell_1"</span>, <span class="st">"cell_2"</span>, <span class="st">"cell_3"</span>],</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>se_with_names <span class="op">=</span> SummarizedExperiment(</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    assays<span class="op">=</span>{</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"counts"</span>: np.random.poisson(lam<span class="op">=</span><span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>)),</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"lognorm"</span>: np.random.lognormal(size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>)),</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    row_data<span class="op">=</span>row_data,</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    column_data<span class="op">=</span>col_data,</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    row_names<span class="op">=</span>[<span class="st">"HER2"</span>, <span class="st">"BRCA1"</span>, <span class="st">"TPFK"</span>],</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    column_names<span class="op">=</span>[<span class="st">"cell_1"</span>, <span class="st">"cell_2"</span>, <span class="st">"cell_3"</span>],</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se_with_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
@@ -631,8 +618,8 @@ metadata(0):
 <h3 class="anchored" data-anchor-id="subset-by-index-position">Subset by index position</h3>
 <p>A straightforward slice operation:</p>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>subset_se <span class="op">=</span> se_with_names[<span class="dv">0</span>:<span class="dv">10</span>, <span class="dv">0</span>:<span class="dv">3</span>]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>subset_se <span class="op">=</span> se_with_names[<span class="dv">0</span>:<span class="dv">10</span>, <span class="dv">0</span>:<span class="dv">3</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (3, 3)
@@ -650,8 +637,8 @@ metadata(0):
 <h3 class="anchored" data-anchor-id="subset-by-row-names-or-column-names">Subset by row names or column names</h3>
 <p>Either one or both of the slices can contain names. These names are mapped to <code>row_names</code> and <code>column_names</code> of the <code>SummarizedExperiment</code> object.</p>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>subset_se <span class="op">=</span> se_with_names[:<span class="dv">2</span>, [<span class="st">"cell_1"</span>, <span class="st">"cell_3"</span>]]</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>subset_se <span class="op">=</span> se_with_names[:<span class="dv">2</span>, [<span class="st">"cell_1"</span>, <span class="st">"cell_3"</span>]]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (2, 2)
@@ -670,8 +657,8 @@ metadata(0):
 <h3 class="anchored" data-anchor-id="subset-by-boolean-vector">Subset by boolean vector</h3>
 <p>Similarly, you can also slice by a boolean array. Note that the boolean vectors should contain the same number of features for the row slice and the same number of samples for the column slice.</p>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>subset_se_with_bools <span class="op">=</span> se_with_names[[<span class="va">True</span>, <span class="va">True</span>, <span class="va">False</span>], [<span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>]]</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_se_with_bools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>subset_se_with_bools <span class="op">=</span> se_with_names[[<span class="va">True</span>, <span class="va">True</span>, <span class="va">False</span>], [<span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>]]</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_se_with_bools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (2, 2)
@@ -689,8 +676,8 @@ metadata(0):
 <h3 class="anchored" data-anchor-id="subset-by-empty-list">Subset by empty list</h3>
 <p>This is a feature not a bug :), you can specify an empty list to completely remove all rows or samples.</p>
 <div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>subset <span class="op">=</span> se_with_names[:<span class="dv">2</span>, []]</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>subset <span class="op">=</span> se_with_names[:<span class="dv">2</span>, []]</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (2, 0)
@@ -710,11 +697,11 @@ metadata(0):
 <p>Additionally, since <code>RangeSummarizedExperiment</code> contain <code>row_ranges</code>, this allows us to perform a number of range based operations that are possible on a <code>GenomicRanges</code> object.</p>
 <p>For example, to subset <code>RangeSummarizedExperiment</code> with a query set of regions:</p>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> iranges <span class="im">import</span> IRanges</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> GenomicRanges(seqnames<span class="op">=</span>[<span class="st">"chr2"</span>], ranges<span class="op">=</span>IRanges([<span class="dv">4</span>], [<span class="dv">6</span>]), strand<span class="op">=</span>[<span class="st">"+"</span>])</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> rse.subset_by_overlaps(query)</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> iranges <span class="im">import</span> IRanges</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> GenomicRanges(seqnames<span class="op">=</span>[<span class="st">"chr2"</span>], ranges<span class="op">=</span>IRanges([<span class="dv">4</span>], [<span class="dv">6</span>]), strand<span class="op">=</span>[<span class="st">"+"</span>])</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> rse.subset_by_overlaps(query)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: RangedSummarizedExperiment
 dimensions: (0, 6)
@@ -726,96 +713,102 @@ column_names(6): ['0', '1', '2', '3', '4', '5']
 metadata(0): 
 </code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/genomicranges/SeqInfo.py:348: UserWarning: 'seqnames' is deprecated, use 'get_seqnames' instead
+  warn("'seqnames' is deprecated, use 'get_seqnames' instead", UserWarning)
+/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/genomicranges/SeqInfo.py:348: UserWarning: 'seqnames' is deprecated, use 'get_seqnames' instead
+  warn("'seqnames' is deprecated, use 'get_seqnames' instead", UserWarning)</code></pre>
+</div>
 </div>
 <p>Additionally, RSE supports many other interval based operations. Checkout the <a href="https://biocpy.github.io/SummarizedExperiment/api/modules.html">documentation</a> for more details.</p>
 </section>
-<section id="combining-experiments" class="level2">
-<h2 class="anchored" data-anchor-id="combining-experiments">Combining experiments</h2>
+<section id="sec-se-combine" class="level2">
+<h2 class="anchored" data-anchor-id="sec-se-combine">Combining experiments</h2>
 <p><code>SummarizedExperiment</code> implements methods for the various <code>combine</code> generics from <a href="https://github.com/BiocPy/biocutils"><strong>BiocUtils</strong></a>.</p>
 <p>These methods enable the merging or combining of multiple <code>SummarizedExperiment</code> objects, allowing users to aggregate data from different experiments or conditions. To demonstrate, let’s create multiple <code>SummarizedExperiment</code> objects.</p>
 <div class="cell" data-execution_count="15">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>rowData1 <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"seqnames"</span>: [<span class="st">"chr_5"</span>, <span class="st">"chr_3"</span>, <span class="st">"chr_2"</span>],</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"start"</span>: [<span class="dv">10293804</span>, <span class="dv">12098948</span>, <span class="dv">20984392</span>],</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"end"</span>: [<span class="dv">28937947</span>, <span class="dv">3872839</span>, <span class="dv">329837492</span>]</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">"HER2"</span>, <span class="st">"BRCA1"</span>, <span class="st">"TPFK"</span>],</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>colData1 <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sample"</span>: [<span class="st">"SAM_1"</span>, <span class="st">"SAM_3"</span>, <span class="st">"SAM_3"</span>],</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"disease"</span>: [<span class="st">"True"</span>, <span class="st">"True"</span>, <span class="st">"True"</span>],</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">"cell_1"</span>, <span class="st">"cell_2"</span>, <span class="st">"cell_3"</span>],</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>se1 <span class="op">=</span> SummarizedExperiment(</span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    assays<span class="op">=</span>{</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"counts"</span>: np.random.poisson(lam<span class="op">=</span><span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>)),</span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"lognorm"</span>: np.random.lognormal(size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    row_data<span class="op">=</span>rowData1,</span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    column_data<span class="op">=</span>colData1,</span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    metadata<span class="op">=</span>{<span class="st">"seq_type"</span>: <span class="st">"paired"</span>},</span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>rowData2 <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"seqnames"</span>: [<span class="st">"chr_5"</span>, <span class="st">"chr_3"</span>, <span class="st">"chr_2"</span>],</span>
-<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"start"</span>: [<span class="dv">10293804</span>, <span class="dv">12098948</span>, <span class="dv">20984392</span>],</span>
-<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"end"</span>: [<span class="dv">28937947</span>, <span class="dv">3872839</span>, <span class="dv">329837492</span>]</span>
-<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">"HER2"</span>, <span class="st">"BRCA1"</span>, <span class="st">"TPFK"</span>],</span>
-<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>colData2 <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sample"</span>: [<span class="st">"SAM_4"</span>, <span class="st">"SAM_5"</span>, <span class="st">"SAM_6"</span>],</span>
-<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">"disease"</span>: [<span class="st">"True"</span>, <span class="st">"False"</span>, <span class="st">"True"</span>],</span>
-<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">"cell_4"</span>, <span class="st">"cell_5"</span>, <span class="st">"cell_6"</span>],</span>
-<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a>se2 <span class="op">=</span> SummarizedExperiment(</span>
-<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a>    assays<span class="op">=</span>{</span>
-<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a>        <span class="st">"counts"</span>: np.random.poisson(lam<span class="op">=</span><span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>)),</span>
-<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">"lognorm"</span>: np.random.lognormal(size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
-<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a>    row_data<span class="op">=</span>rowData2,</span>
-<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a>    column_data<span class="op">=</span>colData2,</span>
-<span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a>    metadata<span class="op">=</span>{<span class="st">"seq_platform"</span>: <span class="st">"Illumina NovaSeq 6000"</span>},</span>
-<span id="cb30-49"><a href="#cb30-49" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-50"><a href="#cb30-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-51"><a href="#cb30-51" aria-hidden="true" tabindex="-1"></a>rowData3 <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb30-52"><a href="#cb30-52" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb30-53"><a href="#cb30-53" aria-hidden="true" tabindex="-1"></a>        <span class="st">"seqnames"</span>: [<span class="st">"chr_7"</span>, <span class="st">"chr_1"</span>, <span class="st">"chr_Y"</span>],</span>
-<span id="cb30-54"><a href="#cb30-54" aria-hidden="true" tabindex="-1"></a>        <span class="st">"start"</span>: [<span class="dv">1084390</span>, <span class="dv">1874937</span>, <span class="dv">243879798</span>],</span>
-<span id="cb30-55"><a href="#cb30-55" aria-hidden="true" tabindex="-1"></a>        <span class="st">"end"</span>: [<span class="dv">243895239</span>, <span class="dv">358908298</span>, <span class="dv">390820395</span>]</span>
-<span id="cb30-56"><a href="#cb30-56" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb30-57"><a href="#cb30-57" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">"MYC"</span>, <span class="st">"BRCA2"</span>, <span class="st">"TPFK"</span>],</span>
-<span id="cb30-58"><a href="#cb30-58" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-59"><a href="#cb30-59" aria-hidden="true" tabindex="-1"></a>colData3 <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb30-60"><a href="#cb30-60" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb30-61"><a href="#cb30-61" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sample"</span>: [<span class="st">"SAM_7"</span>, <span class="st">"SAM_8"</span>, <span class="st">"SAM_9"</span>],</span>
-<span id="cb30-62"><a href="#cb30-62" aria-hidden="true" tabindex="-1"></a>        <span class="st">"disease"</span>: [<span class="st">"True"</span>, <span class="st">"False"</span>, <span class="st">"False"</span>],</span>
-<span id="cb30-63"><a href="#cb30-63" aria-hidden="true" tabindex="-1"></a>        <span class="st">"doublet_score"</span>: [<span class="fl">.15</span>, <span class="fl">.62</span>, <span class="fl">.18</span>]</span>
-<span id="cb30-64"><a href="#cb30-64" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb30-65"><a href="#cb30-65" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">"cell_7"</span>, <span class="st">"cell_8"</span>, <span class="st">"cell_9"</span>],</span>
-<span id="cb30-66"><a href="#cb30-66" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-67"><a href="#cb30-67" aria-hidden="true" tabindex="-1"></a>se3 <span class="op">=</span> SummarizedExperiment(</span>
-<span id="cb30-68"><a href="#cb30-68" aria-hidden="true" tabindex="-1"></a>    assays<span class="op">=</span>{</span>
-<span id="cb30-69"><a href="#cb30-69" aria-hidden="true" tabindex="-1"></a>        <span class="st">"counts"</span>: np.random.poisson(lam<span class="op">=</span><span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>)),</span>
-<span id="cb30-70"><a href="#cb30-70" aria-hidden="true" tabindex="-1"></a>        <span class="st">"lognorm"</span>: np.random.lognormal(size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>)),</span>
-<span id="cb30-71"><a href="#cb30-71" aria-hidden="true" tabindex="-1"></a>        <span class="st">"beta"</span>: np.random.beta(a<span class="op">=</span><span class="dv">1</span>, b<span class="op">=</span><span class="dv">1</span>, size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
-<span id="cb30-72"><a href="#cb30-72" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb30-73"><a href="#cb30-73" aria-hidden="true" tabindex="-1"></a>    row_data<span class="op">=</span>rowData3,</span>
-<span id="cb30-74"><a href="#cb30-74" aria-hidden="true" tabindex="-1"></a>    column_data<span class="op">=</span>colData3,</span>
-<span id="cb30-75"><a href="#cb30-75" aria-hidden="true" tabindex="-1"></a>    metadata<span class="op">=</span>{<span class="st">"seq_platform"</span>: <span class="st">"Illumina NovaSeq 6000"</span>},</span>
-<span id="cb30-76"><a href="#cb30-76" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-77"><a href="#cb30-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-78"><a href="#cb30-78" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se1)</span>
-<span id="cb30-79"><a href="#cb30-79" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se2)</span>
-<span id="cb30-80"><a href="#cb30-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rowData1 <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"seqnames"</span>: [<span class="st">"chr_5"</span>, <span class="st">"chr_3"</span>, <span class="st">"chr_2"</span>],</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"start"</span>: [<span class="dv">10293804</span>, <span class="dv">12098948</span>, <span class="dv">20984392</span>],</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"end"</span>: [<span class="dv">28937947</span>, <span class="dv">3872839</span>, <span class="dv">329837492</span>]</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">"HER2"</span>, <span class="st">"BRCA1"</span>, <span class="st">"TPFK"</span>],</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>colData1 <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sample"</span>: [<span class="st">"SAM_1"</span>, <span class="st">"SAM_3"</span>, <span class="st">"SAM_3"</span>],</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"disease"</span>: [<span class="st">"True"</span>, <span class="st">"True"</span>, <span class="st">"True"</span>],</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">"cell_1"</span>, <span class="st">"cell_2"</span>, <span class="st">"cell_3"</span>],</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>se1 <span class="op">=</span> SummarizedExperiment(</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    assays<span class="op">=</span>{</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"counts"</span>: np.random.poisson(lam<span class="op">=</span><span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>)),</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"lognorm"</span>: np.random.lognormal(size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    row_data<span class="op">=</span>rowData1,</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    column_data<span class="op">=</span>colData1,</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>    metadata<span class="op">=</span>{<span class="st">"seq_type"</span>: <span class="st">"paired"</span>},</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>rowData2 <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"seqnames"</span>: [<span class="st">"chr_5"</span>, <span class="st">"chr_3"</span>, <span class="st">"chr_2"</span>],</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"start"</span>: [<span class="dv">10293804</span>, <span class="dv">12098948</span>, <span class="dv">20984392</span>],</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"end"</span>: [<span class="dv">28937947</span>, <span class="dv">3872839</span>, <span class="dv">329837492</span>]</span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">"HER2"</span>, <span class="st">"BRCA1"</span>, <span class="st">"TPFK"</span>],</span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>colData2 <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sample"</span>: [<span class="st">"SAM_4"</span>, <span class="st">"SAM_5"</span>, <span class="st">"SAM_6"</span>],</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">"disease"</span>: [<span class="st">"True"</span>, <span class="st">"False"</span>, <span class="st">"True"</span>],</span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">"cell_4"</span>, <span class="st">"cell_5"</span>, <span class="st">"cell_6"</span>],</span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a>se2 <span class="op">=</span> SummarizedExperiment(</span>
+<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a>    assays<span class="op">=</span>{</span>
+<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a>        <span class="st">"counts"</span>: np.random.poisson(lam<span class="op">=</span><span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>)),</span>
+<span id="cb32-44"><a href="#cb32-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">"lognorm"</span>: np.random.lognormal(size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
+<span id="cb32-45"><a href="#cb32-45" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb32-46"><a href="#cb32-46" aria-hidden="true" tabindex="-1"></a>    row_data<span class="op">=</span>rowData2,</span>
+<span id="cb32-47"><a href="#cb32-47" aria-hidden="true" tabindex="-1"></a>    column_data<span class="op">=</span>colData2,</span>
+<span id="cb32-48"><a href="#cb32-48" aria-hidden="true" tabindex="-1"></a>    metadata<span class="op">=</span>{<span class="st">"seq_platform"</span>: <span class="st">"Illumina NovaSeq 6000"</span>},</span>
+<span id="cb32-49"><a href="#cb32-49" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-50"><a href="#cb32-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-51"><a href="#cb32-51" aria-hidden="true" tabindex="-1"></a>rowData3 <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb32-52"><a href="#cb32-52" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb32-53"><a href="#cb32-53" aria-hidden="true" tabindex="-1"></a>        <span class="st">"seqnames"</span>: [<span class="st">"chr_7"</span>, <span class="st">"chr_1"</span>, <span class="st">"chr_Y"</span>],</span>
+<span id="cb32-54"><a href="#cb32-54" aria-hidden="true" tabindex="-1"></a>        <span class="st">"start"</span>: [<span class="dv">1084390</span>, <span class="dv">1874937</span>, <span class="dv">243879798</span>],</span>
+<span id="cb32-55"><a href="#cb32-55" aria-hidden="true" tabindex="-1"></a>        <span class="st">"end"</span>: [<span class="dv">243895239</span>, <span class="dv">358908298</span>, <span class="dv">390820395</span>]</span>
+<span id="cb32-56"><a href="#cb32-56" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb32-57"><a href="#cb32-57" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">"MYC"</span>, <span class="st">"BRCA2"</span>, <span class="st">"TPFK"</span>],</span>
+<span id="cb32-58"><a href="#cb32-58" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-59"><a href="#cb32-59" aria-hidden="true" tabindex="-1"></a>colData3 <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb32-60"><a href="#cb32-60" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb32-61"><a href="#cb32-61" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sample"</span>: [<span class="st">"SAM_7"</span>, <span class="st">"SAM_8"</span>, <span class="st">"SAM_9"</span>],</span>
+<span id="cb32-62"><a href="#cb32-62" aria-hidden="true" tabindex="-1"></a>        <span class="st">"disease"</span>: [<span class="st">"True"</span>, <span class="st">"False"</span>, <span class="st">"False"</span>],</span>
+<span id="cb32-63"><a href="#cb32-63" aria-hidden="true" tabindex="-1"></a>        <span class="st">"doublet_score"</span>: [<span class="fl">.15</span>, <span class="fl">.62</span>, <span class="fl">.18</span>]</span>
+<span id="cb32-64"><a href="#cb32-64" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb32-65"><a href="#cb32-65" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">"cell_7"</span>, <span class="st">"cell_8"</span>, <span class="st">"cell_9"</span>],</span>
+<span id="cb32-66"><a href="#cb32-66" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-67"><a href="#cb32-67" aria-hidden="true" tabindex="-1"></a>se3 <span class="op">=</span> SummarizedExperiment(</span>
+<span id="cb32-68"><a href="#cb32-68" aria-hidden="true" tabindex="-1"></a>    assays<span class="op">=</span>{</span>
+<span id="cb32-69"><a href="#cb32-69" aria-hidden="true" tabindex="-1"></a>        <span class="st">"counts"</span>: np.random.poisson(lam<span class="op">=</span><span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>)),</span>
+<span id="cb32-70"><a href="#cb32-70" aria-hidden="true" tabindex="-1"></a>        <span class="st">"lognorm"</span>: np.random.lognormal(size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>)),</span>
+<span id="cb32-71"><a href="#cb32-71" aria-hidden="true" tabindex="-1"></a>        <span class="st">"beta"</span>: np.random.beta(a<span class="op">=</span><span class="dv">1</span>, b<span class="op">=</span><span class="dv">1</span>, size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
+<span id="cb32-72"><a href="#cb32-72" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb32-73"><a href="#cb32-73" aria-hidden="true" tabindex="-1"></a>    row_data<span class="op">=</span>rowData3,</span>
+<span id="cb32-74"><a href="#cb32-74" aria-hidden="true" tabindex="-1"></a>    column_data<span class="op">=</span>colData3,</span>
+<span id="cb32-75"><a href="#cb32-75" aria-hidden="true" tabindex="-1"></a>    metadata<span class="op">=</span>{<span class="st">"seq_platform"</span>: <span class="st">"Illumina NovaSeq 6000"</span>},</span>
+<span id="cb32-76"><a href="#cb32-76" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-77"><a href="#cb32-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-78"><a href="#cb32-78" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se1)</span>
+<span id="cb32-79"><a href="#cb32-79" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se2)</span>
+<span id="cb32-80"><a href="#cb32-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
@@ -849,13 +842,13 @@ metadata(1): seq_platform
 </div>
 <p>The <code>combine_rows</code> or <code>combine_columns</code> operations, expect all experiments to contain the same assay names. To combine experiments by row:</p>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> relaxed_combine_columns, combine_columns, combine_rows, relaxed_combine_rows</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>se_combined <span class="op">=</span> combine_rows(se2, se1)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> relaxed_combine_columns, combine_columns, combine_rows, relaxed_combine_rows</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>se_combined <span class="op">=</span> combine_rows(se2, se1)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (6, 3)
-assays(2): ['lognorm', 'counts']
+assays(2): ['counts', 'lognorm']
 row_data columns(3): ['seqnames', 'start', 'end']
 row_names(6): ['HER2', 'BRCA1', 'TPFK', 'HER2', 'BRCA1', 'TPFK']
 column_data columns(2): ['sample', 'disease']
@@ -866,12 +859,12 @@ metadata(1): seq_platform
 </div>
 <p>Similarly to combine by column:</p>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>se_combined <span class="op">=</span> combine_columns(se2, se1)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>se_combined <span class="op">=</span> combine_columns(se2, se1)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (3, 6)
-assays(2): ['lognorm', 'counts']
+assays(2): ['counts', 'lognorm']
 row_data columns(3): ['seqnames', 'start', 'end']
 row_names(3): ['HER2', 'BRCA1', 'TPFK']
 column_data columns(2): ['sample', 'disease']
@@ -882,13 +875,13 @@ metadata(1): seq_platform
 </div>
 <p>You can use <code>relaxed_combine_columns</code> or <code>relaxed_combined_rows</code> when there’s mismatch in the number of features or samples. Missing rows or columns in any object are filled in with appropriate placeholder values before combining, e.g.&nbsp;missing assay’s are replaced with a masked numpy array.</p>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># se3 contains an additional assay not present in se1</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>se_relaxed_combine <span class="op">=</span> relaxed_combine_columns(se3, se1)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se_relaxed_combine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># se3 contains an additional assay not present in se1</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>se_relaxed_combine <span class="op">=</span> relaxed_combine_columns(se3, se1)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se_relaxed_combine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (3, 6)
-assays(3): ['lognorm', 'beta', 'counts']
+assays(3): ['counts', 'beta', 'lognorm']
 row_data columns(3): ['seqnames', 'start', 'end']
 row_names(3): ['MYC', 'BRCA2', 'TPFK']
 column_data columns(3): ['sample', 'disease', 'doublet_score']
@@ -903,8 +896,8 @@ metadata(1): seq_platform
 <p>Both these classes can also contain no experimental data, and they tend to be useful when integrated into more extensive data structures but do not contain any data themselves.</p>
 <p>To create an empty <code>SummarizedExperiment</code>:</p>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>empty_se <span class="op">=</span> SummarizedExperiment()</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty_se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>empty_se <span class="op">=</span> SummarizedExperiment()</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty_se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (0, 0)
@@ -919,8 +912,8 @@ metadata(0):
 </div>
 <p>Similarly an empty <code>RangeSummarizedExperiment</code>:</p>
 <div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>empty_rse <span class="op">=</span> RangedSummarizedExperiment()</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty_rse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>empty_rse <span class="op">=</span> RangedSummarizedExperiment()</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty_rse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: RangedSummarizedExperiment
 dimensions: (0, 0)
@@ -931,6 +924,10 @@ column_data columns(0): []
 column_names(0):  
 metadata(0): 
 </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/genomicranges/SeqInfo.py:348: UserWarning: 'seqnames' is deprecated, use 'get_seqnames' instead
+  warn("'seqnames' is deprecated, use 'get_seqnames' instead", UserWarning)</code></pre>
 </div>
 </div>
 <hr>

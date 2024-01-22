@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <link href="../../chapters/interop.html" rel="next">
 <link href="../../chapters/experiments/extending_se.html" rel="prev">
-<link href="../../https://raw.githubusercontent.com/BiocPy/.github/main/logo/short.png" rel="icon" type="image/png">
+<link href="../.././assets/short.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -131,25 +131,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">BiocPy: Enabling Bioconductor workflows in Python</a> 
-        <div class="sidebar-tools-main tools-wide">
+        <div class="sidebar-tools-main">
     <a href="https://github.com/BiocPy/tutorial" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../../BiocPy--Enabling-Bioconductor-workflows-in-Python.pdf">
-              <i class="bi bi-bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../../BiocPy--Enabling-Bioconductor-workflows-in-Python.epub">
-              <i class="bi bi-bi-journal pe-1"></i>
-            Download ePub
-            </a>
-          </li>
-      </ul>
-    </div>
     <a href="https://twitter.com/intent/tweet?url=|url|" rel="" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
 </div>
     </div>
@@ -380,18 +363,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    row_names<span class="op">=</span>[<span class="ss">f"se_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>)],</span>
 <span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/genomicranges/SeqInfo.py:348: UserWarning: 'seqnames' is deprecated, use 'get_seqnames' instead
+  warn("'seqnames' is deprecated, use 'get_seqnames' instead", UserWarning)</code></pre>
+</div>
 </div>
 <p>More importantly, we need to provide <code>sample_map</code> information:</p>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sample_map <span class="op">=</span> BiocFrame({</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"assay"</span>: [<span class="st">"sce"</span>, <span class="st">"se"</span>] <span class="op">*</span> <span class="dv">6</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"primary"</span>: [<span class="st">"sample1"</span>, <span class="st">"sample2"</span>] <span class="op">*</span> <span class="dv">6</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"colname"</span>: [<span class="st">"sce_0"</span>, <span class="st">"se_0"</span>, <span class="st">"sce_1"</span>, <span class="st">"se_1"</span>, <span class="st">"sce_2"</span>, <span class="st">"se_2"</span>, <span class="st">"sce_3"</span>, <span class="st">"se_3"</span>, <span class="st">"sce_4"</span>, <span class="st">"se_4"</span>, <span class="st">"sce_5"</span>, <span class="st">"se_5"</span>]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>sample_data <span class="op">=</span> BiocFrame({<span class="st">"samples"</span>: [<span class="st">"sample1"</span>, <span class="st">"sample2"</span>]}, row_names<span class="op">=</span> [<span class="st">"sample1"</span>, <span class="st">"sample2"</span>])</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sample_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sample_map <span class="op">=</span> BiocFrame({</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"assay"</span>: [<span class="st">"sce"</span>, <span class="st">"se"</span>] <span class="op">*</span> <span class="dv">6</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"primary"</span>: [<span class="st">"sample1"</span>, <span class="st">"sample2"</span>] <span class="op">*</span> <span class="dv">6</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"colname"</span>: [<span class="st">"sce_0"</span>, <span class="st">"se_0"</span>, <span class="st">"sce_1"</span>, <span class="st">"se_1"</span>, <span class="st">"sce_2"</span>, <span class="st">"se_2"</span>, <span class="st">"sce_3"</span>, <span class="st">"se_3"</span>, <span class="st">"sce_4"</span>, <span class="st">"se_4"</span>, <span class="st">"sce_5"</span>, <span class="st">"se_5"</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>sample_data <span class="op">=</span> BiocFrame({<span class="st">"samples"</span>: [<span class="st">"sample1"</span>, <span class="st">"sample2"</span>]}, row_names<span class="op">=</span> [<span class="st">"sample1"</span>, <span class="st">"sample2"</span>])</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sample_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 12 rows and 3 columns
       assay primary colname
@@ -407,28 +394,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Finally, we can create an <code>MultiAssayExperiment</code> object:</p>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiassayexperiment <span class="im">import</span> MultiAssayExperiment</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> SingleCellExperiment</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> summarizedexperiment <span class="im">import</span> SummarizedExperiment</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>tsce <span class="op">=</span> SingleCellExperiment(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    assays<span class="op">=</span>{<span class="st">"counts"</span>: counts}, row_data<span class="op">=</span>gr.to_pandas(), column_data<span class="op">=</span>col_data_sce</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>tse2 <span class="op">=</span> SummarizedExperiment(</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    assays<span class="op">=</span>{<span class="st">"counts"</span>: counts.copy()},</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    row_data<span class="op">=</span>gr.to_pandas().copy(),</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    column_data<span class="op">=</span>col_data_se.copy(),</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> MultiAssayExperiment(</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    experiments<span class="op">=</span>{<span class="st">"sce"</span>: tsce, <span class="st">"se"</span>: tse2},</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    column_data<span class="op">=</span>sample_data,</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    sample_map<span class="op">=</span>sample_map,</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    metadata<span class="op">=</span>{<span class="st">"could be"</span>: <span class="st">"anything"</span>},</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiassayexperiment <span class="im">import</span> MultiAssayExperiment</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> SingleCellExperiment</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> summarizedexperiment <span class="im">import</span> SummarizedExperiment</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>tsce <span class="op">=</span> SingleCellExperiment(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    assays<span class="op">=</span>{<span class="st">"counts"</span>: counts}, row_data<span class="op">=</span>gr.to_pandas(), column_data<span class="op">=</span>col_data_sce</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>tse2 <span class="op">=</span> SummarizedExperiment(</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    assays<span class="op">=</span>{<span class="st">"counts"</span>: counts.copy()},</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    row_data<span class="op">=</span>gr.to_pandas().copy(),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    column_data<span class="op">=</span>col_data_se.copy(),</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> MultiAssayExperiment(</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    experiments<span class="op">=</span>{<span class="st">"sce"</span>: tsce, <span class="st">"se"</span>: tse2},</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    column_data<span class="op">=</span>sample_data,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    sample_map<span class="op">=</span>sample_map,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    metadata<span class="op">=</span>{<span class="st">"could be"</span>: <span class="st">"anything"</span>},</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: MultiAssayExperiment containing 2 experiments
 [0] sce: SingleCellExperiment with 200 rows and 6 columns 
@@ -438,18 +425,22 @@ sample_map columns(3): ['assay', 'primary', 'colname']
 metadata(1): could be
 </code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/genomicranges/SeqInfo.py:348: UserWarning: 'seqnames' is deprecated, use 'get_seqnames' instead
+  warn("'seqnames' is deprecated, use 'get_seqnames' instead", UserWarning)</code></pre>
+</div>
 </div>
 <section id="no-sample-mapping" class="level3">
 <h3 class="anchored" data-anchor-id="no-sample-mapping">No sample mapping?</h3>
 <p>If both <code>column_data</code> and <code>sample_map</code> are <code>None</code>, the constructor naively creates sample mapping, with each <code>experiment</code> considered to be a independent <code>sample</code>. We add a sample to <code>column_data</code> in this pattern - <code>unknown_sample_{experiment_name}</code>.</p>
 <p>All cells from the each experiment are considered to be from the same sample and is reflected in <code>sample_map</code>. <strong><em>This is not a recommended approach, but if you don’t have sample mapping, then it doesn’t matter</em></strong>.</p>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> MultiAssayExperiment(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    experiments<span class="op">=</span>{<span class="st">"sce"</span>: tsce, <span class="st">"se"</span>: tse2},</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    metadata<span class="op">=</span>{<span class="st">"could be"</span>: <span class="st">"anything"</span>},</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> MultiAssayExperiment(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    experiments<span class="op">=</span>{<span class="st">"sce"</span>: tsce, <span class="st">"se"</span>: tse2},</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    metadata<span class="op">=</span>{<span class="st">"could be"</span>: <span class="st">"anything"</span>},</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: MultiAssayExperiment containing 2 experiments
 [0] sce: SingleCellExperiment with 200 rows and 6 columns 
@@ -468,33 +459,33 @@ metadata(1): could be
 <div class="cell" data-execution_count="5">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> anndata <span class="im">import</span> AnnData</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>n, d, k <span class="op">=</span> <span class="dv">1000</span>, <span class="dv">100</span>, <span class="dv">10</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.random.normal(loc<span class="op">=</span>np.arange(k), scale<span class="op">=</span>np.arange(k) <span class="op">*</span> <span class="dv">2</span>, size<span class="op">=</span>(n, k))</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.random.normal(size<span class="op">=</span>(d, k))</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.dot(z, w.T)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> AnnData(y)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>adata.obs_names <span class="op">=</span> [<span class="ss">f"obs_</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>adata.var_names <span class="op">=</span> [<span class="ss">f"var_</span><span class="sc">{</span>j<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(d)]</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> <span class="dv">50</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> np.random.normal(size<span class="op">=</span>(d2, k))</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> np.dot(z, w2.T)</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>adata2 <span class="op">=</span> AnnData(y2)</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>adata2.obs_names <span class="op">=</span> [<span class="ss">f"obs_</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>adata2.var_names <span class="op">=</span> [<span class="ss">f"var2_</span><span class="sc">{</span>j<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(d2)]</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mudata <span class="im">import</span> MuData</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>mdata <span class="op">=</span> MuData({<span class="st">"rna"</span>: adata, <span class="st">"spatial"</span>: adata2})</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> anndata <span class="im">import</span> AnnData</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>n, d, k <span class="op">=</span> <span class="dv">1000</span>, <span class="dv">100</span>, <span class="dv">10</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.random.normal(loc<span class="op">=</span>np.arange(k), scale<span class="op">=</span>np.arange(k) <span class="op">*</span> <span class="dv">2</span>, size<span class="op">=</span>(n, k))</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.random.normal(size<span class="op">=</span>(d, k))</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.dot(z, w.T)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> AnnData(y)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>adata.obs_names <span class="op">=</span> [<span class="ss">f"obs_</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>adata.var_names <span class="op">=</span> [<span class="ss">f"var_</span><span class="sc">{</span>j<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(d)]</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> np.random.normal(size<span class="op">=</span>(d2, k))</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> np.dot(z, w2.T)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>adata2 <span class="op">=</span> AnnData(y2)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>adata2.obs_names <span class="op">=</span> [<span class="ss">f"obs_</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>adata2.var_names <span class="op">=</span> [<span class="ss">f"var2_</span><span class="sc">{</span>j<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(d2)]</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mudata <span class="im">import</span> MuData</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>mdata <span class="op">=</span> MuData({<span class="st">"rna"</span>: adata, <span class="st">"spatial"</span>: adata2})</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>MuData object with n_obs × n_vars = 1000 × 150
@@ -505,10 +496,10 @@ metadata(1): could be
 </div>
 <p>Lets convert this object to an MAE:</p>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiassayexperiment <span class="im">import</span> MultiAssayExperiment</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>mae_obj <span class="op">=</span> MultiAssayExperiment.from_mudata(<span class="bu">input</span><span class="op">=</span>mdata)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae_obj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiassayexperiment <span class="im">import</span> MultiAssayExperiment</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mae_obj <span class="op">=</span> MultiAssayExperiment.from_mudata(<span class="bu">input</span><span class="op">=</span>mdata)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae_obj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: MultiAssayExperiment containing 2 experiments
 [0] rna: SingleCellExperiment with 100 rows and 1000 columns 
@@ -518,6 +509,12 @@ sample_map columns(3): ['assay', 'primary', 'colname']
 metadata(0): 
 </code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/genomicranges/SeqInfo.py:348: UserWarning: 'seqnames' is deprecated, use 'get_seqnames' instead
+  warn("'seqnames' is deprecated, use 'get_seqnames' instead", UserWarning)
+/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/genomicranges/SeqInfo.py:348: UserWarning: 'seqnames' is deprecated, use 'get_seqnames' instead
+  warn("'seqnames' is deprecated, use 'get_seqnames' instead", UserWarning)</code></pre>
+</div>
 </div>
 </section>
 </section>
@@ -525,12 +522,12 @@ metadata(0):
 <h2 class="anchored" data-anchor-id="getterssetters">Getters/Setters</h2>
 <p>Getters are available to access various attributes using either the property notation or functional style.</p>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access assays</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"experiment names (as property): "</span>, mae.experiment_names)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"experiment names (functional style): "</span>, mae.get_experiment_names())</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># access sample data</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.column_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access assays</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"experiment names (as property): "</span>, mae.experiment_names)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"experiment names (functional style): "</span>, mae.get_experiment_names())</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># access sample data</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.column_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>experiment names (as property):  ['sce', 'se']
 experiment names (functional style):  ['sce', 'se']
@@ -546,9 +543,9 @@ unknown_sample_sce unknown_sample_sce
 <h4 class="anchored" data-anchor-id="row-or-column-name-accessors">Row or column name accessors</h4>
 <p>A helper method is available to easily access row or column names across all experiments. This method returns a dictionary with experiment names as keys and the corresponding values, which can be either the row or column names depending on the function:</p>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich <span class="im">import</span> <span class="bu">print</span> <span class="im">as</span> pprint</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>pprint(<span class="st">"row names:"</span>, mae.get_row_names())</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>pprint(<span class="st">"column names:"</span>, mae.get_column_names())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich <span class="im">import</span> <span class="bu">print</span> <span class="im">as</span> pprint</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pprint(<span class="st">"row names:"</span>, mae.get_row_names())</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>pprint(<span class="st">"column names:"</span>, mae.get_column_names())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">row names:
 <span style="font-weight: bold">{</span>
@@ -593,7 +590,7 @@ unknown_sample_sce unknown_sample_sce
 <h4 class="anchored" data-anchor-id="access-an-experiment">Access an experiment</h4>
 <p>One can access an experiment by name:</p>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.experiment(<span class="st">"se"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.experiment(<span class="st">"se"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (200, 6)
@@ -608,8 +605,8 @@ metadata(0):
 </div>
 <p>Additionally you may access an experiment with the sample information included in the column data of the experiment. Note, this creates a copy of the experiment:</p>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>expt_with_sample_info <span class="op">=</span> mae.experiment(<span class="st">"se"</span>, with_sample_data<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(expt_with_sample_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>expt_with_sample_info <span class="op">=</span> mae.experiment(<span class="st">"se"</span>, with_sample_data<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(expt_with_sample_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (200, 6)
@@ -652,9 +649,9 @@ Important
 </div>
 </div>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>modified_column_data <span class="op">=</span> mae.column_data.set_column(<span class="st">"score"</span>, <span class="bu">range</span>(<span class="bu">len</span>(mae.column_data)))</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>modified_mae <span class="op">=</span> mae.set_column_data(modified_column_data)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>modified_column_data <span class="op">=</span> mae.column_data.set_column(<span class="st">"score"</span>, <span class="bu">range</span>(<span class="bu">len</span>(mae.column_data)))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>modified_mae <span class="op">=</span> mae.set_column_data(modified_column_data)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: MultiAssayExperiment containing 2 experiments
 [0] sce: SingleCellExperiment with 200 rows and 6 columns 
@@ -667,7 +664,7 @@ metadata(1): could be
 </div>
 <p>Now, lets check the <code>column_data</code> on the original object.</p>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.column_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.column_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 2 rows and 1 column
                               samples
@@ -685,8 +682,8 @@ unknown_sample_sce unknown_sample_sce
 <section id="subset-by-indices" class="level3">
 <h3 class="anchored" data-anchor-id="subset-by-indices">Subset by indices</h3>
 <div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>subset_mae <span class="op">=</span> mae[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">0</span>:<span class="dv">4</span>]</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>subset_mae <span class="op">=</span> mae[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">0</span>:<span class="dv">4</span>]</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: MultiAssayExperiment containing 2 experiments
 [0] sce: SingleCellExperiment with 4 rows and 6 columns 
@@ -702,8 +699,8 @@ metadata(1): could be
 <h3 class="anchored" data-anchor-id="subset-by-experiments-dimension">Subset by experiments dimension</h3>
 <p>The following creates a subset based on the experiments dimension:</p>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>subset_mae <span class="op">=</span> mae[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">0</span>:<span class="dv">1</span>, [<span class="st">"se"</span>]]</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>subset_mae <span class="op">=</span> mae[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">0</span>:<span class="dv">1</span>, [<span class="st">"se"</span>]]</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: MultiAssayExperiment containing 1 experiments
 [0] se: SummarizedExperiment with 4 rows and 0 columns 
@@ -741,15 +738,15 @@ Note
 <h3 class="anchored" data-anchor-id="complete-cases">Complete cases</h3>
 <p>The <code>complete_cases</code> function is designed to identify samples that contain data across all experiments. It produces a boolean vector with the same length as the number of samples in <code>column_data</code>. Each element in the vector is <code>True</code> if the sample is present in all experiments, or <code>False</code> otherwise.</p>
 <div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.complete_cases())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.complete_cases())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[False, False]</code></pre>
 </div>
 </div>
 <p>You can use this boolean vector to select samples with complete data across all assays or experiments.</p>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>subset_mae <span class="op">=</span> mae[:, mae.complete_cases(),]</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>subset_mae <span class="op">=</span> mae[:, mae.complete_cases(),]</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: MultiAssayExperiment containing 2 experiments
 [0] sce: SingleCellExperiment with 200 rows and 0 columns 
@@ -765,8 +762,8 @@ metadata(1): could be
 <h3 class="anchored" data-anchor-id="replicates">Replicates</h3>
 <p>This method identifies ‘samples’ with replicates within each experiment. The result is a dictionary where experiment names serve as keys, and the corresponding values indicate whether the sample is replicated within each experiment.</p>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich <span class="im">import</span> <span class="bu">print</span> <span class="im">as</span> pprint <span class="co"># mainly for pretty printing</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>pprint(mae.replicated())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich <span class="im">import</span> <span class="bu">print</span> <span class="im">as</span> pprint <span class="co"># mainly for pretty printing</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>pprint(mae.replicated())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span>
     <span style="color: #008000; text-decoration-color: #008000">'sce'</span>: <span style="font-weight: bold">{</span>
@@ -786,8 +783,8 @@ metadata(1): could be
 <h3 class="anchored" data-anchor-id="intersect-rows">Intersect rows</h3>
 <p>The <code>intersect_rows</code> finds common <code>row_names</code> across all experiments and returns a <code>MultiAssayExperiment</code> with those rows.</p>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>common_rows_mae <span class="op">=</span> mae.intersect_rows()</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(common_rows_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>common_rows_mae <span class="op">=</span> mae.intersect_rows()</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(common_rows_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: MultiAssayExperiment containing 2 experiments
 [0] sce: SingleCellExperiment with 200 rows and 6 columns 
@@ -800,10 +797,10 @@ metadata(1): could be
 </div>
 <p>If you are only interested in finding common <code>row_names</code> across all experiments:</p>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>common_rows <span class="op">=</span> mae.find_common_row_names()</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(common_rows)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>common_rows <span class="op">=</span> mae.find_common_row_names()</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(common_rows)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'188', '138', '94', '18', '156', '190', '47', '50', '86', '154', '19', '102', '169', '87', '68', '28', '131', '147', '59', '125', '108', '174', '98', '55', '17', '27', '78', '113', '70', '115', '36', '5', '162', '191', '97', '75', '158', '104', '123', '7', '103', '140', '29', '142', '170', '139', '14', '100', '64', '126', '39', '111', '132', '199', '44', '189', '112', '107', '52', '60', '150', '114', '96', '30', '63', '152', '192', '72', '110', '187', '116', '159', '21', '118', '93', '84', '26', '81', '58', '42', '48', '53', '65', '85', '119', '164', '25', '163', '181', '80', '144', '41', '182', '198', '3', '165', '34', '79', '33', '179', '175', '12', '186', '95', '153', '67', '90', '173', '183', '151', '167', '45', '51', '101', '128', '37', '77', '166', '56', '91', '76', '122', '61', '135', '193', '129', '9', '83', '180', '73', '194', '196', '160', '15', '157', '89', '133', '109', '40', '161', '130', '4', '127', '35', '38', '43', '8', '2', '32', '148', '92', '99', '141', '178', '24', '176', '1', '155', '88', '106', '124', '145', '171', '195', '137', '149', '49', '197', '31', '121', '71', '120', '74', '54', '168', '69', '62', '22', '16', '0', '185', '57', '117', '10', '13', '136', '66', '184', '82', '20', '146', '23', '46', '6', '172', '11', '134', '143', '105', '177'}</code></pre>
+<pre><code>{'2', '123', '59', '125', '175', '196', '127', '90', '93', '112', '129', '197', '28', '69', '3', '14', '4', '41', '89', '96', '147', '68', '166', '54', '20', '24', '108', '6', '71', '0', '150', '154', '60', '119', '47', '179', '27', '99', '39', '23', '117', '153', '156', '18', '128', '55', '137', '62', '9', '19', '194', '120', '191', '180', '53', '74', '79', '111', '77', '148', '82', '190', '12', '195', '56', '10', '115', '152', '98', '13', '192', '25', '114', '198', '172', '155', '149', '161', '185', '66', '132', '142', '15', '33', '140', '157', '183', '75', '49', '145', '72', '109', '63', '159', '146', '168', '193', '102', '1', '61', '87', '144', '42', '48', '106', '167', '105', '51', '104', '37', '46', '67', '165', '58', '45', '7', '64', '133', '139', '118', '134', '92', '169', '182', '16', '143', '122', '199', '178', '176', '187', '76', '11', '107', '177', '95', '88', '52', '94', '30', '70', '101', '162', '138', '81', '103', '164', '121', '170', '57', '85', '135', '136', '83', '151', '188', '21', '22', '189', '100', '126', '73', '29', '86', '113', '44', '174', '163', '17', '158', '97', '84', '184', '160', '186', '65', '110', '173', '181', '32', '78', '38', '40', '131', '141', '50', '35', '8', '36', '130', '80', '31', '5', '91', '124', '116', '171', '34', '26', '43'}</code></pre>
 </div>
 </div>
 </section>
@@ -811,8 +808,8 @@ metadata(1): could be
 <h3 class="anchored" data-anchor-id="empty-mae">Empty MAE</h3>
 <p>While the necessity of an empty <code>MultiAssayExperiment</code> might not be apparent, for the sake of consistency with the rest of the tutorials:</p>
 <div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> MultiAssayExperiment(experiments<span class="op">=</span>{})</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> MultiAssayExperiment(experiments<span class="op">=</span>{})</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: MultiAssayExperiment containing 0 experiments
 column_data columns(1): ['samples']

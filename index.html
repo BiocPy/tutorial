@@ -33,7 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./chapters/representations/index.html" rel="next">
-<link href="./https://raw.githubusercontent.com/BiocPy/.github/main/logo/short.png" rel="icon" type="image/png">
+<link href="././assets/short.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -67,7 +67,9 @@ ul.task-list li input[type="checkbox"] {
 
 <meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/BiocPy/.github/main/logo/full.png">
+<meta name="twitter:image" content="https://biocpy.github.io/tutorial/assets/full.png">
+<meta name="twitter:image-height" content="328">
+<meta name="twitter:image-width" content="700">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -96,25 +98,8 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">BiocPy: Enabling Bioconductor workflows in Python</a> 
-        <div class="sidebar-tools-main tools-wide">
+        <div class="sidebar-tools-main">
     <a href="https://github.com/BiocPy/tutorial" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./BiocPy--Enabling-Bioconductor-workflows-in-Python.pdf">
-              <i class="bi bi-bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./BiocPy--Enabling-Bioconductor-workflows-in-Python.epub">
-              <i class="bi bi-bi-journal pe-1"></i>
-            Download ePub
-            </a>
-          </li>
-      </ul>
-    </div>
     <a href="https://twitter.com/intent/tweet?url=|url|" rel="" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
 </div>
     </div>
@@ -278,7 +263,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome</h1><p><img src="https://raw.githubusercontent.com/BiocPy/.github/main/logo/full.png" title="BiocPy: Enabling Bioconductor workflows in Python" class="quarto-cover-image img-fluid"></p>
+<h1 class="unnumbered">Welcome</h1><p><img src="./assets/full.png" title="BiocPy: Enabling Bioconductor workflows in Python" class="quarto-cover-image img-fluid"></p>
 <p><a href="https://www.bioconductor.org">Bioconductor</a> is an open-source software project that provides tools for the analysis and comprehension of genomic data. One of the main advantages of Bioconductor is the availability of standard data representations and large number of analysis tools for genomic experiments. These tools allow researchers to efficiently store, manipulate, and analyze their data across multiple tools and workflows.</p>
 <p>Inspired by Bioconductor, <a href="https://github.com/BiocPy">BiocPy</a> aims to facilitate bioinformatics workflows in Python. To achieve this goal, we developed several core data structures that align closely to the Bioconductor implementations. These structures include <a href="https://github.com/BiocPy/BiocFrame">BiocFrame</a>, providing a Bioconductor-like data frame class, and the <a href="https://github.com/BiocPy/GenomicRanges">GenomicRanges</a> which aids in representing genomic regions and facilitating analysis. They serve as essential and foundational data structures, acting as the building blocks for extensive and complex representations. For instance, container classes like <a href="https://github.com/BiocPy/SummarizedExperiment">SummarizedExperiment</a>, <a href="https://github.com/BiocPy/SingleCellExperiment">SingleCellExperiment</a> and <a href="https://github.com/BiocPy/MultiAssayExperiment">MultiAssayExperiment</a> represent single or multi-omic experimental data and metadata.</p>
 <p>Additionally, BiocPy introduces infrastructure packages supporting delayed operations (<a href="https://github.com/BiocPy/DelayedArray">DelayedArray</a>) and incorporates various generics and utilities in <a href="https://github.com/BiocPy/BiocUtils">BiocUtils</a>. While there have been previous efforts to port bioconductor representations into Python e.g.&nbsp;AnnData, plyranges, these efforts are fragmented and have limited interoperability. To our knowledge, BiocPy is the first Python framework to provide seamless, well-integrated data structures and representations for genomic data analysis.</p>
