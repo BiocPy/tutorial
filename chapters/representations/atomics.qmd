@@ -117,5 +117,40 @@ xd = np.array(x)
 combine(xd, y)
 ```
 
-Furthermore, `BiocUtils` offers a variety of essential utility functions to perform such as `match`, `intersect`, and numerous other operations. 
-Refer to the documentation for comprehensive details on these functionalities.
+
+## Other utilities
+
+### `match`
+
+```{python}
+import biocutils
+biocutils.match(["A", "C", "E"], ["A", "B", "C", "D", "E"])
+```
+
+### `intersect`
+
+```{python}
+import biocutils
+biocutils.intersect(["A", "B", "C", "D"], ["D", "A", "E"])
+```
+
+### `union`
+
+```{python}
+import biocutils
+biocutils.union(["A", "B", "C", "D"], ["D", "A", "E"])
+```
+
+### `is_list_of_type`
+
+Checks if all elements of a list or tuple are of the same type.
+
+```{python}
+import biocutils
+import numpy as np
+
+x = [np.random.rand(3), np.random.rand(3, 2)]
+biocutils.is_list_of_type(x, np.ndarray)
+```
+
+Refer to the [documentation](https://biocpy.github.io/BiocUtils/) for comprehensive details on these functionalities.
