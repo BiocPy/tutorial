@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -82,7 +82,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -91,6 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -98,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 4&nbsp; Single-cell experiment">
+<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - Single-cell experiment">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -109,12 +116,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/experiments/index.html">Represent experimental data</a></li><li class="breadcrumb-item"><a href="../../chapters/experiments/singlecell_expt.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Single-cell experiment</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/experiments/index.html">Represent experimental data</a></li><li class="breadcrumb-item"><a href="../../chapters/experiments/singlecell_expt.html"><span class="chapter-title">Single-cell experiment</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -124,13 +131,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">BiocPy: Enabling Bioconductor workflows in Python</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/BiocPy/tutorial" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="https://twitter.com/intent/tweet?url=|url|" rel="" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/BiocPy/tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://twitter.com/intent/tweet?url=|url|" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
 </div>
     </div>
       </div>
@@ -156,6 +163,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></a>
@@ -244,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -263,12 +275,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#export-as-mudata" id="toc-export-as-mudata" class="nav-link" data-scroll-target="#export-as-mudata">Export as <code>MuData</code></a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/experiments/index.html">Represent experimental data</a></li><li class="breadcrumb-item"><a href="../../chapters/experiments/singlecell_expt.html"><span class="chapter-title">Single-cell experiment</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-title">Single-cell experiment</span></h1>
 </div>
@@ -283,7 +295,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p>This package provides container class to represent single-cell experimental data as 2-dimensional matrices. In these matrices, the rows typically denote features or genomic regions of interest, while columns represent cells. In addition, a <code>SingleCellExperiment</code> (SCE) object may contain low-dimensionality embeddings, alternative experiments performed on same sample or set of cells.</p>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -316,8 +330,8 @@ Important
 <p>If you are using the <code>alternative_experiments</code> slot, the number of cells must match the parent experiment. Otherwise, the expectation is that the cells do not share the same sample or annotations and cannot be set in alternative experiments!</p>
 <p>Note: Validation checks do not apply to <code>row_pairs</code> or <code>col_pairs</code>.</p>
 <p>Before we construct a <code>SingleCellExperiment</code> object, lets generate information about rows, columns and a mock experimental data from single-cell rna-seq experiments:</p>
-<div class="cell" data-execution_count="1">
-<details>
+<div id="4ea63629" class="cell" data-execution_count="1">
+<details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -366,7 +380,7 @@ Important
 </div>
 </div>
 <p>Now lets create the <code>SingleCellExperiment</code> instance:</p>
-<div class="cell" data-execution_count="2">
+<div id="bbfe017e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> SingleCellExperiment</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sce <span class="op">=</span> SingleCellExperiment(</span>
@@ -400,7 +414,7 @@ metadata(0):
 <h3 class="anchored" data-anchor-id="interop-with-anndata">Interop with <code>anndata</code></h3>
 <p>We provide convenient methods for loading an <code>AnnData</code> or <code>h5ad</code> file into <code>SingleCellExperiment</code> objects.</p>
 <p>For example, lets create an <code>AnnData</code> object,</p>
-<div class="cell" data-execution_count="3">
+<div id="399c2c58" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anndata <span class="im">as</span> ad</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> sparse <span class="im">as</span> sp</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -412,7 +426,7 @@ metadata(0):
 </div>
 </div>
 <p>Converting <code>AnnData</code> as <code>SingleCellExperiment</code> is straightforward:</p>
-<div class="cell" data-execution_count="4">
+<div id="6ae5e176" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sce_adata <span class="op">=</span> SingleCellExperiment.from_anndata(adata) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/genomicranges/SeqInfo.py:348: UserWarning: 'seqnames' is deprecated, use 'get_seqnames' instead
@@ -420,7 +434,7 @@ metadata(0):
 </div>
 </div>
 <p>and vice-verse. All assays from SCE are represented in the <code>layers</code> slot of the <code>AnnData</code> object:</p>
-<div class="cell" data-execution_count="5">
+<div id="3f4d0510" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>adata2 <span class="op">=</span> sce_adata.to_anndata()</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adata2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -431,7 +445,7 @@ metadata(0):
 </div>
 </div>
 <p>Similarly, one can load a h5ad file:</p>
-<div class="cell" data-execution_count="6">
+<div id="f02b505e" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> read_h5ad</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sce_h5 <span class="op">=</span> read_h5ad(<span class="st">"../../assets/data/adata.h5ad"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce_h5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -460,7 +474,7 @@ metadata(2): O_recarray nested
 <section id="from-tenx-formats" class="level3">
 <h3 class="anchored" data-anchor-id="from-tenx-formats">from tenx formats</h3>
 <p>In addition, we also provide convenient methods to load a 10X H5 file. We currently only support version 3 of the 10X H5 format.</p>
-<div class="cell" data-execution_count="7">
+<div id="ca5f9f60" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> read_tenx_h5</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sce_h5 <span class="op">=</span> read_tenx_h5(<span class="st">"../../assets/data/tenx.sub.h5"</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce_h5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -500,7 +514,7 @@ Note
 <h2 class="anchored" data-anchor-id="getterssetters">Getters/Setters</h2>
 <p>Getters are available to access various attributes using either the property notation or functional style.</p>
 <p>Since <code>SingleCellExperiment</code> extends <code>RangedSummarizedExperiment</code>, all getters and setters from the base class are accessible here; more details <a href="../../chapters/experiments/summarized_expt.html">here</a>.</p>
-<div class="cell" data-execution_count="8">
+<div id="f045bdee" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access assay names</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"reduced dim names (as property): "</span>, sce.reduced_dim_names)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"reduced dim names (functional style): "</span>, sce.get_reduced_dim_names())</span>
@@ -513,27 +527,27 @@ reduced dim names (functional style):  ['random_embeds']
 BiocFrame with 200 rows and 6 columns
       seqnames  starts    ends strand   score                  GC
         &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;              &lt;list&gt;
-  [0]     chr1     100     110      -       0  0.8741192356486259
-  [1]     chr2     101     111      +       1  0.8643186015606333
-  [2]     chr2     102     112      +       2  0.9277446412049014
+  [0]     chr1     100     110      -       0  0.2893573977911713
+  [1]     chr2     101     111      +       1 0.33302294497323026
+  [2]     chr2     102     112      +       2  0.4835966999995758
            ...     ...     ...    ...     ...                 ...
-[197]     chr3     297     307      +     197  0.4688880550064415
-[198]     chr3     298     308      -     198 0.07391939836072203
-[199]     chr3     299     309      -     199 0.22378777488044932</code></pre>
+[197]     chr3     297     307      +     197  0.3039258102068161
+[198]     chr3     298     308      -     198  0.9699467287176049
+[199]     chr3     299     309      -     199   0.825428182502336</code></pre>
 </div>
 </div>
 <section id="access-a-reduced-dimension" class="level4">
 <h4 class="anchored" data-anchor-id="access-a-reduced-dimension">Access a reduced dimension</h4>
 <p>One can access an reduced dimension by index or name:</p>
-<div class="cell" data-execution_count="9">
+<div id="7d0686a8" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sce.reduced_dim(<span class="dv">0</span>) <span class="co"># same as se.reduced_dim("random_embeds")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>array([[0.91396949, 0.73022548, 0.56995752, 0.88810734],
-       [0.56567776, 0.34926347, 0.06677674, 0.58726532],
-       [0.44695185, 0.03478359, 0.87694384, 0.68754292],
-       [0.02027627, 0.33909905, 0.97040758, 0.84967108],
-       [0.00264354, 0.29745858, 0.44576978, 0.50257926],
-       [0.76332547, 0.21866449, 0.40487682, 0.53575024]])</code></pre>
+<pre><code>array([[0.41640148, 0.20681151, 0.37132125, 0.36465229],
+       [0.96807364, 0.25327052, 0.69840434, 0.22356867],
+       [0.04498083, 0.3439884 , 0.38203307, 0.3835792 ],
+       [0.67929994, 0.23082086, 0.28931932, 0.7425693 ],
+       [0.96095922, 0.27788617, 0.99505579, 0.24095075],
+       [0.4207012 , 0.328496  , 0.24336109, 0.75367966]])</code></pre>
 </div>
 </div>
 </section>
@@ -542,7 +556,7 @@ BiocFrame with 200 rows and 6 columns
 <h2 class="anchored" data-anchor-id="subset-experiments">Subset experiments</h2>
 <p>You can subset experimental data by using the subset (<code>[]</code>) operator. This operation accepts different slice input types, such as a boolean vector, a <code>slice</code> object, a list of indices, or names (if available) to subset.</p>
 <p>In our previous example, we didn’t include row or column names. Let’s create another <code>SingleCellExperiment</code> object that includes names.</p>
-<div class="cell" data-execution_count="10">
+<div id="a7db8f21" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>subset_sce <span class="op">=</span> sce[<span class="dv">0</span>:<span class="dv">10</span>, <span class="dv">0</span>:<span class="dv">3</span>]</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_sce)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -568,8 +582,8 @@ metadata(0):
 <p><code>SingleCellExperiment</code> implements methods for the various <code>combine</code> generics from <a href="https://github.com/BiocPy/biocutils"><strong>BiocUtils</strong></a>.</p>
 <p>These methods enable the merging or combining of multiple <code>SingleCellExperiment</code> objects, allowing users to aggregate data from different experiments or conditions. Note: <code>row_pairs</code> and <code>column_pairs</code> are not ignored as part of this operation.</p>
 <p>To demonstrate, let’s create multiple <code>SingleCellExperiment</code> objects (read more about this in <a href="../../chapters/experiments/summarized_expt.html#combining-experiments">combine section from <code>SummarizedExperiment</code></a>).</p>
-<div class="cell" data-execution_count="11">
-<details>
+<div id="3639be8e" class="cell" data-execution_count="11">
+<details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ncols <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>nrows <span class="op">=</span> <span class="dv">100</span></span>
@@ -662,7 +676,7 @@ metadata(0):
 </div>
 </div>
 <p>The <code>combine_rows</code> or <code>combine_columns</code> operations, expect all experiments to contain the same assay names. To combine experiments by row:</p>
-<div class="cell" data-execution_count="12">
+<div id="eca67a70" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> relaxed_combine_columns, combine_columns, combine_rows, relaxed_combine_rows</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>sce_combined <span class="op">=</span> combine_rows(sce2, sce1)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -683,12 +697,12 @@ metadata(0):
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/singlecellexperiment/SingleCellExperiment.py:1097: UserWarning: 'row_pairs' and 'column_pairs' are currently ignored during this operation.
+<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/singlecellexperiment/SingleCellExperiment.py:1101: UserWarning: 'row_pairs' and 'column_pairs' are currently ignored during this operation.
   warn(</code></pre>
 </div>
 </div>
 <p>Similarly to combine by column:</p>
-<div class="cell" data-execution_count="13">
+<div id="1af2098c" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>sce_combined <span class="op">=</span> combine_columns(sce2, sce1)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -708,19 +722,19 @@ metadata(0):
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/singlecellexperiment/SingleCellExperiment.py:1139: UserWarning: 'row_pairs' and 'column_pairs' are currently ignored during this operation.
+<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/singlecellexperiment/SingleCellExperiment.py:1143: UserWarning: 'row_pairs' and 'column_pairs' are currently ignored during this operation.
   warn(</code></pre>
 </div>
 </div>
 <p>You can use <code>relaxed_combine_columns</code> or <code>relaxed_combined_rows</code> when there’s mismatch in the number of features or samples. Missing rows or columns in any object are filled in with appropriate placeholder values before combining, e.g.&nbsp;missing assay’s are replaced with a masked numpy array.</p>
-<div class="cell" data-execution_count="14">
+<div id="cd2b0750" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sce_alts1 contains an additional assay not present in sce_alts2</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>sce_relaxed_combine <span class="op">=</span> relaxed_combine_columns(sce_alts1, sce_alts2)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce_relaxed_combine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SingleCellExperiment
 dimensions: (3, 6)
-assays(2): ['counts', 'lognorm']
+assays(2): ['lognorm', 'counts']
 row_data columns(3): ['seqnames', 'start', 'end']
 row_names(3): ['HER2', 'BRCA1', 'TPFK']
 column_data columns(3): ['sample', 'disease', 'doublet_score']
@@ -734,7 +748,7 @@ metadata(1): seq_type
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/singlecellexperiment/SingleCellExperiment.py:1249: UserWarning: 'row_pairs' and 'column_pairs' are currently ignored during this operation.
+<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/singlecellexperiment/SingleCellExperiment.py:1253: UserWarning: 'row_pairs' and 'column_pairs' are currently ignored during this operation.
   warn("'row_pairs' and 'column_pairs' are currently ignored during this operation.")</code></pre>
 </div>
 </div>
@@ -742,7 +756,7 @@ metadata(1): seq_type
 <section id="export-as-mudata" class="level2">
 <h2 class="anchored" data-anchor-id="export-as-mudata">Export as <code>MuData</code></h2>
 <p>The package also provides methods to convert a <code>SingleCellExperiment</code> object into a <code>MuData</code> representation:</p>
-<div class="cell" data-execution_count="15">
+<div id="80c4f410" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>mdata <span class="op">=</span> sce.to_mudata()</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>mdata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -844,10 +858,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -857,8 +870,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -871,6 +893,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -914,6 +1055,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -939,6 +1081,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1000,12 +1168,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/experiments/summarized_expt.html" class="pagination-link">
+      <a href="../../chapters/experiments/summarized_expt.html" class="pagination-link  aria-label=" &lt;span="" experiment&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Summarized experiment</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/experiments/extending_se.html" class="pagination-link">
+      <a href="../../chapters/experiments/extending_se.html" class="pagination-link" aria-label="<span class='chapter-number'>6</span>&nbsp; <span class='chapter-title'>Extending summarized experiments</span>">
         <span class="nav-page-text"><span class="chapter-title">Extending summarized experiments</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1019,15 +1187,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link active" href="../../chapters/summary.html" aria-current="page">(c) BiocPy core contributors</a>
+    <a class="nav-link active" href="../../chapters/summary.html" aria-current="page">
+<ol start="3" type="a">
+<li>BiocPy core contributors</li>
+</ol>
+</a>
   </li>  
 </ul>
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BiocPy: Enabling Bioconductor workflows in Python - DelayedArrays, in Python</title>
+<title>BiocPy: Enabling Bioconductor workflows in Python - Atomics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/extras/iranges.html" rel="next">
-<link href="../../chapters/extras/index.html" rel="prev">
+<link href="../../chapters/representations/biocframe.html" rel="next">
+<link href="../../chapters/representations/index.html" rel="prev">
 <link href="../.././assets/short.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - DelayedArrays, in Python">
+<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - Atomics">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/extras/index.html">Additional packages</a></li><li class="breadcrumb-item"><a href="../../chapters/extras/delayedarrays.html"><span class="chapter-title">DelayedArrays, in Python</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/representations/index.html">The basics</a></li><li class="breadcrumb-item"><a href="../../chapters/representations/atomics.html"><span class="chapter-title">Atomics</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics</span></a>
+  <a href="../../chapters/representations/atomics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Atomics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -227,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/extras/delayedarrays.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">DelayedArrays, in Python</span></a>
+  <a href="../../chapters/extras/delayedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">DelayedArrays, in Python</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -264,19 +264,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#quick-start" id="toc-quick-start" class="nav-link" data-scroll-target="#quick-start">Quick start</a></li>
-  <li><a href="#extracting-data" id="toc-extracting-data" class="nav-link" data-scroll-target="#extracting-data">Extracting data</a></li>
-  <li><a href="#interoperability-with-other-packages" id="toc-interoperability-with-other-packages" class="nav-link" data-scroll-target="#interoperability-with-other-packages">Interoperability with other packages</a></li>
-  <li><a href="#developing-seeds" id="toc-developing-seeds" class="nav-link" data-scroll-target="#developing-seeds">Developing seeds</a></li>
+  <li><a href="#atomic-lists" id="toc-atomic-lists" class="nav-link" data-scroll-target="#atomic-lists">Atomic lists</a></li>
+  <li><a href="#factor-class" id="toc-factor-class" class="nav-link" data-scroll-target="#factor-class"><code>Factor</code> class</a></li>
+  <li><a href="#subset-generic" id="toc-subset-generic" class="nav-link" data-scroll-target="#subset-generic"><code>subset</code> generic</a></li>
+  <li><a href="#combine-generic" id="toc-combine-generic" class="nav-link" data-scroll-target="#combine-generic"><code>combine</code> generic</a></li>
+  <li><a href="#other-utilities" id="toc-other-utilities" class="nav-link" data-scroll-target="#other-utilities">Other utilities</a>
+  <ul class="collapse">
+  <li><a href="#match" id="toc-match" class="nav-link" data-scroll-target="#match"><code>match</code></a></li>
+  <li><a href="#intersect" id="toc-intersect" class="nav-link" data-scroll-target="#intersect"><code>intersect</code></a></li>
+  <li><a href="#union" id="toc-union" class="nav-link" data-scroll-target="#union"><code>union</code></a></li>
+  <li><a href="#is_list_of_type" id="toc-is_list_of_type" class="nav-link" data-scroll-target="#is_list_of_type"><code>is_list_of_type</code></a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/extras/index.html">Additional packages</a></li><li class="breadcrumb-item"><a href="../../chapters/extras/delayedarrays.html"><span class="chapter-title">DelayedArrays, in Python</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/representations/index.html">The basics</a></li><li class="breadcrumb-item"><a href="../../chapters/representations/atomics.html"><span class="chapter-title">Atomics</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">DelayedArrays, in Python</span></h1>
+<h1 class="title"><span class="chapter-title">Atomics</span></h1>
 </div>
 
 
@@ -293,205 +300,171 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This package implements classes for delayed array operations, mirroring the <a href="https://bioconductor.org/packages/DelayedArray">Bioconductor package</a> of the same name. It allows BiocPy-based packages to easily inteoperate with delayed arrays from the Bioconductor ecosystem, with focus on serialization to/from file with <a href="https://github.com/ArtifactDB/chihaya"><strong>chihaya</strong></a>/<a href="https://github.com/BiocPy/rds2py"><strong>rds2py</strong></a> and entry into <a href="https://github.com/tatami-inc/tatami"><strong>tatami</strong></a>-compatible C++ libraries via <a href="https://github.com/BiocPy/mattress"><strong>mattress</strong></a>.</p>
+<p>The <a href="https://github.com/BiocPy/BiocUtils">BiocUtils</a> package offers essential utilities designed for universal use across all packages, with a focus on emulating convenient features of base R. In particular, this package addresses challenges associated with Python lists, which lack type specificity, leading to the need for inference when dealing with lists containing booleans, numbers, floats or strings.</p>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p>This package is published to <a href="https://pypi.org/project/delayedarray/">PyPI</a> and can be installed via the usual methods:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install delayedarray</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To begin using the package, you can install it from <a href="https://pypi.org/project/biocutils/">PyPI</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install biocutils</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="quick-start" class="level2">
-<h2 class="anchored" data-anchor-id="quick-start">Quick start</h2>
-<p>We can create a <code>DelayedArray</code> from any object that respects the seed contract, i.e., has the <code>shape</code>/<code>dtype</code> properties and supports NumPy slicing. For example, a typical NumPy array qualifies:</p>
-<div id="5949e1c4" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> numpy.random.rand(<span class="dv">100</span>, <span class="dv">20</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>array([[0.85012334, 0.89946615, 0.79893604, ..., 0.51794391, 0.71526104,
-        0.28399309],
-       [0.7927385 , 0.76167273, 0.28841898, ..., 0.35145366, 0.77183589,
-        0.72240008],
-       [0.47735116, 0.80324492, 0.18680261, ..., 0.08250823, 0.06586412,
-        0.75528245],
-       ...,
-       [0.83391398, 0.4387881 , 0.66614076, ..., 0.99114267, 0.18733636,
-        0.9240247 ],
-       [0.01151285, 0.01331816, 0.8916812 , ..., 0.03151051, 0.65812747,
-        0.49197952],
-       [0.54664667, 0.00776397, 0.43545534, ..., 0.10067899, 0.15259715,
-        0.51570396]])</code></pre>
+<section id="atomic-lists" class="level2">
+<h2 class="anchored" data-anchor-id="atomic-lists">Atomic lists</h2>
+<p>The package provides several atomic lists that are coerced into appropriate types. These include <code>BooleanList</code>, <code>FloatList</code>, <code>NamedList</code>, <code>IntegerList</code>, and <code>StringList</code>.</p>
+<p>Let’s explore <code>BooleanList</code>, which resembles a regular Python list but coercing anything added to it into a <code>boolean</code>. Additionally, <code>None</code> values are accepted and treated as missing booleans.</p>
+<p>This list may also be named (see <code>NamedList</code>), which provides dictionary-like functionality.</p>
+<div id="a9f10ca2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> BooleanList, NamedList</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> BooleanList([ <span class="va">True</span>, <span class="va">False</span>, <span class="va">False</span>, <span class="va">True</span> ])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[True, False, False, True]</code></pre>
 </div>
 </div>
-<p>We can wrap this in a <code>DelayedArray</code> class:</p>
-<div id="abbf952c" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> delayedarray</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> delayedarray.wrap(x)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>&lt;100 x 20&gt; DelayedArray object of type 'float64'
-[[0.85012334, 0.89946615, 0.79893604, ..., 0.51794391, 0.71526104,
-  0.28399309],
- [0.7927385 , 0.76167273, 0.28841898, ..., 0.35145366, 0.77183589,
-  0.72240008],
- [0.47735116, 0.80324492, 0.18680261, ..., 0.08250823, 0.06586412,
-  0.75528245],
- ...,
- [0.83391398, 0.4387881 , 0.66614076, ..., 0.99114267, 0.18733636,
-  0.9240247 ],
- [0.01151285, 0.01331816, 0.8916812 , ..., 0.03151051, 0.65812747,
-  0.49197952],
- [0.54664667, 0.00776397, 0.43545534, ..., 0.10067899, 0.15259715,
-  0.51570396]]</code></pre>
+<p>Similarly, one can create atomic lists for other types, such as <code>FloatList</code>:</p>
+<div id="635a5ba2" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> FloatList</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> FloatList([ <span class="fl">1.1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span> ])</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1.1, 2.0, 3.0, 4.0]</code></pre>
 </div>
 </div>
-<p>And then we can use it in a variety of operations. For example, in genomics, a typical quality control task is to slice the matrix to remove uninteresting features (rows) or samples (columns):</p>
-<div id="0f898c3f" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>filtered <span class="op">=</span> d[<span class="dv">1</span>:<span class="dv">100</span>:<span class="dv">2</span>,<span class="dv">1</span>:<span class="dv">8</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>filtered.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>(50, 7)</code></pre>
+<p>Accessing these vectors is similar to any other list:</p>
+<div id="3353d4e5" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"2nd element:"</span>, x[<span class="dv">2</span>])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"reassign value"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>] <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"x: "</span>, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2nd element: 3.0
+reassign value
+x:  [1.1, 50.0, 3.0, 4.0]</code></pre>
 </div>
 </div>
-<p>We then divide by the total sum of each column to compute normalized values between samples.</p>
-<div id="0c245834" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> filtered.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>normalized <span class="op">=</span> filtered <span class="op">/</span> total</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>normalized.dtype</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To convert objects back to Python lists:</p>
+<div id="9b1992a5" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>dtype('float64')</code></pre>
-</div>
-</div>
-<p>And finally we compute a log-transformation to get some log-normalized values for visualization.</p>
-<div id="a702a41e" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>transformed <span class="op">=</span> numpy.log1p(normalized)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>transformed[<span class="dv">1</span>:<span class="dv">5</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>&lt;4 x 7&gt; DelayedArray object of type 'float64'
-[[0.0054875 , 0.03589071, 0.01343259, ..., 0.03229102, 0.02327938,
-  0.03466853],
- [0.03071562, 0.03160849, 0.03183812, ..., 0.02630732, 0.01792656,
-  0.03643334],
- [0.02020574, 0.03069436, 0.03443204, ..., 0.0017606 , 0.02739358,
-  0.00219889],
- [0.03209243, 0.00376426, 0.00769851, ..., 0.00966314, 0.03493066,
-  0.0364968 ]]</code></pre>
-</div>
-</div>
-<p>Each operation just returns a <code>DelayedArray</code> with an increasing stack of delayed operations, without evaluating anything or making any copies. Check out the <a href="https://biocpy.github.io/DelayedArray/">documentation</a> for more information.</p>
-</section>
-<section id="extracting-data" class="level2">
-<h2 class="anchored" data-anchor-id="extracting-data">Extracting data</h2>
-<p>Users can process a <code>DelayedArray</code> by iteratively extracting contiguous blocks on a dimension of interest. This “block processing” strategy saves memory by only realizing the delayed operations for a subset of the data, while reducing overhead from repeated calls to the <code>extract_*_array</code> functions. For example, to iterate over the rows with 100 MB blocks:</p>
-<div id="d3f5dfaf" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>block_size <span class="op">=</span> delayedarray.guess_iteration_block_size(d, dimension<span class="op">=</span><span class="dv">0</span>, memory<span class="op">=</span><span class="fl">1e8</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>block_coords <span class="op">=</span> [ <span class="va">None</span>, <span class="bu">range</span>(d.shape[<span class="dv">1</span>]) ]</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> start <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, d.shape[<span class="dv">0</span>], block_size):</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    end <span class="op">=</span> <span class="bu">min</span>(d.shape[<span class="dv">0</span>], start <span class="op">+</span> block_size)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    block_coords[<span class="dv">0</span>] <span class="op">=</span> <span class="bu">range</span>(start, end)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    current <span class="op">=</span> delayedarray.extract_dense_array(d, (<span class="op">*</span>block_coords,))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This yields <code>current</code>, a NumPy array in Fortran storage order with the specified rows and columns. For sparse arrays (where <code>is_sparse()</code> returns <code>True</code>), we can instead do:</p>
-<div id="862d4a2e" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> delayedarray.is_sparse(d):</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    current <span class="op">=</span> delayedarray.extract_sparse_array(d, (<span class="op">*</span>block_coords,))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This returns a <code>SparseNdarray</code> consisting of a tree of sparse vectors for the specified block. (For the two-dimensional case, this is effectively a compressed sparse column matrix.)</p>
-<p>More simply, users can just call <code>numpy.array()</code> to realize the delayed operations into a standard NumPy array for consumption.</p>
-<div id="7367cd64" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>simple <span class="op">=</span> numpy.array(x)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(simple))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'numpy.ndarray'&gt;</code></pre>
-</div>
-</div>
-<p>Or <code>delayedarray.create_dask_array()</code>, to obtain a <strong>dask</strong> array that contains the delayed operations:</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note: requires installation as ‘delayedarray[dask]’.</p>
-</div>
-</div>
-<div id="a32d3d6b" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dasky <span class="op">=</span> delayedarray.create_dask_array(x)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(dasky))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'dask.array.core.Array'&gt;</code></pre>
+<pre><code>[1.1, 50.0, 3.0, 4.0]</code></pre>
 </div>
 </div>
 </section>
-<section id="interoperability-with-other-packages" class="level2">
-<h2 class="anchored" data-anchor-id="interoperability-with-other-packages">Interoperability with other packages</h2>
-<p>The general idea is that <code>DelayedArray</code>s should be a drop-in replacement for NumPy arrays, at least for <a href="https://github.com/BiocPy">BiocPy</a> applications. So, for example, we can stuff the <code>DelayedArray</code> inside a <code>SummarizedExperiment</code>:</p>
-<div id="b5ebc446" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> summarizedexperiment <span class="im">as</span> SE</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> SE.SummarizedExperiment({ <span class="st">"counts"</span>: filtered, <span class="st">"lognorm"</span>: transformed })</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="factor-class" class="level2">
+<h2 class="anchored" data-anchor-id="factor-class"><code>Factor</code> class</h2>
+<p>The <code>Factor</code> class is analogous to R’s factor. It comprises a vector of integer <code>codes</code>, each corresponding to an index within a list of unique strings (<code>levels</code>). The purpose is to encode a list of strings as integers for streamlined numerical analysis.</p>
+<p>The most straightforward way to create a <code>Factor</code> is from an existing list of strings:</p>
+<div id="fc9c2651" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> Factor</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> Factor.from_sequence([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"E"</span>])</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>class: SummarizedExperiment
-dimensions: (50, 7)
-assays(2): ['counts', 'lognorm']
-row_data columns(0): []
-row_names(0):  
-column_data columns(0): []
-column_names(0):  
-metadata(0): 
-</code></pre>
+<pre><code>Factor of length 5 with 3 levels
+values: A, B, A, B, E
+levels: A, B, E
+ordered: False</code></pre>
 </div>
 </div>
-<p>One of the main goals of the <strong>DelayedArray</strong> package is to make it easier for Bioconductor developers to inspect the delayed operations. (See the <a href="https://biocpy.github.io/DelayedArray/developers.html">developer notes</a> for some comments on <strong>dask</strong>.) For example, we can pull out the “seed” object underlying our <code>DelayedArray</code> instance:</p>
-<div id="2ec3031f" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>d.seed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Alternatively, if you already have a list of <code>codes</code> and associated <code>levels</code>:</p>
+<div id="bdc493e7" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> Factor([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>], levels<span class="op">=</span>[<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>])</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Factor of length 6 with 5 levels
+values: A, B, C, A, C, E
+levels: A, B, C, D, E
+ordered: False</code></pre>
+</div>
+</div>
+<p>To convert a <code>Factor</code> back to a Python list:</p>
+<div id="35d0bd23" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>['A', 'B', 'C', 'A', 'C', 'E']</code></pre>
+</div>
+</div>
+</section>
+<section id="subset-generic" class="level2">
+<h2 class="anchored" data-anchor-id="subset-generic"><code>subset</code> generic</h2>
+<p>The Biocutils package introduces a <code>subset</code> generic function designed to handle n-dimensional objects, where n &gt; 1 (i.e., objects with a shape property of length greater than 1). When applied, the function first verifies the dimensionality of the input objects. If they are n-dimensional, it invokes <code>subset_rows()</code> to perform the subsetting along the first dimension. On the other hand, if the objects are deemed vector-like, the function utilizes <code>subset_sequence()</code> for the subsetting operation.</p>
+<div id="92ffff88" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> subset</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>subset(x, [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>[1, 3, 5]</code></pre>
+</div>
+</div>
+</section>
+<section id="combine-generic" class="level2">
+<h2 class="anchored" data-anchor-id="combine-generic"><code>combine</code> generic</h2>
+<p>The <code>combine</code> generic function in Biocutils is designed to accommodate objects of varying dimensions. It begins by examining the dimensionality of the input objects: if they are n-dimensional for n &gt; 1 (i.e., possessing a shape property of length greater than 1), the function utilizes <code>combine_rows()</code> to merge them along the first dimension. Conversely, if the objects exhibit a vector-like structure, the function employs <code>combine_sequences()</code> for the combination process.</p>
+<div id="bb130e36" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> combine</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="fl">0.1</span>, <span class="fl">0.2</span>]</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>xd <span class="op">=</span> np.array(x)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>combine(xd, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>array([1. , 2. , 3. , 0.1, 0.2])</code></pre>
+</div>
+</div>
+</section>
+<section id="other-utilities" class="level2">
+<h2 class="anchored" data-anchor-id="other-utilities">Other utilities</h2>
+<section id="match" class="level3">
+<h3 class="anchored" data-anchor-id="match"><code>match</code></h3>
+<div id="4943993b" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocutils</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>biocutils.match([<span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"E"</span>], [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>array([0, 2, 4], dtype=int8)</code></pre>
+</div>
+</div>
+</section>
+<section id="intersect" class="level3">
+<h3 class="anchored" data-anchor-id="intersect"><code>intersect</code></h3>
+<div id="e74d7728" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocutils</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>biocutils.intersect([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>], [<span class="st">"D"</span>, <span class="st">"A"</span>, <span class="st">"E"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>array([[0.85012334, 0.89946615, 0.79893604, ..., 0.51794391, 0.71526104,
-        0.28399309],
-       [0.7927385 , 0.76167273, 0.28841898, ..., 0.35145366, 0.77183589,
-        0.72240008],
-       [0.47735116, 0.80324492, 0.18680261, ..., 0.08250823, 0.06586412,
-        0.75528245],
-       ...,
-       [0.83391398, 0.4387881 , 0.66614076, ..., 0.99114267, 0.18733636,
-        0.9240247 ],
-       [0.01151285, 0.01331816, 0.8916812 , ..., 0.03151051, 0.65812747,
-        0.49197952],
-       [0.54664667, 0.00776397, 0.43545534, ..., 0.10067899, 0.15259715,
-        0.51570396]])</code></pre>
+<pre><code>['A', 'D']</code></pre>
 </div>
 </div>
-<p>Each layer has its own specific attributes that define the operation, e.g.,</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>d.seed.subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Recursively drilling through the object will eventually reach the underlying array(s):</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>d.seed.seed.seed.seed.seed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>All attributes required to reconstruct a delayed operation are public and considered part of the stable <code>DelayedArray</code> interface.</p>
 </section>
-<section id="developing-seeds" class="level2">
-<h2 class="anchored" data-anchor-id="developing-seeds">Developing seeds</h2>
-<p>Any array-like object can be used as a “seed” in a <code>DelayedArray</code> provided it has the following:</p>
-<ul>
-<li><code>dtype</code> and <code>shape</code> properties, like those in NumPy arrays.</li>
-<li>a method for the <code>extract_dense_array()</code> generic.</li>
-</ul>
-<p>If the object may contain sparse data, it should also implement:</p>
-<ul>
-<li>a method for the <code>is_sparse()</code> generic.</li>
-<li>a method for the <code>extract_sparse_generic()</code> generic.</li>
-</ul>
-<p>It may also be desirable to implement:</p>
-<ul>
-<li>a method for the <code>chunk_shape()</code> generic.</li>
-<li>a method for the <code>create_dask_array()</code> generic.</li>
-<li>a method for the <code>wrap()</code> generic.</li>
-</ul>
-<p>Developers are referred to the <a href="https://biocpy.github.io/DelayedArray/api/delayedarray.html">documentation for each generic</a> for more details.</p>
+<section id="union" class="level3">
+<h3 class="anchored" data-anchor-id="union"><code>union</code></h3>
+<div id="efd7c7fb" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocutils</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>biocutils.union([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>], [<span class="st">"D"</span>, <span class="st">"A"</span>, <span class="st">"E"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>['A', 'B', 'C', 'D', 'E']</code></pre>
+</div>
+</div>
+</section>
+<section id="is_list_of_type" class="level3">
+<h3 class="anchored" data-anchor-id="is_list_of_type"><code>is_list_of_type</code></h3>
+<p>Checks if all elements of a list or tuple are of the same type.</p>
+<div id="14acf5c7" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocutils</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [np.random.rand(<span class="dv">3</span>), np.random.rand(<span class="dv">3</span>, <span class="dv">2</span>)]</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>biocutils.is_list_of_type(x, np.ndarray)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>Refer to the <a href="https://biocpy.github.io/BiocUtils/">documentation</a> for comprehensive details on these functionalities.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -884,13 +857,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/extras/index.html" class="pagination-link  aria-label=" additional="" packages"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Additional packages</span>
+      <a href="../../chapters/representations/index.html" class="pagination-link  aria-label=" the="" basics"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">The basics</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/extras/iranges.html" class="pagination-link" aria-label="<span class='chapter-number'>10</span>&nbsp; <span class='chapter-title'>`IRanges`: Interval arithmetic</span>">
-        <span class="nav-page-text"><span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/representations/biocframe.html" class="pagination-link" aria-label="<span class='chapter-number'>2</span>&nbsp; <span class='chapter-title'>`BiocFrame` - Bioconductor-like data frames</span>">
+        <span class="nav-page-text"><span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

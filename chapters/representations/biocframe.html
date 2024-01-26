@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../chapters/representations/genomicranges.html" rel="next">
-<link href="../../chapters/representations/index.html" rel="prev">
+<link href="../../chapters/representations/atomics.html" rel="prev">
 <link href="../.././assets/short.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -82,7 +82,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -91,6 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -98,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 1&nbsp; BiocFrame - Bioconductor-like data frames">
+<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - BiocFrame - Bioconductor-like data frames">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -109,12 +116,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/representations/index.html">The basics</a></li><li class="breadcrumb-item"><a href="../../chapters/representations/biocframe.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">`BiocFrame` - Bioconductor-like data frames</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/representations/index.html">The basics</a></li><li class="breadcrumb-item"><a href="../../chapters/representations/biocframe.html"><span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -124,13 +131,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">BiocPy: Enabling Bioconductor workflows in Python</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/BiocPy/tutorial" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="https://twitter.com/intent/tweet?url=|url|" rel="" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/BiocPy/tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://twitter.com/intent/tweet?url=|url|" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
 </div>
     </div>
       </div>
@@ -156,6 +163,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></a>
@@ -244,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -276,12 +288,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#empty-frames" id="toc-empty-frames" class="nav-link" data-scroll-target="#empty-frames">Empty Frames</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/representations/index.html">The basics</a></li><li class="breadcrumb-item"><a href="../../chapters/representations/biocframe.html"><span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></h1>
 </div>
@@ -296,9 +308,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
-<p><code>BiocFrame</code> class is a Bioconductor-friendly alternative to Pandas <code>DataFrame</code>. Its primary advantage lies in not making assumptions about the types of the columns - as long as an object has a length (<code>__len__</code>) and supports slicing methods (<code>__getitem__</code>), it can be used inside a <code>BiocFrame</code>.</p>
+
+<p><code>BiocFrame</code> class is a Bioconductor-friendly data frame class. Its primary advantage lies in not making assumptions about the types of the columns - as long as an object has a length (<code>__len__</code>) and supports slicing methods (<code>__getitem__</code>), it can be used inside a <code>BiocFrame</code>.</p>
 <p>This flexibility allows us to accept arbitrarily complex objects as columns, which is often the case in Bioconductor objects. Also check out Bioconductor’s <a href="https://bioconductor.org/packages/S4Vectors"><strong>S4Vectors</strong></a> package, which implements the <code>DFrame</code> class on which <code>BiocFrame</code> was based.</p>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
@@ -311,7 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="inadvertent-modification-of-types" class="level3">
 <h3 class="anchored" data-anchor-id="inadvertent-modification-of-types">Inadvertent modification of types</h3>
 <p>As an example, Pandas <code>DataFrame</code> modifies the types of the input data. These assumptions may cause issues when interoperating between R and Python.</p>
-<div class="cell" data-execution_count="1">
+<div id="d379da54" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> array <span class="im">import</span> array</span>
@@ -345,7 +359,7 @@ type of native_array_vector column: &lt;class 'pandas.core.series.Series'&gt; fl
 </div>
 </div>
 <p>With <code>BiocFrame</code>, no assumptions are made, and the input data is not cast into (un)expected types:</p>
-<div class="cell" data-execution_count="2">
+<div id="55dc1cdb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocframe <span class="im">import</span> BiocFrame</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> array <span class="im">import</span> array</span>
@@ -397,7 +411,7 @@ Note
 <section id="handling-complex-nested-frames" class="level3">
 <h3 class="anchored" data-anchor-id="handling-complex-nested-frames">Handling complex nested frames</h3>
 <p>Pandas <code>DataFrame</code> does not support nested structures; therefore, running the snippet below will result in an error:</p>
-<div class="cell" data-execution_count="3">
+<div id="bcc6ae0f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ensembl"</span>: [<span class="st">"ENS00001"</span>, <span class="st">"ENS00002"</span>, <span class="st">"ENS00002"</span>],</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"symbol"</span>: [<span class="st">"MAP1A"</span>, <span class="st">"BIN1"</span>, <span class="st">"ESR1"</span>],</span>
@@ -410,7 +424,7 @@ Note
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, it is handled seamlessly with <code>BiocFrame</code>:</p>
-<div class="cell" data-execution_count="4">
+<div id="14a83421" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bframe_nested <span class="op">=</span> BiocFrame({</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ensembl"</span>: [<span class="st">"ENS00001"</span>, <span class="st">"ENS00002"</span>, <span class="st">"ENS00002"</span>],</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"symbol"</span>: [<span class="st">"MAP1A"</span>, <span class="st">"BIN1"</span>, <span class="st">"ESR1"</span>],</span>
@@ -449,7 +463,7 @@ Note
 <section id="construction" class="level2">
 <h2 class="anchored" data-anchor-id="construction">Construction</h2>
 <p>Creating a <code>BiocFrame</code> object is straightforward; just provide the <code>data</code> as a dictionary.</p>
-<div class="cell" data-execution_count="5">
+<div id="a519e375" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocframe <span class="im">import</span> BiocFrame</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> {</span>
@@ -480,7 +494,7 @@ Tip
 <p>You can specify complex objects as columns, as long as they have some “length” equal to the number of rows. For example, we can embed a <code>BiocFrame</code> within another <code>BiocFrame</code>.</p>
 </div>
 </div>
-<div class="cell" data-execution_count="6">
+<div id="a0a6cbff" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> {</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ensembl"</span>: [<span class="st">"ENS00001"</span>, <span class="st">"ENS00002"</span>, <span class="st">"ENS00002"</span>],</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"symbol"</span>: [<span class="st">"MAP1A"</span>, <span class="st">"BIN1"</span>, <span class="st">"ESR1"</span>],</span>
@@ -501,9 +515,6 @@ row1 ENS00001  MAP1A chr1:1000:1100
 row2 ENS00002   BIN1 chr2:1100:4000
 row3 ENS00002   ESR1 chr3:5000:5500</code></pre>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code></code></pre>
-</div>
 </div>
 <p>The <code>row_names</code> parameter is analogous to index in the pandas world and should not contain missing strings. Additionally, you may provide:</p>
 <ul>
@@ -514,18 +525,18 @@ row3 ENS00002   ESR1 chr3:5000:5500</code></pre>
 <section id="interop-with-pandas" class="level3">
 <h3 class="anchored" data-anchor-id="interop-with-pandas">Interop with pandas</h3>
 <p><code>BiocFrame</code> is intended for accurate representation of Bioconductor objects for interoperability with R, many users may prefer working with <strong>pandas</strong> <code>DataFrame</code> objects for their actual analyses. This conversion is easily achieved:</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocframe <span class="im">import</span> BiocFrame</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>bframe3 <span class="op">=</span> BiocFrame(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"foo"</span>: [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>],</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"bar"</span>: [<span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>]</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> bframe3.to_pandas()</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(df))</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d8e9c671" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocframe <span class="im">import</span> BiocFrame</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>bframe3 <span class="op">=</span> BiocFrame(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"foo"</span>: [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>],</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"bar"</span>: [<span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> bframe3.to_pandas()</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(df))</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
   foo    bar
@@ -537,9 +548,9 @@ row3 ENS00002   ESR1 chr3:5000:5500</code></pre>
 </div>
 </div>
 <p>Converting back to a <code>BiocFrame</code> is similarly straightforward:</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> BiocFrame.from_pandas(df)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d6c61ef4" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> BiocFrame.from_pandas(df)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 5 rows and 2 columns
      foo    bar
@@ -557,10 +568,10 @@ row3 ENS00002   ESR1 chr3:5000:5500</code></pre>
 <h2 class="anchored" data-anchor-id="extracting-data">Extracting data</h2>
 <p>BiocPy classes follow a functional paradigm for accessing or setting properties, with further details discussed in <a href="../../chapters/philosophy.html#functional-discipline">functional paradigm</a> section.</p>
 <p>Properties can be directly accessed from the object:</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape:"</span>, bframe.shape)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"column names (functional style):"</span>, bframe.get_column_names())</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"column names (as property):"</span>, bframe.column_names) <span class="co"># same as above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e4315356" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape:"</span>, bframe.shape)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"column names (functional style):"</span>, bframe.get_column_names())</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"column names (as property):"</span>, bframe.column_names) <span class="co"># same as above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>shape: (3, 2)
 column names (functional style): ['ensembl', 'symbol']
@@ -568,17 +579,17 @@ column names (as property): ['ensembl', 'symbol']</code></pre>
 </div>
 </div>
 <p>We can fetch individual columns:</p>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"functional style:"</span>, bframe.get_column(<span class="st">"ensembl"</span>))</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"w/ accessor"</span>, bframe[<span class="st">"ensembl"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="54ec932f" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"functional style:"</span>, bframe.get_column(<span class="st">"ensembl"</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"w/ accessor"</span>, bframe[<span class="st">"ensembl"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>functional style: ['ENS00001', 'ENS00002', 'ENS00003']
 w/ accessor ['ENS00001', 'ENS00002', 'ENS00003']</code></pre>
 </div>
 </div>
 <p>And we can get individual rows as a dictionary:</p>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>bframe.get_row(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b5b33552" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>bframe.get_row(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>{'ensembl': 'ENS00003', 'symbol': 'ESR1'}</code></pre>
 </div>
@@ -593,15 +604,15 @@ w/ accessor ['ENS00001', 'ENS00002', 'ENS00003']</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sliced_with_bools <span class="op">=</span> bframe[<span class="dv">1</span>:<span class="dv">2</span>, [<span class="va">True</span>, <span class="va">False</span>, <span class="va">False</span>]]</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Subset using booleans: </span><span class="ch">\n</span><span class="st">"</span>, sliced_with_bools)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>sliced_with_names <span class="op">=</span> bframe[[<span class="dv">0</span>,<span class="dv">2</span>], [<span class="st">"symbol"</span>, <span class="st">"ensembl"</span>]]</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Subset using column names: </span><span class="ch">\n</span><span class="st">"</span>, sliced_with_names)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Short-hand to get a single column:</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Short-hand to get a single column: </span><span class="ch">\n</span><span class="st">"</span>, bframe[<span class="st">"ensembl"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="78e734a1" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sliced_with_bools <span class="op">=</span> bframe[<span class="dv">1</span>:<span class="dv">2</span>, [<span class="va">True</span>, <span class="va">False</span>, <span class="va">False</span>]]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Subset using booleans: </span><span class="ch">\n</span><span class="st">"</span>, sliced_with_bools)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>sliced_with_names <span class="op">=</span> bframe[[<span class="dv">0</span>,<span class="dv">2</span>], [<span class="st">"symbol"</span>, <span class="st">"ensembl"</span>]]</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Subset using column names: </span><span class="ch">\n</span><span class="st">"</span>, sliced_with_names)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Short-hand to get a single column:</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Short-hand to get a single column: </span><span class="ch">\n</span><span class="st">"</span>, bframe[<span class="st">"ensembl"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Subset using booleans: 
  BiocFrame with 1 row and 1 column
@@ -626,9 +637,9 @@ Short-hand to get a single column:
 <section id="preferred-approach" class="level3">
 <h3 class="anchored" data-anchor-id="preferred-approach">Preferred approach</h3>
 <p>For setting properties, we encourage a <strong>functional style</strong> of programming to avoid mutating the object directly. This helps prevent inadvertent modifications of <code>BiocFrame</code> instances within larger data structures.</p>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>modified <span class="op">=</span> bframe.set_column_names([<span class="st">"column1"</span>, <span class="st">"column2"</span>])</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b52fe939" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>modified <span class="op">=</span> bframe.set_column_names([<span class="st">"column1"</span>, <span class="st">"column2"</span>])</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 3 rows and 2 columns
      column1 column2
@@ -639,20 +650,20 @@ Short-hand to get a single column:
 </div>
 </div>
 <p>Now let’s check the column names of the original object,</p>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Original is unchanged:</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bframe.get_column_names())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a25056c5" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Original is unchanged:</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bframe.get_column_names())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['ensembl', 'symbol']</code></pre>
 </div>
 </div>
 <p>To add new columns, or replace existing ones:</p>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>modified <span class="op">=</span> bframe.set_column(<span class="st">"symbol"</span>, [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>])</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>modified <span class="op">=</span> bframe.set_column(<span class="st">"new_col_name"</span>, <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">5</span>))</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e9d5420e" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>modified <span class="op">=</span> bframe.set_column(<span class="st">"symbol"</span>, [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>])</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>modified <span class="op">=</span> bframe.set_column(<span class="st">"new_col_name"</span>, <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">5</span>))</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 3 rows and 2 columns
      ensembl symbol
@@ -669,11 +680,11 @@ BiocFrame with 3 rows and 3 columns
 </div>
 </div>
 <p>Change the row or column names:</p>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>modified <span class="op">=</span> bframe.<span class="op">\</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    set_column_names([<span class="st">"FOO"</span>, <span class="st">"BAR"</span>]).<span class="op">\</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    set_row_names([<span class="st">'alpha'</span>, <span class="st">'bravo'</span>, <span class="st">'charlie'</span>])</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1abd7e9e" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>modified <span class="op">=</span> bframe.<span class="op">\</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    set_column_names([<span class="st">"FOO"</span>, <span class="st">"BAR"</span>]).<span class="op">\</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    set_row_names([<span class="st">'alpha'</span>, <span class="st">'bravo'</span>, <span class="st">'charlie'</span>])</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 3 rows and 2 columns
              FOO    BAR
@@ -697,11 +708,11 @@ Tip
 </div>
 </div>
 <p>We also support Bioconductor’s metadata concepts, either along the columns or for the entire object:</p>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>modified <span class="op">=</span> bframe.<span class="op">\</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    set_metadata({ <span class="st">"author"</span>: <span class="st">"Jayaram Kancherla"</span> }).<span class="op">\</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    set_column_data(BiocFrame({<span class="st">"column_source"</span>: [<span class="st">"Ensembl"</span>, <span class="st">"HGNC"</span> ]}))</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="15ec7041" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>modified <span class="op">=</span> bframe.<span class="op">\</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    set_metadata({ <span class="st">"author"</span>: <span class="st">"Jayaram Kancherla"</span> }).<span class="op">\</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    set_column_data(BiocFrame({<span class="st">"column_source"</span>: [<span class="st">"Ensembl"</span>, <span class="st">"HGNC"</span> ]}))</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 3 rows and 2 columns
      ensembl symbol
@@ -718,10 +729,10 @@ metadata(1): author</code></pre>
 <section id="the-not-preferred-way" class="level3">
 <h3 class="anchored" data-anchor-id="the-not-preferred-way">The not-preferred-way</h3>
 <p>Properties can also be set by direct assignment for in-place modification. We prefer not to do it this way as it can silently mutate <code>BiocFrame</code> instances inside other data structures. Nonetheless:</p>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>testframe <span class="op">=</span> BiocFrame({ <span class="st">"A"</span>: [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], <span class="st">"B"</span>: [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>] })</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>testframe.column_names <span class="op">=</span> [<span class="st">"column1"</span>, <span class="st">"column2"</span> ]</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(testframe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e4ed3585" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>testframe <span class="op">=</span> BiocFrame({ <span class="st">"A"</span>: [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], <span class="st">"B"</span>: [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>] })</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>testframe.column_names <span class="op">=</span> [<span class="st">"column1"</span>, <span class="st">"column2"</span> ]</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(testframe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 3 rows and 2 columns
     column1 column2
@@ -731,7 +742,7 @@ metadata(1): author</code></pre>
 [2]       3       6</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/biocframe/BiocFrame.py:466: UserWarning: Setting property 'column_names' is an in-place operation, use 'set_column_names' instead
+<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/biocframe/BiocFrame.py:468: UserWarning: Setting property 'column_names' is an in-place operation, use 'set_column_names' instead
   warn(</code></pre>
 </div>
 </div>
@@ -749,13 +760,13 @@ Caution
 </div>
 </div>
 <p>Similarly, we could set or replace columns directly:</p>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>testframe[<span class="st">"column2"</span>] <span class="op">=</span> [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>]</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>testframe[<span class="dv">1</span>:<span class="dv">3</span>, [<span class="st">"column1"</span>,<span class="st">"column2"</span>]] <span class="op">=</span> BiocFrame({<span class="st">"x"</span>:[<span class="dv">4</span>, <span class="dv">5</span>], <span class="st">"y"</span>:[<span class="st">"E"</span>, <span class="st">"F"</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="24e9b16e" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>testframe[<span class="st">"column2"</span>] <span class="op">=</span> [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>]</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>testframe[<span class="dv">1</span>:<span class="dv">3</span>, [<span class="st">"column1"</span>,<span class="st">"column2"</span>]] <span class="op">=</span> BiocFrame({<span class="st">"x"</span>:[<span class="dv">4</span>, <span class="dv">5</span>], <span class="st">"y"</span>:[<span class="st">"E"</span>, <span class="st">"F"</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/biocframe/BiocFrame.py:819: UserWarning: This method performs an in-place operation, use 'set_column' instead
+<pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/biocframe/BiocFrame.py:833: UserWarning: This method performs an in-place operation, use 'set_column' instead
   warn(
-/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/biocframe/BiocFrame.py:813: UserWarning: This method performs an in-place operation, use 'set_slice' instead
+/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/biocframe/BiocFrame.py:827: UserWarning: This method performs an in-place operation, use 'set_slice' instead
   warn(</code></pre>
 </div>
 </div>
@@ -764,9 +775,9 @@ Caution
 <section id="iterate-over-rows" class="level2">
 <h2 class="anchored" data-anchor-id="iterate-over-rows">Iterate over rows</h2>
 <p>You can iterate over the rows of a <code>BiocFrame</code> object. <code>name</code> is <code>None</code> if the object does not contain any <code>row_names</code>. To iterate over the first two rows:</p>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, row <span class="kw">in</span> bframe[:<span class="dv">2</span>,]:</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name, row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0215e3b8" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, row <span class="kw">in</span> bframe[:<span class="dv">2</span>,]:</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name, row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>None {'ensembl': 'ENS00001', 'symbol': 'MAP1A'}
 None {'ensembl': 'ENS00002', 'symbol': 'BIN1'}</code></pre>
@@ -776,21 +787,21 @@ None {'ensembl': 'ENS00002', 'symbol': 'BIN1'}</code></pre>
 <section id="combining-objects" class="level2">
 <h2 class="anchored" data-anchor-id="combining-objects">Combining objects</h2>
 <p><code>BiocFrame</code> implements methods for the various <code>combine</code> generics from <a href="https://github.com/BiocPy/biocutils"><strong>BiocUtils</strong></a>. For example, to combine by row:</p>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocutils</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>bframe1 <span class="op">=</span> BiocFrame({</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"odd"</span>: [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>],</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"even"</span>: [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>],</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>bframe2 <span class="op">=</span> BiocFrame({</span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"odd"</span>: [<span class="dv">11</span>, <span class="dv">33</span>, <span class="dv">55</span>, <span class="dv">77</span>, <span class="dv">99</span>],</span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"even"</span>: [<span class="dv">0</span>, <span class="dv">22</span>, <span class="dv">44</span>, <span class="dv">66</span>, <span class="dv">88</span>],</span>
-<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> biocutils.combine_rows(bframe1, bframe2)</span>
-<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1e1f3f1e" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocutils</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>bframe1 <span class="op">=</span> BiocFrame({</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"odd"</span>: [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>],</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"even"</span>: [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>],</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>bframe2 <span class="op">=</span> BiocFrame({</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"odd"</span>: [<span class="dv">11</span>, <span class="dv">33</span>, <span class="dv">55</span>, <span class="dv">77</span>, <span class="dv">99</span>],</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"even"</span>: [<span class="dv">0</span>, <span class="dv">22</span>, <span class="dv">44</span>, <span class="dv">66</span>, <span class="dv">88</span>],</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> biocutils.combine_rows(bframe1, bframe2)</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 10 rows and 2 columns
        odd   even
@@ -808,14 +819,14 @@ None {'ensembl': 'ENS00002', 'symbol': 'BIN1'}</code></pre>
 </div>
 </div>
 <p>Similarly, to combine by column:</p>
-<div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>bframe3 <span class="op">=</span> BiocFrame({</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"foo"</span>: [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>],</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"bar"</span>: [<span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>]</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> biocutils.combine_columns(bframe1, bframe3)</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="103ca712" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>bframe3 <span class="op">=</span> BiocFrame({</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"foo"</span>: [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>],</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"bar"</span>: [<span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>]</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> biocutils.combine_columns(bframe1, bframe3)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 5 rows and 4 columns
        odd   even    foo    bar
@@ -830,13 +841,13 @@ None {'ensembl': 'ENS00002', 'symbol': 'BIN1'}</code></pre>
 <section id="relaxed-combine-operation" class="level3">
 <h3 class="anchored" data-anchor-id="relaxed-combine-operation">Relaxed combine operation</h3>
 <p>By default, the combine methods assume that the number and identity of columns (for <code>combine_rows()</code>) or rows (for <code>combine_columns()</code>) are the same across objects. In situations where this is not the case, such as having different columns across objects, we can use <code>relaxed_combine_rows()</code> instead:</p>
-<div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocframe <span class="im">import</span> relaxed_combine_rows</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>modified2 <span class="op">=</span> bframe2.set_column(<span class="st">"foo"</span>, [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>])</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> biocutils.relaxed_combine_rows(bframe1, modified2)</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="daeedd72" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocframe <span class="im">import</span> relaxed_combine_rows</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>modified2 <span class="op">=</span> bframe2.set_column(<span class="st">"foo"</span>, [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>])</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> biocutils.relaxed_combine_rows(bframe1, modified2)</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 10 rows and 3 columns
        odd   even    foo
@@ -857,14 +868,14 @@ None {'ensembl': 'ENS00002', 'symbol': 'BIN1'}</code></pre>
 <section id="sql-like-join-operation" class="level3">
 <h3 class="anchored" data-anchor-id="sql-like-join-operation">Sql-like join operation</h3>
 <p>Similarly, if the rows are different, we can use <code>BiocFrame</code>’s <code>merge</code> function. This function uses the <em>row_names</em> as the index to perform this operation; you can specify an alternative set of keys through the <code>by</code> parameter.</p>
-<div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocframe <span class="im">import</span> merge</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>modified1 <span class="op">=</span> bframe1.set_row_names([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>])</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>modified3 <span class="op">=</span> bframe3.set_row_names([<span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>, <span class="st">"G"</span>])</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> merge([modified1, modified3], by<span class="op">=</span><span class="va">None</span>, join<span class="op">=</span><span class="st">"outer"</span>)</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cc63562d" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocframe <span class="im">import</span> merge</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>modified1 <span class="op">=</span> bframe1.set_row_names([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>])</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>modified3 <span class="op">=</span> bframe3.set_row_names([<span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>, <span class="st">"G"</span>])</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> merge([modified1, modified3], by<span class="op">=</span><span class="va">None</span>, join<span class="op">=</span><span class="st">"outer"</span>)</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 7 rows and 4 columns
      odd   even    foo    bar
@@ -883,20 +894,20 @@ G   None   None      E   True</code></pre>
 <section id="empty-frames" class="level2">
 <h2 class="anchored" data-anchor-id="empty-frames">Empty Frames</h2>
 <p>We can create empty <code>BiocFrame</code> objects that only specify the number of rows. This is beneficial in scenarios where <code>BiocFrame</code> objects are incorporated into larger data structures but do not contain any data themselves.</p>
-<div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>empty <span class="op">=</span> BiocFrame(number_of_rows<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="42d647d1" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>empty <span class="op">=</span> BiocFrame(number_of_rows<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 100 rows and 0 columns
 </code></pre>
 </div>
 </div>
 <p>Most operations detailed in this document can be performed on an empty <code>BiocFrame</code> object.</p>
-<div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Column names:"</span>, empty.column_names)</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>subset_empty <span class="op">=</span> empty[<span class="dv">1</span>:<span class="dv">10</span>,:]</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Subsetting an empty BiocFrame: </span><span class="ch">\n</span><span class="st">"</span>, subset_empty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9c4b0849" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Column names:"</span>, empty.column_names)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>subset_empty <span class="op">=</span> empty[<span class="dv">1</span>:<span class="dv">10</span>,:]</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Subsetting an empty BiocFrame: </span><span class="ch">\n</span><span class="st">"</span>, subset_empty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Column names: []
 
@@ -997,10 +1008,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1010,8 +1020,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1024,6 +1043,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1067,6 +1205,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1092,6 +1231,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1153,12 +1318,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/representations/index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">The basics</span>
+      <a href="../../chapters/representations/atomics.html" class="pagination-link  aria-label=" &lt;span="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Atomics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/representations/genomicranges.html" class="pagination-link">
+      <a href="../../chapters/representations/genomicranges.html" class="pagination-link" aria-label="<span class='chapter-number'>3</span>&nbsp; <span class='chapter-title'>`GenomicRanges`: Genomic analysis</span>">
         <span class="nav-page-text"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1172,15 +1337,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link active" href="../../chapters/summary.html" aria-current="page">(c) BiocPy core contributors</a>
+    <a class="nav-link active" href="../../chapters/summary.html" aria-current="page">
+<ol start="3" type="a">
+<li>BiocPy core contributors</li>
+</ol>
+</a>
   </li>  
 </ul>
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 

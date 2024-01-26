@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -82,7 +82,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -91,17 +97,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - 6&nbsp; Multiple experiments">
+<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - Multiple experiments">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -112,12 +119,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/experiments/index.html">Represent experimental data</a></li><li class="breadcrumb-item"><a href="../../chapters/experiments/multiassay_expt.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiple experiments</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/experiments/index.html">Represent experimental data</a></li><li class="breadcrumb-item"><a href="../../chapters/experiments/multiassay_expt.html"><span class="chapter-title">Multiple experiments</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -127,13 +134,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">BiocPy: Enabling Bioconductor workflows in Python</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/BiocPy/tutorial" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="https://twitter.com/intent/tweet?url=|url|" rel="" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/BiocPy/tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://twitter.com/intent/tweet?url=|url|" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
 </div>
     </div>
       </div>
@@ -159,6 +166,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></a>
@@ -247,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -278,12 +290,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/experiments/index.html">Represent experimental data</a></li><li class="breadcrumb-item"><a href="../../chapters/experiments/multiassay_expt.html"><span class="chapter-title">Multiple experiments</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-title">Multiple experiments</span></h1>
 </div>
@@ -298,7 +310,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p><code>MultiAssayExperiment</code> (MAE) simplifies the management of multiple experimental assays conducted on a shared set of specimens.</p>
 <section id="installation" class="level2">
@@ -321,8 +335,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Each sample in <code>column_data</code> may map to one or more columns per assay.</p></li>
 </ul>
 <p>Let’s start by first creating few experiments:</p>
-<div class="cell" data-execution_count="1">
-<details>
+<div id="0102164b" class="cell" data-execution_count="1">
+<details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> random</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -369,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>More importantly, we need to provide <code>sample_map</code> information:</p>
-<div class="cell" data-execution_count="2">
+<div id="f03c4b7a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sample_map <span class="op">=</span> BiocFrame({</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"assay"</span>: [<span class="st">"sce"</span>, <span class="st">"se"</span>] <span class="op">*</span> <span class="dv">6</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"primary"</span>: [<span class="st">"sample1"</span>, <span class="st">"sample2"</span>] <span class="op">*</span> <span class="dv">6</span>,</span>
@@ -393,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Finally, we can create an <code>MultiAssayExperiment</code> object:</p>
-<div class="cell" data-execution_count="3">
+<div id="452c200b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiassayexperiment <span class="im">import</span> MultiAssayExperiment</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> SingleCellExperiment</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> summarizedexperiment <span class="im">import</span> SummarizedExperiment</span>
@@ -434,7 +448,7 @@ metadata(1): could be
 <h3 class="anchored" data-anchor-id="no-sample-mapping">No sample mapping?</h3>
 <p>If both <code>column_data</code> and <code>sample_map</code> are <code>None</code>, the constructor naively creates sample mapping, with each <code>experiment</code> considered to be a independent <code>sample</code>. We add a sample to <code>column_data</code> in this pattern - <code>unknown_sample_{experiment_name}</code>.</p>
 <p>All cells from the each experiment are considered to be from the same sample and is reflected in <code>sample_map</code>. <strong><em>This is not a recommended approach, but if you don’t have sample mapping, then it doesn’t matter</em></strong>.</p>
-<div class="cell" data-execution_count="4">
+<div id="c268f0a0" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> MultiAssayExperiment(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    experiments<span class="op">=</span>{<span class="st">"sce"</span>: tsce, <span class="st">"se"</span>: tse2},</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    metadata<span class="op">=</span>{<span class="st">"could be"</span>: <span class="st">"anything"</span>},</span>
@@ -456,8 +470,8 @@ metadata(1): could be
 <h3 class="anchored" data-anchor-id="interop-with-anndata-or-mudata">Interop with <code>anndata</code> or <code>mudata</code></h3>
 <p>We provide convenient methods to easily convert a <code>MuData</code> object into an <code>MultiAssayExperiment</code>.</p>
 <p>Let’s create a mudata object:</p>
-<div class="cell" data-execution_count="5">
-<details>
+<div id="c266ecfb" class="cell" data-execution_count="5">
+<details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> anndata <span class="im">import</span> AnnData</span>
@@ -495,7 +509,7 @@ metadata(1): could be
 </div>
 </div>
 <p>Lets convert this object to an MAE:</p>
-<div class="cell" data-execution_count="6">
+<div id="0ba625f6" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiassayexperiment <span class="im">import</span> MultiAssayExperiment</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mae_obj <span class="op">=</span> MultiAssayExperiment.from_mudata(<span class="bu">input</span><span class="op">=</span>mdata)</span>
@@ -521,7 +535,7 @@ metadata(0):
 <section id="getterssetters" class="level2">
 <h2 class="anchored" data-anchor-id="getterssetters">Getters/Setters</h2>
 <p>Getters are available to access various attributes using either the property notation or functional style.</p>
-<div class="cell" data-execution_count="7">
+<div id="3973529a" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access assays</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"experiment names (as property): "</span>, mae.experiment_names)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"experiment names (functional style): "</span>, mae.get_experiment_names())</span>
@@ -542,7 +556,7 @@ unknown_sample_sce unknown_sample_sce
 <section id="row-or-column-name-accessors" class="level4">
 <h4 class="anchored" data-anchor-id="row-or-column-name-accessors">Row or column name accessors</h4>
 <p>A helper method is available to easily access row or column names across all experiments. This method returns a dictionary with experiment names as keys and the corresponding values, which can be either the row or column names depending on the function:</p>
-<div class="cell" data-execution_count="8">
+<div id="4ef9311f" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich <span class="im">import</span> <span class="bu">print</span> <span class="im">as</span> pprint</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pprint(<span class="st">"row names:"</span>, mae.get_row_names())</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>pprint(<span class="st">"column names:"</span>, mae.get_column_names())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -589,7 +603,7 @@ unknown_sample_sce unknown_sample_sce
 <section id="access-an-experiment" class="level4">
 <h4 class="anchored" data-anchor-id="access-an-experiment">Access an experiment</h4>
 <p>One can access an experiment by name:</p>
-<div class="cell" data-execution_count="9">
+<div id="760385f3" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.experiment(<span class="st">"se"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
@@ -604,7 +618,7 @@ metadata(0):
 </div>
 </div>
 <p>Additionally you may access an experiment with the sample information included in the column data of the experiment. Note, this creates a copy of the experiment:</p>
-<div class="cell" data-execution_count="10">
+<div id="b37e05cd" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>expt_with_sample_info <span class="op">=</span> mae.experiment(<span class="st">"se"</span>, with_sample_data<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(expt_with_sample_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -648,7 +662,7 @@ Important
 <p>All property-based setters are <code>in_place</code> operations, with further details discussed in <a href="../../chapters/philosophy.html#functional-discipline">functional paradigm</a> section.</p>
 </div>
 </div>
-<div class="cell" data-execution_count="11">
+<div id="5069568e" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>modified_column_data <span class="op">=</span> mae.column_data.set_column(<span class="st">"score"</span>, <span class="bu">range</span>(<span class="bu">len</span>(mae.column_data)))</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>modified_mae <span class="op">=</span> mae.set_column_data(modified_column_data)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -663,7 +677,7 @@ metadata(1): could be
 </div>
 </div>
 <p>Now, lets check the <code>column_data</code> on the original object.</p>
-<div class="cell" data-execution_count="12">
+<div id="3578e1a5" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.column_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 2 rows and 1 column
@@ -681,7 +695,7 @@ unknown_sample_sce unknown_sample_sce
 <p><code>MultiAssayExperiment</code> allows subsetting by three dimensions: <code>rows</code>, <code>columns</code>, and <code>experiments</code>. <strong><em><code>sample_map</code> is automatically filtered during this operation</em></strong>.</p>
 <section id="subset-by-indices" class="level3">
 <h3 class="anchored" data-anchor-id="subset-by-indices">Subset by indices</h3>
-<div class="cell" data-execution_count="13">
+<div id="ce50024a" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>subset_mae <span class="op">=</span> mae[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">0</span>:<span class="dv">4</span>]</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -698,7 +712,7 @@ metadata(1): could be
 <section id="subset-by-experiments-dimension" class="level3">
 <h3 class="anchored" data-anchor-id="subset-by-experiments-dimension">Subset by experiments dimension</h3>
 <p>The following creates a subset based on the experiments dimension:</p>
-<div class="cell" data-execution_count="14">
+<div id="05f88f73" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>subset_mae <span class="op">=</span> mae[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">0</span>:<span class="dv">1</span>, [<span class="st">"se"</span>]]</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -737,14 +751,14 @@ Note
 <section id="complete-cases" class="level3">
 <h3 class="anchored" data-anchor-id="complete-cases">Complete cases</h3>
 <p>The <code>complete_cases</code> function is designed to identify samples that contain data across all experiments. It produces a boolean vector with the same length as the number of samples in <code>column_data</code>. Each element in the vector is <code>True</code> if the sample is present in all experiments, or <code>False</code> otherwise.</p>
-<div class="cell" data-execution_count="15">
+<div id="81a6c820" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.complete_cases())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[False, False]</code></pre>
 </div>
 </div>
 <p>You can use this boolean vector to select samples with complete data across all assays or experiments.</p>
-<div class="cell" data-execution_count="16">
+<div id="56c992e4" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>subset_mae <span class="op">=</span> mae[:, mae.complete_cases(),]</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -761,7 +775,7 @@ metadata(1): could be
 <section id="replicates" class="level3">
 <h3 class="anchored" data-anchor-id="replicates">Replicates</h3>
 <p>This method identifies ‘samples’ with replicates within each experiment. The result is a dictionary where experiment names serve as keys, and the corresponding values indicate whether the sample is replicated within each experiment.</p>
-<div class="cell" data-execution_count="17">
+<div id="355e157a" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich <span class="im">import</span> <span class="bu">print</span> <span class="im">as</span> pprint <span class="co"># mainly for pretty printing</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>pprint(mae.replicated())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -782,7 +796,7 @@ metadata(1): could be
 <section id="intersect-rows" class="level3">
 <h3 class="anchored" data-anchor-id="intersect-rows">Intersect rows</h3>
 <p>The <code>intersect_rows</code> finds common <code>row_names</code> across all experiments and returns a <code>MultiAssayExperiment</code> with those rows.</p>
-<div class="cell" data-execution_count="18">
+<div id="3e85e9a6" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>common_rows_mae <span class="op">=</span> mae.intersect_rows()</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(common_rows_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -796,18 +810,18 @@ metadata(1): could be
 </div>
 </div>
 <p>If you are only interested in finding common <code>row_names</code> across all experiments:</p>
-<div class="cell" data-execution_count="19">
+<div id="93fa1394" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>common_rows <span class="op">=</span> mae.find_common_row_names()</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(common_rows)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'2', '123', '59', '125', '175', '196', '127', '90', '93', '112', '129', '197', '28', '69', '3', '14', '4', '41', '89', '96', '147', '68', '166', '54', '20', '24', '108', '6', '71', '0', '150', '154', '60', '119', '47', '179', '27', '99', '39', '23', '117', '153', '156', '18', '128', '55', '137', '62', '9', '19', '194', '120', '191', '180', '53', '74', '79', '111', '77', '148', '82', '190', '12', '195', '56', '10', '115', '152', '98', '13', '192', '25', '114', '198', '172', '155', '149', '161', '185', '66', '132', '142', '15', '33', '140', '157', '183', '75', '49', '145', '72', '109', '63', '159', '146', '168', '193', '102', '1', '61', '87', '144', '42', '48', '106', '167', '105', '51', '104', '37', '46', '67', '165', '58', '45', '7', '64', '133', '139', '118', '134', '92', '169', '182', '16', '143', '122', '199', '178', '176', '187', '76', '11', '107', '177', '95', '88', '52', '94', '30', '70', '101', '162', '138', '81', '103', '164', '121', '170', '57', '85', '135', '136', '83', '151', '188', '21', '22', '189', '100', '126', '73', '29', '86', '113', '44', '174', '163', '17', '158', '97', '84', '184', '160', '186', '65', '110', '173', '181', '32', '78', '38', '40', '131', '141', '50', '35', '8', '36', '130', '80', '31', '5', '91', '124', '116', '171', '34', '26', '43'}</code></pre>
+<pre><code>{'62', '129', '153', '72', '182', '60', '74', '113', '169', '36', '199', '111', '11', '7', '114', '181', '141', '65', '177', '155', '75', '189', '157', '34', '96', '121', '165', '130', '179', '67', '21', '142', '168', '53', '22', '102', '135', '183', '87', '76', '187', '48', '166', '125', '18', '159', '19', '198', '146', '29', '70', '35', '83', '138', '50', '10', '151', '82', '49', '118', '184', '140', '37', '28', '41', '24', '8', '98', '127', '144', '92', '156', '145', '68', '154', '95', '97', '79', '77', '122', '93', '128', '195', '43', '63', '196', '26', '90', '51', '123', '45', '54', '139', '1', '172', '192', '124', '15', '3', '120', '57', '150', '136', '31', '33', '194', '134', '109', '106', '40', '176', '133', '149', '12', '52', '56', '143', '132', '80', '47', '158', '164', '42', '173', '170', '137', '0', '86', '104', '2', '81', '69', '186', '71', '160', '162', '174', '197', '27', '148', '32', '161', '17', '66', '39', '64', '91', '101', '190', '119', '44', '171', '58', '61', '131', '163', '6', '103', '117', '23', '126', '4', '5', '85', '185', '107', '110', '167', '84', '30', '88', '180', '14', '16', '94', '112', '25', '105', '175', '9', '152', '73', '115', '99', '191', '20', '38', '55', '59', '147', '13', '100', '116', '89', '193', '178', '108', '188', '78', '46'}</code></pre>
 </div>
 </div>
 </section>
 <section id="empty-mae" class="level3">
 <h3 class="anchored" data-anchor-id="empty-mae">Empty MAE</h3>
 <p>While the necessity of an empty <code>MultiAssayExperiment</code> might not be apparent, for the sake of consistency with the rest of the tutorials:</p>
-<div class="cell" data-execution_count="20">
+<div id="5d6e2f8a" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> MultiAssayExperiment(experiments<span class="op">=</span>{})</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -911,10 +925,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -924,8 +937,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -938,6 +960,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -981,6 +1122,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1006,6 +1148,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1067,12 +1235,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/experiments/extending_se.html" class="pagination-link">
+      <a href="../../chapters/experiments/extending_se.html" class="pagination-link  aria-label=" &lt;span="" summarized="" experiments&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Extending summarized experiments</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/interop.html" class="pagination-link">
+      <a href="../../chapters/interop.html" class="pagination-link" aria-label="<span class='chapter-number'>8</span>&nbsp; <span class='chapter-title'>Interop with R</span>">
         <span class="nav-page-text"><span class="chapter-title">Interop with R</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1086,15 +1254,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link active" href="../../chapters/summary.html" aria-current="page">(c) BiocPy core contributors</a>
+    <a class="nav-link active" href="../../chapters/summary.html" aria-current="page">
+<ol start="3" type="a">
+<li>BiocPy core contributors</li>
+</ol>
+</a>
   </li>  
 </ul>
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 
