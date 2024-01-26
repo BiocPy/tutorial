@@ -1,0 +1,156 @@
+# Atomics
+
+The [BiocUtils](https://github.com/BiocPy/BiocUtils) package offers essential utilities designed for universal use across all packages,
+with a focus on emulating convenient features of base R. 
+In particular, this package addresses challenges associated with Python lists, which lack type specificity, leading to the need 
+for inference when dealing with lists containing booleans, numbers, floats or strings.
+
+## Installation
+
+To begin using the package, you can install it from  [PyPI](https://pypi.org/project/biocutils/)
+
+```bash
+pip install biocutils
+```
+
+## Atomic lists
+
+The package provides several atomic lists that are coerced into appropriate types. 
+These include `BooleanList`, `FloatList`, `NamedList`, `IntegerList`, and `StringList`.
+
+Let's explore `BooleanList`, which resembles a regular Python list but coercing anything added to it into a `boolean`. 
+Additionally, `None` values are accepted and treated as missing booleans.
+
+This list may also be named (see `NamedList`), which provides dictionary-like functionality.
+
+
+```{python}
+from biocutils import BooleanList, NamedList
+
+x = BooleanList([ True, False, False, True ])
+print(x)
+```
+
+Similarly, one can create atomic lists for other types, such as `FloatList`:
+
+```{python}
+from biocutils import FloatList
+
+x = FloatList([ 1.1, 2, 3, 4 ])
+print(x)
+```
+
+Accessing these vectors is similar to any other list:
+
+```{python}
+print("2nd element:", x[2])
+
+print("reassign value")
+x[1] = 50
+print("x: ", x)
+```
+
+To convert objects back to Python lists:
+```{python}
+list(x)
+```
+
+
+## `Factor` class
+
+The `Factor` class is analogous to R's factor. 
+It comprises a vector of integer `codes`, each corresponding to an index within a list of unique strings (`levels`). 
+The purpose is to encode a list of strings as integers for streamlined numerical analysis.
+
+The most straightforward way to create a `Factor` is from an existing list of strings:
+
+```{python}
+from biocutils import Factor
+
+f = Factor.from_sequence(["A", "B", "A", "B", "E"])
+print(f)
+```
+
+Alternatively, if you already have a list of `codes` and associated `levels`:
+
+```{python}
+f = Factor([0, 1, 2, 0, 2, 4], levels=["A", "B", "C", "D", "E"])
+print(f)
+```
+
+To convert a `Factor` back to a Python list:
+
+```{python}
+list(f)
+```
+
+## `subset` generic
+
+The Biocutils package introduces a `subset` generic function designed to handle n-dimensional objects, where n > 1 
+(i.e., objects with a shape property of length greater than 1). 
+When applied, the function first verifies the dimensionality of the input objects. 
+If they are n-dimensional, it invokes `subset_rows()` to perform the subsetting along the first dimension. 
+On the other hand, if the objects are deemed vector-like, the function utilizes `subset_sequence()` for the subsetting operation.
+
+```{python}
+from biocutils import subset
+
+x = [1, 2, 3, 4, 5]
+subset(x, [0, 2, 4])
+```
+
+## `combine` generic
+
+The `combine` generic function in Biocutils is designed to accommodate objects of varying dimensions. 
+It begins by examining the dimensionality of the input objects: if they are n-dimensional for n > 1 (i.e., possessing a shape property of length greater than 1), 
+the function utilizes `combine_rows()` to merge them along the first dimension. 
+Conversely, if the objects exhibit a vector-like structure, the function employs `combine_sequences()` for the combination process.
+
+```{python}
+import numpy as np
+from biocutils import combine
+
+x = [1, 2, 3]
+y = [0.1, 0.2]
+xd = np.array(x)
+
+combine(xd, y)
+```
+
+
+## Other utilities
+
+### `match`
+
+```{python}
+import biocutils
+biocutils.match(["A", "C", "E"], ["A", "B", "C", "D", "E"])
+```
+
+### `intersect`
+
+```{python}
+import biocutils
+biocutils.intersect(["A", "B", "C", "D"], ["D", "A", "E"])
+```
+
+### `union`
+
+```{python}
+import biocutils
+biocutils.union(["A", "B", "C", "D"], ["D", "A", "E"])
+```
+
+### `is_list_of_type`
+
+Checks if all elements of a list or tuple are of the same type.
+
+```{python}
+import biocutils
+import numpy as np
+
+x = [np.random.rand(3), np.random.rand(3, 2)]
+biocutils.is_list_of_type(x, np.ndarray)
+```
+
+Refer to the [documentation](https://biocpy.github.io/BiocUtils/) for comprehensive details on these functionalities.
