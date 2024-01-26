@@ -31,6 +31,7 @@ book:
     - index.qmd
     - part: chapters/representations/index.qmd
       chapters:
+        - chapters/representations/atomics.qmd
         - chapters/representations/biocframe.qmd
         - chapters/representations/genomicranges.qmd
     - part: chapters/experiments/index.qmd
