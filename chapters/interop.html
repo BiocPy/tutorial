@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -181,6 +181,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="../chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/representations/delayedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Delayed Arrays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/representations/filebackedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">File-backed Arrays</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -228,11 +238,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/extras/delayedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">DelayedArrays, in Python</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/extras/iranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></a>
@@ -319,7 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-1-parse-the-rds-file" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-parse-the-rds-file">Step 1: Parse the RDS file</h2>
 <p>Now, we can read the RDS file in Python using the <code>read_rds</code> function, which parses the file contents and returns a dictionary of the R object.</p>
-<div id="ac0d32cc" class="cell" data-execution_count="1">
+<div id="dbf140d3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rds2py <span class="im">import</span> read_rds</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>r_object <span class="op">=</span> read_rds(<span class="st">"../assets/data/zeisel-brain-subset.rds"</span>)</span>
@@ -345,7 +350,7 @@ Note
 <section id="step-2-conversion-to-python-representations" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-conversion-to-python-representations">Step 2: Conversion to Python representations</h2>
 <p>The package provides functions to convert these R objects into useful Python representations.</p>
-<div id="25e5eb79" class="cell" data-execution_count="2">
+<div id="1541915d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rds2py <span class="im">import</span> as_summarized_experiment</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># to convert an robject to SCE</span></span>
@@ -379,12 +384,12 @@ metadata(0):
 </div>
 <p>And that’s it! It’s as straightforward as that. The <code>as_summarized_experiment</code> function serves as an example of how to convert complex R structures into Python representations. Similarly, the package offers parsers for atomic vectors, lists, sparse/dense matrices, data frames, and most R data structures.</p>
 <p>You can continue to convert this object into <code>AnnData</code> representation and perform analysis. For more details on <code>SingleCellExperiment</code>, refer to the documentation <a href="../chapters/experiments/singlecell_expt.html">here</a>.</p>
-<div id="cab32953" class="cell" data-execution_count="3">
+<div id="fdb222ee" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sce.to_anndata()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(AnnData object with n_obs × n_vars = 3005 × 1000
-     obs: 0, 1
-     var: 0, 1
+     obs: 'tissue', 'group #', 'total mRNA mol', 'well', 'sex', 'age', 'diameter', 'cell_id', 'level1class', 'level2class'
+     var: 'featureType'
      layers: 'counts',
  None)</code></pre>
 </div>
@@ -784,7 +789,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/experiments/multiassay_expt.html" class="pagination-link  aria-label=" &lt;span="" experiments&lt;="" span&gt;"="">
+      <a href="../chapters/experiments/multiassay_expt.html" class="pagination-link" aria-label="Multiple experiments">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Multiple experiments</span></span>
       </a>          
   </div>

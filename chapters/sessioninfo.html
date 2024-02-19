@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -180,6 +180,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="../chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/representations/delayedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Delayed Arrays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/representations/filebackedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">File-backed Arrays</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -227,11 +237,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/extras/delayedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">DelayedArrays, in Python</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/extras/iranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>IRanges</code>: Interval arithmetic</span></a>
@@ -297,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This book is automatically built to identify issues caused by changes in the dependencies. We use <a href="https://quarto.org/docs/books">quarto</a> for reproducing the scripts provided in this book.</p>
 <section id="sec-sessioninfo" class="level2">
 <h2 class="anchored" data-anchor-id="sec-sessioninfo">Pre-requisites</h2>
-<div id="626e7d1c" class="cell" data-execution_count="1">
+<div id="3d6a70b6" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -307,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="python" class="level2">
 <h2 class="anchored" data-anchor-id="python">Python</h2>
 <p>Lets make sure we have all packages we need for this section</p>
-<div id="7e20df2c" class="cell" data-execution_count="2">
+<div id="be786a93" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sys.version_info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>sys.version_info(major=3, minor=9, micro=18, releaselevel='final', serial=0)</code></pre>
@@ -316,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="packages" class="level2">
 <h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<div id="71ace07c" class="cell" data-execution_count="3">
+<div id="6de7eb07" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocframe</span>
@@ -341,8 +346,8 @@ multiassayexperiment        0.4.2
 rds2py                      0.4.2
 rich                        NA
 session_info                1.0.0
-singlecellexperiment        0.4.3
-summarizedexperiment        0.4.2
+singlecellexperiment        0.4.4
+summarizedexperiment        0.4.3
 -----
 </pre>
 <details>
@@ -354,14 +359,14 @@ asttokens                   NA
 attr                        23.2.0
 attrs                       23.2.0
 babel                       2.14.0
-certifi                     2023.11.17
+certifi                     2024.02.02
 cffi                        1.16.0
 charset_normalizer          3.3.2
 comm                        0.2.1
 cycler                      0.12.1
 cython_runtime              NA
 dateutil                    2.8.2
-debugpy                     1.8.0
+debugpy                     1.8.1
 decorator                   5.1.1
 defusedxml                  0.7.1
 exceptiongroup              1.2.0
@@ -371,7 +376,7 @@ fqdn                        NA
 idna                        3.6
 importlib_metadata          NA
 importlib_resources         NA
-ipykernel                   6.29.0
+ipykernel                   6.29.2
 iranges                     0.2.3
 isoduration                 NA
 jedi                        0.19.1
@@ -382,20 +387,20 @@ jsonschema                  4.21.1
 jsonschema_specifications   NA
 jupyter_events              0.9.0
 jupyter_server              2.12.5
-jupyterlab_server           2.25.2
+jupyterlab_server           2.25.3
 kiwisolver                  1.4.5
-markupsafe                  2.1.4
-matplotlib                  3.8.2
+markupsafe                  2.1.5
+matplotlib                  3.8.3
 matplotlib_inline           0.1.6
 mpl_toolkits                NA
 nbformat                    5.9.2
-numpy                       1.26.3
+numpy                       1.26.4
 overrides                   NA
 packaging                   23.2
 pandas                      2.2.0
 parso                       0.8.3
 pexpect                     4.9.0
-platformdirs                4.1.0
+platformdirs                4.2.0
 prometheus_client           NA
 prompt_toolkit              3.0.43
 psutil                      5.9.8
@@ -410,7 +415,7 @@ pydevd_tracing              NA
 pygments                    2.17.2
 pyparsing                   3.1.1
 pythonjsonlogger            NA
-pytz                        2023.3.post1
+pytz                        2024.1
 referencing                 NA
 requests                    2.31.0
 rfc3339_validator           0.1.4
@@ -425,7 +430,7 @@ tornado                     6.4
 traitlets                   5.14.1
 typing_extensions           NA
 uri_template                NA
-urllib3                     2.1.0
+urllib3                     2.2.1
 wcwidth                     0.2.13
 webcolors                   1.13
 websocket                   1.7.0
@@ -439,13 +444,13 @@ zoneinfo                    NA
 IPython             8.18.1
 jupyter_client      8.6.0
 jupyter_core        5.7.1
-jupyterlab          4.0.11
-notebook            7.0.7
+jupyterlab          4.1.1
+notebook            7.1.0
 -----
 Python 3.9.18 (main, Aug 28 2023, 08:38:32) [GCC 11.4.0]
-Linux-6.2.0-1018-azure-x86_64-with-glibc2.35
+Linux-6.2.0-1019-azure-x86_64-with-glibc2.35
 -----
-Session information updated at 2024-01-26 20:27
+Session information updated at 2024-02-19 22:05
 </pre>
 </details>
 </div>
@@ -844,7 +849,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/summary.html" class="pagination-link  aria-label=" &lt;span="">
+      <a href="../chapters/summary.html" class="pagination-link" aria-label="Summary">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Summary</span></span>
       </a>          
   </div>
