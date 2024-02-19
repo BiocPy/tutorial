@@ -34,6 +34,8 @@ book:
         - chapters/representations/atomics.qmd
         - chapters/representations/biocframe.qmd
         - chapters/representations/genomicranges.qmd
+        - chapters/representations/delayedarrays.qmd
+        - chapters/representations/filebackedarrays.qmd
     - part: chapters/experiments/index.qmd
       chapters:
         - chapters/experiments/summarized_expt.qmd
@@ -43,7 +45,6 @@ book:
     - chapters/interop.qmd
     - part: chapters/extras/index.qmd
       chapters:
-        - chapters/extras/delayedarrays.qmd
         - chapters/extras/iranges.qmd
     - chapters/philosophy.qmd
     - chapters/summary.qmd

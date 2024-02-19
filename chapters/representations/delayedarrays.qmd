@@ -1,0 +1,227 @@
+# Delayed Arrays
+
+This package implements classes for delayed array operations, mirroring the [Bioconductor package](https://bioconductor.org/packages/DelayedArray) of the same name.
+It allows BiocPy-based packages to easily inteoperate with delayed arrays from the Bioconductor ecosystem,
+with focus on serialization to/from file with [**chihaya**](https://github.com/ArtifactDB/chihaya)/[**rds2py**](https://github.com/BiocPy/rds2py)
+and entry into [**tatami**](https://github.com/tatami-inc/tatami)-compatible C++ libraries via [**mattress**](https://github.com/BiocPy/mattress).
+
+## Installation
+
+This package is published to [PyPI](https://pypi.org/project/delayedarray/) and can be installed via the usual methods:
+
+```bash
+pip install delayedarray
+```
+
+## Quick start
+
+We can create a `DelayedArray` from any object that respects the seed contract,
+i.e., has the `shape`/`dtype` properties and supports NumPy slicing.
+For example, a typical NumPy array qualifies:
+
+```{python}
+import numpy
+x = numpy.random.rand(100, 20)
+x
+```
+
+We can wrap this in a `DelayedArray` class:
+
+```{python}
+import delayedarray
+d = delayedarray.wrap(x)
+d
+```
+
+And then we can use it in a variety of operations.
+For example, in genomics, a typical quality control task is to slice the matrix to remove uninteresting features (rows) or samples (columns):
+
+```{python}
+filtered = d[1:100:2,1:8]
+filtered.shape
+```
+
+We then divide by the total sum of each column to compute normalized values between samples.
+
+```{python}
+total = filtered.sum(axis=0)
+normalized = filtered / total
+normalized.dtype
+```
+
+And finally we compute a log-transformation to get some log-normalized values for visualization.
+
+```{python}
+transformed = numpy.log1p(normalized)
+transformed[1:5,:]
+```
+
+Each operation just returns a `DelayedArray` with an increasing stack of delayed operations, without evaluating anything or making any copies.
+Check out the [documentation](https://biocpy.github.io/DelayedArray/) for more information.
+
+## Extracting data
+
+A `DelayedArray` is typically used by iteratively extracting blocks into memory for further calculations.
+This "block processing" strategy improves memory efficiency by only realizing the delayed operations for a
+subset of the data. For example, to iterate over the rows with 100 MB blocks:
+
+```{python}
+grid = delayedarray.chunk_grid(d)
+dims = (*range(len(d.shape)),)
+for block in grid.iterate(dimensions=dims):
+    subsets = (*(range(s, e) for s, e in block),)
+    current = delayedarray.extract_dense_array(d, subsets)
+```
+
+Each call to `extract_dense_array()` yields a NumPy array containing the the specified rows and columns.
+If the `DelayedArray` might contain masked values, a NumPy `MaskedArray` is returned instead;
+this can be determined by checking whether `is_masked(d)` returns `True`.
+
+The above iteration can be simplified with the `apply_over_dimension()` function, which handles
+the block coordinate calculations for us.
+We could also use the `apply_over_blocks()` function to iterate over arbitrary block shapes,
+which may be more efficient if the best dimension for iteration is not known.
+
+```python
+# To iterate over a single dimension:
+delayedarray.apply_over_dimension(
+    d,
+    dimension=0,
+    fun=some_user_supplied_function,
+    block_size=block_size,
+)
+
+# To iterate over arbitrary blocks.
+delayedarray.apply_over_blocks(
+    d,
+    fun=another_user_supplied_function,
+    block_shape=(20, 100),
+)
+```
+
+## Handling sparse data
+
+If the `DelayedArray` contains sparse data, `is_sparse(d)` will return `True`.
+This allows callers to instead use the `extract_sparse_array()` function for block processing:
+
+```{python}
+if delayedarray.is_sparse(d):
+    current = delayedarray.extract_sparse_array(d, (*block_coords,))
+```
+
+This returns a `SparseNdarray` consisting of a tree of sparse vectors for the specified block.
+Users can retrieve the sparse vectors by inspecting the `contents` property of the `SparseNdarray`:
+
+- In the one-dimensional case, this is a tuple of two 1-dimensional NumPy arrays storing data about the non-zero elements.
+  The first array contains sorted indices while the secon array contains the associated values.
+  If `is_masked(d)` returns `True`, the values will be represented as NumPy `MaskedArray` objects.
+- For the two-dimensional case, this is a list of such tuples, with one tuple per column.
+  This is roughly analogous to a compressed sparse column matrix.
+  An entry of the list may also be `None`, indicating that no non-zero elements are present in that column.
+- For higher-dimensionals, the tree is a nested list of lists of tuples.
+  Each nesting level corresponds to a dimension; the outermost level contains elements of the last dimension,
+  the next nesting level contains elements of the second-last dimension, and so on,
+  with the indices in the tuple referring to the first dimension.
+  Any list element may be `None` indicating that the corresponding element of the dimension has no non-zero elements.
+- In all cases, it is possible for `contents` to be `None`, indicating that there are no non-zero elements in the entire array.
+
+The `apply_over_*` functions can also be instructed to iteratively extract blocks as `SparseNdarray` objects.
+This only occurs if the input array is sparse (as specified by `is_sparse`).
+
+```python
+# To iterate over a single dimension:
+delayedarray.apply_over_dimension(
+    d,
+    dimension=0,
+    fun=some_user_supplied_function,
+    block_size=block_size,
+    allow_sparse=True,
+)
+```
+
+### Other coercions
+
+A `DelayedArray` can be converted to a (possibly masked) NumPy array with the `to_dense_array()` function.
+Similarly, sparse `DelayedArray`s can be converted to `SparseNdarray`s with the `to_sparse_array()` function.
+
+```{python}
+delayedarray.to_dense_array(d)
+if delayedarray.is_sparse(d):
+    delayedarray.to_sparse_array(d)
+```
+
+Users can easily convert a 2-dimensional `SparseNdarray` to some of the common SciPy sparse matrix classes downstream calculations.
+
+```python
+delayedarray.to_scipy_sparse_matrix(current, "csc")
+```
+
+More simply, users can just call `numpy.array()` to realize the delayed operations into a standard NumPy array for consumption.
+Note that this discards any masking information so should not be called if `is_masked()` returns `True`.
+
+```{python}
+import random
+simple = numpy.array([random.random() for _ in range(50)])
+type(simple)
+```
+
+Users can also call `delayedarray.create_dask_array()`, to obtain a **dask** array that contains the delayed operations:
+
+```{python}
+# Note: requires installation as 'delayedarray[dask]'.
+dasky = delayedarray.create_dask_array(simple)
+type(dasky)
+```
+
+## Interoperability with other packages
+
+The general idea is that `DelayedArray`s should be a drop-in replacement for NumPy arrays, at least for [BiocPy](https://github.com/BiocPy) applications.
+So, for example, we can stuff the `DelayedArray` inside a `SummarizedExperiment`:
+
+```{python}
+import summarizedexperiment as SE
+se = SE.SummarizedExperiment({ "counts": filtered, "lognorm": transformed })
+print(se)
+```
+
+One of the main goals of the **DelayedArray** package is to make it easier for Bioconductor developers to inspect the delayed operations.
+(See the [developer notes](https://biocpy.github.io/DelayedArray/developers.html) for some comments on **dask**.)
+For example, we can pull out the "seed" object underlying our `DelayedArray` instance:
+
+```{python}
+d.seed
+```
+
+Each layer has its own specific attributes that define the operation, e.g.,
+
+```python
+d.seed.subset
+```
+
+Recursively drilling through the object will eventually reach the underlying array(s):
+
+```python
+d.seed.seed.seed.seed.seed
+```
+
+All attributes required to reconstruct a delayed operation are public and considered part of the stable `DelayedArray` interface.
+
+## Developing seeds
+
+Any array-like object can be used as a "seed" in a `DelayedArray` provided it has the following:
+
+- `dtype` and `shape` properties, like those in NumPy arrays.
+- a method for the `extract_dense_array()` generic.
+
+If the object may contain sparse data, it should also implement:
+
+- a method for the `is_sparse()` generic.
+- a method for the `extract_sparse_generic()` generic.
+
+It may also be desirable to implement:
+
+- a method for the `chunk_shape()` generic.
+- a method for the `create_dask_array()` generic.
+- a method for the `wrap()` generic.
+
+Developers are referred to the [documentation for each generic](https://biocpy.github.io/DelayedArray/api/delayedarray.html) for more details.

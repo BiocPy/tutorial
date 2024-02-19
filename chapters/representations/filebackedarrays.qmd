@@ -1,0 +1,79 @@
+# File-backed Arrays
+
+This is the Python equivalent of Bioconductor's [HDF5Array](https://bioconductor.org/packages/HDF5Array) package, 
+providing a representation of HDF5-backed arrays within the [delayedarray framework](./delayedarrays.qmd). 
+The idea is to allow users to store, manipulate and operate on large datasets without loading them into memory, 
+in a manner that is trivially compatible with other data structures in the [BiocPy ecosystem](https://github.com/BiocPy/).
+
+## Installation
+
+This package is published to [PyPI](https://pypi.org/project/delayedarray/) and can be installed via the usual methods:
+
+```bash
+pip install hdf5array
+```
+
+## Quick start
+
+Let's mock up a dense array:
+
+```{python}
+import numpy
+data = numpy.random.rand(40, 50)
+
+import h5py
+with h5py.File("whee.h5", "w") as handle:
+    handle.create_dataset("yay", data=data)
+```
+
+We can now represent it as a `Hdf5DenseArray`:
+
+```{python}
+import hdf5array
+arr = hdf5array.Hdf5DenseArray("whee.h5", "yay", native_order=True)
+arr
+```
+
+This is just a subclass of a `DelayedArray` and can be used anywhere in the BiocPy framework.
+Parts of the NumPy API are also supported - for example, we could apply a variety of delayed operations:
+
+```{python}
+scaling = numpy.random.rand(100)
+transformed = numpy.log1p(arr / scaling)
+transformed
+```
+
+Check out the [documentation](https://biocpy.github.io/hdf5array/) for more details.
+
+## Handling sparse matrices
+
+We support a variety of compressed sparse formats where the non-zero elements are held inside three separate datasets -
+usually `data`, `indices` and `indptr`, based on the [10X Genomics sparse HDF5 format](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/advanced/h5_matrices).
+To demonstrate, let's mock up some sparse data using **scipy**:
+
+```{python}
+import scipy.sparse
+mock = scipy.sparse.random(1000, 200, 0.1).tocsc()
+
+with h5py.File("sparse_whee.h5", "w") as handle:
+    handle.create_dataset("sparse_blah/data", data=mock.data, compression="gzip")
+    handle.create_dataset("sparse_blah/indices", data=mock.indices, compression="gzip")
+    handle.create_dataset("sparse_blah/indptr", data=mock.indptr, compression="gzip")
+```
+
+We can then create a sparse HDF5-backed matrix.
+Note that there is some variation in this HDF5 compressed sparse format, notably where the dimensions are stored and whether it is column/row-major.
+The constructor will not do any auto-detection so we need to provide this information explicitly:
+
+```{python}
+import hdf5array
+arr = hdf5array.Hdf5CompressedSparseMatrix(
+    "sparse_whee.h5", 
+    "sparse_blah", 
+    shape=(100, 200), 
+    by_column=True
+)
+arr
+```
+
+Just like [delayedarrays](http://localhost:3382/chapters/representations/delayedarrays.html#interoperability-with-other-packages), you can use file-backed matrices to represent experimental data in [summarized experiment](../experiments/summarized_expt.qmd#delayed-arrays) and its derivates, reducing the *in-memory* footprint to load large datasets.

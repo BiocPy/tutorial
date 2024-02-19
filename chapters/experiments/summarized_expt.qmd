@@ -110,6 +110,31 @@ rse = RangedSummarizedExperiment(
 print(rse)
 ```
 
+## Delayed arrays
+
+The general idea is that `DelayedArray`s are a drop-in replacement for NumPy arrays, at least for [BiocPy](https://github.com/BiocPy) applications. Learn more about [delayed arrays here](../extras/delayedarrays.qmd).
+
+For example, we can use the `DelayedArray` inside a `SummarizedExperiment`:
+
+```{python}
+import numpy
+import delayedarray
+
+# create a delayed array, can also be file-backed
+x = numpy.random.rand(100, 20)
+d = delayedarray.wrap(x)
+
+# operate over delayed arrays
+filtered = d[1:100:2,1:8]
+total = filtered.sum(axis=0)
+normalized = filtered / total
+transformed = numpy.log1p(normalized)
+
+import summarizedexperiment as SE
+se_delayed = SE.SummarizedExperiment({ "counts": filtered, "lognorm": transformed })
+print(se_delayed)
+```
+
 ## Interop with `anndata`
 
 Converting a `SummarizedExperiment` to an `AnnData` representation is straightforward: 
