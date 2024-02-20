@@ -40,6 +40,8 @@ jobs:
             any::BiocManager
             any::alabaster
             any::scRNAseq
+            any::rmarkdown
+            any::knitr
       # - run: Rscript r_requirements.r
 
       - name: Render
