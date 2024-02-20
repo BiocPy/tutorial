@@ -39,6 +39,7 @@ jobs:
           packages: |
             any::BiocManager
             any::alabaster
+            any::scRNAseq
       # - run: Rscript r_requirements.r
 
       - name: Render

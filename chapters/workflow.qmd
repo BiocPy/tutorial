@@ -1,0 +1,17 @@
+```{r}
+library(scRNA-seq)
+
+sce <- ZilionisLungData()
+
+library(alabaster)
+dir_path <- paste(getwd(), "datasets", sep="/")
+saveObject(sce, path=paste(dir_path, "zilinoislung", sep="/"))
+```
+
+
+```{python}
+from dolomite_base import read_object
+
+obj = read_object("./datasets/zilinoislung")
+print(obj)
+```

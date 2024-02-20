@@ -1,6 +1,6 @@
 # Interop with R
 
-The [rds2py](https://github.com/BiocPy/rds2py) package serves as a Python interface to the [rds2cpp](https://github.com/LTLA/rds2cpp) library, enabling direct reading of RDS files within Python. This eliminates the need for additional data conversion tools or intermediate formats, streamlining the transition between Python and R for seamless analysis.
+The [rds2py](https://github.com/BiocPy/rds2py) package provides Python bindings to the [rds2cpp](https://github.com/LTLA/rds2cpp) library, enabling direct reading of RDS files within Python. This eliminates the need for additional data conversion tools or intermediate formats, streamlining the transition between Python and R for seamless analysis.
 
 One notable feature is the use of memory views (excluding strings) to access the same memory from C++ in Python, facilitated through Cython. This approach is particularly advantageous for handling large datasets, as it avoids unnecessary duplication of data.
 
