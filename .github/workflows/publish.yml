@@ -27,7 +27,7 @@ jobs:
         with:
           python-version: '3.9'
           cache: 'pip'
-      - run: pip install -r requirements.txt
+      - run: pip install -r python_requirements.txt
 
       - name: Install R
         uses: r-lib/actions/setup-r@v2
