@@ -4,8 +4,8 @@ library(scRNAseq)
 sce <- ZilionisLungData()
 
 library(alabaster)
-dir_path <- paste(getwd(), "datasets", sep="/")
-saveObject(sce, path=paste(dir_path, "zilinoislung", sep="/"))
+# dir_path <- paste(getwd(), "datasets", sep="/")
+saveObject(sce, path=paste(getwd(), "zilinoislung", sep="/"))
 ```
 
 
