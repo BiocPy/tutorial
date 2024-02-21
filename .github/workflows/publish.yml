@@ -42,6 +42,7 @@ jobs:
             any::scRNAseq
             any::rmarkdown
             any::knitr
+            any::reticulate
       # - run: Rscript r_requirements.r
 
       - name: Render
