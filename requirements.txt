@@ -22,3 +22,5 @@ delayedarray[dask]
 joblib
 dolomite
 hdf5array
+celltypist
+rpy2
