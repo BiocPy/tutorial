@@ -4,9 +4,9 @@ engine: knitr
 
 # Interchange data between Python and R
 
-In this section, we will demonstrate a workflow that stores genomic data in language agnostic formats to provide easy access to datasets and analysis results across multiple programming frameworks such as R and Python. This functionality is provided by the [ArtifactDB](https://github.com/artifactdb) framework.
+In this section, we will illustrate a workflow that utilizes language-agnostic representations for storing genomic data, facilitating seamless access to datasets and analysis results across multiple programming frameworks such as R and Python. The [ArtifactDB](https://github.com/artifactdb) framework supports this functionality.
 
-To get started, we will download the zilionis lung  dataset from the [scRNAseq](https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html) package. Then, we will store this dataset in language agnostic format using the [alabaster suite](https://github.com/ArtifactDB/alabaster.base) of R packages.
+To begin, we will download the "zilionis lung" dataset from the [scRNAseq](https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html) package. Subsequently, we will store this dataset in a language-agnostic format using the [alabaster suite](https://github.com/ArtifactDB/alabaster.base) of R packages.
 
 ```{r}
 library(scRNAseq)
@@ -17,10 +17,10 @@ saveObject(sce, path=paste(getwd(), "zilinoislung", sep="/"))
 ```
 
 :::{.callout-note}
-You can also save this dataset as an RDS object and access it in Python. Check out the [interop with R](./interop.qmd) section for more details.
+Additionally, you can save this dataset as an RDS object for access in Python. Refer t [interop with R](./interop.qmd) section for more details.
 :::
 
-We can now load this dataset in Python using the [dolomite suite](https://github.com/ArtifactDB/dolomite-base) of Python packages. Both dolomite and alabaster are part of the ArtifactDB ecosystem to read artifacts stored in language agnostic formats.
+We can now load this dataset in Python using the [dolomite suite](https://github.com/ArtifactDB/dolomite-base) of Python packages. Both dolomite and alabaster are integral parts of the ArtifactDB ecosystem designed to read artifacts stored in language-agnostic formats.
 
 ```{python}
 from dolomite_base import read_object
@@ -29,13 +29,13 @@ data = read_object("./zilinoislung")
 print(data)
 ```
 
-To illustrate this workflow, we will use the [CellTypist](https://github.com/Teichlab/celltypist) model to annotate cell types for this dataset. CellTypist works on an `AnnData` representation.
+To demonstrate this workflow, we will employ the [CellTypist](https://github.com/Teichlab/celltypist) model to annotate cell types for this dataset. CellTypist operates on an AnnData representation.
 
 ```{python}
 adata = data.to_anndata()
 ```
 
-Before we annotate, lets download the human lung atlas model from celltypist.
+Before annotation, let's download the "human lung atlas" model from celltypist.
 
 ```{python}
 import celltypist
@@ -47,7 +47,7 @@ model = models.Model.load(model = model_namel)
 print(model)
 ```
 
-Now lets annotate our dataset
+Now, let's annotate our dataset.
 
 ```{python}
 predictions = celltypist.annotate(adata, model = model_name, majority_voting = True)
@@ -58,13 +58,13 @@ print(predictions.predicted_labels)
 The celltypist workflow is based on the tutorial described [here](https://colab.research.google.com/github/Teichlab/celltypist/blob/main/docs/notebook/celltypist_tutorial.ipynb#scrollTo=postal-chicken).
 :::
 
-Now lets get the `AnnData` object with the predicted labels embedded into the `obs` dataframe. 
+Next, let's retrieve the `AnnData` object with the predicted labels embedded into the `obs` dataframe.
 
 ```{python}
 adata = predictions.to_adata()
 ```
 
-We can now reverse the workflow and save this object into an Artifactdb format from Python. But first the object needs to be converted to a `SingleCellExperiment` class.
+We can now reverse the workflow and save this object into an Artifactdb format from Python. However, the object needs to be converted to a `SingleCellExperiment` class first. Read more about our experiment representations [here](./experiments/singlecell_expt.qmd).
 
 ```{python}
 from singlecellexperiment import SingleCellExperiment
@@ -73,22 +73,20 @@ sce = SingleCellExperiment.from_anndata(adata)
 print(sce)
 ```
 
-We now use the dolomite package to save it into language agnostic format.
-
+We use the dolomite package to save it into a language-agnostic format.
 ```{python}
 import dolomite_base
 
 dolomite_base.save_object(df, "./zilinoislung_with_celltypist")
 ```
 
-Finally read the object back in R.
-
+Finally, read the object back in R.
 ```{r}
 sce_with_celltypist = readObject(path=paste(getwd(), "zilinoislung_with_celltypist", sep="/"))
 sce_with_celltypist
 ```
 
-and that's it. Using these two generics read: `readObject`(R), `read_object`(Python), and save: `saveObject`(R), `save_object`(Python), you can save most Bioconductor objects into language agnostic formats. 
+And that concludes the workflow. Leveraging the generic **read** functions `readObject` (R) and `read_object` (Python), along with the **save** functions `saveObject` (R) and `save_object` (Python), you can seamlessly store most Bioconductor objects in language-agnostic formats.
 
 ----
 
