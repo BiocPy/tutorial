@@ -11,8 +11,11 @@ name: Quarto Publish
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    container: bioconductor/bioconductor_docker:devel
+
     permissions:
       contents: write
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -29,20 +32,36 @@ jobs:
           cache: 'pip'
       - run: pip install -r requirements.txt
 
-      - name: Install R
-        uses: r-lib/actions/setup-r@v2
+      - name: Set directories
+        run: |
+          echo "R_PKG_DIR=${R_HOME}/site-library" >> $GITHUB_ENV
+
+      - name: Restore the package directory
+        uses: actions/cache@v3
         with:
-          r-version: 'devel'
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          cache-version: 2
-          packages: |
-            any::BiocManager
-            any::alabaster
-            any::scRNAseq
-            any::rmarkdown
-            any::knitr
-            any::reticulate
+          path: ${{ env.R_PKG_DIR }}
+          key: check-packages
+
+      - name: Install dependencies
+        shell: Rscript {0}
+        run: |
+          BiocManager::install(c("knitr", "reticulate", "alabaster", "scRNAseq", "rmarkdown"))
+
+
+      # - name: Install R
+      #   uses: r-lib/actions/setup-r@v2
+      #   with:
+      #     r-version: 'devel'
+      # - uses: r-lib/actions/setup-r-dependencies@v2
+      #   with:
+      #     cache-version: 2
+      #     packages: |
+      #       any::BiocManager
+      #       any::alabaster
+      #       any::scRNAseq
+      #       any::rmarkdown
+            # any::knitr
+            # any::reticulate
       # - run: Rscript r_requirements.r
 
       - name: Render
