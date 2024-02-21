@@ -16,6 +16,6 @@ saveObject(sce, path=paste(getwd(), "zilinoislung", sep="/"))
 ```{python}
 from dolomite_base import read_object
 
-obj = read_object("./datasets/zilinoislung")
+obj = read_object("./zilinoislung")
 print(obj)
 ```
