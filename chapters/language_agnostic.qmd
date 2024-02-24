@@ -1,0 +1,36 @@
+# Language-agnostic genomic data store
+
+In this section, we will illustrate a workflow that utilizes language-agnostic representations for storing genomic data, facilitating seamless access to datasets and analysis results across multiple programming frameworks such as R and Python. The [ArtifactDB](https://github.com/artifactdb) framework provides this functionality.
+
+To begin, we will download the "zilionis lung" dataset from the [scRNAseq](https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html) package. Subsequently, we will store this dataset in a language-agnostic format using the [alabaster suite](https://github.com/ArtifactDB/alabaster.base) of R packages.
+
+```r
+library(scRNAseq)
+library(alabaster)
+
+sce <- ZilionisLungData()
+saveObject(sce, path=paste(getwd(), "zilinoislung", sep="/"))
+```
+
+:::{.callout-note}
+Additionally, you can save this dataset as an RDS object for access in Python. Refer to [interop with R](./interop.qmd) section for more details.
+:::
+
+We can now load this dataset in Python using the [dolomite suite](https://github.com/ArtifactDB/dolomite-base) of Python packages. Both dolomite and alabaster are integral parts of the ArtifactDB ecosystem designed to read artifacts stored in language-agnostic formats.
+
+```python
+from dolomite_base import read_object
+
+data = read_object("./zilinoislung")
+print(data)
+```
+
+You can now convert this to `AnnData` representations for downstream analysis.
+
+```python
+adata = data.to_anndata()
+```
+
+:::{.callout-note}
+Check out [ArtifactDB](https://github.com/artifactdb) framework for more information.
+:::

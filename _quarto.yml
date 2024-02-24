@@ -43,6 +43,8 @@ book:
         - chapters/experiments/extending_se.qmd
         - chapters/experiments/multiassay_expt.qmd
     - chapters/interop.qmd
+    - chapters/language_agnostic.qmd
+    - chapters/workflow.qmd
     - part: chapters/extras/index.qmd
       chapters:
         - chapters/extras/iranges.qmd
