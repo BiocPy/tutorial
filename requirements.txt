@@ -10,6 +10,7 @@ singler
 numpy
 scipy
 pandas
+jupyter
 jupyter-cache
 rich
 jupyterlab

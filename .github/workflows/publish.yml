@@ -27,7 +27,7 @@ jobs:
         with:
           python-version: '3.9'
           cache: 'pip'
-      - run: pip install jupyter uv
+      - run: pip install uv
       - run: uv venv
       - run: source .venv/bin/activate
       - run: uv pip install -r requirements.txt
