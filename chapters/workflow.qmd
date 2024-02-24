@@ -1,0 +1,95 @@
+# Seamless analysis workflow
+
+In this section, we will illustrate a workflow that utilizes either language-agnostic representations for storing genomic data or reading RDS files directly in Python, to facilitate seamless access to datasets and analysis results.
+
+:::{.callout-note}
+Check out 
+
+- the [interop with R](./interop.qmd) section for reading RDS files directly in Python or
+- the [language agnostic](./language_agnostic.qmd) representations for storing genomic data
+:::
+
+To begin, we will download the "zilionis lung" dataset from the [scRNAseq](https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html) package. Subsequently, we will store this dataset in a language-agnostic format using the [alabaster suite](https://github.com/ArtifactDB/alabaster.base) of R packages.
+
+```r
+library(scRNAseq)
+
+sce <- ZeiselBrainData()
+sub <- sce[,1:2000]
+saveRDS(sub, "../assets/data/zilinois-lung-subset.rds")
+```
+
+To demonstrate this workflow, we will employ the [CellTypist](https://github.com/Teichlab/celltypist) model to annotate cell types for this dataset. CellTypist operates on an AnnData representation.
+
+```{python}
+from rds2py import read_rds, as_summarized_experiment
+import numpy as np
+
+r_object = read_rds("../assets/data/zilinois-lung-subset.rds")
+sce = as_summarized_experiment(r_object)
+adata, _ = sce.to_anndata()
+adata.X = np.log1p(adata.layers["counts"])
+adata.var.index = adata.var["genes"].tolist()
+print(adata)
+```
+
+Before annotation, let's download the "human lung atlas" model from celltypist.
+
+```{python}
+import celltypist
+from celltypist import models
+
+models.download_models()
+model_name = "Human_Lung_Atlas.pkl"
+model = models.Model.load(model = model_name)
+print(model)
+```
+
+Now, let's annotate our dataset.
+
+```{python}
+predictions = celltypist.annotate(adata, model = model_name, majority_voting = True)
+print(predictions.predicted_labels)
+```
+
+:::{.callout-note}
+The celltypist workflow is based on the tutorial described [here](https://colab.research.google.com/github/Teichlab/celltypist/blob/main/docs/notebook/celltypist_tutorial.ipynb#scrollTo=postal-chicken).
+:::
+
+Next, let's retrieve the `AnnData` object with the predicted labels embedded into the `obs` dataframe.
+
+```{python}
+adata = predictions.to_adata()
+adata
+```
+
+We can now reverse the workflow and save this object into an Artifactdb format from Python. However, the object needs to be converted to a `SingleCellExperiment` class first. Read more about our experiment representations [here](./experiments/singlecell_expt.qmd).
+
+```{python}
+from singlecellexperiment import SingleCellExperiment
+
+sce = SingleCellExperiment.from_anndata(adata)
+print(sce)
+```
+
+We use the dolomite package to save it into a language-agnostic format.
+```{python}
+import dolomite_base
+import dolomite_sce
+
+dolomite_base.save_object(sce, "./zilinoislung_with_celltypist")
+```
+
+Finally, read the object back in R.
+```r
+sce_with_celltypist = readObject(path=paste(getwd(), "zilinoislung_with_celltypist", sep="/"))
+sce_with_celltypist
+```
+
+And that concludes the workflow. Leveraging the generic **read** functions `readObject` (R) and `read_object` (Python), along with the **save** functions `saveObject` (R) and `save_object` (Python), you can seamlessly store most Bioconductor objects in language-agnostic formats.
+
+----
+
+## Further reading
+
+- ArtifactDB GitHub organization - [https://github.com/ArtifactDB](https://github.com/ArtifactDB).

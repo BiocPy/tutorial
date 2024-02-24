@@ -20,5 +20,7 @@ anndata
 mudata
 delayedarray[dask]
 joblib
-dolomite
+dolomite_mae
+dolomite_sce
 hdf5array
+celltypist
