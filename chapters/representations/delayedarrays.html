@@ -223,7 +223,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/interop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Interop with R</span></a>
+  <a href="../../chapters/interop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Interop with RDS files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/language_agnostic.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Language-agnostic genomic data store</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Seamless analysis workflow</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -311,50 +321,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="quick-start" class="level2">
 <h2 class="anchored" data-anchor-id="quick-start">Quick start</h2>
 <p>We can create a <code>DelayedArray</code> from any object that respects the seed contract, i.e., has the <code>shape</code>/<code>dtype</code> properties and supports NumPy slicing. For example, a typical NumPy array qualifies:</p>
-<div id="13f3be36" class="cell" data-execution_count="1">
+<div id="f5735210" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> numpy.random.rand(<span class="dv">100</span>, <span class="dv">20</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>array([[6.01415213e-04, 8.85989069e-01, 2.28682659e-01, ...,
-        4.93178520e-01, 4.30356635e-01, 4.17572407e-01],
-       [4.17581863e-01, 1.50927545e-01, 1.57547580e-01, ...,
-        7.10750255e-01, 6.33832993e-01, 3.98363348e-01],
-       [3.87180590e-01, 7.65236593e-01, 4.31552591e-01, ...,
-        3.55490935e-01, 1.02606949e-01, 6.03239635e-01],
+<pre><code>array([[0.92320562, 0.3097894 , 0.53189351, ..., 0.27510105, 0.57956867,
+        0.94342275],
+       [0.71204588, 0.25514085, 0.10361842, ..., 0.73304687, 0.26942916,
+        0.16600196],
+       [0.59617088, 0.05113678, 0.70386359, ..., 0.52784139, 0.00552956,
+        0.50734403],
        ...,
-       [5.62778009e-01, 7.04005201e-01, 3.21815895e-01, ...,
-        4.51022008e-01, 4.61977566e-01, 2.84962249e-01],
-       [7.89977223e-01, 5.32008279e-01, 9.75649849e-02, ...,
-        1.19709576e-01, 5.64124845e-01, 2.89394019e-02],
-       [3.28589236e-01, 8.81415273e-02, 5.22598547e-01, ...,
-        6.92269107e-01, 1.91591710e-01, 7.44942449e-01]])</code></pre>
+       [0.84813968, 0.54212125, 0.76238212, ..., 0.94844677, 0.96750779,
+        0.76170653],
+       [0.35833657, 0.44683699, 0.92846285, ..., 0.17060735, 0.54414622,
+        0.19603526],
+       [0.88605157, 0.6316946 , 0.97400379, ..., 0.8470242 , 0.50531761,
+        0.56250471]])</code></pre>
 </div>
 </div>
 <p>We can wrap this in a <code>DelayedArray</code> class:</p>
-<div id="8bbe3c79" class="cell" data-execution_count="2">
+<div id="7e957924" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> delayedarray</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> delayedarray.wrap(x)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>&lt;100 x 20&gt; DelayedArray object of type 'float64'
-[[6.01415213e-04, 8.85989069e-01, 2.28682659e-01, ..., 4.93178520e-01,
-  4.30356635e-01, 4.17572407e-01],
- [4.17581863e-01, 1.50927545e-01, 1.57547580e-01, ..., 7.10750255e-01,
-  6.33832993e-01, 3.98363348e-01],
- [3.87180590e-01, 7.65236593e-01, 4.31552591e-01, ..., 3.55490935e-01,
-  1.02606949e-01, 6.03239635e-01],
+[[0.92320562, 0.3097894 , 0.53189351, ..., 0.27510105, 0.57956867,
+  0.94342275],
+ [0.71204588, 0.25514085, 0.10361842, ..., 0.73304687, 0.26942916,
+  0.16600196],
+ [0.59617088, 0.05113678, 0.70386359, ..., 0.52784139, 0.00552956,
+  0.50734403],
  ...,
- [5.62778009e-01, 7.04005201e-01, 3.21815895e-01, ..., 4.51022008e-01,
-  4.61977566e-01, 2.84962249e-01],
- [7.89977223e-01, 5.32008279e-01, 9.75649849e-02, ..., 1.19709576e-01,
-  5.64124845e-01, 2.89394019e-02],
- [3.28589236e-01, 8.81415273e-02, 5.22598547e-01, ..., 6.92269107e-01,
-  1.91591710e-01, 7.44942449e-01]]</code></pre>
+ [0.84813968, 0.54212125, 0.76238212, ..., 0.94844677, 0.96750779,
+  0.76170653],
+ [0.35833657, 0.44683699, 0.92846285, ..., 0.17060735, 0.54414622,
+  0.19603526],
+ [0.88605157, 0.6316946 , 0.97400379, ..., 0.8470242 , 0.50531761,
+  0.56250471]]</code></pre>
 </div>
 </div>
 <p>And then we can use it in a variety of operations. For example, in genomics, a typical quality control task is to slice the matrix to remove uninteresting features (rows) or samples (columns):</p>
-<div id="cdaf6111" class="cell" data-execution_count="3">
+<div id="886244a3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>filtered <span class="op">=</span> d[<span class="dv">1</span>:<span class="dv">100</span>:<span class="dv">2</span>,<span class="dv">1</span>:<span class="dv">8</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>filtered.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -362,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We then divide by the total sum of each column to compute normalized values between samples.</p>
-<div id="c0f1bd5e" class="cell" data-execution_count="4">
+<div id="3a0fb10a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> filtered.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>normalized <span class="op">=</span> filtered <span class="op">/</span> total</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>normalized.dtype</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -371,19 +381,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>And finally we compute a log-transformation to get some log-normalized values for visualization.</p>
-<div id="bde2b617" class="cell" data-execution_count="5">
+<div id="2433afcd" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>transformed <span class="op">=</span> numpy.log1p(normalized)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>transformed[<span class="dv">1</span>:<span class="dv">5</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>&lt;4 x 7&gt; DelayedArray object of type 'float64'
-[[0.00428006, 0.0248262 , 0.00741947, ..., 0.0294907 , 0.02046459,
-  0.0027792 ],
- [0.03599014, 0.02613084, 0.0220455 , ..., 0.01223503, 0.00437773,
-  0.03895381],
- [0.03892807, 0.00911652, 0.03414725, ..., 0.03233684, 0.01346023,
-  0.0045264 ],
- [0.00862385, 0.00336229, 0.01258761, ..., 0.02279438, 0.00184549,
-  0.02005278]]</code></pre>
+[[0.03576153, 0.00916447, 0.03650709, ..., 0.02220312, 0.00699699,
+  0.03160379],
+ [0.01395495, 0.01982355, 0.01470671, ..., 0.00770331, 0.0130848 ,
+  0.03325358],
+ [0.0341034 , 0.02614178, 0.00854539, ..., 0.03264423, 0.03322269,
+  0.02731285],
+ [0.02341959, 0.03130366, 0.0182745 , ..., 0.01645992, 0.00924269,
+  0.01340919]]</code></pre>
 </div>
 </div>
 <p>Each operation just returns a <code>DelayedArray</code> with an increasing stack of delayed operations, without evaluating anything or making any copies. Check out the <a href="https://biocpy.github.io/DelayedArray/">documentation</a> for more information.</p>
@@ -391,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="extracting-data" class="level2">
 <h2 class="anchored" data-anchor-id="extracting-data">Extracting data</h2>
 <p>A <code>DelayedArray</code> is typically used by iteratively extracting blocks into memory for further calculations. This “block processing” strategy improves memory efficiency by only realizing the delayed operations for a subset of the data. For example, to iterate over the rows with 100 MB blocks:</p>
-<div id="5941c7e7" class="cell" data-execution_count="6">
+<div id="dba3e3c7" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> delayedarray.chunk_grid(d)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> (<span class="op">*</span><span class="bu">range</span>(<span class="bu">len</span>(d.shape)),)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> block <span class="kw">in</span> grid.iterate(dimensions<span class="op">=</span>dims):</span>
@@ -418,7 +428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="handling-sparse-data" class="level2">
 <h2 class="anchored" data-anchor-id="handling-sparse-data">Handling sparse data</h2>
 <p>If the <code>DelayedArray</code> contains sparse data, <code>is_sparse(d)</code> will return <code>True</code>. This allows callers to instead use the <code>extract_sparse_array()</code> function for block processing:</p>
-<div id="26d8ae85" class="cell" data-execution_count="7">
+<div id="5584a67d" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> delayedarray.is_sparse(d):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    current <span class="op">=</span> delayedarray.extract_sparse_array(d, (<span class="op">*</span>block_coords,))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -441,7 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="other-coercions" class="level3">
 <h3 class="anchored" data-anchor-id="other-coercions">Other coercions</h3>
 <p>A <code>DelayedArray</code> can be converted to a (possibly masked) NumPy array with the <code>to_dense_array()</code> function. Similarly, sparse <code>DelayedArray</code>s can be converted to <code>SparseNdarray</code>s with the <code>to_sparse_array()</code> function.</p>
-<div id="580a0a79" class="cell" data-execution_count="8">
+<div id="fabd825e" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>delayedarray.to_dense_array(d)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> delayedarray.is_sparse(d):</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    delayedarray.to_sparse_array(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -449,7 +459,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Users can easily convert a 2-dimensional <code>SparseNdarray</code> to some of the common SciPy sparse matrix classes downstream calculations.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>delayedarray.to_scipy_sparse_matrix(current, <span class="st">"csc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>More simply, users can just call <code>numpy.array()</code> to realize the delayed operations into a standard NumPy array for consumption. Note that this discards any masking information so should not be called if <code>is_masked()</code> returns <code>True</code>.</p>
-<div id="d1d625c5" class="cell" data-execution_count="9">
+<div id="a593deaa" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>simple <span class="op">=</span> numpy.array([random.random() <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>)])</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(simple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -458,7 +468,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Users can also call <code>delayedarray.create_dask_array()</code>, to obtain a <strong>dask</strong> array that contains the delayed operations:</p>
-<div id="07b6701d" class="cell" data-execution_count="10">
+<div id="b8772bc4" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: requires installation as 'delayedarray[dask]'.</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>dasky <span class="op">=</span> delayedarray.create_dask_array(simple)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(dasky)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -471,7 +481,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="interoperability-with-other-packages" class="level2">
 <h2 class="anchored" data-anchor-id="interoperability-with-other-packages">Interoperability with other packages</h2>
 <p>The general idea is that <code>DelayedArray</code>s should be a drop-in replacement for NumPy arrays, at least for <a href="https://github.com/BiocPy">BiocPy</a> applications. So, for example, we can stuff the <code>DelayedArray</code> inside a <code>SummarizedExperiment</code>:</p>
-<div id="a02da5d5" class="cell" data-execution_count="11">
+<div id="8c5de47d" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> summarizedexperiment <span class="im">as</span> SE</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> SE.SummarizedExperiment({ <span class="st">"counts"</span>: filtered, <span class="st">"lognorm"</span>: transformed })</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -488,22 +498,22 @@ metadata(0):
 </div>
 </div>
 <p>One of the main goals of the <strong>DelayedArray</strong> package is to make it easier for Bioconductor developers to inspect the delayed operations. (See the <a href="https://biocpy.github.io/DelayedArray/developers.html">developer notes</a> for some comments on <strong>dask</strong>.) For example, we can pull out the “seed” object underlying our <code>DelayedArray</code> instance:</p>
-<div id="106ed3c9" class="cell" data-execution_count="12">
+<div id="0bbf0f57" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>d.seed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>array([[6.01415213e-04, 8.85989069e-01, 2.28682659e-01, ...,
-        4.93178520e-01, 4.30356635e-01, 4.17572407e-01],
-       [4.17581863e-01, 1.50927545e-01, 1.57547580e-01, ...,
-        7.10750255e-01, 6.33832993e-01, 3.98363348e-01],
-       [3.87180590e-01, 7.65236593e-01, 4.31552591e-01, ...,
-        3.55490935e-01, 1.02606949e-01, 6.03239635e-01],
+<pre><code>array([[0.92320562, 0.3097894 , 0.53189351, ..., 0.27510105, 0.57956867,
+        0.94342275],
+       [0.71204588, 0.25514085, 0.10361842, ..., 0.73304687, 0.26942916,
+        0.16600196],
+       [0.59617088, 0.05113678, 0.70386359, ..., 0.52784139, 0.00552956,
+        0.50734403],
        ...,
-       [5.62778009e-01, 7.04005201e-01, 3.21815895e-01, ...,
-        4.51022008e-01, 4.61977566e-01, 2.84962249e-01],
-       [7.89977223e-01, 5.32008279e-01, 9.75649849e-02, ...,
-        1.19709576e-01, 5.64124845e-01, 2.89394019e-02],
-       [3.28589236e-01, 8.81415273e-02, 5.22598547e-01, ...,
-        6.92269107e-01, 1.91591710e-01, 7.44942449e-01]])</code></pre>
+       [0.84813968, 0.54212125, 0.76238212, ..., 0.94844677, 0.96750779,
+        0.76170653],
+       [0.35833657, 0.44683699, 0.92846285, ..., 0.17060735, 0.54414622,
+        0.19603526],
+       [0.88605157, 0.6316946 , 0.97400379, ..., 0.8470242 , 0.50531761,
+        0.56250471]])</code></pre>
 </div>
 </div>
 <p>Each layer has its own specific attributes that define the operation, e.g.,</p>

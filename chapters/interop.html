@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BiocPy: Enabling Bioconductor workflows in Python - Interop with R</title>
+<title>BiocPy: Enabling Bioconductor workflows in Python - Interop with RDS files</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/extras/index.html" rel="next">
+<link href="../chapters/language_agnostic.html" rel="next">
 <link href="../chapters/experiments/multiassay_expt.html" rel="prev">
 <link href=".././assets/short.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - Interop with R">
+<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - Interop with RDS files">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/interop.html"><span class="chapter-title">Interop with R</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/interop.html"><span class="chapter-title">Interop with RDS files</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -226,7 +226,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/interop.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Interop with R</span></a>
+  <a href="../chapters/interop.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Interop with RDS files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/language_agnostic.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Language-agnostic genomic data store</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Seamless analysis workflow</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -284,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Interop with R</span></h1>
+<h1 class="title"><span class="chapter-title">Interop with RDS files</span></h1>
 </div>
 
 
@@ -324,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-1-parse-the-rds-file" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-parse-the-rds-file">Step 1: Parse the RDS file</h2>
 <p>Now, we can read the RDS file in Python using the <code>read_rds</code> function, which parses the file contents and returns a dictionary of the R object.</p>
-<div id="dbf140d3" class="cell" data-execution_count="1">
+<div id="98eef693" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rds2py <span class="im">import</span> read_rds</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>r_object <span class="op">=</span> read_rds(<span class="st">"../assets/data/zeisel-brain-subset.rds"</span>)</span>
@@ -350,7 +360,7 @@ Note
 <section id="step-2-conversion-to-python-representations" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-conversion-to-python-representations">Step 2: Conversion to Python representations</h2>
 <p>The package provides functions to convert these R objects into useful Python representations.</p>
-<div id="1541915d" class="cell" data-execution_count="2">
+<div id="e78a8a95" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rds2py <span class="im">import</span> as_summarized_experiment</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># to convert an robject to SCE</span></span>
@@ -384,7 +394,7 @@ metadata(0):
 </div>
 <p>And that’s it! It’s as straightforward as that. The <code>as_summarized_experiment</code> function serves as an example of how to convert complex R structures into Python representations. Similarly, the package offers parsers for atomic vectors, lists, sparse/dense matrices, data frames, and most R data structures.</p>
 <p>You can continue to convert this object into <code>AnnData</code> representation and perform analysis. For more details on <code>SingleCellExperiment</code>, refer to the documentation <a href="../chapters/experiments/singlecell_expt.html">here</a>.</p>
-<div id="fdb222ee" class="cell" data-execution_count="3">
+<div id="32e999ee" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sce.to_anndata()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(AnnData object with n_obs × n_vars = 3005 × 1000
@@ -794,8 +804,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/extras/index.html" class="pagination-link" aria-label="Additional packages">
-        <span class="nav-page-text">Additional packages</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/language_agnostic.html" class="pagination-link" aria-label="Language-agnostic genomic data store">
+        <span class="nav-page-text"><span class="chapter-title">Language-agnostic genomic data store</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

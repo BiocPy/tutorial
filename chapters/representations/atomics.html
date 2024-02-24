@@ -223,7 +223,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/interop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Interop with R</span></a>
+  <a href="../../chapters/interop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Interop with RDS files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/language_agnostic.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Language-agnostic genomic data store</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Seamless analysis workflow</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -316,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The package provides several atomic lists that are coerced into appropriate types. These include <code>BooleanList</code>, <code>FloatList</code>, <code>NamedList</code>, <code>IntegerList</code>, and <code>StringList</code>.</p>
 <p>Let’s explore <code>BooleanList</code>, which resembles a regular Python list but coercing anything added to it into a <code>boolean</code>. Additionally, <code>None</code> values are accepted and treated as missing booleans.</p>
 <p>This list may also be named (see <code>NamedList</code>), which provides dictionary-like functionality.</p>
-<div id="b993829e" class="cell" data-execution_count="1">
+<div id="9166e6f6" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> BooleanList, NamedList</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> BooleanList([ <span class="va">True</span>, <span class="va">False</span>, <span class="va">False</span>, <span class="va">True</span> ])</span>
@@ -326,7 +336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Similarly, one can create atomic lists for other types, such as <code>FloatList</code>:</p>
-<div id="091ff6a8" class="cell" data-execution_count="2">
+<div id="32f7278c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> FloatList</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> FloatList([ <span class="fl">1.1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span> ])</span>
@@ -336,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Accessing these vectors is similar to any other list:</p>
-<div id="d3490caa" class="cell" data-execution_count="3">
+<div id="a7286748" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"2nd element:"</span>, x[<span class="dv">2</span>])</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"reassign value"</span>)</span>
@@ -349,7 +359,7 @@ x:  [1.1, 50.0, 3.0, 4.0]</code></pre>
 </div>
 </div>
 <p>To convert objects back to Python lists:</p>
-<div id="a38b4026" class="cell" data-execution_count="4">
+<div id="ac32a747" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>[1.1, 50.0, 3.0, 4.0]</code></pre>
@@ -360,7 +370,7 @@ x:  [1.1, 50.0, 3.0, 4.0]</code></pre>
 <h2 class="anchored" data-anchor-id="factor-class"><code>Factor</code> class</h2>
 <p>The <code>Factor</code> class is analogous to R’s factor. It comprises a vector of integer <code>codes</code>, each corresponding to an index within a list of unique strings (<code>levels</code>). The purpose is to encode a list of strings as integers for streamlined numerical analysis.</p>
 <p>The most straightforward way to create a <code>Factor</code> is from an existing list of strings:</p>
-<div id="04da7700" class="cell" data-execution_count="5">
+<div id="627e1295" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> Factor</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> Factor.from_sequence([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"E"</span>])</span>
@@ -373,7 +383,7 @@ ordered: False</code></pre>
 </div>
 </div>
 <p>Alternatively, if you already have a list of <code>codes</code> and associated <code>levels</code>:</p>
-<div id="0020626d" class="cell" data-execution_count="6">
+<div id="33e8bdd9" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> Factor([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>], levels<span class="op">=</span>[<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>])</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -384,7 +394,7 @@ ordered: False</code></pre>
 </div>
 </div>
 <p>To convert a <code>Factor</code> back to a Python list:</p>
-<div id="1bd616ec" class="cell" data-execution_count="7">
+<div id="50a8b6a8" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>['A', 'B', 'C', 'A', 'C', 'E']</code></pre>
@@ -394,7 +404,7 @@ ordered: False</code></pre>
 <section id="subset-generic" class="level2">
 <h2 class="anchored" data-anchor-id="subset-generic"><code>subset</code> generic</h2>
 <p>The Biocutils package introduces a <code>subset</code> generic function designed to handle n-dimensional objects, where n &gt; 1 (i.e., objects with a shape property of length greater than 1). When applied, the function first verifies the dimensionality of the input objects. If they are n-dimensional, it invokes <code>subset_rows()</code> to perform the subsetting along the first dimension. On the other hand, if the objects are deemed vector-like, the function utilizes <code>subset_sequence()</code> for the subsetting operation.</p>
-<div id="f8732e27" class="cell" data-execution_count="8">
+<div id="d24a3377" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> subset</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
@@ -407,7 +417,7 @@ ordered: False</code></pre>
 <section id="combine-generic" class="level2">
 <h2 class="anchored" data-anchor-id="combine-generic"><code>combine</code> generic</h2>
 <p>The <code>combine</code> generic function in Biocutils is designed to accommodate objects of varying dimensions. It begins by examining the dimensionality of the input objects: if they are n-dimensional for n &gt; 1 (i.e., possessing a shape property of length greater than 1), the function utilizes <code>combine_rows()</code> to merge them along the first dimension. Conversely, if the objects exhibit a vector-like structure, the function employs <code>combine_sequences()</code> for the combination process.</p>
-<div id="38238856" class="cell" data-execution_count="9">
+<div id="7ac336ca" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> combine</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -425,7 +435,7 @@ ordered: False</code></pre>
 <h2 class="anchored" data-anchor-id="other-utilities">Other utilities</h2>
 <section id="match" class="level3">
 <h3 class="anchored" data-anchor-id="match"><code>match</code></h3>
-<div id="e1ea8c76" class="cell" data-execution_count="10">
+<div id="a34eb2f3" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocutils</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>biocutils.match([<span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"E"</span>], [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
@@ -435,7 +445,7 @@ ordered: False</code></pre>
 </section>
 <section id="intersect" class="level3">
 <h3 class="anchored" data-anchor-id="intersect"><code>intersect</code></h3>
-<div id="d750ca28" class="cell" data-execution_count="11">
+<div id="0818d795" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocutils</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>biocutils.intersect([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>], [<span class="st">"D"</span>, <span class="st">"A"</span>, <span class="st">"E"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
@@ -445,7 +455,7 @@ ordered: False</code></pre>
 </section>
 <section id="union" class="level3">
 <h3 class="anchored" data-anchor-id="union"><code>union</code></h3>
-<div id="e5a45b7b" class="cell" data-execution_count="12">
+<div id="90677905" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocutils</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>biocutils.union([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>], [<span class="st">"D"</span>, <span class="st">"A"</span>, <span class="st">"E"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -456,7 +466,7 @@ ordered: False</code></pre>
 <section id="is_list_of_type" class="level3">
 <h3 class="anchored" data-anchor-id="is_list_of_type"><code>is_list_of_type</code></h3>
 <p>Checks if all elements of a list or tuple are of the same type.</p>
-<div id="d8093a76" class="cell" data-execution_count="13">
+<div id="94e134f5" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocutils</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>

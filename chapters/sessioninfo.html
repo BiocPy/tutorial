@@ -225,7 +225,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/interop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Interop with R</span></a>
+  <a href="../chapters/interop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Interop with RDS files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/language_agnostic.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Language-agnostic genomic data store</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Seamless analysis workflow</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -302,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This book is automatically built to identify issues caused by changes in the dependencies. We use <a href="https://quarto.org/docs/books">quarto</a> for reproducing the scripts provided in this book.</p>
 <section id="sec-sessioninfo" class="level2">
 <h2 class="anchored" data-anchor-id="sec-sessioninfo">Pre-requisites</h2>
-<div id="3d6a70b6" class="cell" data-execution_count="1">
+<div id="32131498" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -312,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="python" class="level2">
 <h2 class="anchored" data-anchor-id="python">Python</h2>
 <p>Lets make sure we have all packages we need for this section</p>
-<div id="be786a93" class="cell" data-execution_count="2">
+<div id="b6832c1e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sys.version_info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>sys.version_info(major=3, minor=9, micro=18, releaselevel='final', serial=0)</code></pre>
@@ -321,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="packages" class="level2">
 <h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<div id="6de7eb07" class="cell" data-execution_count="3">
+<div id="eaab0e60" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocframe</span>
@@ -397,7 +407,7 @@ nbformat                    5.9.2
 numpy                       1.26.4
 overrides                   NA
 packaging                   23.2
-pandas                      2.2.0
+pandas                      2.2.1
 parso                       0.8.3
 pexpect                     4.9.0
 platformdirs                4.2.0
@@ -444,13 +454,13 @@ zoneinfo                    NA
 IPython             8.18.1
 jupyter_client      8.6.0
 jupyter_core        5.7.1
-jupyterlab          4.1.1
+jupyterlab          4.1.2
 notebook            7.1.0
 -----
 Python 3.9.18 (main, Aug 28 2023, 08:38:32) [GCC 11.4.0]
 Linux-6.2.0-1019-azure-x86_64-with-glibc2.35
 -----
-Session information updated at 2024-02-19 22:05
+Session information updated at 2024-02-24 18:44
 </pre>
 </details>
 </div>
