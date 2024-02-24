@@ -28,6 +28,8 @@ jobs:
           python-version: '3.9'
           cache: 'pip'
       - run: pip install jupyter uv
+      - run: uv venv
+      - run: source .venv/bin/activate
       - run: uv pip install -r requirements.txt
 
       - name: Render
