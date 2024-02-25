@@ -9,7 +9,7 @@ Check out
 - the [language agnostic](./language_agnostic.qmd) representations for storing genomic data
 :::
 
-To begin, we will download the "zilionis lung" dataset from the [scRNAseq](https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html) package. Subsequently, we will store this dataset in a language-agnostic format using the [alabaster suite](https://github.com/ArtifactDB/alabaster.base) of R packages.
+To begin, we will download the "zilionis lung" dataset from the [scRNAseq](https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html) package. Subsequently, we will store this dataset as an RDS file.
 
 ```r
 library(scRNAseq)
@@ -19,7 +19,7 @@ sub <- sce[,1:2000]
 saveRDS(sub, "../assets/data/zilinois-lung-subset.rds")
 ```
 
-To demonstrate this workflow, we will employ the [CellTypist](https://github.com/Teichlab/celltypist) model to annotate cell types for this dataset. CellTypist operates on an AnnData representation.
+To demonstrate this workflow, we will use the models from the [CellTypist](https://github.com/Teichlab/celltypist) package to annotate cell types for this dataset. CellTypist operates on an `AnnData` representation.
 
 ```{python}
 from rds2py import read_rds, as_summarized_experiment
@@ -33,7 +33,7 @@ adata.var.index = adata.var["genes"].tolist()
 print(adata)
 ```
 
-Before annotation, let's download the "human lung atlas" model from celltypist.
+Before inferring cell types, let's download the "human lung atlas" model from CellTypist.
 
 ```{python}
 import celltypist
@@ -53,7 +53,7 @@ print(predictions.predicted_labels)
 ```
 
 :::{.callout-note}
-The celltypist workflow is based on the tutorial described [here](https://colab.research.google.com/github/Teichlab/celltypist/blob/main/docs/notebook/celltypist_tutorial.ipynb#scrollTo=postal-chicken).
+This CellTypist workflow is based on the tutorial described [here](https://colab.research.google.com/github/Teichlab/celltypist/blob/main/docs/notebook/celltypist_tutorial.ipynb#scrollTo=postal-chicken).
 :::
 
 Next, let's retrieve the `AnnData` object with the predicted labels embedded into the `obs` dataframe.
@@ -63,7 +63,7 @@ adata = predictions.to_adata()
 adata
 ```
 
-We can now reverse the workflow and save this object into an Artifactdb format from Python. However, the object needs to be converted to a `SingleCellExperiment` class first. Read more about our experiment representations [here](./experiments/singlecell_expt.qmd).
+We can now reverse the workflow and save this object into an Artifactdb format from Python. However, the object needs to be converted to a `SingleCellExperiment` class first. Read more about our experiment representations [here](./experiments/single_cell_experiment.qmd).
 
 ```{python}
 from singlecellexperiment import SingleCellExperiment
@@ -72,17 +72,17 @@ sce = SingleCellExperiment.from_anndata(adata)
 print(sce)
 ```
 
-We use the dolomite package to save it into a language-agnostic format.
+We use the [dolomite suite](https://github.com/ArtifactDB/dolomite-base) to save it into a language-agnostic format from Python.
 ```{python}
 import dolomite_base
 import dolomite_sce
 
-dolomite_base.save_object(sce, "./zilinoislung_with_celltypist")
+dolomite_base.save_object(sce, "./zilinois_lung_with_celltypist")
 ```
 
 Finally, read the object back in R.
 ```r
-sce_with_celltypist = readObject(path=paste(getwd(), "zilinoislung_with_celltypist", sep="/"))
+sce_with_celltypist = readObject(path=paste(getwd(), "zilinois_lung_with_celltypist", sep="/"))
 sce_with_celltypist
 ```
 

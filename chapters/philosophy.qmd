@@ -41,7 +41,7 @@ programming paradigm:
 gr.flank(width=2, start=False, both=True)
 ```
 
-## Functional discipline {#sec-functional}
+## Functional discipline
 
 The existence of mutable types in Python introduces the potential for 
 inadvertently modifying complex objects. 

@@ -1,9 +1,13 @@
 # File-backed Arrays
 
 This is the Python equivalent of Bioconductor's [HDF5Array](https://bioconductor.org/packages/HDF5Array) package, 
-providing a representation of HDF5-backed arrays within the [delayedarray framework](./delayedarrays.qmd). 
+providing a representation of HDF5-backed arrays within the [delayedarray framework](./delayed_arrays.qmd). 
 The idea is to allow users to store, manipulate and operate on large datasets without loading them into memory, 
 in a manner that is trivially compatible with other data structures in the [BiocPy ecosystem](https://github.com/BiocPy/).
+
+:::{.callout-note}
+These classes follow a functional paradigm for accessing or setting properties, with further details discussed in [functional paradigm](../philosophy.qmd#functional-discipline) section.
+:::
 
 ## Installation
 
@@ -35,7 +39,7 @@ arr
 ```
 
 This is just a subclass of a `DelayedArray` and can be used anywhere in the BiocPy framework.
-Parts of the NumPy API are also supported - for example, we could apply a variety of delayed operations:
+Parts of the NumPy API are also supported - for example, we could apply a variety of [delayed operations](./delayed_arrays.qmd):
 
 ```{python}
 scaling = numpy.random.rand(100)
@@ -43,7 +47,9 @@ transformed = numpy.log1p(arr / scaling)
 transformed
 ```
 
+:::{.callout-note}
 Check out the [documentation](https://biocpy.github.io/hdf5array/) for more details.
+:::
 
 ## Handling sparse matrices
 
@@ -62,7 +68,11 @@ with h5py.File("sparse_whee.h5", "w") as handle:
 ```
 
 We can then create a sparse HDF5-backed matrix.
+
+:::{.callout-note}
 Note that there is some variation in this HDF5 compressed sparse format, notably where the dimensions are stored and whether it is column/row-major.
+:::
+
 The constructor will not do any auto-detection so we need to provide this information explicitly:
 
 ```{python}
@@ -76,4 +86,9 @@ arr = hdf5array.Hdf5CompressedSparseMatrix(
 arr
 ```
 
-Just like [delayedarrays](http://localhost:3382/chapters/representations/delayedarrays.html#interoperability-with-other-packages), you can use file-backed matrices to represent experimental data in [summarized experiment](../experiments/summarized_expt.qmd#delayed-arrays) and its derivates, reducing the *in-memory* footprint to load large datasets.
+----
+
+## Further reading
+
+- Just like [delayedarrays](./delayed_arrays.qmd#interoperability-with-biocpy-packages), you can use file-backed matrices to represent experimental data in [summarized experiment](../experiments/summarized_experiment.qmd#delayed-arrays) and its derivates, reducing the *in-memory* footprint to load large datasets.
+- Check out the [documentation](https://biocpy.github.io/hdf5array/) for more details.

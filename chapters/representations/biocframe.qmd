@@ -4,6 +4,10 @@
 
 This flexibility allows us to accept arbitrarily complex objects as columns, which is often the case in Bioconductor objects. Also check out Bioconductor's [**S4Vectors**](https://bioconductor.org/packages/S4Vectors) package, which implements the `DFrame` class on which `BiocFrame` was based.
 
+:::{.callout-note}
+These classes follow a functional paradigm for accessing or setting properties, with further details discussed in [functional paradigm](../philosophy.qmd#functional-discipline) section.
+:::
+
 ## Installation
 
 To get started, install the package from [PyPI](https://pypi.org/project/biocframe/)

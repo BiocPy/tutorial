@@ -5,6 +5,10 @@ It allows BiocPy-based packages to easily inteoperate with delayed arrays from t
 with focus on serialization to/from file with [**chihaya**](https://github.com/ArtifactDB/chihaya)/[**rds2py**](https://github.com/BiocPy/rds2py)
 and entry into [**tatami**](https://github.com/tatami-inc/tatami)-compatible C++ libraries via [**mattress**](https://github.com/BiocPy/mattress).
 
+:::{.callout-note}
+These classes follow a functional paradigm for accessing or setting properties, with further details discussed in [functional paradigm](../philosophy.qmd#functional-discipline) section.
+:::
+
 ## Installation
 
 This package is published to [PyPI](https://pypi.org/project/delayedarray/) and can be installed via the usual methods:
@@ -34,12 +38,18 @@ d
 ```
 
 And then we can use it in a variety of operations.
+
 For example, in genomics, a typical quality control task is to slice the matrix to remove uninteresting features (rows) or samples (columns):
 
 ```{python}
 filtered = d[1:100:2,1:8]
-filtered.shape
+print("Type of array:", type(filtered))
+print("shape of array:", filtered.shape)
 ```
+
+:::{.callout-important}
+Each operation just returns a `DelayedArray` with an increasing stack of delayed operations, without evaluating anything or making any copies.
+:::
 
 We then divide by the total sum of each column to compute normalized values between samples.
 
@@ -56,21 +66,23 @@ transformed = numpy.log1p(normalized)
 transformed[1:5,:]
 ```
 
-Each operation just returns a `DelayedArray` with an increasing stack of delayed operations, without evaluating anything or making any copies.
+:::{.callout-important}
+Each operation just returns a `DelayedArray` with an increasing stack of delayed operations, without evaluating anything or making any copies. 
 Check out the [documentation](https://biocpy.github.io/DelayedArray/) for more information.
+:::
 
 ## Extracting data
 
 A `DelayedArray` is typically used by iteratively extracting blocks into memory for further calculations.
 This "block processing" strategy improves memory efficiency by only realizing the delayed operations for a
-subset of the data. For example, to iterate over the rows with 100 MB blocks:
+subset of the data. For example, to iterate over the rows:
 
 ```{python}
 grid = delayedarray.chunk_grid(d)
 dims = (*range(len(d.shape)),)
 for block in grid.iterate(dimensions=dims):
-    subsets = (*(range(s, e) for s, e in block),)
-    current = delayedarray.extract_dense_array(d, subsets)
+  subsets = (*(range(s, e) for s, e in block),)
+  current = delayedarray.extract_dense_array(d, subsets)
 ```
 
 Each call to `extract_dense_array()` yields a NumPy array containing the the specified rows and columns.
@@ -145,9 +157,12 @@ A `DelayedArray` can be converted to a (possibly masked) NumPy array with the `t
 Similarly, sparse `DelayedArray`s can be converted to `SparseNdarray`s with the `to_sparse_array()` function.
 
 ```{python}
-delayedarray.to_dense_array(d)
+res = None
 if delayedarray.is_sparse(d):
-    delayedarray.to_sparse_array(d)
+  res = delayedarray.to_sparse_array(d)
+else:
+  res = delayedarray.to_dense_array(d)
+res
 ```
 
 Users can easily convert a 2-dimensional `SparseNdarray` to some of the common SciPy sparse matrix classes downstream calculations.
@@ -173,10 +188,10 @@ dasky = delayedarray.create_dask_array(simple)
 type(dasky)
 ```
 
-## Interoperability with other packages
+## Interoperability with BiocPy packages
 
 The general idea is that `DelayedArray`s should be a drop-in replacement for NumPy arrays, at least for [BiocPy](https://github.com/BiocPy) applications.
-So, for example, we can stuff the `DelayedArray` inside a `SummarizedExperiment`:
+So, for example, we can use a `DelayedArray` inside a `SummarizedExperiment`:
 
 ```{python}
 import summarizedexperiment as SE
@@ -223,5 +238,9 @@ It may also be desirable to implement:
 - a method for the `chunk_shape()` generic.
 - a method for the `create_dask_array()` generic.
 - a method for the `wrap()` generic.
+
+----
+
+## Further reading
 
 Developers are referred to the [documentation for each generic](https://biocpy.github.io/DelayedArray/api/delayedarray.html) for more details.

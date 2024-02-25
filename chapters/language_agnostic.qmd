@@ -31,6 +31,6 @@ You can now convert this to `AnnData` representations for downstream analysis.
 adata = data.to_anndata()
 ```
 
-:::{.callout-note}
-Check out [ArtifactDB](https://github.com/artifactdb) framework for more information.
-:::
+## Further reading
+
+- Check out [ArtifactDB](https://github.com/artifactdb) framework for more information.
