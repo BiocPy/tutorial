@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BiocPy: Enabling Bioconductor workflows in Python - Reproduce me!</title>
+<title>BiocPy: Facilitate Bioconductor Workflows in Python - Reproduce me!</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - Reproduce me!">
+<meta name="twitter:title" content="BiocPy: Facilitate Bioconductor Workflows in Python - Reproduce me!">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -136,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">BiocPy: Enabling Bioconductor workflows in Python</a> 
+      <a href="../">BiocPy: Facilitate Bioconductor Workflows in Python</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/BiocPy/tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="https://twitter.com/intent/tweet?url=|url|" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
@@ -167,27 +167,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
+  <a href="../chapters/representations/genomic_ranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/representations/delayedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Delayed Arrays</span></a>
+  <a href="../chapters/representations/delayed_arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Delayed Arrays</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/representations/filebackedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">File-backed Arrays</span></a>
+  <a href="../chapters/representations/file_backed_arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">File-backed Arrays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics &amp; Generics</span></a>
   </div>
 </li>
       </ul>
@@ -203,12 +203,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/experiments/summarized_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summarized experiment</span></a>
+  <a href="../chapters/experiments/summarized_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summarized experiment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/experiments/singlecell_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Single-cell experiment</span></a>
+  <a href="../chapters/experiments/single_cell_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Single-cell experiment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/experiments/multiassay_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multiple experiments</span></a>
+  <a href="../chapters/experiments/multi_assay_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multiple experiments</span></a>
   </div>
 </li>
       </ul>
@@ -280,7 +280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-sessioninfo" id="toc-sec-sessioninfo" class="nav-link active" data-scroll-target="#sec-sessioninfo">Pre-requisites</a></li>
+  <li><a href="#pre-requisites" id="toc-pre-requisites" class="nav-link active" data-scroll-target="#pre-requisites">Pre-requisites</a></li>
   <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   </ul>
@@ -310,9 +310,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>The code base for this repository is available at <a href="https://github.com/BiocPy/tutorial">https://github.com/BiocPy/tutorial</a>.</p>
 <p>This book is automatically built to identify issues caused by changes in the dependencies. We use <a href="https://quarto.org/docs/books">quarto</a> for reproducing the scripts provided in this book.</p>
-<section id="sec-sessioninfo" class="level2">
-<h2 class="anchored" data-anchor-id="sec-sessioninfo">Pre-requisites</h2>
-<div id="32131498" class="cell" data-execution_count="1">
+<section id="pre-requisites" class="level2">
+<h2 class="anchored" data-anchor-id="pre-requisites">Pre-requisites</h2>
+<div id="dd4ebd5d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -322,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="python" class="level2">
 <h2 class="anchored" data-anchor-id="python">Python</h2>
 <p>Lets make sure we have all packages we need for this section</p>
-<div id="b6832c1e" class="cell" data-execution_count="2">
+<div id="94a1509d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sys.version_info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>sys.version_info(major=3, minor=9, micro=18, releaselevel='final', serial=0)</code></pre>
@@ -331,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="packages" class="level2">
 <h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<div id="eaab0e60" class="cell" data-execution_count="3">
+<div id="3234f846" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocframe</span>
@@ -460,7 +460,7 @@ notebook            7.1.0
 Python 3.9.18 (main, Aug 28 2023, 08:38:32) [GCC 11.4.0]
 Linux-6.2.0-1019-azure-x86_64-with-glibc2.35
 -----
-Session information updated at 2024-02-24 18:44
+Session information updated at 2024-02-25 07:08
 </pre>
 </details>
 </div>

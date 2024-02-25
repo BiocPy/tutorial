@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BiocPy: Enabling Bioconductor workflows in Python - File-backed Arrays</title>
+<title>BiocPy: Facilitate Bioconductor Workflows in Python - File-backed Arrays</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/experiments/index.html" rel="next">
-<link href="../../chapters/representations/delayedarrays.html" rel="prev">
+<link href="../../chapters/representations/atomics.html" rel="next">
+<link href="../../chapters/representations/delayed_arrays.html" rel="prev">
 <link href="../.././assets/short.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - File-backed Arrays">
+<meta name="twitter:title" content="BiocPy: Facilitate Bioconductor Workflows in Python - File-backed Arrays">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/representations/index.html">The basics</a></li><li class="breadcrumb-item"><a href="../../chapters/representations/filebackedarrays.html"><span class="chapter-title">File-backed Arrays</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/representations/index.html">The basics</a></li><li class="breadcrumb-item"><a href="../../chapters/representations/file_backed_arrays.html"><span class="chapter-title">File-backed Arrays</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../">BiocPy: Enabling Bioconductor workflows in Python</a> 
+      <a href="../../">BiocPy: Facilitate Bioconductor Workflows in Python</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/BiocPy/tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="https://twitter.com/intent/tweet?url=|url|" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
@@ -165,27 +165,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
+  <a href="../../chapters/representations/genomic_ranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/representations/delayedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Delayed Arrays</span></a>
+  <a href="../../chapters/representations/delayed_arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Delayed Arrays</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/representations/filebackedarrays.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">File-backed Arrays</span></a>
+  <a href="../../chapters/representations/file_backed_arrays.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">File-backed Arrays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics &amp; Generics</span></a>
   </div>
 </li>
       </ul>
@@ -201,12 +201,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/experiments/summarized_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summarized experiment</span></a>
+  <a href="../../chapters/experiments/summarized_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summarized experiment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/experiments/singlecell_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Single-cell experiment</span></a>
+  <a href="../../chapters/experiments/single_cell_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Single-cell experiment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -216,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/experiments/multiassay_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multiple experiments</span></a>
+  <a href="../../chapters/experiments/multi_assay_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multiple experiments</span></a>
   </div>
 </li>
       </ul>
@@ -281,13 +281,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
   <li><a href="#quick-start" id="toc-quick-start" class="nav-link" data-scroll-target="#quick-start">Quick start</a></li>
   <li><a href="#handling-sparse-matrices" id="toc-handling-sparse-matrices" class="nav-link" data-scroll-target="#handling-sparse-matrices">Handling sparse matrices</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/representations/index.html">The basics</a></li><li class="breadcrumb-item"><a href="../../chapters/representations/filebackedarrays.html"><span class="chapter-title">File-backed Arrays</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/representations/index.html">The basics</a></li><li class="breadcrumb-item"><a href="../../chapters/representations/file_backed_arrays.html"><span class="chapter-title">File-backed Arrays</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-title">File-backed Arrays</span></h1>
 </div>
@@ -306,7 +307,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This is the Python equivalent of Bioconductor’s <a href="https://bioconductor.org/packages/HDF5Array">HDF5Array</a> package, providing a representation of HDF5-backed arrays within the <a href="../../chapters/representations/delayedarrays.html">delayedarray framework</a>. The idea is to allow users to store, manipulate and operate on large datasets without loading them into memory, in a manner that is trivially compatible with other data structures in the <a href="https://github.com/BiocPy/">BiocPy ecosystem</a>.</p>
+<p>This is the Python equivalent of Bioconductor’s <a href="https://bioconductor.org/packages/HDF5Array">HDF5Array</a> package, providing a representation of HDF5-backed arrays within the <a href="../../chapters/representations/delayed_arrays.html">delayedarray framework</a>. The idea is to allow users to store, manipulate and operate on large datasets without loading them into memory, in a manner that is trivially compatible with other data structures in the <a href="https://github.com/BiocPy/">BiocPy ecosystem</a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These classes follow a functional paradigm for accessing or setting properties, with further details discussed in <a href="../../chapters/philosophy.html#functional-discipline">functional paradigm</a> section.</p>
+</div>
+</div>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <p>This package is published to <a href="https://pypi.org/project/delayedarray/">PyPI</a> and can be installed via the usual methods:</p>
@@ -315,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="quick-start" class="level2">
 <h2 class="anchored" data-anchor-id="quick-start">Quick start</h2>
 <p>Let’s mock up a dense array:</p>
-<div id="82a7a209" class="cell" data-execution_count="1">
+<div id="3bb3954b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> numpy.random.rand(<span class="dv">40</span>, <span class="dv">50</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -324,55 +338,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    handle.create_dataset(<span class="st">"yay"</span>, data<span class="op">=</span>data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can now represent it as a <code>Hdf5DenseArray</code>:</p>
-<div id="03959c85" class="cell" data-execution_count="2">
+<div id="8d389222" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hdf5array</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> hdf5array.Hdf5DenseArray(<span class="st">"whee.h5"</span>, <span class="st">"yay"</span>, native_order<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>arr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>&lt;40 x 50&gt; Hdf5DenseArray object of type 'float64'
-[[0.11450998, 0.34998218, 0.92238322, ..., 0.28387924, 0.53697661,
-  0.52951597],
- [0.55704322, 0.52184008, 0.16966835, ..., 0.85197533, 0.22327118,
-  0.85623023],
- [0.75415126, 0.77979471, 0.21389933, ..., 0.36389382, 0.5645559 ,
-  0.56180309],
+[[0.7119482 , 0.33685944, 0.02201882, ..., 0.89047289, 0.26720207,
+  0.47304733],
+ [0.70249514, 0.55548338, 0.36224793, ..., 0.92965255, 0.1892004 ,
+  0.48018262],
+ [0.35873823, 0.23941696, 0.97986733, ..., 0.44261242, 0.6758236 ,
+  0.37500609],
  ...,
- [0.86869871, 0.59972547, 0.72546562, ..., 0.22373497, 0.38015961,
-  0.55677532],
- [0.31723712, 0.74240447, 0.84670129, ..., 0.0130557 , 0.42904626,
-  0.38670994],
- [0.77736345, 0.33431891, 0.67891134, ..., 0.2857026 , 0.82806514,
-  0.1363053 ]]</code></pre>
+ [0.26924762, 0.67531422, 0.34094738, ..., 0.12695605, 0.37817048,
+  0.58627705],
+ [0.11017404, 0.69275032, 0.58782475, ..., 0.95653867, 0.70505905,
+  0.56016357],
+ [0.32803405, 0.96440278, 0.00478434, ..., 0.44776364, 0.75801289,
+  0.08795968]]</code></pre>
 </div>
 </div>
-<p>This is just a subclass of a <code>DelayedArray</code> and can be used anywhere in the BiocPy framework. Parts of the NumPy API are also supported - for example, we could apply a variety of delayed operations:</p>
-<div id="928afa7d" class="cell" data-execution_count="3">
+<p>This is just a subclass of a <code>DelayedArray</code> and can be used anywhere in the BiocPy framework. Parts of the NumPy API are also supported - for example, we could apply a variety of <a href="../../chapters/representations/delayed_arrays.html">delayed operations</a>:</p>
+<div id="76fe58c4" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>scaling <span class="op">=</span> numpy.random.rand(<span class="dv">100</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>transformed <span class="op">=</span> numpy.log1p(arr <span class="op">/</span> scaling)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>transformed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>&lt;40 x 50&gt; DelayedArray object of type 'float64'
-[[0.41253413, 0.49737318, 1.04470925, ..., 0.29691082, 0.52730643,
-  1.84302303],
- [1.24819706, 0.67336539, 0.29187305, ..., 0.71172209, 0.25364254,
-  2.26127935],
- [1.47316706, 0.89026613, 0.35577737, ..., 0.36681673, 0.54813582,
-  1.89306969],
+[[1.59200821, 0.99978463, 0.03462707, ..., 3.10776303, 0.29187163,
+  0.40794298],
+ [1.58137639, 1.34351537, 0.45720557, ..., 3.14893561, 0.21510356,
+  0.41298303],
+ [1.0892344 , 0.79787772, 0.94310466, ..., 2.45294263, 0.61909425,
+  0.33598843],
  ...,
- [1.58388203, 0.74394947, 0.89576358, ..., 0.24094756, 0.39983787,
-  1.88543917],
- [0.88156439, 0.86159542, 0.99005709, ..., 0.01577358, 0.44134561,
-  1.58556077],
- [1.49661468, 0.47967945, 0.85705331, ..., 0.29855946, 0.72791939,
-  0.86217875]]</code></pre>
+ [0.90828458, 1.4914486 , 0.43539236, ..., 1.39794811, 0.39183157,
+  0.48507286],
+ [0.47351678, 1.51125977, 0.66300335, ..., 3.17623944, 0.6388645 ,
+  0.46780532],
+ [1.03076725, 1.7779366 , 0.00762654, ..., 2.46352332, 0.67370831,
+  0.08953289]]</code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Check out the <a href="https://biocpy.github.io/hdf5array/">documentation</a> for more details.</p>
+</div>
+</div>
 </section>
 <section id="handling-sparse-matrices" class="level2">
 <h2 class="anchored" data-anchor-id="handling-sparse-matrices">Handling sparse matrices</h2>
 <p>We support a variety of compressed sparse formats where the non-zero elements are held inside three separate datasets - usually <code>data</code>, <code>indices</code> and <code>indptr</code>, based on the <a href="https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/advanced/h5_matrices">10X Genomics sparse HDF5 format</a>. To demonstrate, let’s mock up some sparse data using <strong>scipy</strong>:</p>
-<div id="e5398caf" class="cell" data-execution_count="4">
+<div id="05fe0aa5" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.sparse</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mock <span class="op">=</span> scipy.sparse.random(<span class="dv">1000</span>, <span class="dv">200</span>, <span class="fl">0.1</span>).tocsc()</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -381,8 +407,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    handle.create_dataset(<span class="st">"sparse_blah/indices"</span>, data<span class="op">=</span>mock.indices, compression<span class="op">=</span><span class="st">"gzip"</span>)</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    handle.create_dataset(<span class="st">"sparse_blah/indptr"</span>, data<span class="op">=</span>mock.indptr, compression<span class="op">=</span><span class="st">"gzip"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can then create a sparse HDF5-backed matrix. Note that there is some variation in this HDF5 compressed sparse format, notably where the dimensions are stored and whether it is column/row-major. The constructor will not do any auto-detection so we need to provide this information explicitly:</p>
-<div id="d1ba9720" class="cell" data-execution_count="5">
+<p>We can then create a sparse HDF5-backed matrix.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that there is some variation in this HDF5 compressed sparse format, notably where the dimensions are stored and whether it is column/row-major.</p>
+</div>
+</div>
+<p>The constructor will not do any auto-detection so we need to provide this information explicitly:</p>
+<div id="c6317859" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hdf5array</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> hdf5array.Hdf5CompressedSparseMatrix(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sparse_whee.h5"</span>, </span>
@@ -395,20 +435,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>&lt;100 x 200&gt; sparse Hdf5CompressedSparseMatrix object of type 'float64'
 [[0.        , 0.        , 0.        , ..., 0.        , 0.        ,
   0.        ],
- [0.        , 0.        , 0.        , ..., 0.        , 0.94363819,
+ [0.        , 0.51372538, 0.        , ..., 0.        , 0.        ,
   0.        ],
  [0.        , 0.        , 0.        , ..., 0.        , 0.        ,
   0.        ],
  ...,
  [0.        , 0.        , 0.        , ..., 0.        , 0.        ,
-  0.5989228 ],
- [0.        , 0.        , 0.29702753, ..., 0.        , 0.        ,
   0.        ],
- [0.30687293, 0.        , 0.        , ..., 0.        , 0.        ,
-  0.        ]]</code></pre>
+ [0.        , 0.        , 0.        , ..., 0.        , 0.        ,
+  0.25135492],
+ [0.73979032, 0.        , 0.        , ..., 0.        , 0.        ,
+  0.36432188]]</code></pre>
 </div>
 </div>
-<p>Just like <a href="http://localhost:3382/chapters/representations/delayedarrays.html#interoperability-with-other-packages">delayedarrays</a>, you can use file-backed matrices to represent experimental data in <a href="../../chapters/experiments/summarized_expt.html#delayed-arrays">summarized experiment</a> and its derivates, reducing the <em>in-memory</em> footprint to load large datasets.</p>
+<hr>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
+<ul>
+<li>Just like <a href="../../chapters/representations/delayed_arrays.html#interoperability-with-biocpy-packages">delayedarrays</a>, you can use file-backed matrices to represent experimental data in <a href="../../chapters/experiments/summarized_experiment.html#delayed-arrays">summarized experiment</a> and its derivates, reducing the <em>in-memory</em> footprint to load large datasets.</li>
+<li>Check out the <a href="https://biocpy.github.io/hdf5array/">documentation</a> for more details.</li>
+</ul>
 
 
 </section>
@@ -803,13 +850,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/representations/delayedarrays.html" class="pagination-link" aria-label="Delayed Arrays">
+      <a href="../../chapters/representations/delayed_arrays.html" class="pagination-link" aria-label="Delayed Arrays">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Delayed Arrays</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/experiments/index.html" class="pagination-link" aria-label="Represent experimental data">
-        <span class="nav-page-text">Represent experimental data</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/representations/atomics.html" class="pagination-link" aria-label="Atomics &amp; Generics">
+        <span class="nav-page-text"><span class="chapter-title">Atomics &amp; Generics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

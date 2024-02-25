@@ -2,78 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://biocpy.github.io/tutorial/index.html</loc>
-    <lastmod>2024-02-24T18:35:29.346Z</lastmod>
+    <lastmod>2024-02-25T07:00:00.844Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/representations/index.html</loc>
-    <lastmod>2024-02-24T18:35:29.346Z</lastmod>
-  </url>
-  <url>
-    <loc>https://biocpy.github.io/tutorial/chapters/representations/atomics.html</loc>
-    <lastmod>2024-02-24T18:35:29.342Z</lastmod>
+    <lastmod>2024-02-25T07:00:00.844Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/representations/biocframe.html</loc>
-    <lastmod>2024-02-24T18:35:29.342Z</lastmod>
+    <lastmod>2024-02-25T07:00:00.844Z</lastmod>
   </url>
   <url>
-    <loc>https://biocpy.github.io/tutorial/chapters/representations/genomicranges.html</loc>
-    <lastmod>2024-02-24T18:35:29.346Z</lastmod>
+    <loc>https://biocpy.github.io/tutorial/chapters/representations/genomic_ranges.html</loc>
+    <lastmod>2024-02-25T07:00:00.844Z</lastmod>
   </url>
   <url>
-    <loc>https://biocpy.github.io/tutorial/chapters/representations/delayedarrays.html</loc>
-    <lastmod>2024-02-24T18:35:29.346Z</lastmod>
+    <loc>https://biocpy.github.io/tutorial/chapters/representations/delayed_arrays.html</loc>
+    <lastmod>2024-02-25T07:00:00.844Z</lastmod>
   </url>
   <url>
-    <loc>https://biocpy.github.io/tutorial/chapters/representations/filebackedarrays.html</loc>
-    <lastmod>2024-02-24T18:35:29.346Z</lastmod>
+    <loc>https://biocpy.github.io/tutorial/chapters/representations/file_backed_arrays.html</loc>
+    <lastmod>2024-02-25T07:00:00.844Z</lastmod>
+  </url>
+  <url>
+    <loc>https://biocpy.github.io/tutorial/chapters/representations/atomics.html</loc>
+    <lastmod>2024-02-25T07:00:00.840Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/experiments/index.html</loc>
-    <lastmod>2024-02-24T18:35:29.342Z</lastmod>
+    <lastmod>2024-02-25T07:00:00.840Z</lastmod>
   </url>
   <url>
-    <loc>https://biocpy.github.io/tutorial/chapters/experiments/summarized_expt.html</loc>
-    <lastmod>2024-02-24T18:35:29.342Z</lastmod>
+    <loc>https://biocpy.github.io/tutorial/chapters/experiments/summarized_experiment.html</loc>
+    <lastmod>2024-02-25T07:00:00.840Z</lastmod>
   </url>
   <url>
-    <loc>https://biocpy.github.io/tutorial/chapters/experiments/singlecell_expt.html</loc>
-    <lastmod>2024-02-24T18:35:29.342Z</lastmod>
+    <loc>https://biocpy.github.io/tutorial/chapters/experiments/single_cell_experiment.html</loc>
+    <lastmod>2024-02-25T07:00:00.840Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/experiments/extending_se.html</loc>
-    <lastmod>2024-02-24T18:35:29.342Z</lastmod>
+    <lastmod>2024-02-25T07:00:00.840Z</lastmod>
   </url>
   <url>
-    <loc>https://biocpy.github.io/tutorial/chapters/experiments/multiassay_expt.html</loc>
-    <lastmod>2024-02-24T18:35:29.342Z</lastmod>
+    <loc>https://biocpy.github.io/tutorial/chapters/experiments/multi_assay_experiment.html</loc>
+    <lastmod>2024-02-25T07:00:00.840Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/interop.html</loc>
-    <lastmod>2024-02-24T18:35:29.342Z</lastmod>
+    <lastmod>2024-02-25T07:00:00.840Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/language_agnostic.html</loc>
-    <lastmod>2024-02-24T18:35:29.342Z</lastmod>
+    <lastmod>2024-02-25T07:00:00.840Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/workflow.html</loc>
-    <lastmod>2024-02-24T18:35:29.346Z</lastmod>
+    <lastmod>2024-02-25T07:00:00.844Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/extras/iranges.html</loc>
-    <lastmod>2024-02-24T18:35:29.342Z</lastmod>
+    <lastmod>2024-02-25T07:00:00.840Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/philosophy.html</loc>
-    <lastmod>2024-02-24T18:35:29.342Z</lastmod>
+    <lastmod>2024-02-25T07:00:00.840Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/summary.html</loc>
-    <lastmod>2024-02-24T18:35:29.346Z</lastmod>
+    <lastmod>2024-02-25T07:00:00.844Z</lastmod>
   </url>
   <url>
     <loc>https://biocpy.github.io/tutorial/chapters/sessioninfo.html</loc>
-    <lastmod>2024-02-24T18:35:29.346Z</lastmod>
+    <lastmod>2024-02-25T07:00:00.844Z</lastmod>
   </url>
 </urlset>

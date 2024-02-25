@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BiocPy: Enabling Bioconductor workflows in Python - Programming philosophy</title>
+<title>BiocPy: Facilitate Bioconductor Workflows in Python - Programming philosophy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - Programming philosophy">
+<meta name="twitter:title" content="BiocPy: Facilitate Bioconductor Workflows in Python - Programming philosophy">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">BiocPy: Enabling Bioconductor workflows in Python</a> 
+      <a href="../">BiocPy: Facilitate Bioconductor Workflows in Python</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/BiocPy/tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="https://twitter.com/intent/tweet?url=|url|" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
@@ -165,27 +165,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
+  <a href="../chapters/representations/genomic_ranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/representations/delayedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Delayed Arrays</span></a>
+  <a href="../chapters/representations/delayed_arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Delayed Arrays</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/representations/filebackedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">File-backed Arrays</span></a>
+  <a href="../chapters/representations/file_backed_arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">File-backed Arrays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics &amp; Generics</span></a>
   </div>
 </li>
       </ul>
@@ -201,12 +201,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/experiments/summarized_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summarized experiment</span></a>
+  <a href="../chapters/experiments/summarized_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summarized experiment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/experiments/singlecell_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Single-cell experiment</span></a>
+  <a href="../chapters/experiments/single_cell_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Single-cell experiment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -216,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/experiments/multiassay_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multiple experiments</span></a>
+  <a href="../chapters/experiments/multi_assay_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multiple experiments</span></a>
   </div>
 </li>
       </ul>
@@ -280,7 +280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#class-design" id="toc-class-design" class="nav-link active" data-scroll-target="#class-design">Class design</a></li>
   <li><a href="#naming" id="toc-naming" class="nav-link" data-scroll-target="#naming">Naming</a></li>
-  <li><a href="#sec-functional" id="toc-sec-functional" class="nav-link" data-scroll-target="#sec-functional">Functional discipline</a></li>
+  <li><a href="#functional-discipline" id="toc-functional-discipline" class="nav-link" data-scroll-target="#functional-discipline">Functional discipline</a></li>
   <li><a href="#type-hints" id="toc-type-hints" class="nav-link" data-scroll-target="#type-hints">Type hints</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
   </ul>
@@ -321,8 +321,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the <a href="https://github.com/BiocPy/GenomicRanges">GenomicRanges</a> Python packages, we maintain consistency by expecting the same method name. The only difference lies in the shift from a functional to an object-oriented programming paradigm:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gr.flank(width<span class="op">=</span><span class="dv">2</span>, start<span class="op">=</span><span class="va">False</span>, both<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="sec-functional" class="level2">
-<h2 class="anchored" data-anchor-id="sec-functional">Functional discipline</h2>
+<section id="functional-discipline" class="level2">
+<h2 class="anchored" data-anchor-id="functional-discipline">Functional discipline</h2>
 <p>The existence of mutable types in Python introduces the potential for inadvertently modifying complex objects. Generally, users lack knowledge about whether an object (or their reference to it) serves as a component of another object, such as a <code>BiocFrame</code> set as <code>column_data</code> in a <code>SummarizedExperiment</code>. Any user modifications to an instance of a mutable type may unexpectedly impact all objects containing that instance.</p>
 <p>To address these issues, we recommend adopting a functional programming paradigm in all class methods. By default, methods should refrain from causing side effects that mutate the object. This simplifies reasoning about the effects of methods and mutations in large, complex objects.</p>
 <section id="setter-methods" class="level4">

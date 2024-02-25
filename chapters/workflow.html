@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BiocPy: Enabling Bioconductor workflows in Python - Seamless analysis workflow</title>
+<title>BiocPy: Facilitate Bioconductor Workflows in Python - Seamless analysis workflow</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python - Seamless analysis workflow">
+<meta name="twitter:title" content="BiocPy: Facilitate Bioconductor Workflows in Python - Seamless analysis workflow">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">BiocPy: Enabling Bioconductor workflows in Python</a> 
+      <a href="../">BiocPy: Facilitate Bioconductor Workflows in Python</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/BiocPy/tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="https://twitter.com/intent/tweet?url=|url|" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
@@ -165,27 +165,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
+  <a href="../chapters/representations/genomic_ranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/representations/delayedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Delayed Arrays</span></a>
+  <a href="../chapters/representations/delayed_arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Delayed Arrays</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/representations/filebackedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">File-backed Arrays</span></a>
+  <a href="../chapters/representations/file_backed_arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">File-backed Arrays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics &amp; Generics</span></a>
   </div>
 </li>
       </ul>
@@ -201,12 +201,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/experiments/summarized_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summarized experiment</span></a>
+  <a href="../chapters/experiments/summarized_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summarized experiment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/experiments/singlecell_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Single-cell experiment</span></a>
+  <a href="../chapters/experiments/single_cell_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Single-cell experiment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -216,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/experiments/multiassay_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multiple experiments</span></a>
+  <a href="../chapters/experiments/multi_assay_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multiple experiments</span></a>
   </div>
 </li>
       </ul>
@@ -322,14 +322,14 @@ Note
 </ul>
 </div>
 </div>
-<p>To begin, we will download the “zilionis lung” dataset from the <a href="https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html">scRNAseq</a> package. Subsequently, we will store this dataset in a language-agnostic format using the <a href="https://github.com/ArtifactDB/alabaster.base">alabaster suite</a> of R packages.</p>
+<p>To begin, we will download the “zilionis lung” dataset from the <a href="https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html">scRNAseq</a> package. Subsequently, we will store this dataset as an RDS file.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scRNAseq)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">ZeiselBrainData</span>()</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> sce[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2000</span>]</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(sub, <span class="st">"../assets/data/zilinois-lung-subset.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To demonstrate this workflow, we will employ the <a href="https://github.com/Teichlab/celltypist">CellTypist</a> model to annotate cell types for this dataset. CellTypist operates on an AnnData representation.</p>
-<div id="8b6cd98e" class="cell" data-execution_count="1">
+<p>To demonstrate this workflow, we will use the models from the <a href="https://github.com/Teichlab/celltypist">CellTypist</a> package to annotate cell types for this dataset. CellTypist operates on an <code>AnnData</code> representation.</p>
+<div id="2c66a2f9" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rds2py <span class="im">import</span> read_rds, as_summarized_experiment</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -350,8 +350,8 @@ Note
     layers: 'counts'</code></pre>
 </div>
 </div>
-<p>Before annotation, let’s download the “human lung atlas” model from celltypist.</p>
-<div id="a448f16c" class="cell" data-execution_count="2">
+<p>Before inferring cell types, let’s download the “human lung atlas” model from CellTypist.</p>
+<div id="8bb44d19" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> celltypist</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> celltypist <span class="im">import</span> models</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -419,7 +419,7 @@ Note
 </div>
 </div>
 <p>Now, let’s annotate our dataset.</p>
-<div id="ea35a0c3" class="cell" data-execution_count="3">
+<div id="f5ba3e3b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> celltypist.annotate(adata, model <span class="op">=</span> model_name, majority_voting <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(predictions.predicted_labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -462,11 +462,11 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The celltypist workflow is based on the tutorial described <a href="https://colab.research.google.com/github/Teichlab/celltypist/blob/main/docs/notebook/celltypist_tutorial.ipynb#scrollTo=postal-chicken">here</a>.</p>
+<p>This CellTypist workflow is based on the tutorial described <a href="https://colab.research.google.com/github/Teichlab/celltypist/blob/main/docs/notebook/celltypist_tutorial.ipynb#scrollTo=postal-chicken">here</a>.</p>
 </div>
 </div>
 <p>Next, let’s retrieve the <code>AnnData</code> object with the predicted labels embedded into the <code>obs</code> dataframe.</p>
-<div id="b6ecfe68" class="cell" data-execution_count="4">
+<div id="4b7136a3" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> predictions.to_adata()</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>adata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -479,8 +479,8 @@ Note
     obsp: 'connectivities', 'distances'</code></pre>
 </div>
 </div>
-<p>We can now reverse the workflow and save this object into an Artifactdb format from Python. However, the object needs to be converted to a <code>SingleCellExperiment</code> class first. Read more about our experiment representations <a href="../chapters/experiments/singlecell_expt.html">here</a>.</p>
-<div id="22ff2260" class="cell" data-execution_count="5">
+<p>We can now reverse the workflow and save this object into an Artifactdb format from Python. However, the object needs to be converted to a <code>SingleCellExperiment</code> class first. Read more about our experiment representations <a href="../chapters/experiments/single_cell_experiment.html">here</a>.</p>
+<div id="52a4e07f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> SingleCellExperiment</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sce <span class="op">=</span> SingleCellExperiment.from_anndata(adata)</span>
@@ -502,15 +502,15 @@ metadata(2): neighbors leiden
 </code></pre>
 </div>
 </div>
-<p>We use the dolomite package to save it into a language-agnostic format.</p>
-<div id="569dc2c4" class="cell" data-execution_count="6">
+<p>We use the <a href="https://github.com/ArtifactDB/dolomite-base">dolomite suite</a> to save it into a language-agnostic format from Python.</p>
+<div id="a54fa2ff" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dolomite_base</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dolomite_sce</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>dolomite_base.save_object(sce, <span class="st">"./zilinoislung_with_celltypist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>dolomite_base.save_object(sce, <span class="st">"./zilinois_lung_with_celltypist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, read the object back in R.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sce_with_celltypist <span class="ot">=</span> <span class="fu">readObject</span>(<span class="at">path=</span><span class="fu">paste</span>(<span class="fu">getwd</span>(), <span class="st">"zilinoislung_with_celltypist"</span>, <span class="at">sep=</span><span class="st">"/"</span>))</span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sce_with_celltypist <span class="ot">=</span> <span class="fu">readObject</span>(<span class="at">path=</span><span class="fu">paste</span>(<span class="fu">getwd</span>(), <span class="st">"zilinois_lung_with_celltypist"</span>, <span class="at">sep=</span><span class="st">"/"</span>))</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sce_with_celltypist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>And that concludes the workflow. Leveraging the generic <strong>read</strong> functions <code>readObject</code> (R) and <code>read_object</code> (Python), along with the <strong>save</strong> functions <code>saveObject</code> (R) and <code>save_object</code> (Python), you can seamlessly store most Bioconductor objects in language-agnostic formats.</p>
 <hr>

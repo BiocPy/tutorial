@@ -9,7 +9,7 @@
 <meta name="author" content="Jayaram Kancherla">
 <meta name="dcterms.date" content="2024-01-16">
 
-<title>BiocPy: Enabling Bioconductor workflows in Python</title>
+<title>BiocPy: Facilitate Bioconductor Workflows in Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta name="twitter:title" content="BiocPy: Enabling Bioconductor workflows in Python">
+<meta name="twitter:title" content="BiocPy: Facilitate Bioconductor Workflows in Python">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -101,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">BiocPy: Enabling Bioconductor workflows in Python</a> 
+      <a href="./">BiocPy: Facilitate Bioconductor Workflows in Python</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/BiocPy/tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="https://twitter.com/intent/tweet?url=|url|" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
@@ -132,27 +132,27 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./chapters/representations/biocframe.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>BiocFrame</code> - Bioconductor-like data frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/representations/genomicranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
+  <a href="./chapters/representations/genomic_ranges.html" class="sidebar-item-text sidebar-link"><span class="chapter-title"><code>GenomicRanges</code>: Genomic analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/representations/delayedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Delayed Arrays</span></a>
+  <a href="./chapters/representations/delayed_arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Delayed Arrays</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/representations/filebackedarrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">File-backed Arrays</span></a>
+  <a href="./chapters/representations/file_backed_arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">File-backed Arrays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/representations/atomics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Atomics &amp; Generics</span></a>
   </div>
 </li>
       </ul>
@@ -168,12 +168,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/experiments/summarized_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summarized experiment</span></a>
+  <a href="./chapters/experiments/summarized_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summarized experiment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/experiments/singlecell_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Single-cell experiment</span></a>
+  <a href="./chapters/experiments/single_cell_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Single-cell experiment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -183,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/experiments/multiassay_expt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multiple experiments</span></a>
+  <a href="./chapters/experiments/multi_assay_experiment.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multiple experiments</span></a>
   </div>
 </li>
       </ul>
@@ -258,7 +258,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">BiocPy: Enabling Bioconductor workflows in Python</h1>
+<h1 class="title">BiocPy: Facilitate Bioconductor Workflows in Python</h1>
 </div>
 
 
@@ -289,11 +289,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome</h1><p><img src="./assets/full.png" title="BiocPy: Enabling Bioconductor workflows in Python" class="quarto-cover-image img-fluid"></p>
+<h1 class="unnumbered">Welcome</h1><p><img src="./assets/full.png" title="BiocPy: Facilitate Bioconductor Workflows in Python" class="quarto-cover-image img-fluid"></p>
 <p><a href="https://www.bioconductor.org">Bioconductor</a> is an open-source software project that provides tools for the analysis and comprehension of genomic data. One of the main advantages of Bioconductor is the availability of standard data representations and large number of analysis tools for genomic experiments. These tools allow researchers to efficiently store, manipulate, and analyze their data across multiple tools and workflows.</p>
-<p>Inspired by Bioconductor, <a href="https://github.com/BiocPy">BiocPy</a> aims to facilitate bioinformatics workflows in Python. To achieve this goal, we developed several core data structures that align closely to the Bioconductor implementations. These structures include <a href="https://github.com/BiocPy/BiocFrame">BiocFrame</a>, providing a Bioconductor-like data frame class, and the <a href="https://github.com/BiocPy/GenomicRanges">GenomicRanges</a> which aids in representing genomic regions and facilitating analysis. They serve as essential and foundational data structures, acting as the building blocks for extensive and complex representations. For instance, container classes like <a href="https://github.com/BiocPy/SummarizedExperiment">SummarizedExperiment</a>, <a href="https://github.com/BiocPy/SingleCellExperiment">SingleCellExperiment</a> and <a href="https://github.com/BiocPy/MultiAssayExperiment">MultiAssayExperiment</a> represent single or multi-omic experimental data and metadata.</p>
-<p>Additionally, BiocPy introduces infrastructure packages supporting delayed operations (<a href="https://github.com/BiocPy/DelayedArray">DelayedArray</a>) and incorporates various generics and utilities in <a href="https://github.com/BiocPy/BiocUtils">BiocUtils</a>. While there have been previous efforts to port bioconductor representations into Python e.g.&nbsp;AnnData, plyranges, these efforts are fragmented and have limited interoperability. To our knowledge, BiocPy is the first Python framework to provide seamless, well-integrated data structures and representations for genomic data analysis.</p>
-<p>For convenient access to experimental data stored in RDS files, the <a href="https://github.com/BiocPy/rds2py">rds2py</a> package provides bindings to the rds2cpp library. This enables the direct reading of RDS files in Python, eliminating the requirement for additional data conversion tools or intermediate formats. The package’s functionality streamlines the transition between Python and R, facilitating seamless analysis.</p>
+<p>Inspired by Bioconductor, <a href="https://github.com/BiocPy">BiocPy</a> aims to facilitate bioinformatics workflows in Python. To achieve this goal, we developed several core data structures that align closely to the Bioconductor implementations. These structures include <a href="https://github.com/BiocPy/BiocFrame">BiocFrame</a>, providing a Bioconductor-like data frame class, and <a href="https://github.com/BiocPy/GenomicRanges">GenomicRanges</a> which aids in representing genomic regions and facilitating analysis. They serve as essential and foundational data structures, acting as the building blocks for extensive and complex representations. For instance, container classes like <a href="https://github.com/BiocPy/SummarizedExperiment">SummarizedExperiment</a>, <a href="https://github.com/BiocPy/SingleCellExperiment">SingleCellExperiment</a> and <a href="https://github.com/BiocPy/MultiAssayExperiment">MultiAssayExperiment</a> represent single or multi-omic experimental data and metadata.</p>
+<p>Moreover, BiocPy introduces a range of data type classes designed to support the representation of atomic entities, including float, string, int lists, and named lists. These generics and utilities are provided through <a href="https://github.com/BiocPy/BiocUtils">BiocUtils</a> package and the delayed and file-backed array operations in the <a href="https://github.com/BiocPy/DelayedArray">DelayedArray</a> package. While there have been previous efforts to port bioconductor representations into Python e.g.&nbsp;<a href="https://github.com/scverse/anndata">AnnData</a>, <a href="https://github.com/pyranges/pyranges">PyRanges</a>, these efforts are fragmented and have limited interoperability. To our knowledge, BiocPy is the first Python framework to provide seamless, well-integrated data structures and representations for genomic data analysis.</p>
+<p>For convenient access to experimental data stored in RDS files, the <a href="https://github.com/BiocPy/rds2py">rds2py</a> package provides bindings to the <a href="https://github.com/ltla/rds2cpp">rds2cpp</a> library. This enables direct reading of RDS files in Python, eliminating the requirement for additional data conversion tools or intermediate formats. The package’s functionality streamlines the transition between Python and R, facilitating seamless analysis.</p>
 <p>All packages within the BiocPy ecosystem are published to <a href="https://pypi.org/">Python’s Package Index (PyPI)</a>.</p>
 <section id="selected-packages" class="level2">
 <h2 class="anchored" data-anchor-id="selected-packages">Selected packages</h2>
