@@ -1,6 +1,6 @@
 # The basics
 
-BiocPy implements essential foundational data structures that serve as the building blocks for extensive and complex representations. This includes the [BiocFrame package](./biocframe.qmd) providing a Bioconductor-like data frame class, and the [GenomicRanges package](./genomicranges.qmd) to aid in representing genomic regions and facilitating analysis. The BiocUtils package defines generics and efficiently manages most common operations across these packages.
+BiocPy implements essential foundational data structures that serve as the building blocks for extensive and complex representations. This includes the [BiocFrame package](./biocframe.qmd) providing a Bioconductor-like data frame class, and the [GenomicRanges package](./genomic_ranges.qmd) to aid in representing genomic regions and facilitating analysis. The [BiocUtils](./atomics.qmd) package provides many atomic data type classes, defines generics and efficiently manages most common operations across these packages.
 
 ## Install packages
 
@@ -13,7 +13,7 @@ pip install biocpy
 Alternatively, you can install specific packages as required. For example:
 
 ```bash
-pip install summarizedexperiment # <package-name>
+pip install biocframe # <package-name>
 ```
 
 ## Update packages
@@ -21,5 +21,5 @@ pip install summarizedexperiment # <package-name>
 To update packages, use the following command:
 
 ```bash
-pip install -U biocpy # or <package-name>
+pip install -U biocframe # or <package-name>
 ```

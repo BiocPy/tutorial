@@ -7,7 +7,7 @@ execute:
   cache: true
 
 book:
-  title: "BiocPy: Enabling Bioconductor workflows in Python"
+  title: "BiocPy: Facilitate Bioconductor Workflows in Python"
   author: "[Jayaram Kancherla](mailto:jayaram.kancherla@gmail.com)"
   contributor: "[Aaron Lun](mailto:infinite.monkeys.with.keys@gmail.com)"
   favicon: ./assets/short.png
@@ -31,17 +31,17 @@ book:
     - index.qmd
     - part: chapters/representations/index.qmd
       chapters:
-        - chapters/representations/atomics.qmd
         - chapters/representations/biocframe.qmd
-        - chapters/representations/genomicranges.qmd
-        - chapters/representations/delayedarrays.qmd
-        - chapters/representations/filebackedarrays.qmd
+        - chapters/representations/genomic_ranges.qmd
+        - chapters/representations/delayed_arrays.qmd
+        - chapters/representations/file_backed_arrays.qmd
+        - chapters/representations/atomics.qmd
     - part: chapters/experiments/index.qmd
       chapters:
-        - chapters/experiments/summarized_expt.qmd
-        - chapters/experiments/singlecell_expt.qmd
+        - chapters/experiments/summarized_experiment.qmd
+        - chapters/experiments/single_cell_experiment.qmd
         - chapters/experiments/extending_se.qmd
-        - chapters/experiments/multiassay_expt.qmd
+        - chapters/experiments/multi_assay_experiment.qmd
     - chapters/interop.qmd
     - chapters/language_agnostic.qmd
     - chapters/workflow.qmd

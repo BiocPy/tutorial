@@ -2,6 +2,10 @@
 
 `MultiAssayExperiment` (MAE) simplifies the management of multiple experimental assays conducted on a shared set of specimens. 
 
+:::{.callout-note}
+These classes follow a functional paradigm for accessing or setting properties, with further details discussed in [functional paradigm](../philosophy.qmd#functional-discipline) section.
+:::
+
 ## Installation
 
 To get started, install the package from [PyPI](https://pypi.org/project/multiassayexperiment/)
@@ -117,7 +121,11 @@ print(mae)
 
 If both `column_data` and `sample_map` are `None`, the constructor naively creates sample mapping, with each `experiment` considered to be a independent `sample`. We add a sample to `column_data` in this pattern - ``unknown_sample_{experiment_name}``. 
 
-All cells from the each experiment are considered to be from the same sample and is reflected in `sample_map`. ***This is not a recommended approach, but if you don’t have sample mapping, then it doesn’t matter***.
+All cells from the each experiment are considered to be from the same sample and is reflected in `sample_map`. 
+
+:::{.callout-important}
+***This is not a recommended approach, but if you don’t have sample mapping, then it doesn’t matter***.
+:::
 
 ```{python}
 mae = MultiAssayExperiment(
@@ -211,7 +219,11 @@ One can access an experiment by name:
 print(mae.experiment("se"))
 ```
 
-Additionally you may access an experiment with the sample information included in the column data of the experiment. Note, this creates a copy of the experiment:
+Additionally you may access an experiment with the sample information included in the column data of the experiment:
+
+:::{.callout-note}
+This creates a copy of the experiment.
+:::
 
 ```{python}
 expt_with_sample_info = mae.experiment("se", with_sample_data=True)
@@ -219,7 +231,7 @@ print(expt_with_sample_info)
 ```
 
 :::{.callout-note}
-For consistency with the R MAE's interface, we also provide `get_with_col_data` method, that performs the same operation.
+For consistency with the R MAE's interface, we also provide `get_with_column_data` method, that performs the same operation.
 :::
 
 ### Setters

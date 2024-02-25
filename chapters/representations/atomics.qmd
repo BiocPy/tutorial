@@ -1,4 +1,4 @@
-# Atomics
+# Atomics & Generics
 
 The [BiocUtils](https://github.com/BiocPy/BiocUtils) package offers essential utilities designed for universal use across all packages,
 with a focus on emulating convenient features of base R. 
@@ -22,6 +22,11 @@ Let's explore `BooleanList`, which resembles a regular Python list but coercing 
 Additionally, `None` values are accepted and treated as missing booleans.
 
 This list may also be named (see `NamedList`), which provides dictionary-like functionality.
+
+```{python}
+#| echo: false
+from rich import print
+```
 
 
 ```{python}
@@ -52,7 +57,7 @@ print("x: ", x)
 
 To convert objects back to Python lists:
 ```{python}
-list(x)
+print(list(x))
 ```
 
 
@@ -81,7 +86,7 @@ print(f)
 To convert a `Factor` back to a Python list:
 
 ```{python}
-list(f)
+print(list(f))
 ```
 
 ## `subset` generic
@@ -90,13 +95,14 @@ The Biocutils package introduces a `subset` generic function designed to handle 
 (i.e., objects with a shape property of length greater than 1). 
 When applied, the function first verifies the dimensionality of the input objects. 
 If they are n-dimensional, it invokes `subset_rows()` to perform the subsetting along the first dimension. 
-On the other hand, if the objects are deemed vector-like, the function utilizes `subset_sequence()` for the subsetting operation.
+On the other hand, if the objects are deemed vector-like, the function utilizes 
+`subset_sequence()` for the subsetting operation.
 
 ```{python}
 from biocutils import subset
 
 x = [1, 2, 3, 4, 5]
-subset(x, [0, 2, 4])
+print(subset(x, [0, 2, 4]))
 ```
 
 ## `combine` generic
@@ -117,6 +123,9 @@ xd = np.array(x)
 combine(xd, y)
 ```
 
+:::{.callout-note}
+The `combine` generic, usually returns an object that is same type as the first argument. 
+:::
 
 ## Other utilities
 
@@ -153,4 +162,8 @@ x = [np.random.rand(3), np.random.rand(3, 2)]
 biocutils.is_list_of_type(x, np.ndarray)
 ```
 
-Refer to the [documentation](https://biocpy.github.io/BiocUtils/) for comprehensive details on these functionalities.
+----
+
+## Further reading
+
+Refer to the [documentation](https://biocpy.github.io/BiocUtils/) for comprehensive details on the functionality the package offers.

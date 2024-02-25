@@ -1,4 +1,4 @@
-# `GenomicRanges`: Genomic analysis {#sec-genomicranges}
+# `GenomicRanges`: Genomic analysis
 
 `GenomicRanges` is a Python package designed to handle genomic locations and facilitate genomic analysis. It is similar to Bioconductor's [GenomicRanges](https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html) and uses the [IRanges](https://github.com/BiocPy/IRanges) packages (tutorial [here](../extras/iranges.qmd)) under the hood to manage and provide interval-based arithmetic operations.
 

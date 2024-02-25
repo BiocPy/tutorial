@@ -13,7 +13,7 @@ bioinformatics workflows in Python.
 To achieve this goal, we developed several core data structures that align 
 closely to the Bioconductor implementations. 
 These structures include [BiocFrame](https://github.com/BiocPy/BiocFrame), 
-providing a Bioconductor-like data frame class, and the 
+providing a Bioconductor-like data frame class, and 
 [GenomicRanges](https://github.com/BiocPy/GenomicRanges) which aids in representing 
 genomic regions and facilitating analysis. 
 They serve as essential and foundational data structures, acting as the building 
@@ -23,17 +23,22 @@ like [SummarizedExperiment](https://github.com/BiocPy/SummarizedExperiment),
 [MultiAssayExperiment](https://github.com/BiocPy/MultiAssayExperiment) represent 
 single or multi-omic experimental data and metadata.
 
-Additionally, BiocPy introduces infrastructure packages supporting delayed operations 
-([DelayedArray](https://github.com/BiocPy/DelayedArray)) and incorporates various 
-generics and utilities in [BiocUtils](https://github.com/BiocPy/BiocUtils). 
+Moreover, BiocPy introduces a range of data type classes designed to support the 
+representation of atomic entities, including float, string, int lists, and named lists. 
+These generics and utilities are provided through [BiocUtils](https://github.com/BiocPy/BiocUtils) 
+package and the delayed and file-backed array operations in the
+[DelayedArray](https://github.com/BiocPy/DelayedArray) package. 
 While there have been previous efforts to port bioconductor representations into 
-Python e.g. AnnData, plyranges, these efforts are fragmented and have limited interoperability.
+Python e.g. [AnnData](https://github.com/scverse/anndata), 
+[PyRanges](https://github.com/pyranges/pyranges), these efforts are fragmented and 
+have limited interoperability.
 To our knowledge, BiocPy is the first Python framework to provide seamless, well-integrated data 
 structures and representations for genomic data analysis.
 
 For convenient access to experimental data stored in RDS files, the
 [rds2py](https://github.com/BiocPy/rds2py) package provides bindings to the 
-rds2cpp library. This enables the direct reading of RDS files in Python, eliminating 
+[rds2cpp](https://github.com/ltla/rds2cpp) library. 
+This enables direct reading of RDS files in Python, eliminating 
 the requirement for additional data conversion tools or intermediate formats. 
 The package's functionality streamlines the transition between Python and R, 
 facilitating seamless analysis.
