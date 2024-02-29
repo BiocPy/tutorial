@@ -14,10 +14,10 @@ These classes follow a functional paradigm for accessing or setting properties, 
 This package is published to [PyPI](https://pypi.org/project/delayedarray/) and can be installed via the usual methods:
 
 ```bash
-pip install hdf5array
+pip install hdf5array tiledbarray
 ```
 
-## Quick start
+## HDF5-backed arrays
 
 Let's mock up a dense array:
 
@@ -51,7 +51,7 @@ transformed
 Check out the [documentation](https://biocpy.github.io/hdf5array/) for more details.
 :::
 
-## Handling sparse matrices
+### Handling sparse matrices
 
 We support a variety of compressed sparse formats where the non-zero elements are held inside three separate datasets -
 usually `data`, `indices` and `indptr`, based on the [10X Genomics sparse HDF5 format](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/advanced/h5_matrices).
@@ -84,6 +84,71 @@ arr = hdf5array.Hdf5CompressedSparseMatrix(
     by_column=True
 )
 arr
+```
+
+
+## TileDB-backed arrays
+
+Let's mock up a dense array:
+
+```{python}
+import numpy
+import tiledb
+
+data = numpy.random.rand(40, 50)
+tiledb.from_numpy("dense.tiledb", data)
+```
+
+We can now represent it as a `TileDbArray`:
+
+```{python}
+import tiledbarray
+arr = tiledbarray.TileDbArray("dense.tiledb", attribute_name="")
+```
+
+This is just a subclass of a `DelayedArray` and can be used anywhere in the BiocPy framework.
+Parts of the NumPy API are also supported - for example, we could apply a variety of delayed operations:
+
+```{python}
+scaling = numpy.random.rand(100)
+transformed = numpy.log1p(arr / scaling)
+transformed
+```
+
+Check out the [documentation](https://biocpy.github.io/tiledbarray/) for more details.
+
+### Sparse Matrices
+
+We can perform similar operations on a sparse matrix as well. Lets mock a sparse matrix and store it as a tiledb file.
+
+```{python}
+dir_path = "sparse_array.tiledb"
+dom = tiledb.Domain(
+     tiledb.Dim(name="rows", domain=(0, 4), tile=4, dtype=numpy.int32),
+     tiledb.Dim(name="cols", domain=(0, 4), tile=4, dtype=numpy.int32),
+)
+schema = tiledb.ArraySchema(
+     domain=dom, sparse=True, attrs=[tiledb.Attr(name="", dtype=numpy.int32)]
+)
+tiledb.SparseArray.create(f"{dir_path}", schema)
+
+tdb = tiledb.SparseArray(f"{dir_path}", mode="w")
+i, j = [1, 2, 2], [1, 4, 3]
+data = numpy.array(([1, 2, 3]))
+tdb[i, j] = data
+```
+
+We can now represent this as a `TileDbArray`:
+
+```{python}
+import tiledbarray
+arr = tiledbarray.TileDbArray(dir_path, attribute_name="")
+
+slices = (slice(0, 2), [2, 3])
+
+import delayedarray
+subset = delayedarray.extract_sparse_array(arr, (*slices,))
+subset
 ```
 
 ----

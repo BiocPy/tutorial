@@ -18,7 +18,7 @@ pip install biocframe
 
 ## Advantages of `BiocFrame`
 
-One of the core principles guiding the implementation of the `BiocFrame` class is "what you put is what you get." Unlike Pandas `DataFrame`, `BiocFrame` makes no assumptions about the types of the columns provided as input. Some key differences to highlight the advantages of using `BiocFrame` are especially in terms of modifications to column types and handling nested dataframes.
+One of the core principles guiding the implementation of the `BiocFrame` class is "**_what you put is what you get_**". Unlike Pandas `DataFrame`, `BiocFrame` makes no assumptions about the types of the columns provided as input. Some key differences to highlight the advantages of using `BiocFrame` are especially in terms of modifications to column types and handling nested dataframes.
 
 ### Inadvertent modification of types
 

@@ -1,12 +1,12 @@
-# Welcome {.unnumbered}
+# Welcome
 
 [Bioconductor](https://www.bioconductor.org) is an open-source software project 
 that provides tools for the analysis and comprehension of genomic data. 
 One of the main advantages of Bioconductor is the availability of 
-standard data representations and large number of analysis tools for genomic 
-experiments. 
-These tools allow researchers to efficiently store, manipulate, and analyze
-their data across multiple tools and workflows.
+standard data representations and large number of analysis tools tailored 
+for genomic experiments. 
+These tools allow researchers to seamlessly store, manipulate, and analyze 
+data across multiple tools and workflows in R.
 
 Inspired by Bioconductor, [BiocPy](https://github.com/BiocPy) aims to facilitate 
 bioinformatics workflows in Python. 
@@ -23,15 +23,12 @@ like [SummarizedExperiment](https://github.com/BiocPy/SummarizedExperiment),
 [MultiAssayExperiment](https://github.com/BiocPy/MultiAssayExperiment) represent 
 single or multi-omic experimental data and metadata.
 
-Moreover, BiocPy introduces a range of data type classes designed to support the 
-representation of atomic entities, including float, string, int lists, and named lists. 
+Moreover, BiocPy introduces a diverse range of data type classes designed to support the 
+representation of atomic entities, including *float*, *string*, *int* lists, and named lists. 
 These generics and utilities are provided through [BiocUtils](https://github.com/BiocPy/BiocUtils) 
 package and the delayed and file-backed array operations in the
-[DelayedArray](https://github.com/BiocPy/DelayedArray) package. 
-While there have been previous efforts to port bioconductor representations into 
-Python e.g. [AnnData](https://github.com/scverse/anndata), 
-[PyRanges](https://github.com/pyranges/pyranges), these efforts are fragmented and 
-have limited interoperability.
+[DelayedArray](https://github.com/BiocPy/DelayedArray) and their derivatives 
+([HDF5Array](https://github.com/BiocPy/HDF5array), [TileDbArray](https://github.com/BiocPy/tiledbarray)). 
 To our knowledge, BiocPy is the first Python framework to provide seamless, well-integrated data 
 structures and representations for genomic data analysis.
 
@@ -42,6 +39,8 @@ This enables direct reading of RDS files in Python, eliminating
 the requirement for additional data conversion tools or intermediate formats. 
 The package's functionality streamlines the transition between Python and R, 
 facilitating seamless analysis.
+
+Although not covered by this tutorial, BiocPy provides bindings to [libscran](https://github.com/LTLA/libscran) and various other single-cell analysis methods incorporated into the [scranpy](https://github.com/BiocPy/scranpy) package to support analysis of multi-modal single-cell datasets. It also features integration with the [singleR](https://github.com/BiocPy/singler) algorithm to annotate cell types by matching cells to known references based on their expression profiles.
 
 All packages within the BiocPy ecosystem are published to 
 [Python's Package Index (PyPI)](https://pypi.org/).
@@ -61,6 +60,7 @@ For complete list of all packages, please visit the
 - `MultiAssayExperiment` ([GitHub](https://github.com/BiocPy/MultiAssayExperiment), [Docs](https://biocpy.github.io/MultiAssayExperiment/)): Container class to represent multiple experiments and assays performed over a set of samples. follows Bioconductor's [MAE R/Bioc Package](https://bioconductor.org/packages/release/bioc/html/MultiAssayExperiment.html).
 
 #### Analysis packages
+
 - `scranpy`([GitHub](https://github.com/BiocPy/scranpy), [Docs](https://biocpy.github.io/scranpy/)): Python bindings to the single-cell analysis methods from **libscran** and related C++ libraries.
 - `singler`([GitHub](https://github.com/BiocPy/singler), [Docs](https://biocpy.github.io/singler/)): Python bindings to the **singleR** algorithm to annotate cell types from known references.
 
@@ -78,7 +78,7 @@ For complete list of all packages, please visit the
 
 ## Further reading
 
-Many online resources offer detailed information on these data structures, namely:
+Many online resources offer detailed information on Bioconductor data structures, namely:
 
 - [https://compgenomr.github.io/book/](https://compgenomr.github.io/book/)
 - [https://www.nature.com/articles/nmeth.3252](https://www.nature.com/articles/nmeth.3252)

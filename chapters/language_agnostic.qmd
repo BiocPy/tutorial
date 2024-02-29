@@ -31,6 +31,10 @@ You can now convert this to `AnnData` representations for downstream analysis.
 adata = data.to_anndata()
 ```
 
+:::{.callout-important}
+Leveraging the generic **read** functions `readObject` (R) and `read_object` (Python), along with the **save** functions `saveObject` (R) and `save_object` (Python), you can seamlessly store most Bioconductor objects in language-agnostic formats.
+:::
+
 ## Further reading
 
 - Check out [ArtifactDB](https://github.com/artifactdb) framework for more information.

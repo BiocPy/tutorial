@@ -2,6 +2,8 @@
 
 In this section, we will illustrate a workflow that utilizes either language-agnostic representations for storing genomic data or reading RDS files directly in Python, to facilitate seamless access to datasets and analysis results.
 
+## Load dataset
+
 :::{.callout-note}
 Check out 
 
@@ -33,6 +35,8 @@ adata.var.index = adata.var["genes"].tolist()
 print(adata)
 ```
 
+## Download ML models
+
 Before inferring cell types, let's download the "human lung atlas" model from CellTypist.
 
 ```{python}
@@ -63,6 +67,8 @@ adata = predictions.to_adata()
 adata
 ```
 
+## Save results
+
 We can now reverse the workflow and save this object into an Artifactdb format from Python. However, the object needs to be converted to a `SingleCellExperiment` class first. Read more about our experiment representations [here](./experiments/single_cell_experiment.qmd).
 
 ```{python}
@@ -82,7 +88,7 @@ dolomite_base.save_object(sce, "./zilinois_lung_with_celltypist")
 
 Finally, read the object back in R.
 ```r
-sce_with_celltypist = readObject(path=paste(getwd(), "zilinois_lung_with_celltypist", sep="/"))
+sce_with_celltypist <- readObject(path=paste(getwd(), "zilinois_lung_with_celltypist", sep="/"))
 sce_with_celltypist
 ```
 
