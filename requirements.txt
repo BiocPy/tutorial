@@ -24,4 +24,5 @@ joblib
 dolomite_mae
 dolomite_sce
 hdf5array
+tiledbarray
 celltypist
