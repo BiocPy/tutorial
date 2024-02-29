@@ -150,8 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome</span></a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -396,7 +395,7 @@ Caution
 </div>
 </div>
 <p>To construct a <code>SummarizedExperiment</code>, we’ll first generate a matrix of read counts, representing the read counts from a series of RNA-seq experiments. Following that, we’ll create a <code>BiocFrame</code> object to denote feature information and a table for column annotations. This table may include the names for the columns and any other values we wish to represent.</p>
-<div id="201bb739" class="cell" data-execution_count="1">
+<div id="723ff553" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> random</span>
@@ -451,7 +450,7 @@ Note
 </div>
 </div>
 <p>Now, we can construct a <code>SummarizedExperiment</code> from this information.</p>
-<div id="f16c1693" class="cell" data-execution_count="2">
+<div id="bc3a576f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> summarizedexperiment <span class="im">import</span> SummarizedExperiment</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> SummarizedExperiment(</span>
@@ -472,7 +471,7 @@ metadata(0):
 </div>
 </div>
 <p>Similarly, we can use the same information to construct a <code>RangeSummarizedExperiment</code>. We convert feature information into a <code>GenomicRanges</code> object and provide this as <code>row_ranges</code>:</p>
-<div id="6ff001c0" class="cell" data-execution_count="3">
+<div id="b9048b07" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genomicranges <span class="im">import</span> GenomicRanges</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> summarizedexperiment <span class="im">import</span> RangedSummarizedExperiment</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -503,7 +502,7 @@ metadata(0):
 <h2 class="anchored" data-anchor-id="delayed-or-file-backed-arrays">Delayed or file-backed arrays</h2>
 <p>The general idea is that <code>DelayedArray</code>’s are a drop-in replacement for NumPy arrays, at least for <a href="https://github.com/BiocPy">BiocPy</a> applications. Learn more about <a href="../../chapters/representations/delayed_arrays.html">delayed arrays here</a>.</p>
 <p>For example, we can use the <code>DelayedArray</code> inside a <code>SummarizedExperiment</code>:</p>
-<div id="a13e8b71" class="cell" data-execution_count="4">
+<div id="5dc8f06e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> delayedarray</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -536,7 +535,7 @@ metadata(0):
 <section id="interop-with-anndata" class="level2">
 <h2 class="anchored" data-anchor-id="interop-with-anndata">Interop with <code>anndata</code></h2>
 <p>Converting a <code>SummarizedExperiment</code> to an <code>AnnData</code> representation is straightforward:</p>
-<div id="45819e62" class="cell" data-execution_count="5">
+<div id="0bb1efbf" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> se.to_anndata()</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -567,7 +566,7 @@ Tip
 <section id="getterssetters" class="level2">
 <h2 class="anchored" data-anchor-id="getterssetters">Getters/Setters</h2>
 <p>Getters are available to access various attributes using either the property notation or functional style.</p>
-<div id="9bbb7bfd" class="cell" data-execution_count="6">
+<div id="94de5a33" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access assay names</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"assay names (as property): "</span>, se.assay_names)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"assay names (functional style): "</span>, se.get_assay_names())</span>
@@ -578,36 +577,36 @@ Tip
 <pre><code>assay names (as property):  ['counts']
 assay names (functional style):  ['counts']
 BiocFrame with 200 rows and 6 columns
-      seqnames  starts    ends strand   score                 GC
-        &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;             &lt;list&gt;
-  [0]     chr1     100     110      -       0 0.6751059401042153
-  [1]     chr2     101     111      +       1 0.7238384011904314
-  [2]     chr2     102     112      +       2 0.8944202839314885
-           ...     ...     ...    ...     ...                ...
-[197]     chr3     297     307      +     197 0.9422540627236237
-[198]     chr3     298     308      -     198 0.8277468865656924
-[199]     chr3     299     309      -     199  0.818958094417999</code></pre>
+      seqnames  starts    ends strand   score                  GC
+        &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;              &lt;list&gt;
+  [0]     chr1     100     110      -       0  0.6267194025885122
+  [1]     chr2     101     111      +       1  0.8681724795450477
+  [2]     chr2     102     112      +       2 0.42396198039653143
+           ...     ...     ...    ...     ...                 ...
+[197]     chr3     297     307      +     197 0.37393698361180194
+[198]     chr3     298     308      -     198   0.874853628130598
+[199]     chr3     299     309      -     199 0.37955285716096787</code></pre>
 </div>
 </div>
 <section id="access-an-assay" class="level4">
 <h4 class="anchored" data-anchor-id="access-an-assay">Access an assay</h4>
 <p>One can access an assay by index or name:</p>
-<div id="86e051b3" class="cell" data-execution_count="7">
+<div id="33616f59" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>se.assay(<span class="dv">0</span>) <span class="co"># same as se.assay("counts")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>array([[0.00278409, 0.31484853, 0.15411549, 0.16089342, 0.36022543,
-        0.74128714],
-       [0.68024266, 0.12761971, 0.09471708, 0.62891194, 0.39630622,
-        0.53958616],
-       [0.92549741, 0.26788472, 0.24429311, 0.65363868, 0.27725042,
-        0.72339006],
+<pre><code>array([[0.82073713, 0.51396684, 0.91033539, 0.32551065, 0.56715864,
+        0.48776235],
+       [0.35285051, 0.01805929, 0.95695018, 0.63623727, 0.23069227,
+        0.44846295],
+       [0.40341032, 0.86121075, 0.75033095, 0.8000111 , 0.08663706,
+        0.55581761],
        ...,
-       [0.70706996, 0.51872323, 0.69322904, 0.89146734, 0.88671959,
-        0.80791825],
-       [0.94292347, 0.21678486, 0.41323362, 0.86067658, 0.14321072,
-        0.48110594],
-       [0.93536354, 0.57180656, 0.94417553, 0.11693394, 0.63054365,
-        0.45294212]])</code></pre>
+       [0.54939039, 0.58423244, 0.2139428 , 0.97691914, 0.61296636,
+        0.15647909],
+       [0.3805666 , 0.42708108, 0.922359  , 0.41865928, 0.21298455,
+        0.29662445],
+       [0.51259468, 0.81911518, 0.99716676, 0.46855184, 0.35422244,
+        0.10121333]])</code></pre>
 </div>
 </div>
 </section>
@@ -626,7 +625,7 @@ Important
 <p>All property-based setters are <code>in_place</code> operations, with further details discussed in <a href="../../chapters/philosophy.html#functional-discipline">functional paradigm</a> section.</p>
 </div>
 </div>
-<div id="131db805" class="cell" data-execution_count="8">
+<div id="900c4c20" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>modified_column_data <span class="op">=</span> se.column_data.set_column(<span class="st">"score"</span>, <span class="bu">range</span>(<span class="dv">10</span>,<span class="dv">16</span>))</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>modified_se <span class="op">=</span> se.set_column_data(modified_column_data)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified_se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -643,7 +642,7 @@ metadata(0):
 </div>
 </div>
 <p>Now, lets check the <code>column_data</code> on the original object.</p>
-<div id="ec011d4b" class="cell" data-execution_count="9">
+<div id="7c85b731" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se.column_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 6 rows and 1 column
@@ -663,7 +662,7 @@ metadata(0):
 <h2 class="anchored" data-anchor-id="subset-experiments">Subset experiments</h2>
 <p>You can subset experimental data by using the subset (<code>[]</code>) operator. This operation accepts different slice input types, such as a boolean vector, a <code>slice</code> object, a list of indices, or names (if available) to subset.</p>
 <p>In our previous example, we didn’t include row or column names. Let’s create another <code>SummarizedExperiment</code> object that includes names.</p>
-<div id="9aaed5df" class="cell" data-execution_count="10">
+<div id="f4546705" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>row_data <span class="op">=</span> BiocFrame({</span>
@@ -707,7 +706,7 @@ metadata(0):
 <section id="subset-by-index-position" class="level3">
 <h3 class="anchored" data-anchor-id="subset-by-index-position">Subset by index position</h3>
 <p>A straightforward slice operation:</p>
-<div id="46b431bc" class="cell" data-execution_count="11">
+<div id="cb7def9c" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>subset_se <span class="op">=</span> se_with_names[<span class="dv">0</span>:<span class="dv">10</span>, <span class="dv">0</span>:<span class="dv">3</span>]</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -726,7 +725,7 @@ metadata(0):
 <section id="subset-by-row-names-or-column-names" class="level3">
 <h3 class="anchored" data-anchor-id="subset-by-row-names-or-column-names">Subset by row names or column names</h3>
 <p>Either one or both of the slices can contain names. These names are mapped to <code>row_names</code> and <code>column_names</code> of the <code>SummarizedExperiment</code> object.</p>
-<div id="69645b24" class="cell" data-execution_count="12">
+<div id="02b4a005" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>subset_se <span class="op">=</span> se_with_names[:<span class="dv">2</span>, [<span class="st">"cell_1"</span>, <span class="st">"cell_3"</span>]]</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -759,7 +758,7 @@ Important
 <p>Note that the boolean vectors should contain the same number of features for the row slice and the same number of samples for the column slice.</p>
 </div>
 </div>
-<div id="aacb225b" class="cell" data-execution_count="13">
+<div id="953d003e" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>subset_se_with_bools <span class="op">=</span> se_with_names[[<span class="va">True</span>, <span class="va">True</span>, <span class="va">False</span>], [<span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>]]</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_se_with_bools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -791,7 +790,7 @@ Warning
 <p>An empty array (<code>[]</code>) is not the same as an empty slice (<code>:</code>). This helps us avoid unintented operations.</p>
 </div>
 </div>
-<div id="ac2a840f" class="cell" data-execution_count="14">
+<div id="8e25ca2d" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>subset <span class="op">=</span> se_with_names[:<span class="dv">2</span>, []]</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -812,7 +811,7 @@ metadata(0):
 <h2 class="anchored" data-anchor-id="range-based-operations">Range-based operations</h2>
 <p>Additionally, since <code>RangeSummarizedExperiment</code> contains <code>row_ranges</code>, this allows us to perform a number of range-based operations that are possible on a <code>GenomicRanges</code> object.</p>
 <p>For example, to subset <code>RangeSummarizedExperiment</code> with a <strong>query</strong> set of regions:</p>
-<div id="10adc012" class="cell" data-execution_count="15">
+<div id="914695e3" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> iranges <span class="im">import</span> IRanges</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> GenomicRanges(seqnames<span class="op">=</span>[<span class="st">"chr2"</span>], ranges<span class="op">=</span>IRanges([<span class="dv">4</span>], [<span class="dv">6</span>]), strand<span class="op">=</span>[<span class="st">"+"</span>])</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -842,7 +841,7 @@ metadata(0):
 <h2 class="anchored" data-anchor-id="combining-experiments">Combining experiments</h2>
 <p><code>SummarizedExperiment</code> implements methods for the <code>combine</code> generics from <a href="https://github.com/BiocPy/biocutils"><strong>BiocUtils</strong></a>.</p>
 <p>These methods enable the merging or combining of multiple <code>SummarizedExperiment</code> objects, allowing users to aggregate data from different experiments or conditions. To demonstrate, let’s create multiple <code>SummarizedExperiment</code> objects.</p>
-<div id="9bba8717" class="cell" data-execution_count="16">
+<div id="0e854334" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>rowData1 <span class="op">=</span> pd.DataFrame(</span>
@@ -970,7 +969,7 @@ Important
 </div>
 </div>
 <p>To combine experiments by row:</p>
-<div id="c2eaa0dc" class="cell" data-execution_count="17">
+<div id="8c8fa789" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> relaxed_combine_columns, combine_columns, combine_rows, relaxed_combine_rows</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>se_combined <span class="op">=</span> combine_rows(se2, se1)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -991,7 +990,7 @@ metadata(1): seq_platform
 </div>
 </div>
 <p>Similarly to combine by column:</p>
-<div id="39c19349" class="cell" data-execution_count="18">
+<div id="c7a1c89a" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>se_combined <span class="op">=</span> combine_columns(se2, se1)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1019,14 +1018,14 @@ Important
 <p>You can use <code>relaxed_combine_columns</code> or <code>relaxed_combined_rows</code> when there’s mismatch in the number of features or samples. Missing rows or columns in any object are filled in with appropriate placeholder values before combining, e.g.&nbsp;missing assay’s are replaced with a masked numpy array.</p>
 </div>
 </div>
-<div id="44a3a988" class="cell" data-execution_count="19">
+<div id="5adb3637" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># se3 contains an additional assay not present in se1</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>se_relaxed_combine <span class="op">=</span> relaxed_combine_columns(se3, se1)</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se_relaxed_combine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
 dimensions: (3, 6)
-assays(3): ['beta', 'lognorm', 'counts']
+assays(3): ['lognorm', 'beta', 'counts']
 row_data columns(3): ['seqnames', 'start', 'end']
 row_names(3): ['MYC', 'BRCA2', 'TPFK']
 column_data columns(3): ['sample', 'disease', 'doublet_score']
@@ -1040,7 +1039,7 @@ metadata(1): seq_platform
 <h2 class="anchored" data-anchor-id="empty-experiments">Empty experiments</h2>
 <p>Both these classes can also contain no experimental data, and they tend to be useful when integrated into more extensive data structures but do not contain any data themselves.</p>
 <p>To create an empty <code>SummarizedExperiment</code>:</p>
-<div id="e4603f37" class="cell" data-execution_count="20">
+<div id="c4be25c3" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>empty_se <span class="op">=</span> SummarizedExperiment()</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty_se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1056,7 +1055,7 @@ metadata(0):
 </div>
 </div>
 <p>Similarly an empty <code>RangeSummarizedExperiment</code>:</p>
-<div id="f1d12d6b" class="cell" data-execution_count="21">
+<div id="0d061158" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>empty_rse <span class="op">=</span> RangedSummarizedExperiment()</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty_rse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

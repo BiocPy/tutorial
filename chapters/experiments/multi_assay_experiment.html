@@ -153,8 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome</span></a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -363,7 +362,7 @@ Note
 <p>Each sample in <code>column_data</code> may map to one or more columns per assay.</p></li>
 </ul>
 <p>Let’s start by first creating few experiments:</p>
-<div id="5578f977" class="cell" data-execution_count="1">
+<div id="abdd678d" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> random</span>
@@ -411,7 +410,7 @@ Note
 </div>
 </div>
 <p>More importantly, we need to provide <code>sample_map</code> information:</p>
-<div id="9c32b0ba" class="cell" data-execution_count="2">
+<div id="a630ac55" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sample_map <span class="op">=</span> BiocFrame({</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"assay"</span>: [<span class="st">"sce"</span>, <span class="st">"se"</span>] <span class="op">*</span> <span class="dv">6</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"primary"</span>: [<span class="st">"sample1"</span>, <span class="st">"sample2"</span>] <span class="op">*</span> <span class="dv">6</span>,</span>
@@ -435,7 +434,7 @@ Note
 </div>
 </div>
 <p>Finally, we can create an <code>MultiAssayExperiment</code> object:</p>
-<div id="8b06f6d2" class="cell" data-execution_count="3">
+<div id="f7932896" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiassayexperiment <span class="im">import</span> MultiAssayExperiment</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> SingleCellExperiment</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> summarizedexperiment <span class="im">import</span> SummarizedExperiment</span>
@@ -489,7 +488,7 @@ Important
 <p><strong><em>This is not a recommended approach, but if you don’t have sample mapping, then it doesn’t matter</em></strong>.</p>
 </div>
 </div>
-<div id="c507ba6e" class="cell" data-execution_count="4">
+<div id="9cb7cefc" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> MultiAssayExperiment(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    experiments<span class="op">=</span>{<span class="st">"sce"</span>: tsce, <span class="st">"se"</span>: tse2},</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    metadata<span class="op">=</span>{<span class="st">"could be"</span>: <span class="st">"anything"</span>},</span>
@@ -511,7 +510,7 @@ metadata(1): could be
 <h3 class="anchored" data-anchor-id="interop-with-anndata-or-mudata">Interop with <code>anndata</code> or <code>mudata</code></h3>
 <p>We provide convenient methods to easily convert a <code>MuData</code> object into an <code>MultiAssayExperiment</code>.</p>
 <p>Let’s create a mudata object:</p>
-<div id="8245e33f" class="cell" data-execution_count="5">
+<div id="3b2b7c5f" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -550,7 +549,7 @@ metadata(1): could be
 </div>
 </div>
 <p>Lets convert this object to an MAE:</p>
-<div id="fea2db8d" class="cell" data-execution_count="6">
+<div id="f7391082" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiassayexperiment <span class="im">import</span> MultiAssayExperiment</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mae_obj <span class="op">=</span> MultiAssayExperiment.from_mudata(<span class="bu">input</span><span class="op">=</span>mdata)</span>
@@ -576,7 +575,7 @@ metadata(0):
 <section id="getterssetters" class="level2">
 <h2 class="anchored" data-anchor-id="getterssetters">Getters/Setters</h2>
 <p>Getters are available to access various attributes using either the property notation or functional style.</p>
-<div id="af9fb166" class="cell" data-execution_count="7">
+<div id="f594097f" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access assays</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"experiment names (as property): "</span>, mae.experiment_names)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"experiment names (functional style): "</span>, mae.get_experiment_names())</span>
@@ -597,7 +596,7 @@ unknown_sample_sce unknown_sample_sce
 <section id="row-or-column-name-accessors" class="level4">
 <h4 class="anchored" data-anchor-id="row-or-column-name-accessors">Row or column name accessors</h4>
 <p>A helper method is available to easily access row or column names across all experiments. This method returns a dictionary with experiment names as keys and the corresponding values, which can be either the row or column names depending on the function:</p>
-<div id="5253152c" class="cell" data-execution_count="8">
+<div id="7c0674d6" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich <span class="im">import</span> <span class="bu">print</span> <span class="im">as</span> pprint</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pprint(<span class="st">"row names:"</span>, mae.get_row_names())</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>pprint(<span class="st">"column names:"</span>, mae.get_column_names())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -644,7 +643,7 @@ unknown_sample_sce unknown_sample_sce
 <section id="access-an-experiment" class="level4">
 <h4 class="anchored" data-anchor-id="access-an-experiment">Access an experiment</h4>
 <p>One can access an experiment by name:</p>
-<div id="a7983be1" class="cell" data-execution_count="9">
+<div id="255a3afd" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.experiment(<span class="st">"se"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment
@@ -672,7 +671,7 @@ Note
 <p>This creates a copy of the experiment.</p>
 </div>
 </div>
-<div id="5c5ca3e7" class="cell" data-execution_count="10">
+<div id="cc2c6152" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>expt_with_sample_info <span class="op">=</span> mae.experiment(<span class="st">"se"</span>, with_sample_data<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(expt_with_sample_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -716,7 +715,7 @@ Important
 <p>All property-based setters are <code>in_place</code> operations, with further details discussed in <a href="../../chapters/philosophy.html#functional-discipline">functional paradigm</a> section.</p>
 </div>
 </div>
-<div id="8d16ef12" class="cell" data-execution_count="11">
+<div id="8cb9fdc5" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>modified_column_data <span class="op">=</span> mae.column_data.set_column(<span class="st">"score"</span>, <span class="bu">range</span>(<span class="bu">len</span>(mae.column_data)))</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>modified_mae <span class="op">=</span> mae.set_column_data(modified_column_data)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -731,7 +730,7 @@ metadata(1): could be
 </div>
 </div>
 <p>Now, lets check the <code>column_data</code> on the original object.</p>
-<div id="49803b86" class="cell" data-execution_count="12">
+<div id="e33624a4" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.column_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 2 rows and 1 column
@@ -749,7 +748,7 @@ unknown_sample_sce unknown_sample_sce
 <p><code>MultiAssayExperiment</code> allows subsetting by three dimensions: <code>rows</code>, <code>columns</code>, and <code>experiments</code>. <strong><em><code>sample_map</code> is automatically filtered during this operation</em></strong>.</p>
 <section id="subset-by-indices" class="level3">
 <h3 class="anchored" data-anchor-id="subset-by-indices">Subset by indices</h3>
-<div id="a697d0ab" class="cell" data-execution_count="13">
+<div id="4a85dfed" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>subset_mae <span class="op">=</span> mae[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">0</span>:<span class="dv">4</span>]</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -766,7 +765,7 @@ metadata(1): could be
 <section id="subset-by-experiments-dimension" class="level3">
 <h3 class="anchored" data-anchor-id="subset-by-experiments-dimension">Subset by experiments dimension</h3>
 <p>The following creates a subset based on the experiments dimension:</p>
-<div id="a8542deb" class="cell" data-execution_count="14">
+<div id="8f93e331" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>subset_mae <span class="op">=</span> mae[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">0</span>:<span class="dv">1</span>, [<span class="st">"se"</span>]]</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -805,14 +804,14 @@ Note
 <section id="complete-cases" class="level3">
 <h3 class="anchored" data-anchor-id="complete-cases">Complete cases</h3>
 <p>The <code>complete_cases</code> function is designed to identify samples that contain data across all experiments. It produces a boolean vector with the same length as the number of samples in <code>column_data</code>. Each element in the vector is <code>True</code> if the sample is present in all experiments, or <code>False</code> otherwise.</p>
-<div id="c6377b0b" class="cell" data-execution_count="15">
+<div id="8fc04d62" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae.complete_cases())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[False, False]</code></pre>
 </div>
 </div>
 <p>You can use this boolean vector to select samples with complete data across all assays or experiments.</p>
-<div id="97eae51b" class="cell" data-execution_count="16">
+<div id="9a66b0e5" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>subset_mae <span class="op">=</span> mae[:, mae.complete_cases(),]</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -829,7 +828,7 @@ metadata(1): could be
 <section id="replicates" class="level3">
 <h3 class="anchored" data-anchor-id="replicates">Replicates</h3>
 <p>This method identifies ‘samples’ with replicates within each experiment. The result is a dictionary where experiment names serve as keys, and the corresponding values indicate whether the sample is replicated within each experiment.</p>
-<div id="34c10f13" class="cell" data-execution_count="17">
+<div id="426b556a" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich <span class="im">import</span> <span class="bu">print</span> <span class="im">as</span> pprint <span class="co"># mainly for pretty printing</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>pprint(mae.replicated())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -850,7 +849,7 @@ metadata(1): could be
 <section id="intersect-rows" class="level3">
 <h3 class="anchored" data-anchor-id="intersect-rows">Intersect rows</h3>
 <p>The <code>intersect_rows</code> finds common <code>row_names</code> across all experiments and returns a <code>MultiAssayExperiment</code> with those rows.</p>
-<div id="53c1e9cf" class="cell" data-execution_count="18">
+<div id="c4f0843a" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>common_rows_mae <span class="op">=</span> mae.intersect_rows()</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(common_rows_mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -864,18 +863,18 @@ metadata(1): could be
 </div>
 </div>
 <p>If you are only interested in finding common <code>row_names</code> across all experiments:</p>
-<div id="04033d62" class="cell" data-execution_count="19">
+<div id="47bbc266" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>common_rows <span class="op">=</span> mae.find_common_row_names()</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(common_rows)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'12', '97', '43', '101', '55', '70', '108', '148', '129', '9', '37', '10', '28', '94', '154', '92', '69', '91', '77', '87', '50', '71', '195', '67', '4', '2', '150', '153', '31', '26', '86', '45', '36', '172', '16', '149', '120', '173', '103', '115', '95', '133', '143', '112', '63', '176', '181', '162', '132', '117', '161', '11', '194', '21', '102', '166', '106', '68', '25', '65', '190', '160', '171', '52', '6', '197', '177', '145', '168', '48', '104', '179', '78', '130', '178', '76', '8', '151', '159', '62', '54', '22', '182', '174', '128', '96', '79', '167', '192', '186', '60', '139', '118', '39', '127', '113', '144', '155', '47', '180', '122', '13', '24', '124', '59', '81', '44', '23', '109', '141', '1', '85', '105', '140', '110', '29', '99', '74', '137', '15', '0', '90', '35', '187', '41', '93', '19', '88', '46', '156', '14', '114', '17', '146', '163', '147', '66', '121', '82', '3', '53', '5', '32', '138', '189', '123', '34', '157', '191', '134', '61', '72', '193', '199', '165', '20', '38', '196', '40', '164', '57', '111', '119', '126', '7', '33', '98', '64', '42', '84', '169', '73', '198', '135', '30', '142', '158', '152', '170', '188', '58', '83', '107', '116', '27', '131', '49', '175', '75', '18', '100', '56', '89', '136', '51', '184', '125', '185', '183', '80'}</code></pre>
+<pre><code>{'7', '41', '175', '95', '169', '188', '44', '122', '35', '177', '15', '183', '6', '59', '119', '135', '5', '148', '61', '22', '82', '102', '72', '112', '9', '178', '27', '151', '81', '111', '120', '125', '37', '80', '106', '187', '92', '143', '48', '162', '66', '47', '141', '70', '52', '86', '90', '0', '39', '25', '157', '189', '108', '180', '20', '123', '184', '38', '142', '170', '153', '1', '12', '161', '196', '128', '172', '176', '30', '88', '33', '181', '199', '171', '179', '26', '29', '50', '63', '164', '133', '129', '65', '60', '18', '166', '10', '73', '149', '24', '58', '192', '85', '113', '17', '51', '56', '132', '146', '160', '21', '4', '152', '91', '109', '191', '193', '32', '64', '101', '55', '28', '74', '77', '104', '174', '116', '127', '69', '13', '49', '97', '23', '87', '167', '19', '173', '67', '145', '140', '3', '186', '76', '71', '195', '8', '94', '144', '185', '124', '54', '31', '14', '84', '89', '100', '96', '42', '2', '83', '78', '107', '154', '46', '118', '40', '45', '126', '158', '130', '194', '134', '137', '110', '115', '68', '117', '156', '159', '98', '43', '121', '131', '36', '168', '190', '79', '105', '114', '197', '53', '57', '34', '103', '99', '138', '155', '147', '198', '182', '62', '16', '11', '75', '136', '163', '165', '150', '93', '139'}</code></pre>
 </div>
 </div>
 </section>
 <section id="empty-mae" class="level3">
 <h3 class="anchored" data-anchor-id="empty-mae">Empty MAE</h3>
 <p>While the necessity of an empty <code>MultiAssayExperiment</code> might not be apparent, for the sake of consistency with the rest of the tutorials:</p>
-<div id="42ad484a" class="cell" data-execution_count="20">
+<div id="4416b09d" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> MultiAssayExperiment(experiments<span class="op">=</span>{})</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

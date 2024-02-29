@@ -150,8 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome</span></a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -279,8 +278,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#quick-start" id="toc-quick-start" class="nav-link" data-scroll-target="#quick-start">Quick start</a></li>
+  <li><a href="#hdf5-backed-arrays" id="toc-hdf5-backed-arrays" class="nav-link" data-scroll-target="#hdf5-backed-arrays">HDF5-backed arrays</a>
+  <ul class="collapse">
   <li><a href="#handling-sparse-matrices" id="toc-handling-sparse-matrices" class="nav-link" data-scroll-target="#handling-sparse-matrices">Handling sparse matrices</a></li>
+  </ul></li>
+  <li><a href="#tiledb-backed-arrays" id="toc-tiledb-backed-arrays" class="nav-link" data-scroll-target="#tiledb-backed-arrays">TileDB-backed arrays</a>
+  <ul class="collapse">
+  <li><a href="#sparse-matrices" id="toc-sparse-matrices" class="nav-link" data-scroll-target="#sparse-matrices">Sparse Matrices</a></li>
+  </ul></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -324,12 +329,12 @@ Note
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <p>This package is published to <a href="https://pypi.org/project/delayedarray/">PyPI</a> and can be installed via the usual methods:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install hdf5array</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install hdf5array tiledbarray</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="quick-start" class="level2">
-<h2 class="anchored" data-anchor-id="quick-start">Quick start</h2>
+<section id="hdf5-backed-arrays" class="level2">
+<h2 class="anchored" data-anchor-id="hdf5-backed-arrays">HDF5-backed arrays</h2>
 <p>Let’s mock up a dense array:</p>
-<div id="3bb3954b" class="cell" data-execution_count="1">
+<div id="b1d799e7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> numpy.random.rand(<span class="dv">40</span>, <span class="dv">50</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -338,47 +343,47 @@ Note
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    handle.create_dataset(<span class="st">"yay"</span>, data<span class="op">=</span>data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can now represent it as a <code>Hdf5DenseArray</code>:</p>
-<div id="8d389222" class="cell" data-execution_count="2">
+<div id="485001f3" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hdf5array</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> hdf5array.Hdf5DenseArray(<span class="st">"whee.h5"</span>, <span class="st">"yay"</span>, native_order<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>arr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>&lt;40 x 50&gt; Hdf5DenseArray object of type 'float64'
-[[0.7119482 , 0.33685944, 0.02201882, ..., 0.89047289, 0.26720207,
-  0.47304733],
- [0.70249514, 0.55548338, 0.36224793, ..., 0.92965255, 0.1892004 ,
-  0.48018262],
- [0.35873823, 0.23941696, 0.97986733, ..., 0.44261242, 0.6758236 ,
-  0.37500609],
+[[0.98526832, 0.22980791, 0.19967345, ..., 0.13380693, 0.98363243,
+  0.6908604 ],
+ [0.40300676, 0.04369218, 0.2300263 , ..., 0.27158645, 0.35472424,
+  0.54368112],
+ [0.40580349, 0.18780057, 0.45846653, ..., 0.07449686, 0.69295629,
+  0.53270709],
  ...,
- [0.26924762, 0.67531422, 0.34094738, ..., 0.12695605, 0.37817048,
-  0.58627705],
- [0.11017404, 0.69275032, 0.58782475, ..., 0.95653867, 0.70505905,
-  0.56016357],
- [0.32803405, 0.96440278, 0.00478434, ..., 0.44776364, 0.75801289,
-  0.08795968]]</code></pre>
+ [0.10385144, 0.30393583, 0.55259728, ..., 0.21508649, 0.17376148,
+  0.46543642],
+ [0.34506479, 0.54819149, 0.32388889, ..., 0.52516164, 0.8438171 ,
+  0.52668976],
+ [0.23104431, 0.03810414, 0.79374644, ..., 0.08866895, 0.89180363,
+  0.68931651]]</code></pre>
 </div>
 </div>
 <p>This is just a subclass of a <code>DelayedArray</code> and can be used anywhere in the BiocPy framework. Parts of the NumPy API are also supported - for example, we could apply a variety of <a href="../../chapters/representations/delayed_arrays.html">delayed operations</a>:</p>
-<div id="76fe58c4" class="cell" data-execution_count="3">
+<div id="1d2844cc" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>scaling <span class="op">=</span> numpy.random.rand(<span class="dv">100</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>transformed <span class="op">=</span> numpy.log1p(arr <span class="op">/</span> scaling)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>transformed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>&lt;40 x 50&gt; DelayedArray object of type 'float64'
-[[1.59200821, 0.99978463, 0.03462707, ..., 3.10776303, 0.29187163,
-  0.40794298],
- [1.58137639, 1.34351537, 0.45720557, ..., 3.14893561, 0.21510356,
-  0.41298303],
- [1.0892344 , 0.79787772, 0.94310466, ..., 2.45294263, 0.61909425,
-  0.33598843],
+[[1.50879395, 0.21147966, 0.28948447, ..., 0.52084187, 3.53092764,
+  2.01778088],
+ [0.89212744, 0.04380185, 0.32698102, ..., 0.87011248, 2.56162167,
+  1.81356425],
+ [0.89621498, 0.17601516, 0.57147854, ..., 0.3224507 , 3.19284869,
+  1.7965268 ],
  ...,
- [0.90828458, 1.4914486 , 0.43539236, ..., 1.39794811, 0.39183157,
-  0.48507286],
- [0.47351678, 1.51125977, 0.66300335, ..., 3.17623944, 0.6388645 ,
-  0.46780532],
- [1.03076725, 1.7779366 , 0.00762654, ..., 2.46352332, 0.67370831,
-  0.08953289]]</code></pre>
+ [0.31565507, 0.27114893, 0.65708391, ..., 0.74126811, 1.92527557,
+  1.6852219 ],
+ [0.80345144, 0.44582692, 0.43476457, ..., 1.30355459, 3.38245054,
+  1.78706005],
+ [0.60198261, 0.03830562, 0.84785603, ..., 0.37355706, 3.4359315 ,
+  2.01584137]]</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -394,11 +399,10 @@ Note
 <p>Check out the <a href="https://biocpy.github.io/hdf5array/">documentation</a> for more details.</p>
 </div>
 </div>
-</section>
-<section id="handling-sparse-matrices" class="level2">
-<h2 class="anchored" data-anchor-id="handling-sparse-matrices">Handling sparse matrices</h2>
+<section id="handling-sparse-matrices" class="level3">
+<h3 class="anchored" data-anchor-id="handling-sparse-matrices">Handling sparse matrices</h3>
 <p>We support a variety of compressed sparse formats where the non-zero elements are held inside three separate datasets - usually <code>data</code>, <code>indices</code> and <code>indptr</code>, based on the <a href="https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/advanced/h5_matrices">10X Genomics sparse HDF5 format</a>. To demonstrate, let’s mock up some sparse data using <strong>scipy</strong>:</p>
-<div id="05fe0aa5" class="cell" data-execution_count="4">
+<div id="3ee17de3" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.sparse</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mock <span class="op">=</span> scipy.sparse.random(<span class="dv">1000</span>, <span class="dv">200</span>, <span class="fl">0.1</span>).tocsc()</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -422,7 +426,7 @@ Note
 </div>
 </div>
 <p>The constructor will not do any auto-detection so we need to provide this information explicitly:</p>
-<div id="c6317859" class="cell" data-execution_count="5">
+<div id="e3002470" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hdf5array</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> hdf5array.Hdf5CompressedSparseMatrix(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sparse_whee.h5"</span>, </span>
@@ -435,20 +439,99 @@ Note
 <pre><code>&lt;100 x 200&gt; sparse Hdf5CompressedSparseMatrix object of type 'float64'
 [[0.        , 0.        , 0.        , ..., 0.        , 0.        ,
   0.        ],
- [0.        , 0.51372538, 0.        , ..., 0.        , 0.        ,
-  0.        ],
  [0.        , 0.        , 0.        , ..., 0.        , 0.        ,
+  0.45233384],
+ [0.0729245 , 0.        , 0.        , ..., 0.        , 0.        ,
   0.        ],
  ...,
+ [0.        , 0.        , 0.        , ..., 0.17765821, 0.        ,
+  0.        ],
  [0.        , 0.        , 0.        , ..., 0.        , 0.        ,
   0.        ],
  [0.        , 0.        , 0.        , ..., 0.        , 0.        ,
-  0.25135492],
- [0.73979032, 0.        , 0.        , ..., 0.        , 0.        ,
-  0.36432188]]</code></pre>
+  0.        ]]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="tiledb-backed-arrays" class="level2">
+<h2 class="anchored" data-anchor-id="tiledb-backed-arrays">TileDB-backed arrays</h2>
+<p>Let’s mock up a dense array:</p>
+<div id="d496dd33" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tiledb</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> numpy.random.rand(<span class="dv">40</span>, <span class="dv">50</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>tiledb.from_numpy(<span class="st">"dense.tiledb"</span>, data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>DenseArray(uri='dense.tiledb', mode=r, ndim=2)</code></pre>
+</div>
+</div>
+<p>We can now represent it as a <code>TileDbArray</code>:</p>
+<div id="6aacbc9b" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tiledbarray</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> tiledbarray.TileDbArray(<span class="st">"dense.tiledb"</span>, attribute_name<span class="op">=</span><span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This is just a subclass of a <code>DelayedArray</code> and can be used anywhere in the BiocPy framework. Parts of the NumPy API are also supported - for example, we could apply a variety of delayed operations:</p>
+<div id="ab37cb44" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>scaling <span class="op">=</span> numpy.random.rand(<span class="dv">100</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>transformed <span class="op">=</span> numpy.log1p(arr <span class="op">/</span> scaling)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>transformed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>&lt;40 x 50&gt; DelayedArray object of type 'float64'
+[[0.57044682, 0.62136965, 0.20493652, ..., 0.34013958, 1.5534134 ,
+  0.4775226 ],
+ [0.37919099, 0.55592908, 1.17556021, ..., 0.57782469, 0.65011487,
+  0.43352162],
+ [0.31744251, 0.2699734 , 0.20023578, ..., 1.10580251, 0.68793861,
+  0.4853691 ],
+ ...,
+ [0.51833957, 0.24709752, 0.32335289, ..., 0.62455578, 1.3799386 ,
+  0.75238183],
+ [0.38365682, 0.43176194, 0.46962711, ..., 1.30455857, 0.34042466,
+  0.49287211],
+ [0.92834072, 0.12498179, 0.80863066, ..., 1.1831399 , 1.53943712,
+  0.07000767]]</code></pre>
+</div>
+</div>
+<p>Check out the <a href="https://biocpy.github.io/tiledbarray/">documentation</a> for more details.</p>
+<section id="sparse-matrices" class="level3">
+<h3 class="anchored" data-anchor-id="sparse-matrices">Sparse Matrices</h3>
+<p>We can perform similar operations on a sparse matrix as well. Lets mock a sparse matrix and store it as a tiledb file.</p>
+<div id="aef8d59b" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dir_path <span class="op">=</span> <span class="st">"sparse_array.tiledb"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>dom <span class="op">=</span> tiledb.Domain(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>     tiledb.Dim(name<span class="op">=</span><span class="st">"rows"</span>, domain<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">4</span>), tile<span class="op">=</span><span class="dv">4</span>, dtype<span class="op">=</span>numpy.int32),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>     tiledb.Dim(name<span class="op">=</span><span class="st">"cols"</span>, domain<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">4</span>), tile<span class="op">=</span><span class="dv">4</span>, dtype<span class="op">=</span>numpy.int32),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>schema <span class="op">=</span> tiledb.ArraySchema(</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>     domain<span class="op">=</span>dom, sparse<span class="op">=</span><span class="va">True</span>, attrs<span class="op">=</span>[tiledb.Attr(name<span class="op">=</span><span class="st">""</span>, dtype<span class="op">=</span>numpy.int32)]</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>tiledb.SparseArray.create(<span class="ss">f"</span><span class="sc">{</span>dir_path<span class="sc">}</span><span class="ss">"</span>, schema)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>tdb <span class="op">=</span> tiledb.SparseArray(<span class="ss">f"</span><span class="sc">{</span>dir_path<span class="sc">}</span><span class="ss">"</span>, mode<span class="op">=</span><span class="st">"w"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>i, j <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>], [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>]</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> numpy.array(([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]))</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>tdb[i, j] <span class="op">=</span> data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can now represent this as a <code>TileDbArray</code>:</p>
+<div id="2109e3ed" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tiledbarray</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> tiledbarray.TileDbArray(dir_path, attribute_name<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>slices <span class="op">=</span> (<span class="bu">slice</span>(<span class="dv">0</span>, <span class="dv">2</span>), [<span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> delayedarray</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>subset <span class="op">=</span> delayedarray.extract_sparse_array(arr, (<span class="op">*</span>slices,))</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>&lt;2 x 2&gt; SparseNdarray object of type 'int32'
+[[0, 0],
+ [0, 0]]</code></pre>
 </div>
 </div>
 <hr>
+</section>
 </section>
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>

@@ -150,8 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome</span></a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -356,7 +355,7 @@ Note
 <section id="construction" class="level2">
 <h2 class="anchored" data-anchor-id="construction">Construction</h2>
 <p>An <code>IRanges</code> holds a <strong>start</strong> position and a <strong>width</strong>, and is most typically used to represent coordinates along some genomic sequence. The interpretation of the start position depends on the application; for sequences, the start is usually a 1-based position, but other use cases may allow zero or even negative values (e.g.&nbsp;circular genomes).</p>
-<div id="e4f52fcc" class="cell" data-execution_count="1">
+<div id="089f2eab" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> iranges <span class="im">import</span> IRanges</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>starts <span class="op">=</span> [<span class="op">-</span><span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="op">-</span><span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">6</span>, <span class="dv">10</span>]</span>
@@ -382,7 +381,7 @@ Note
 <section id="accessing-properties" class="level2">
 <h2 class="anchored" data-anchor-id="accessing-properties">Accessing properties</h2>
 <p>Properties can be accessed directly from the object:</p>
-<div id="5fdc6a2d" class="cell" data-execution_count="2">
+<div id="14c81596" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of intervals:"</span>, <span class="bu">len</span>(ir))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"start positions:"</span>, ir.get_start())</span>
@@ -408,7 +407,7 @@ Tip
 <p>Just like BiocFrame, these classes offer both functional-style and property-based getters and setters.</p>
 </div>
 </div>
-<div id="60ff7cfd" class="cell" data-execution_count="3">
+<div id="828450fb" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"start positions:"</span>, ir.start)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"width of each interval:"</span>, ir.width)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"end positions:"</span>, ir.end)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -428,7 +427,7 @@ end positions: [ 3  6 15 -3  5  3 -4 13]</code></pre>
 <li>ordered from left to right</li>
 <li>not even adjacent (i.e.&nbsp;there must be a non empty gap between 2 consecutive ranges).</li>
 </ul>
-<div id="57f20a3a" class="cell" data-execution_count="4">
+<div id="3ac6ea3a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>reduced <span class="op">=</span> ir.<span class="bu">reduce</span>()</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reduced)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -445,7 +444,7 @@ end positions: [ 3  6 15 -3  5  3 -4 13]</code></pre>
 <section id="overlap-operations" class="level2">
 <h2 class="anchored" data-anchor-id="overlap-operations">Overlap operations</h2>
 <p><code>IRanges</code> uses <a href="https://github.com/pyranges/ncls">nested containment lists</a> under the hood to perform fast overlap and search-based operations.</p>
-<div id="781dc33f" class="cell" data-execution_count="5">
+<div id="e448797a" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>subject <span class="op">=</span> IRanges([<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">10</span>], [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> IRanges([<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>], [<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>])</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -458,7 +457,7 @@ end positions: [ 3  6 15 -3  5  3 -4 13]</code></pre>
 <section id="finding-neighboring-ranges" class="level3">
 <h3 class="anchored" data-anchor-id="finding-neighboring-ranges">Finding neighboring ranges</h3>
 <p>The <code>nearest</code>, <code>precede</code> or <code>follow</code> methods finds the nearest overlapping range along the specified direction.</p>
-<div id="a6d83b97" class="cell" data-execution_count="6">
+<div id="d7c6db92" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> IRanges([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>], [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">2</span>])</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>subject <span class="op">=</span> IRanges([<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">12</span>], [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>])</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -485,7 +484,7 @@ Note
 <section id="coverage" class="level3">
 <h3 class="anchored" data-anchor-id="coverage">coverage</h3>
 <p>The <code>coverage</code> method counts the number of overlaps for each position.</p>
-<div id="12a5e974" class="cell" data-execution_count="7">
+<div id="9ba19440" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>cov <span class="op">=</span> subject.coverage()</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -497,7 +496,7 @@ Note
 <section id="transforming-ranges" class="level2">
 <h2 class="anchored" data-anchor-id="transforming-ranges">Transforming ranges</h2>
 <p><code>shift</code> adjusts the start positions by their <strong>shift</strong>.</p>
-<div id="053fc0ae" class="cell" data-execution_count="8">
+<div id="5b8f5cdc" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>shifted <span class="op">=</span> ir.shift(shift<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(shifted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -515,7 +514,7 @@ Note
 </div>
 </div>
 <p>Other range transformation methods include <code>narrow</code>, <code>resize</code>, <code>flank</code>, <code>reflect</code> and <code>restrict</code>. For example <code>narrow</code> supports the adjustment of <code>start</code>, <code>end</code> and <code>width</code> values, which should be relative to each range.</p>
-<div id="97b67fdf" class="cell" data-execution_count="9">
+<div id="40db138d" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>narrowed <span class="op">=</span> ir.narrow(start<span class="op">=</span><span class="dv">4</span>, width<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(narrowed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -535,7 +534,7 @@ Note
 <section id="disjoin-intervals" class="level3">
 <h3 class="anchored" data-anchor-id="disjoin-intervals">Disjoin intervals</h3>
 <p>Well as the name says, computes disjoint intervals.</p>
-<div id="3bcbc0a6" class="cell" data-execution_count="10">
+<div id="e06b9dc0" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>disjoint <span class="op">=</span> ir.disjoin()</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(disjoint)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -557,7 +556,7 @@ Note
 <section id="reflect-and-flank" class="level3">
 <h3 class="anchored" data-anchor-id="reflect-and-flank"><code>reflect</code> and <code>flank</code></h3>
 <p><code>reflect</code> reverses each range within a set of common reference bounds.</p>
-<div id="54cbab16" class="cell" data-execution_count="11">
+<div id="7fc3a784" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>starts <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>]</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>widths <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>]</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> IRanges(starts, widths)</span>
@@ -575,7 +574,7 @@ Note
 </div>
 </div>
 <p><code>flank</code> returns ranges of a specified width that flank, to the left (default) or right, each input range. One use case of this is forming promoter regions for a set of genes.</p>
-<div id="54a24311" class="cell" data-execution_count="12">
+<div id="9661f422" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>starts <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>]</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>widths <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>]</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> IRanges(starts, widths)</span>
@@ -596,7 +595,7 @@ Note
 <section id="set-operations" class="level2">
 <h2 class="anchored" data-anchor-id="set-operations">Set operations</h2>
 <p><code>IRanges</code> supports most interval set operations. For example, to compute <code>gaps</code>:</p>
-<div id="55b784aa" class="cell" data-execution_count="13">
+<div id="32410c6d" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>gaps <span class="op">=</span> ir.gaps()</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gaps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -608,7 +607,7 @@ Note
 </div>
 </div>
 <p>Or Perform interval set operations, e..g <code>union</code>, <code>intersection</code>, <code>disjoin</code>:</p>
-<div id="387862a2" class="cell" data-execution_count="14">
+<div id="49742bac" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> IRanges([<span class="dv">1</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">14</span>], [<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">4</span>])</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> IRanges([<span class="dv">14</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">18</span>], [<span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">3</span>])</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>

@@ -153,8 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome</span></a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -384,7 +383,7 @@ Important
 </div>
 </div>
 <p>Before we construct a <code>SingleCellExperiment</code> object, lets generate information about rows, columns and a mock experimental data from single-cell rna-seq experiments:</p>
-<div id="10b85005" class="cell" data-execution_count="1">
+<div id="ae9d9646" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -434,7 +433,7 @@ Important
 </div>
 </div>
 <p>Now lets create the <code>SingleCellExperiment</code> instance:</p>
-<div id="d92b00d9" class="cell" data-execution_count="2">
+<div id="d1575896" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> SingleCellExperiment</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sce <span class="op">=</span> SingleCellExperiment(</span>
@@ -481,7 +480,7 @@ Tip
 <h3 class="anchored" data-anchor-id="interop-with-anndata">Interop with <code>anndata</code></h3>
 <p>We provide convenient methods for loading an <code>AnnData</code> or <code>h5ad</code> file into <code>SingleCellExperiment</code> objects.</p>
 <p>For example, lets create an <code>AnnData</code> object,</p>
-<div id="c32b18f7" class="cell" data-execution_count="3">
+<div id="28bdec09" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anndata <span class="im">as</span> ad</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> sparse <span class="im">as</span> sp</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -493,7 +492,7 @@ Tip
 </div>
 </div>
 <p>Converting <code>AnnData</code> as <code>SingleCellExperiment</code> is straightforward:</p>
-<div id="4ca9960d" class="cell" data-execution_count="4">
+<div id="1c6ea8c8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sce_adata <span class="op">=</span> SingleCellExperiment.from_anndata(adata) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/genomicranges/SeqInfo.py:348: UserWarning: 'seqnames' is deprecated, use 'get_seqnames' instead
@@ -501,7 +500,7 @@ Tip
 </div>
 </div>
 <p>and vice-verse. All assays from SCE are represented in the <code>layers</code> slot of the <code>AnnData</code> object:</p>
-<div id="dd04d3a8" class="cell" data-execution_count="5">
+<div id="fe1742d9" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>adata2 <span class="op">=</span> sce_adata.to_anndata()</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adata2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -516,7 +515,7 @@ Tip
 </div>
 </div>
 <p>Similarly, one can load a h5ad file:</p>
-<div id="6aaf62af" class="cell" data-execution_count="6">
+<div id="5996f4fd" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> read_h5ad</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sce_h5 <span class="op">=</span> read_h5ad(<span class="st">"../../assets/data/adata.h5ad"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce_h5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -545,7 +544,7 @@ metadata(2): O_recarray nested
 <section id="from-10x-formats" class="level3">
 <h3 class="anchored" data-anchor-id="from-10x-formats">From 10X formats</h3>
 <p>In addition, we also provide convenient methods to load a <a href="https://www.10xgenomics.com/support/software/cell-ranger/latest/analysis/outputs/cr-outputs-h5-matrices">10X Genomics HDF5 Feature-Barcode Matrix Format</a> file.</p>
-<div id="7202a718" class="cell" data-execution_count="7">
+<div id="475908b5" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> read_tenx_h5</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>sce_h5 <span class="op">=</span> read_tenx_h5(<span class="st">"../../assets/data/tenx.sub.h5"</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce_h5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -585,7 +584,7 @@ Note
 <h2 class="anchored" data-anchor-id="getterssetters">Getters/Setters</h2>
 <p>Getters are available to access various attributes using either the property notation or functional style.</p>
 <p>Since <code>SingleCellExperiment</code> extends <code>RangedSummarizedExperiment</code>, all getters and setters from the base class are accessible here; more details <a href="../../chapters/experiments/summarized_experiment.html">here</a>.</p>
-<div id="acd5a059" class="cell" data-execution_count="8">
+<div id="b35329be" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access assay names</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"reduced dim names (as property): "</span>, sce.reduced_dim_names)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"reduced dim names (functional style): "</span>, sce.get_reduced_dim_names())</span>
@@ -598,27 +597,27 @@ reduced dim names (functional style):  ['random_embeds']
 BiocFrame with 200 rows and 6 columns
       seqnames  starts    ends strand   score                  GC
         &lt;list&gt; &lt;range&gt; &lt;range&gt; &lt;list&gt; &lt;range&gt;              &lt;list&gt;
-  [0]     chr1     100     110      -       0  0.6426932243346115
-  [1]     chr2     101     111      +       1  0.6333866530688117
-  [2]     chr2     102     112      +       2  0.2764713439417089
+  [0]     chr1     100     110      -       0  0.9363987891088498
+  [1]     chr2     101     111      +       1  0.5228890380772498
+  [2]     chr2     102     112      +       2  0.0608583496385624
            ...     ...     ...    ...     ...                 ...
-[197]     chr3     297     307      +     197 0.05490944620717686
-[198]     chr3     298     308      -     198  0.9104151450269748
-[199]     chr3     299     309      -     199 0.34079049623766644</code></pre>
+[197]     chr3     297     307      +     197 0.29521493603646065
+[198]     chr3     298     308      -     198 0.12244486479104444
+[199]     chr3     299     309      -     199  0.3888490637689551</code></pre>
 </div>
 </div>
 <section id="access-a-reduced-dimension" class="level4">
 <h4 class="anchored" data-anchor-id="access-a-reduced-dimension">Access a reduced dimension</h4>
 <p>One can access an reduced dimension by index or name:</p>
-<div id="d2fd9a37" class="cell" data-execution_count="9">
+<div id="0316ee2b" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sce.reduced_dim(<span class="dv">0</span>) <span class="co"># same as se.reduced_dim("random_embeds")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>array([[0.82664348, 0.69134261, 0.11031758, 0.26647224],
-       [0.51021835, 0.95238696, 0.09169161, 0.63716983],
-       [0.39453791, 0.03729245, 0.09108301, 0.30806988],
-       [0.60066811, 0.99938569, 0.7777934 , 0.70924916],
-       [0.72782179, 0.23186407, 0.91777319, 0.10785675],
-       [0.91616893, 0.82639601, 0.3421415 , 0.73036063]])</code></pre>
+<pre><code>array([[0.6858069 , 0.95426412, 0.73872912, 0.12324561],
+       [0.74644018, 0.88630822, 0.47745116, 0.92704685],
+       [0.50138121, 0.29302378, 0.13858382, 0.2613967 ],
+       [0.26710653, 0.98108149, 0.91777455, 0.98643563],
+       [0.59737537, 0.42070879, 0.84204116, 0.81073442],
+       [0.28390418, 0.84028287, 0.96962272, 0.32653397]])</code></pre>
 </div>
 </div>
 </section>
@@ -627,7 +626,7 @@ BiocFrame with 200 rows and 6 columns
 <h2 class="anchored" data-anchor-id="subset-experiments">Subset experiments</h2>
 <p>You can subset experimental data by using the subset (<code>[]</code>) operator. This operation accepts different slice input types, such as a boolean vector, a <code>slice</code> object, a list of indices, or names (if available) to subset.</p>
 <p>In our previous example, we didn’t include row or column names. Let’s create another <code>SingleCellExperiment</code> object that includes names.</p>
-<div id="a643b9b5" class="cell" data-execution_count="10">
+<div id="d67b0c97" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>subset_sce <span class="op">=</span> sce[<span class="dv">0</span>:<span class="dv">10</span>, <span class="dv">0</span>:<span class="dv">3</span>]</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_sce)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -653,7 +652,7 @@ metadata(0):
 <p><code>SingleCellExperiment</code> implements methods for the <code>combine</code> generic from <a href="https://github.com/BiocPy/biocutils"><strong>BiocUtils</strong></a>.</p>
 <p>These methods enable the merging or combining of multiple <code>SingleCellExperiment</code> objects, allowing users to aggregate data from different experiments or conditions. Note: <code>row_pairs</code> and <code>column_pairs</code> are not ignored as part of this operation.</p>
 <p>To demonstrate, let’s create multiple <code>SingleCellExperiment</code> objects (read more about this in <a href="../../chapters/experiments/summarized_experiment.html#combining-experiments">combine section from <code>SummarizedExperiment</code></a>).</p>
-<div id="e656a246" class="cell" data-execution_count="11">
+<div id="b6b9b338" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ncols <span class="op">=</span> <span class="dv">10</span></span>
@@ -747,7 +746,7 @@ metadata(0):
 </div>
 </div>
 <p>The <code>combine_rows</code> or <code>combine_columns</code> operations, expect all experiments to contain the same assay names. To combine experiments by row:</p>
-<div id="2e0811f9" class="cell" data-execution_count="12">
+<div id="710d0925" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils <span class="im">import</span> relaxed_combine_columns, combine_columns, combine_rows, relaxed_combine_rows</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>sce_combined <span class="op">=</span> combine_rows(sce2, sce1)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -773,7 +772,7 @@ metadata(0):
 </div>
 </div>
 <p>Similarly to combine by column:</p>
-<div id="1d4a8247" class="cell" data-execution_count="13">
+<div id="0bd82dc4" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>sce_combined <span class="op">=</span> combine_columns(sce2, sce1)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -810,14 +809,14 @@ Note
 <p>You can use <code>relaxed_combine_columns</code> or <code>relaxed_combined_rows</code> when there’s mismatch in the number of features or samples. Missing rows or columns in any object are filled in with appropriate placeholder values before combining, e.g.&nbsp;missing assay’s are replaced with a masked numpy array.</p>
 </div>
 </div>
-<div id="357a22ce" class="cell" data-execution_count="14">
+<div id="e3e29630" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sce_alts1 contains an additional assay not present in sce_alts2</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>sce_relaxed_combine <span class="op">=</span> relaxed_combine_columns(sce_alts1, sce_alts2)</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sce_relaxed_combine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SingleCellExperiment
 dimensions: (3, 6)
-assays(2): ['lognorm', 'counts']
+assays(2): ['counts', 'lognorm']
 row_data columns(3): ['seqnames', 'start', 'end']
 row_names(3): ['HER2', 'BRCA1', 'TPFK']
 column_data columns(3): ['sample', 'disease', 'doublet_score']
@@ -839,7 +838,7 @@ metadata(1): seq_type
 <section id="export-as-anndata-or-mudata" class="level2">
 <h2 class="anchored" data-anchor-id="export-as-anndata-or-mudata">Export as <code>AnnData</code> or <code>MuData</code></h2>
 <p>The package also provides methods to convert a <code>SingleCellExperiment</code> object into a <code>MuData</code> representation:</p>
-<div id="3944d3e4" class="cell" data-execution_count="15">
+<div id="93d7d011" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>mdata <span class="op">=</span> sce.to_mudata()</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>mdata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -858,7 +857,7 @@ metadata(1): seq_type
 </div>
 </div>
 <p>or coerce to an <code>AnnData</code> object:</p>
-<div id="2edf6ccd" class="cell" data-execution_count="16">
+<div id="5f5231e4" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>adata, alts <span class="op">=</span> sce.to_anndata()</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"main experiment: "</span>, adata)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"alternative experiments: "</span>, alts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

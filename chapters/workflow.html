@@ -150,8 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -278,7 +277,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link active" data-scroll-target="#further-reading">Further reading</a></li>
+  <li><a href="#load-dataset" id="toc-load-dataset" class="nav-link active" data-scroll-target="#load-dataset">Load dataset</a></li>
+  <li><a href="#download-ml-models" id="toc-download-ml-models" class="nav-link" data-scroll-target="#download-ml-models">Download ML models</a></li>
+  <li><a href="#save-results" id="toc-save-results" class="nav-link" data-scroll-target="#save-results">Save results</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/BiocPy/tutorial/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -305,6 +307,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>In this section, we will illustrate a workflow that utilizes either language-agnostic representations for storing genomic data or reading RDS files directly in Python, to facilitate seamless access to datasets and analysis results.</p>
+<section id="load-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="load-dataset">Load dataset</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -329,7 +333,7 @@ Note
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> sce[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2000</span>]</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(sub, <span class="st">"../assets/data/zilinois-lung-subset.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To demonstrate this workflow, we will use the models from the <a href="https://github.com/Teichlab/celltypist">CellTypist</a> package to annotate cell types for this dataset. CellTypist operates on an <code>AnnData</code> representation.</p>
-<div id="2c66a2f9" class="cell" data-execution_count="1">
+<div id="6b142483" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rds2py <span class="im">import</span> read_rds, as_summarized_experiment</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -350,8 +354,11 @@ Note
     layers: 'counts'</code></pre>
 </div>
 </div>
+</section>
+<section id="download-ml-models" class="level2">
+<h2 class="anchored" data-anchor-id="download-ml-models">Download ML models</h2>
 <p>Before inferring cell types, let’s download the “human lung atlas” model from CellTypist.</p>
-<div id="8bb44d19" class="cell" data-execution_count="2">
+<div id="ad37892e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> celltypist</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> celltypist <span class="im">import</span> models</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -419,7 +426,7 @@ Note
 </div>
 </div>
 <p>Now, let’s annotate our dataset.</p>
-<div id="f5ba3e3b" class="cell" data-execution_count="3">
+<div id="a417d3ab" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> celltypist.annotate(adata, model <span class="op">=</span> model_name, majority_voting <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(predictions.predicted_labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -466,7 +473,7 @@ Note
 </div>
 </div>
 <p>Next, let’s retrieve the <code>AnnData</code> object with the predicted labels embedded into the <code>obs</code> dataframe.</p>
-<div id="4b7136a3" class="cell" data-execution_count="4">
+<div id="2b9fd4ef" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> predictions.to_adata()</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>adata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -479,8 +486,11 @@ Note
     obsp: 'connectivities', 'distances'</code></pre>
 </div>
 </div>
+</section>
+<section id="save-results" class="level2">
+<h2 class="anchored" data-anchor-id="save-results">Save results</h2>
 <p>We can now reverse the workflow and save this object into an Artifactdb format from Python. However, the object needs to be converted to a <code>SingleCellExperiment</code> class first. Read more about our experiment representations <a href="../chapters/experiments/single_cell_experiment.html">here</a>.</p>
-<div id="52a4e07f" class="cell" data-execution_count="5">
+<div id="2f100204" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> singlecellexperiment <span class="im">import</span> SingleCellExperiment</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sce <span class="op">=</span> SingleCellExperiment.from_anndata(adata)</span>
@@ -503,17 +513,18 @@ metadata(2): neighbors leiden
 </div>
 </div>
 <p>We use the <a href="https://github.com/ArtifactDB/dolomite-base">dolomite suite</a> to save it into a language-agnostic format from Python.</p>
-<div id="a54fa2ff" class="cell" data-execution_count="6">
+<div id="c09db1a2" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dolomite_base</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dolomite_sce</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>dolomite_base.save_object(sce, <span class="st">"./zilinois_lung_with_celltypist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, read the object back in R.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sce_with_celltypist <span class="ot">=</span> <span class="fu">readObject</span>(<span class="at">path=</span><span class="fu">paste</span>(<span class="fu">getwd</span>(), <span class="st">"zilinois_lung_with_celltypist"</span>, <span class="at">sep=</span><span class="st">"/"</span>))</span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sce_with_celltypist <span class="ot">&lt;-</span> <span class="fu">readObject</span>(<span class="at">path=</span><span class="fu">paste</span>(<span class="fu">getwd</span>(), <span class="st">"zilinois_lung_with_celltypist"</span>, <span class="at">sep=</span><span class="st">"/"</span>))</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sce_with_celltypist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>And that concludes the workflow. Leveraging the generic <strong>read</strong> functions <code>readObject</code> (R) and <code>read_object</code> (Python), along with the <strong>save</strong> functions <code>saveObject</code> (R) and <code>save_object</code> (Python), you can seamlessly store most Bioconductor objects in language-agnostic formats.</p>
 <hr>
+</section>
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
 <ul>

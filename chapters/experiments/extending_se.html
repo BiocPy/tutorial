@@ -150,8 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome</span></a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -313,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="define-the-new-class" class="level2">
 <h2 class="anchored" data-anchor-id="define-the-new-class">Define the new class</h2>
 <p>As a simple example, let’s create a new class called <code>BioSampleSE</code> that stores biosample information on which the experiment was conducted. This may contain anonymized information about the patient(s) or sample(s). First, we extend the <code>SummarizedExperiment</code> class:</p>
-<div id="8c25551e" class="cell" data-execution_count="1">
+<div id="c1081a7b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> summarizedexperiment <span class="im">import</span> SummarizedExperiment</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BioSampleSE(SummarizedExperiment):</span>
@@ -324,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="add-a-new-slot-or-attribute">Add a new slot or attribute</h2>
 <p>To add a new slot to this class, we accept a new parameter <code>bio_sample_information</code> when the class is initialized through the <strong>init</strong> method. We also provide type hints to set expectations on the accepted types for these arguments. Type hints are helpful for users and are automatically annotated in the documentation. More information on type hints can be found in our <a href="https://github.com/BiocPy/developer_guide">developer guide</a>.</p>
 <p>We forward the default parameters to the base <code>SummarizedExperiment</code> class (using the <code>super</code> method) and store the new attribute.</p>
-<div id="43b8f9d1" class="cell" data-execution_count="2">
+<div id="748026b7" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> summarizedexperiment <span class="im">import</span> SummarizedExperiment</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> biocframe</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Dict, Any, List, Optional</span>
@@ -355,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._bio_sample_information <span class="op">=</span> bio_sample_information</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The new slot can be validated using a dedicated validator:</p>
-<div id="56a499d7" class="cell" data-execution_count="3">
+<div id="cc1904ea" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _validate_bio_sample_information(bio_sample_info):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(bio_sample_info, biocframe.BiocFrame):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Biosample information must be a BiocFrame object."</span>)</span>
@@ -364,7 +363,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># of this frame or the number of rows. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Our class now validates the new slot:</p>
-<div id="b2898f55" class="cell" data-execution_count="4">
+<div id="12d7dea3" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BioSampleSE(SummarizedExperiment):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(</span>
@@ -523,7 +522,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="putting-it-all-together" class="level2">
 <h2 class="anchored" data-anchor-id="putting-it-all-together">Putting it all together</h2>
-<div id="417d4224" class="cell" data-execution_count="5">
+<div id="db0ac202" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the full class</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _validate_bio_sample_information(bio_sample_info):</span>
