@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -334,7 +334,7 @@ Note
 <section id="hdf5-backed-arrays" class="level2">
 <h2 class="anchored" data-anchor-id="hdf5-backed-arrays">HDF5-backed arrays</h2>
 <p>Let’s mock up a dense array:</p>
-<div id="b1d799e7" class="cell" data-execution_count="1">
+<div id="a60c141f" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> numpy.random.rand(<span class="dv">40</span>, <span class="dv">50</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -343,47 +343,47 @@ Note
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    handle.create_dataset(<span class="st">"yay"</span>, data<span class="op">=</span>data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can now represent it as a <code>Hdf5DenseArray</code>:</p>
-<div id="485001f3" class="cell" data-execution_count="2">
+<div id="5cbbcd91" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hdf5array</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> hdf5array.Hdf5DenseArray(<span class="st">"whee.h5"</span>, <span class="st">"yay"</span>, native_order<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>arr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>&lt;40 x 50&gt; Hdf5DenseArray object of type 'float64'
-[[0.98526832, 0.22980791, 0.19967345, ..., 0.13380693, 0.98363243,
-  0.6908604 ],
- [0.40300676, 0.04369218, 0.2300263 , ..., 0.27158645, 0.35472424,
-  0.54368112],
- [0.40580349, 0.18780057, 0.45846653, ..., 0.07449686, 0.69295629,
-  0.53270709],
+[[0.6137166 , 0.527271  , 0.93094047, ..., 0.89824058, 0.3751469 ,
+  0.93230924],
+ [0.97032952, 0.17491716, 0.9653401 , ..., 0.16868539, 0.86533484,
+  0.86432493],
+ [0.25271991, 0.21226941, 0.63550637, ..., 0.68211344, 0.25971667,
+  0.51211434],
  ...,
- [0.10385144, 0.30393583, 0.55259728, ..., 0.21508649, 0.17376148,
-  0.46543642],
- [0.34506479, 0.54819149, 0.32388889, ..., 0.52516164, 0.8438171 ,
-  0.52668976],
- [0.23104431, 0.03810414, 0.79374644, ..., 0.08866895, 0.89180363,
-  0.68931651]]</code></pre>
+ [0.98859864, 0.74363204, 0.47433832, ..., 0.94123875, 0.45731422,
+  0.72858729],
+ [0.72920257, 0.41178416, 0.79736108, ..., 0.19227502, 0.49228222,
+  0.09636427],
+ [0.56070914, 0.39983991, 0.48079399, ..., 0.76084754, 0.43936791,
+  0.91062151]]</code></pre>
 </div>
 </div>
 <p>This is just a subclass of a <code>DelayedArray</code> and can be used anywhere in the BiocPy framework. Parts of the NumPy API are also supported - for example, we could apply a variety of <a href="../../chapters/representations/delayed_arrays.html">delayed operations</a>:</p>
-<div id="1d2844cc" class="cell" data-execution_count="3">
+<div id="26f1176c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>scaling <span class="op">=</span> numpy.random.rand(<span class="dv">100</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>transformed <span class="op">=</span> numpy.log1p(arr <span class="op">/</span> scaling)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>transformed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>&lt;40 x 50&gt; DelayedArray object of type 'float64'
-[[1.50879395, 0.21147966, 0.28948447, ..., 0.52084187, 3.53092764,
-  2.01778088],
- [0.89212744, 0.04380185, 0.32698102, ..., 0.87011248, 2.56162167,
-  1.81356425],
- [0.89621498, 0.17601516, 0.57147854, ..., 0.3224507 , 3.19284869,
-  1.7965268 ],
+[[8.48910063, 0.45282309, 0.86869162, ..., 0.64237837, 0.36916216,
+  0.69562291],
+ [8.9471275 , 0.17395586, 0.88991513, ..., 0.15632231, 0.70802249,
+  0.65838789],
+ [7.60214298, 0.20748297, 0.66507891, ..., 0.52129451, 0.26936297,
+  0.43955721],
  ...,
- [0.31565507, 0.27114893, 0.65708391, ..., 0.74126811, 1.92527557,
-  1.6852219 ],
- [0.80345144, 0.44582692, 0.43476457, ..., 1.30355459, 3.38245054,
-  1.78706005],
- [0.60198261, 0.03830562, 0.84785603, ..., 0.37355706, 3.4359315 ,
-  2.01584137]]</code></pre>
+ [8.9657778 , 0.59209249, 0.53361019, ..., 0.66481297, 0.43458535,
+  0.57962064],
+ [8.66148636, 0.36969894, 0.78172189, ..., 0.17635798, 0.46117954,
+  0.09882514],
+ [8.39878913, 0.36069396, 0.5392223 , ..., 0.56712022, 0.420657  ,
+  0.68389445]]</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -402,7 +402,7 @@ Note
 <section id="handling-sparse-matrices" class="level3">
 <h3 class="anchored" data-anchor-id="handling-sparse-matrices">Handling sparse matrices</h3>
 <p>We support a variety of compressed sparse formats where the non-zero elements are held inside three separate datasets - usually <code>data</code>, <code>indices</code> and <code>indptr</code>, based on the <a href="https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/advanced/h5_matrices">10X Genomics sparse HDF5 format</a>. To demonstrate, let’s mock up some sparse data using <strong>scipy</strong>:</p>
-<div id="3ee17de3" class="cell" data-execution_count="4">
+<div id="e8bb8a2c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.sparse</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mock <span class="op">=</span> scipy.sparse.random(<span class="dv">1000</span>, <span class="dv">200</span>, <span class="fl">0.1</span>).tocsc()</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -426,7 +426,7 @@ Note
 </div>
 </div>
 <p>The constructor will not do any auto-detection so we need to provide this information explicitly:</p>
-<div id="e3002470" class="cell" data-execution_count="5">
+<div id="7de99d9b" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hdf5array</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> hdf5array.Hdf5CompressedSparseMatrix(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sparse_whee.h5"</span>, </span>
@@ -440,15 +440,15 @@ Note
 [[0.        , 0.        , 0.        , ..., 0.        , 0.        ,
   0.        ],
  [0.        , 0.        , 0.        , ..., 0.        , 0.        ,
-  0.45233384],
- [0.0729245 , 0.        , 0.        , ..., 0.        , 0.        ,
+  0.        ],
+ [0.        , 0.72135589, 0.        , ..., 0.64795697, 0.        ,
   0.        ],
  ...,
- [0.        , 0.        , 0.        , ..., 0.17765821, 0.        ,
+ [0.        , 0.        , 0.        , ..., 0.        , 0.86939557,
+  0.95820628],
+ [0.57983664, 0.        , 0.        , ..., 0.        , 0.        ,
   0.        ],
- [0.        , 0.        , 0.        , ..., 0.        , 0.        ,
-  0.        ],
- [0.        , 0.        , 0.        , ..., 0.        , 0.        ,
+ [0.        , 0.        , 0.        , ..., 0.        , 0.80669413,
   0.        ]]</code></pre>
 </div>
 </div>
@@ -457,7 +457,7 @@ Note
 <section id="tiledb-backed-arrays" class="level2">
 <h2 class="anchored" data-anchor-id="tiledb-backed-arrays">TileDB-backed arrays</h2>
 <p>Let’s mock up a dense array:</p>
-<div id="d496dd33" class="cell" data-execution_count="6">
+<div id="e2d7ef69" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tiledb</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -468,37 +468,37 @@ Note
 </div>
 </div>
 <p>We can now represent it as a <code>TileDbArray</code>:</p>
-<div id="6aacbc9b" class="cell" data-execution_count="7">
+<div id="027293d9" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tiledbarray</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> tiledbarray.TileDbArray(<span class="st">"dense.tiledb"</span>, attribute_name<span class="op">=</span><span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is just a subclass of a <code>DelayedArray</code> and can be used anywhere in the BiocPy framework. Parts of the NumPy API are also supported - for example, we could apply a variety of delayed operations:</p>
-<div id="ab37cb44" class="cell" data-execution_count="8">
+<div id="03a8c7e4" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>scaling <span class="op">=</span> numpy.random.rand(<span class="dv">100</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>transformed <span class="op">=</span> numpy.log1p(arr <span class="op">/</span> scaling)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>transformed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>&lt;40 x 50&gt; DelayedArray object of type 'float64'
-[[0.57044682, 0.62136965, 0.20493652, ..., 0.34013958, 1.5534134 ,
-  0.4775226 ],
- [0.37919099, 0.55592908, 1.17556021, ..., 0.57782469, 0.65011487,
-  0.43352162],
- [0.31744251, 0.2699734 , 0.20023578, ..., 1.10580251, 0.68793861,
-  0.4853691 ],
+[[0.38570168, 1.34329305, 0.37061962, ..., 0.18149232, 0.48812983,
+  3.36119847],
+ [0.01007671, 1.1368437 , 0.9035832 , ..., 0.16488582, 0.60526886,
+  3.20586654],
+ [0.48338776, 0.71156784, 0.72885705, ..., 0.69442619, 0.48340426,
+  3.71077405],
  ...,
- [0.51833957, 0.24709752, 0.32335289, ..., 0.62455578, 1.3799386 ,
-  0.75238183],
- [0.38365682, 0.43176194, 0.46962711, ..., 1.30455857, 0.34042466,
-  0.49287211],
- [0.92834072, 0.12498179, 0.80863066, ..., 1.1831399 , 1.53943712,
-  0.07000767]]</code></pre>
+ [0.31601366, 0.35049416, 0.58996299, ..., 0.51546406, 0.14903065,
+  3.70188055],
+ [0.14035231, 0.85252485, 0.67058939, ..., 0.67844625, 0.02391537,
+  3.32386021],
+ [0.69106365, 0.11115126, 0.23616254, ..., 0.69022239, 0.08169617,
+  3.77476317]]</code></pre>
 </div>
 </div>
 <p>Check out the <a href="https://biocpy.github.io/tiledbarray/">documentation</a> for more details.</p>
 <section id="sparse-matrices" class="level3">
 <h3 class="anchored" data-anchor-id="sparse-matrices">Sparse Matrices</h3>
 <p>We can perform similar operations on a sparse matrix as well. Lets mock a sparse matrix and store it as a tiledb file.</p>
-<div id="aef8d59b" class="cell" data-execution_count="9">
+<div id="b5a6db60" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dir_path <span class="op">=</span> <span class="st">"sparse_array.tiledb"</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>dom <span class="op">=</span> tiledb.Domain(</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>     tiledb.Dim(name<span class="op">=</span><span class="st">"rows"</span>, domain<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">4</span>), tile<span class="op">=</span><span class="dv">4</span>, dtype<span class="op">=</span>numpy.int32),</span>
@@ -515,7 +515,7 @@ Note
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>tdb[i, j] <span class="op">=</span> data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can now represent this as a <code>TileDbArray</code>:</p>
-<div id="2109e3ed" class="cell" data-execution_count="10">
+<div id="3e2ddd2c" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tiledbarray</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> tiledbarray.TileDbArray(dir_path, attribute_name<span class="op">=</span><span class="st">""</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -623,6 +623,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/biocpy\.github\.io\/tutorial");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -657,7 +675,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -315,8 +315,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>What sets <code>rds2py</code> apart from other similar parsers is its capability to read <strong>S4</strong> classes. This unique feature allows the parsing of Bioconductor data types directly from R into Python.</p>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p>To get started, install the package from <a href="https://pypi.org/project/multiassayexperiment/">PyPI</a></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install multiassayexperiment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To get started, install the package from <a href="https://pypi.org/project/rds2py/">PyPI</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install rds2py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="reading-rds-objects" class="level2">
 <h2 class="anchored" data-anchor-id="reading-rds-objects">Reading RDS objects</h2>
@@ -333,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-1-parse-the-rds-file" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-parse-the-rds-file">Step 1: Parse the RDS file</h2>
 <p>Now, we can read the RDS file in Python using the <code>read_rds</code> function, which parses the file contents and returns a dictionary of the R object.</p>
-<div id="f8c12b70" class="cell" data-execution_count="1">
+<div id="bcc1859a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rds2py <span class="im">import</span> read_rds</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>r_object <span class="op">=</span> read_rds(<span class="st">"../assets/data/zeisel-brain-subset.rds"</span>)</span>
@@ -359,7 +359,7 @@ Note
 <section id="step-2-conversion-to-python-representations" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-conversion-to-python-representations">Step 2: Conversion to Python representations</h2>
 <p>The package provides functions to convert these R objects into useful Python representations.</p>
-<div id="2239b364" class="cell" data-execution_count="2">
+<div id="0368299a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rds2py <span class="im">import</span> as_summarized_experiment</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># to convert an robject to SCE</span></span>
@@ -393,7 +393,7 @@ metadata(0):
 </div>
 <p>And that’s it! It’s as straightforward as that. The <code>as_summarized_experiment</code> function serves as an example of how to convert complex R structures into Python representations. Similarly, the package offers parsers for atomic vectors, lists, sparse/dense matrices, data frames, and most R data structures.</p>
 <p>You can continue to convert this object into <code>AnnData</code> representation and perform analysis. For more details on <code>SingleCellExperiment</code>, refer to the documentation <a href="../chapters/experiments/single_cell_experiment.html">here</a>.</p>
-<div id="3eeae650" class="cell" data-execution_count="3">
+<div id="30b054a6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sce.to_anndata()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(AnnData object with n_obs × n_vars = 3005 × 1000
@@ -488,6 +488,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/biocpy\.github\.io\/tutorial");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -522,7 +540,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

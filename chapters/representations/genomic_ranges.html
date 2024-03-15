@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -374,7 +374,7 @@ Note
 <section id="preferred-way" class="level3">
 <h3 class="anchored" data-anchor-id="preferred-way">Preferred way</h3>
 <p>To construct a <code>GenomicRanges</code> object, we need to provide sequence information and genomic coordinates. This is achieved through the combination of the <code>seqnames</code> and <code>ranges</code> parameters. Additionally, you have the option to specify the <code>strand</code>, represented as a list of “+” (or 1) for the forward strand, “-” (or -1) for the reverse strand, or “*” (or 0) if the strand is unknown. You can also provide a NumPy vector that utilizes either the string or numeric representation to specify the <code>strand</code>. Optionally, you can use the <code>mcols</code> parameter to provide additional metadata about each genomic region.</p>
-<div id="46104006" class="cell" data-execution_count="1">
+<div id="08a969de" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genomicranges <span class="im">import</span> GenomicRanges</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> iranges <span class="im">import</span> IRanges</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocframe <span class="im">import</span> BiocFrame</span>
@@ -403,11 +403,11 @@ Note
 <pre><code>GenomicRanges with 5 ranges and 5 metadata columns
     seqnames    ranges          strand     score                 GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;             &lt;list&gt;
-[0]     chr1 101 - 112               * |       0 0.8556394112126124
-[1]     chr2 102 - 123               - |       1 0.4350301401788086
-[2]     chr3 103 - 128               * |       2 0.6397589117621435
-[3]     chr2 104 - 134               + |       3 0.5843831928580034
-[4]     chr3 105 - 110               - |       4 0.8025172030558292
+[0]     chr1 101 - 112               * |       0 0.7012218925416509
+[1]     chr2 102 - 123               - |       1 0.3590659642791052
+[2]     chr3 103 - 128               * |       2 0.8513214587620568
+[3]     chr2 104 - 134               + |       3 0.8310081010510505
+[4]     chr3 105 - 110               - |       4  0.772390679404933
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -446,7 +446,7 @@ Note
 <p>A future version of this package might implement or take advantage of existing genomic parser packages in Python to support various file formats.</p>
 </div>
 </div>
-<div id="7c257d7b" class="cell" data-execution_count="2">
+<div id="00a44b33" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> genomicranges</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># gr = genomicranges.read_gtf(&lt;PATH TO GTF&gt;)</span></span>
@@ -500,7 +500,7 @@ Important
 <p>The <code>DataFrame</code> must contain columns <code>seqnames</code>, <code>starts</code> and <code>ends</code> to represent genomic coordinates. The rest of the columns are considered metadata and will be available in the <code>mcols</code> slot of the <code>GenomicRanges</code> object.</p>
 </div>
 </div>
-<div id="07b17e4c" class="cell" data-execution_count="3">
+<div id="553e9bc7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genomicranges <span class="im">import</span> GenomicRanges</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -521,11 +521,11 @@ Important
 <pre><code>GenomicRanges with 5 ranges and 5 metadata columns
   seqnames    ranges          strand    score                  GC
      &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;              &lt;list&gt;
-0     chr1 101 - 112               * |      0  0.5700000408771202
-1     chr2 102 - 103               - |      1  0.7260367863381686
-2     chr1 103 - 128               * |      2  0.1775119901410197
-3     chr3 104 - 134               + |      3  0.3972995548016741
-4     chr2 109 - 111               - |      4 0.13461025107301505
+0     chr1 101 - 112               * |      0 0.23858456092937474
+1     chr2 102 - 103               - |      1 0.22002702534410656
+2     chr1 103 - 128               * |      2 0.15258582569199963
+3     chr3 104 - 134               + |      3  0.7448063161314457
+4     chr2 109 - 111               - |      4 0.17964849748693879
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -539,7 +539,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <section id="sequence-information" class="level2">
 <h2 class="anchored" data-anchor-id="sequence-information">Sequence information</h2>
 <p>The package also provides a <code>SeqInfo</code> class to update or modify sequence information stored in the object. Learn more about this in the <a href="https://bioconductor.org/packages/release/bioc/html/GenomeInfoDb.html">GenomeInfoDb package</a>.</p>
-<div id="1ba95291" class="cell" data-execution_count="4">
+<div id="69d9c2a3" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genomicranges <span class="im">import</span> SeqInfo</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>seq <span class="op">=</span> SeqInfo(</span>
@@ -554,11 +554,11 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <pre><code>GenomicRanges with 5 ranges and 5 metadata columns
     seqnames    ranges          strand     score                 GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;             &lt;list&gt;
-[0]     chr1 101 - 112               * |       0 0.8556394112126124
-[1]     chr2 102 - 123               - |       1 0.4350301401788086
-[2]     chr3 103 - 128               * |       2 0.6397589117621435
-[3]     chr2 104 - 134               + |       3 0.5843831928580034
-[4]     chr3 105 - 110               - |       4 0.8025172030558292
+[0]     chr1 101 - 112               * |       0 0.7012218925416509
+[1]     chr2 102 - 123               - |       1 0.3590659642791052
+[2]     chr3 103 - 128               * |       2 0.8513214587620568
+[3]     chr2 104 - 134               + |       3 0.8310081010510505
+[4]     chr3 105 - 110               - |       4  0.772390679404933
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -567,7 +567,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <section id="getterssetters" class="level2">
 <h2 class="anchored" data-anchor-id="getterssetters">Getters/Setters</h2>
 <p>Getters are available to access various attributes using either the property notation or functional style.</p>
-<div id="68d992e8" class="cell" data-execution_count="5">
+<div id="77c94f06" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access sequence names</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"seqnames (as property): "</span>, gr.seqnames)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"seqnames (functional style): "</span>, gr.get_seqnames())</span>
@@ -592,11 +592,11 @@ width of each region:  [11 21 25 30  5]
 BiocFrame with 5 rows and 2 columns
       score                 GC
     &lt;range&gt;             &lt;list&gt;
-[0]       0 0.8556394112126124
-[1]       1 0.4350301401788086
-[2]       2 0.6397589117621435
-[3]       3 0.5843831928580034
-[4]       4 0.8025172030558292</code></pre>
+[0]       0 0.7012218925416509
+[1]       1 0.3590659642791052
+[2]       2 0.8513214587620568
+[3]       3 0.8310081010510505
+[4]       4  0.772390679404933</code></pre>
 </div>
 </div>
 <section id="setters" class="level3">
@@ -614,7 +614,7 @@ Important
 <p>All property-based setters are <code>in_place</code> operations, with further details discussed in <a href="../../chapters/philosophy.html#functional-discipline">functional paradigm</a> section.</p>
 </div>
 </div>
-<div id="79da01f3" class="cell" data-execution_count="6">
+<div id="a02b445e" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>modified_mcols <span class="op">=</span> gr.mcols.set_column(<span class="st">"score"</span>, <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>))</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>modified_gr <span class="op">=</span> gr.set_mcols(modified_mcols)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(modified_gr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -622,35 +622,35 @@ Important
 <pre><code>GenomicRanges with 5 ranges and 5 metadata columns
     seqnames    ranges          strand     score                 GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;             &lt;list&gt;
-[0]     chr1 101 - 112               * |       1 0.8556394112126124
-[1]     chr2 102 - 123               - |       2 0.4350301401788086
-[2]     chr3 103 - 128               * |       3 0.6397589117621435
-[3]     chr2 104 - 134               + |       4 0.5843831928580034
-[4]     chr3 105 - 110               - |       5 0.8025172030558292
+[0]     chr1 101 - 112               * |       1 0.7012218925416509
+[1]     chr2 102 - 123               - |       2 0.3590659642791052
+[2]     chr3 103 - 128               * |       3 0.8513214587620568
+[3]     chr2 104 - 134               + |       4 0.8310081010510505
+[4]     chr3 105 - 110               - |       5  0.772390679404933
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
 </div>
 <p>or use an in-place operation:</p>
-<div id="19c06dab" class="cell" data-execution_count="7">
+<div id="08463624" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gr.mcols.set_column(<span class="st">"score"</span>, <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>), in_place<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gr.mcols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BiocFrame with 5 rows and 2 columns
       score                 GC
     &lt;range&gt;             &lt;list&gt;
-[0]       1 0.8556394112126124
-[1]       2 0.4350301401788086
-[2]       3 0.6397589117621435
-[3]       4 0.5843831928580034
-[4]       5 0.8025172030558292</code></pre>
+[0]       1 0.7012218925416509
+[1]       2 0.3590659642791052
+[2]       3 0.8513214587620568
+[3]       4 0.8310081010510505
+[4]       5  0.772390679404933</code></pre>
 </div>
 </div>
 </section>
 <section id="access-ranges" class="level3">
 <h3 class="anchored" data-anchor-id="access-ranges">Access ranges</h3>
 <p><code>get_ranges()</code> is a generic method to access only the genomic coordinates:</p>
-<div id="fe84bcca" class="cell" data-execution_count="8">
+<div id="40371cbf" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or gr.get_ranges()</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gr.ranges)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -669,7 +669,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <section id="subset-operations" class="level2">
 <h2 class="anchored" data-anchor-id="subset-operations">Subset operations</h2>
 <p>You can subset a <code>GenomicRange</code> object using the subset (<code>[]</code>) operator. This operation accepts different slice input types, such as a boolean vector, a <code>slice</code> object, a list of indices, or names (if available) to subset.</p>
-<div id="bacb2f9e" class="cell" data-execution_count="9">
+<div id="15450904" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the first 3 regions</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>gr[:<span class="dv">3</span>]</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -680,9 +680,9 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <pre><code>GenomicRanges with 3 ranges and 3 metadata columns
     seqnames    ranges          strand    score                 GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;             &lt;list&gt;
-[0]     chr2 102 - 123               - |      2 0.4350301401788086
-[1]     chr2 104 - 134               + |      4 0.5843831928580034
-[2]     chr3 103 - 128               * |      3 0.6397589117621435
+[0]     chr2 102 - 123               - |      2 0.3590659642791052
+[1]     chr2 104 - 134               + |      4 0.8310081010510505
+[2]     chr3 103 - 128               * |      3 0.8513214587620568
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -691,20 +691,20 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <section id="iterate-over-ranges" class="level2">
 <h2 class="anchored" data-anchor-id="iterate-over-ranges">Iterate over ranges</h2>
 <p>You can iterate over the regions of a <code>GenomicRanges</code> object. <code>name</code> is <code>None</code> if the object does not contain any names. To iterate over the first two ranges:</p>
-<div id="8bccbe98" class="cell" data-execution_count="10">
+<div id="d22174dd" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, row <span class="kw">in</span> gr[:<span class="dv">2</span>]:</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name, row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>None GenomicRanges with 1 range and 1 metadata column
     seqnames    ranges          strand    score                 GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;             &lt;list&gt;
-[0]     chr1 101 - 112               * |      1 0.8556394112126124
+[0]     chr1 101 - 112               * |      1 0.7012218925416509
 ------
 seqinfo(3 sequences): chr1 chr2 chr3
 None GenomicRanges with 1 range and 1 metadata column
     seqnames    ranges          strand    score                 GC
        &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;             &lt;list&gt;
-[0]     chr2 102 - 123               - |      2 0.4350301401788086
+[0]     chr2 102 - 123               - |      2 0.3590659642791052
 ------
 seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
@@ -722,7 +722,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <li><strong>restrict</strong>: Restricts the ranges to the interval(s) specified by the <strong>start</strong> and <strong>end</strong> arguments.</li>
 <li><strong>trim</strong>: Trims out-of-bound ranges located on non-circular sequences whose length is not <code>NA</code>.</li>
 </ul>
-<div id="c2b0ea62" class="cell" data-execution_count="11">
+<div id="63fbba53" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>gr <span class="op">=</span> GenomicRanges(</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    seqnames<span class="op">=</span>[</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"chr1"</span>,</span>
@@ -764,19 +764,6 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"GenomicRanges after the trim operation:"</span>)</span>
 <span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(trimmed_gr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>GenomicRanges after the trim operation:
-GenomicRanges with 5 ranges and 5 metadata columns
-    seqnames    ranges          strand     score                  GC
-       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;              &lt;list&gt;
-[0]     chr1 101 - 112               * |       0  0.2273469636294987
-[1]     chr2 102 - 123               - |       1  0.5469409834427389
-[2]     chr3 103 - 128               * |       2 0.17071249582578196
-[3]     chr2 104 - 134               + |       3  0.5716630649803055
-[4]     chr3 105 - 110               - |       4  0.9217870483592104
-------
-seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
-</div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/genomicranges/SeqInfo.py:405: UserWarning: 'seqlengths' is deprecated, use 'get_seqlengths' instead
   warn(
@@ -784,6 +771,19 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
   warn(
 /opt/hostedtoolcache/Python/3.9.18/x64/lib/python3.9/site-packages/iranges/IRanges.py:290: UserWarning: Setting property 'width'is an in-place operation, use 'set_width' instead
   warn(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GenomicRanges after the trim operation:
+GenomicRanges with 5 ranges and 5 metadata columns
+    seqnames    ranges          strand     score                  GC
+       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;range&gt;              &lt;list&gt;
+[0]     chr1 101 - 112               * |       0  0.7880167331534009
+[1]     chr2 102 - 123               - |       1  0.5572465235258517
+[2]     chr3 103 - 128               * |       2  0.9802612319681472
+[3]     chr2 104 - 134               + |       3  0.8180700845838095
+[4]     chr3 105 - 110               - |       4 0.38230856580024064
+------
+seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
 </div>
 </section>
@@ -795,7 +795,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <li><strong>gaps</strong>: Finds gaps in the <code>GenomicRanges</code> object for each distinct (seqname, strand) pair.</li>
 <li><strong>disjoin</strong>: Finds disjoint intervals across all locations for each distinct (seqname, strand) pair.</li>
 </ul>
-<div id="3f3c0f55" class="cell" data-execution_count="12">
+<div id="6046fc62" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>gr <span class="op">=</span> GenomicRanges(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    seqnames<span class="op">=</span>[</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"chr1"</span>,</span>
@@ -851,7 +851,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <li><strong>intersect</strong>: Compute the <code>intersection</code> or finds overlapping intervals.</li>
 <li><strong>setdiff</strong>: Compute <code>set difference</code>.</li>
 </ul>
-<div id="8df15097" class="cell" data-execution_count="13">
+<div id="f6252f95" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>g_src <span class="op">=</span> GenomicRanges(</span>
@@ -867,7 +867,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="73039d18" class="cell" data-execution_count="14">
+<div id="7fef38ce" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intersection</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>int_gr <span class="op">=</span> g_src.intersect(g_tgt)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -900,7 +900,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <section id="summary-stats-for-column" class="level3">
 <h3 class="anchored" data-anchor-id="summary-stats-for-column">Summary stats for column</h3>
 <p>Use <code>Pandas</code> to compute summary statistics for a column:</p>
-<div id="87f1285c" class="cell" data-execution_count="15">
+<div id="b1b3f46a" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pd.Series(gr.mcols.get_column(<span class="st">"score"</span>)).describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>count    5.000000
@@ -915,7 +915,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>With a bit more magic, render a histogram using <strong>matplotlib</strong>:</p>
-<div id="94c62a34" class="cell" data-execution_count="16">
+<div id="4de7d185" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -935,7 +935,7 @@ dtype: float64</code></pre>
 <section id="binned-average" class="level3">
 <h3 class="anchored" data-anchor-id="binned-average">Binned average</h3>
 <p>Compute binned average for a set of query <strong>bins</strong>:</p>
-<div id="d3a32323" class="cell" data-execution_count="17">
+<div id="da05c1b5" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> iranges <span class="im">import</span> IRanges</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>bins_gr <span class="op">=</span> GenomicRanges(seqnames<span class="op">=</span>[<span class="st">"chr1"</span>], ranges<span class="op">=</span>IRanges([<span class="dv">101</span>], [<span class="dv">109</span>]))</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -987,7 +987,7 @@ Tip
 <li><strong>tile</strong>: Splits each genomic region by <strong>n</strong> (number of regions) or by <strong>width</strong> (maximum width of each tile).</li>
 <li><strong>sliding_windows</strong>: Generates sliding windows within each range, by <strong>width</strong> and <strong>step</strong>.</li>
 </ul>
-<div id="03ed4671" class="cell" data-execution_count="18">
+<div id="bb65cb18" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>gr <span class="op">=</span> GenomicRanges(</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    seqnames<span class="op">=</span>[</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"chr1"</span>,</span>
@@ -1030,7 +1030,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <section id="generate-tiles-from-genome" class="level3">
 <h3 class="anchored" data-anchor-id="generate-tiles-from-genome">Generate tiles from genome</h3>
 <p><code>tile_genome</code> returns a set of genomic regions that form a partitioning of the specified genome.</p>
-<div id="8c2d0b5c" class="cell" data-execution_count="19">
+<div id="bf93033c" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>seqlengths <span class="op">=</span> {<span class="st">"chr1"</span>: <span class="dv">100</span>, <span class="st">"chr2"</span>: <span class="dv">75</span>, <span class="st">"chr3"</span>: <span class="dv">200</span>}</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>tiles <span class="op">=</span> GenomicRanges.tile_genome(seqlengths<span class="op">=</span>seqlengths, n<span class="op">=</span><span class="dv">10</span>)</span>
@@ -1055,7 +1055,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <section id="coverage" class="level2">
 <h2 class="anchored" data-anchor-id="coverage">Coverage</h2>
 <p>Computes number of ranges that overlap for each position.</p>
-<div id="84564735" class="cell" data-execution_count="20">
+<div id="7b605842" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rich </span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>res_vector <span class="op">=</span> gr.coverage()</span>
@@ -1090,7 +1090,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 </div>
 </div>
 <p>Lets see what the coverage looks like, now with <strong>seaborn</strong>:</p>
-<div id="da1b6e01" class="cell" data-execution_count="21">
+<div id="931f5bea" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>vector <span class="op">=</span> res_vector[<span class="st">"chr1"</span>]</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>pd.DataFrame({</span>
@@ -1114,7 +1114,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <li><strong>count_overlaps</strong>: Count overlaps between two <code>GenomicRanges</code> objects.</li>
 <li><strong>subset_by_overlaps</strong>: Subset a <code>GenomicRanges</code> object if it overlaps with the ranges in the query.</li>
 </ul>
-<div id="3420f1ce" class="cell" data-execution_count="22">
+<div id="bcfa7852" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>subject <span class="op">=</span> GenomicRanges(</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    seqnames<span class="op">=</span> [<span class="st">"chr1"</span>,<span class="st">"chr2"</span>,<span class="st">"chr2"</span>,<span class="st">"chr2"</span>,<span class="st">"chr1"</span>,<span class="st">"chr1"</span>,<span class="st">"chr3"</span>,<span class="st">"chr3"</span>,<span class="st">"chr3"</span>,<span class="st">"chr3"</span>],</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    ranges<span class="op">=</span>IRanges(<span class="bu">range</span>(<span class="dv">101</span>, <span class="dv">111</span>), <span class="bu">range</span>(<span class="dv">121</span>, <span class="dv">131</span>)),</span>
@@ -1159,7 +1159,7 @@ seqinfo(3 sequences): chr1 chr2 chr3</code></pre>
 <li><strong>follow</strong>: Performs nearest neighbor search only along downstream.</li>
 <li><strong>precede</strong>: Performs nearest neighbor search only along upstream.</li>
 </ul>
-<div id="74f6b5f6" class="cell" data-execution_count="23">
+<div id="adcc5b29" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>find_regions <span class="op">=</span> GenomicRanges(</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    seqnames<span class="op">=</span> [<span class="st">"chr1"</span>, <span class="st">"chr2"</span>, <span class="st">"chr3"</span>],</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    ranges<span class="op">=</span>IRanges([<span class="dv">200</span>, <span class="dv">105</span>, <span class="dv">1190</span>],[<span class="dv">203</span>, <span class="dv">106</span>, <span class="dv">1200</span>]),</span>
@@ -1198,7 +1198,7 @@ Note
 <li><strong>sort</strong>: Sort the <code>GenomicRanges</code> object.</li>
 <li><strong>rank</strong>: For each interval identifies its position is a sorted order.</li>
 </ul>
-<div id="e25a971a" class="cell" data-execution_count="24">
+<div id="bf32dbcf" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># match</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>query_hits <span class="op">=</span> gr.match(gr[<span class="dv">2</span>:<span class="dv">5</span>])</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"matches: "</span>, query_hits)</span>
@@ -1218,13 +1218,13 @@ Note
 <pre><code>matches:  [[2], [3], [4]]
 order: [0 1 3 4 2]
 sorted: GenomicRanges with 5 ranges and 5 metadata columns
-    seqnames    ranges          strand    score                 GC
-       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;             &lt;list&gt;
-[0]     chr1 101 - 112               * |      0 0.6011616170866391
-[1]     chr2 102 - 123               - |      1 0.7546373145820136
-[2]     chr2 104 - 134               + |      3 0.9731211892859339
-[3]     chr3 105 - 110               - |      4 0.6148942642454869
-[4]     chr3 103 - 128               * |      2 0.3476304889483851
+    seqnames    ranges          strand    score                  GC
+       &lt;str&gt; &lt;IRanges&gt; &lt;ndarray[int8]&gt;   &lt;list&gt;              &lt;list&gt;
+[0]     chr1 101 - 112               * |      0 0.11557928506866144
+[1]     chr2 102 - 123               - |      1 0.20177779058567846
+[2]     chr2 104 - 134               + |      3 0.14217179647858091
+[3]     chr3 105 - 110               - |      4   0.607670492529722
+[4]     chr3 103 - 128               * |      2  0.7871210406771436
 ------
 seqinfo(3 sequences): chr1 chr2 chr3
 rank: [0, 1, 4, 2, 3]</code></pre>
@@ -1234,7 +1234,7 @@ rank: [0, 1, 4, 2, 3]</code></pre>
 <section id="combine-genomicranges-objects-by-rows" class="level2">
 <h2 class="anchored" data-anchor-id="combine-genomicranges-objects-by-rows">Combine <code>GenomicRanges</code> objects by rows</h2>
 <p>Use the <code>combine</code> generic from <a href="https://github.com/BiocPy/generics">biocutils</a> to concatenate multiple <code>GenomicRanges</code> objects.</p>
-<div id="1fc58dcc" class="cell" data-execution_count="25">
+<div id="84ee60f5" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> biocutils.combine <span class="im">import</span> combine</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> GenomicRanges(</span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    seqnames<span class="op">=</span>[<span class="st">"chr1"</span>, <span class="st">"chr2"</span>, <span class="st">"chr1"</span>, <span class="st">"chr3"</span>],</span>
@@ -1274,7 +1274,7 @@ seqinfo(5 sequences): chr1 chr2 chr3 chr4 chr5</code></pre>
 <li><strong>invert_strand</strong>: flip the strand for each interval</li>
 <li><strong>sample</strong>: randomly choose <strong><em>k</em></strong> intervals</li>
 </ul>
-<div id="c37f74a0" class="cell" data-execution_count="26">
+<div id="5e8c7d82" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># invert strand</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>inv_gr <span class="op">=</span> gr.invert_strand()</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1287,7 +1287,7 @@ seqinfo(5 sequences): chr1 chr2 chr3 chr4 chr5</code></pre>
 <p>Just as it sounds, a <code>GenomicRangesList</code> is a named-list like object.</p>
 <p>If you are wondering why you need this class, a <code>GenomicRanges</code> object enables the specification of multiple genomic elements, usually where genes start and end. Genes, in turn, consist of various subregions, such as exons. The <code>GenomicRangesList</code> allows us to represent this nested structure.</p>
 <p>As of now, this class has limited functionality, serving as a read-only class with basic accessors.</p>
-<div id="9626f9c1" class="cell" data-execution_count="27">
+<div id="96c29092" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genomicranges <span class="im">import</span> GenomicRangesList</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> GenomicRanges(</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    seqnames<span class="op">=</span>[<span class="st">"chr1"</span>, <span class="st">"chr2"</span>, <span class="st">"chr1"</span>, <span class="st">"chr3"</span>],</span>
@@ -1334,7 +1334,7 @@ seqinfo(3 sequences): chr2 chr4 chr5
 </div>
 <section id="properties" class="level3">
 <h3 class="anchored" data-anchor-id="properties">Properties</h3>
-<div id="d95ad4da" class="cell" data-execution_count="28">
+<div id="6aa90db5" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>grl.start</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>grl.width</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
@@ -1346,7 +1346,7 @@ seqinfo(3 sequences): chr2 chr4 chr5
 <section id="combine-genomicrangeslist-object" class="level3">
 <h3 class="anchored" data-anchor-id="combine-genomicrangeslist-object">Combine <code>GenomicRangeslist</code> object</h3>
 <p>Similar to the combine function from <code>GenomicRanges</code>,</p>
-<div id="58dbc986" class="cell" data-execution_count="29">
+<div id="9033dd1f" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>grla <span class="op">=</span> GenomicRangesList(ranges<span class="op">=</span>[a], names<span class="op">=</span>[<span class="st">"a"</span>])</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>grlb <span class="op">=</span> GenomicRangesList(ranges<span class="op">=</span>[b, a], names<span class="op">=</span>[<span class="st">"b"</span>, <span class="st">"c"</span>])</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1361,7 +1361,7 @@ seqinfo(3 sequences): chr2 chr4 chr5
 <h2 class="anchored" data-anchor-id="empty-ranges">Empty ranges</h2>
 <p>Both of these classes can also contain no range information, and they tend to be useful when incorporates into larger data structures but do not contain any data themselves.</p>
 <p>To create an empty <code>GenomicRanges</code> object:</p>
-<div id="840c062c" class="cell" data-execution_count="30">
+<div id="8253ce48" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>empty_gr <span class="op">=</span> GenomicRanges.empty()</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty_gr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1371,7 +1371,7 @@ seqinfo(3 sequences): chr2 chr4 chr5
 </div>
 </div>
 <p>Similarly, an empty <code>GenomicRangesList</code> can be created:</p>
-<div id="620b52ce" class="cell" data-execution_count="31">
+<div id="d6dbd1a0" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>empty_grl <span class="op">=</span> GenomicRangesList.empty(n<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty_grl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1472,6 +1472,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/biocpy\.github\.io\/tutorial");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1506,7 +1524,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
