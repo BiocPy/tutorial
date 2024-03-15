@@ -8,10 +8,10 @@ What sets `rds2py` apart from other similar parsers is its capability to read **
 
 ## Installation
 
-To get started, install the package from [PyPI](https://pypi.org/project/multiassayexperiment/)
+To get started, install the package from [PyPI](https://pypi.org/project/rds2py/)
 
 ```bash
-pip install multiassayexperiment
+pip install rds2py
 ```
 
 ## Reading RDS objects
